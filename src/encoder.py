@@ -4,12 +4,12 @@ from zlib import compress
 
 __all__ = ('encode',)
 
-_b64_chars = f"{string.ascii_uppercase}{string.ascii_lowercase}{string.digits}+/"
-_puml_chars = f"{string.digits}{string.ascii_uppercase}{string.ascii_lowercase}-_"
+_B64_CHARS = f"{string.ascii_uppercase}{string.ascii_lowercase}{string.digits}+/"
+_PUML_CHARS = f"{string.digits}{string.ascii_uppercase}{string.ascii_lowercase}-_"
 
 _TRANSLATE_MAP = bytes.maketrans(
-    _b64_chars.encode('utf-8'),
-    _puml_chars.encode('utf-8')
+    _B64_CHARS.encode('utf-8'),
+    _PUML_CHARS.encode('utf-8')
 )
 
 

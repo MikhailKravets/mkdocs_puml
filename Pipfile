@@ -5,11 +5,17 @@ name = "pypi"
 
 [packages]
 requests = "*"
+flit = "*"
+pre-commit = "*"
 
 [dev-packages]
 mkdocs = "*"
 mkdocs-material = "*"
 mkdocs-awesome-pages-plugin = "*"
+pytest = "*"
+pytest-cov = "*"
+pre-commit = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.10"

@@ -1,0 +1,18 @@
+[run]
+omit=
+    .data/*
+    .venv/*
+    venv/*
+
+    # Exclude examples from tests
+    */examples/*
+    */.examples/*
+    tests/*
+
+branch = True
+
+[report]
+show_missing = True
+skip_empty = True
+exclude_lines=
+    raise NotImplementedError
