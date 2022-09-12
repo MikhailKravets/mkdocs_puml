@@ -1,4 +1,4 @@
-from src import PlantUML
+from mkdocs_puml import PlantUML
 from tests.conftest import BASE_PUML_URL
 
 
@@ -8,6 +8,6 @@ def test_translate(diagram_and_encoded: (str, str), svg_diagram: str, mock_reque
     puml = PlantUML(BASE_PUML_URL)
     resp = puml.translate(encoded)
 
-    assert resp.startswith(f'<div class="{puml.div_class}">')
+    assert resp.startswith("<svg")
     assert not puml._html_comment_regex.search(resp)
     assert 'preserveAspectRatio="true"' in resp

@@ -1,7 +1,7 @@
 from markdown import Markdown
 
-from src import PlantUML
-from src.extensions import makeExtension, PumlExtension, PumlPreprocessor
+from mkdocs_puml import PlantUML
+from mkdocs_puml.extensions import makeExtension, PumlExtension, PumlPreprocessor
 from tests.conftest import BASE_PUML_URL
 
 

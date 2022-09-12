@@ -1,4 +1,4 @@
-from src import encode
+from mkdocs_puml import encode
 
 
 def test_encode(diagram_and_encoded: (str, str)):

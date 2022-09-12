@@ -14,6 +14,19 @@ _TRANSLATE_MAP = bytes.maketrans(
 
 
 def encode(content: str) -> str:
+    """Encode plantUML diagram into string
+    that can be used in a communication with
+    plantUML service.
+
+    Read more at https://plantuml.com/en/text-encoding
+
+    Args:
+        content (str): plantUML diagram in a string representation
+
+    Returns:
+        Encoded string that can be used in plantUML service
+        to build diagram images
+    """
     content = compress(content.encode('utf-8'))[2:-4]  # 0:2 - header, -4: - checksum
     content = base64.b64encode(content)
     content = content.translate(_TRANSLATE_MAP)
