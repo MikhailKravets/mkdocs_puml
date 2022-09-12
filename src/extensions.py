@@ -8,7 +8,7 @@ from src import PlantUML
 
 
 class PumlExtension(Extension):
-    """ Abbreviation Extension for Python-Markdown. """
+    """PUML Extension for Python-Markdown."""
     def __init__(self, name, puml_url):
         self.name = name
         self.puml = PlantUML(puml_url, div_class=name)
