@@ -23,7 +23,7 @@ class PlantUML:
             puml = PlantUML("https://www.plantuml.com")
             svg = puml.translate(diagram)
     """
-    _format = 'plantuml/svg'
+    _format = 'svg'
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
 
     def __init__(self, base_url: str):
@@ -74,4 +74,4 @@ class PlantUML:
             It can be used to add support of light / dark theme.
         """
         svg.setAttribute('preserveAspectRatio', "true")
-        svg.removeAttribute('style')
+        svg.setAttribute('style', 'background: #ffffff')
