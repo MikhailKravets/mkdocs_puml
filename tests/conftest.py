@@ -6,7 +6,7 @@ import requests
 
 
 BASE_PUML_URL = "https://mocked.org"
-BASE_DIR = Path(__file__).resolve().parent.parent
+TESTDATA_DIR = Path(__file__).resolve().parent.joinpath('testdata')
 
 
 @pytest.fixture(scope="package")
@@ -19,8 +19,14 @@ def diagram_and_encoded():
 
 @pytest.fixture(scope="package")
 def svg_diagram():
-    with open(BASE_DIR.joinpath('tests/testdata/plantuml.svg')) as f:
+    with open(TESTDATA_DIR.joinpath('plantuml.svg')) as f:
         return f.read()
+
+
+@pytest.fixture(scope="package")
+def md_lines():
+    with open(TESTDATA_DIR.joinpath('test.md')) as f:
+        return f.readlines()
 
 
 @pytest.fixture(scope="function")

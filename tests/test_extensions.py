@@ -28,7 +28,7 @@ def test_puml_extension():
     assert 'puml' in md.preprocessors
 
 
-def test_puml_preprocessor(mock_requests):
+def test_puml_preprocessor(md_lines, svg_diagram, mock_requests):
     name = "puml"
     url = BASE_PUML_URL
 
@@ -37,5 +37,8 @@ def test_puml_preprocessor(mock_requests):
 
     preprocessor = PumlPreprocessor(md, name, puml)
 
-    # TODO: prepare .md file and split it on line to feed into run method
-    preprocessor.run(None)
+    resp = preprocessor.run(md_lines)
+    resp = ''.join(resp)
+
+    assert resp.count(f'<div class="{name}">') == 2
+    assert mock_requests.call_count == 2
