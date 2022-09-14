@@ -9,8 +9,7 @@ from mkdocs_puml import PlantUML
 
 class PumlExtension(Extension):
     """PUML Extension for Python-Markdown"""
-    def __init__(self, name, puml_url):
-        self.name = name
+    def __init__(self, puml_url):
         self.puml = PlantUML(puml_url)
         super().__init__()
 
@@ -18,7 +17,7 @@ class PumlExtension(Extension):
         """Insert PumlPreprocessor to markdown preprocessors.
         PumlPreprocessor should have higher priority than FenceCodePreprocessor
         """
-        md.preprocessors.register(PumlPreprocessor(md, self.name, self.puml), 'puml', 26)
+        md.preprocessors.register(PumlPreprocessor(md, self.puml), 'puml', 26)
 
 
 class PumlPreprocessor(Preprocessor):
@@ -33,21 +32,13 @@ class PumlPreprocessor(Preprocessor):
 
     Attributes:
         md (Markdown): Markdown object
-        name (str): this is the code block language identifier.
-                    Usually, we use `puml` for plantUML diagrams.
-                    But you can override this behavior. For example,
-                    with `name="plantuml"`, preprocessor will look
-                    for code blocks::
-
-                        ```plantuml
-                        ...
-                        ```
-        puml (PlantUML): PlantUML converter class.
+        puml (PlantUML): PlantUML converter class
     """
-    def __init__(self, md, name, puml):
-        self.name = name
+    name = "puml"
+
+    def __init__(self, md, puml):
         self.puml = puml
-        self.regex = re.compile(rf"```{name}(.+?)```", flags=re.DOTALL)
+        self.regex = re.compile(rf"```{self.name}(.+?)```", flags=re.DOTALL)
         super().__init__(md)
 
     def run(self, lines):

@@ -35,11 +35,7 @@ class PlantUML:
 
         Examples:
                 This method translates content
-                into <div> html tag containing svg diagram::
-
-                    <div class="puml">
-                        ...SVG content...
-                    </div>
+                into <svg> image of the diagram
 
         Args:
             content (str): string representation of PUML diagram
