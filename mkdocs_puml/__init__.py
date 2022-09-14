@@ -27,7 +27,7 @@ class PlantUML:
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
 
     def __init__(self, base_url: str):
-        self.base_url = base_url
+        self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
 
     def translate(self, content: str) -> str:
         """Translate string diagram into HTML div

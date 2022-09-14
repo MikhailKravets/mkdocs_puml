@@ -5,7 +5,7 @@ import pytest
 import requests
 
 
-BASE_PUML_URL = "https://mocked.org"
+BASE_PUML_URL = "https://mocked.org/"
 TESTDATA_DIR = Path(__file__).resolve().parent.joinpath('testdata')
 
 
