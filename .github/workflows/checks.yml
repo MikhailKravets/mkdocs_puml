@@ -27,18 +27,20 @@ jobs:
       - name: Cache pipenv
         uses: actions/cache@v2
         with:
-          # This path is specific to Ubuntu
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('Pipfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
+
       - name: Install dependencies
         run: pipenv install --system --ignore-pipfile
       - name: Install dev dependencies
         run: pipenv install --system --ignore-pipfile --dev
+
       - name: Lint with flake8
         run: flake8 .
+        continue-on-error: true
       - name: Test with pytest
         run: |
           pytest
