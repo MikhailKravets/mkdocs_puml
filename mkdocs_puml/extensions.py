@@ -4,7 +4,7 @@ from markdown import Markdown
 from markdown.extensions import Extension
 from markdown.preprocessors import Preprocessor
 
-from mkdocs_puml import PlantUML
+from mkdocs_puml.puml import PlantUML
 
 
 class PumlExtension(Extension):

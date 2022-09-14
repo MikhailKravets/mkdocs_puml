@@ -1,4 +1,4 @@
-from mkdocs_puml import PlantUML
+from mkdocs_puml.puml import PlantUML
 from tests.conftest import BASE_PUML_URL
 
 

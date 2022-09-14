@@ -4,9 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-requests = "*"
-flit = "*"
-pre-commit = "*"
+requests = ">= 2.27"
+flit = "~=3.7"
 
 [dev-packages]
 mkdocs = "*"
@@ -14,8 +13,8 @@ mkdocs-material = "*"
 mkdocs-awesome-pages-plugin = "*"
 pytest = "*"
 pytest-cov = "*"
-pre-commit = "*"
 flake8 = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.10"
