@@ -18,10 +18,9 @@ To use puml with mkdocs, just add `mkdocs_puml.extensions` into
 `markdown_extensions` block of your `mkdocs.yml` file.
 
 ```yaml
-...
-- mkdocs_puml.extensions:
-  puml_url: https://www.plantuml.com/plantuml/
-...
+markdown_extensions:
+    - mkdocs_puml.extensions:
+      puml_url: https://www.plantuml.com/plantuml/
 ```
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
