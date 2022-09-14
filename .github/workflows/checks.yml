@@ -1,0 +1,44 @@
+name: Test, Linter
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master", "develop" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Export variable
+        run: export PIPENV_DONT_USE_PYENV=1
+      - name: Install Pipenv
+        run: pip install pipenv
+      - name: Cache pipenv
+        uses: actions/cache@v2
+        with:
+          # This path is specific to Ubuntu
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        run: pipenv install --system --ignore-pipfile
+      - name: Install dev dependencies
+        run: pipenv install --system --ignore-pipfile --dev
+      - name: Lint with flake8
+        run: flake8 .
+      - name: Test with pytest
+        run: |
+          pytest
