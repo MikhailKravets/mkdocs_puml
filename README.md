@@ -40,7 +40,7 @@ Bob -> Alice : hello
 At the build phase `mkdocs` will send request to `puml_url` and substitute your
 diagram with the inline `svg` image.
 
-### Use PlantUML
+### Use PlantUML converter directly
 
 If you wish, you can use `PlantUML` converter on your own without `mkdocs`.
 The example below shows how to do that.
