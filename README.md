@@ -43,10 +43,10 @@ diagram with the inline `svg` image.
 ### Connect PlantUML service with Docker
 
 It is possible to run [plantuml/plantuml-server](https://hub.docker.com/r/plantuml/plantuml-server)
-inside Docker.
+in Docker.
 
-Either follow the instructions on the plantuml docker page or add new service to the `docker-compose.yml`
-file
+Either follow the instructions of the plantuml docker page or add a new service
+to the `docker-compose.yml` file
 
 ```yaml
 version: "3"
@@ -65,8 +65,8 @@ markdown_extensions:
         puml_url: http://127.0.0.1:8080
 ```
 
-Obviously, this approach works faster than using [plantuml.com](https://www.plantuml.com/plantuml/)
-directly.
+Obviously, this approach works faster than
+using [plantuml.com](https://www.plantuml.com/plantuml/).
 
 ### Use PlantUML converter directly
 
