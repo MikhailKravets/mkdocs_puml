@@ -1,5 +1,7 @@
 # MkDocs. PlantUML
 
+[![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
+
 `mkdocs_puml` package brings `puml` diagrams into `mkdocs` documentation.
 It converts your inline puml diagrams into `svg` images.
 This package has a markdown extension to be used in `mkdocs.yml`.
