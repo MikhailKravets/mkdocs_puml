@@ -40,6 +40,34 @@ Bob -> Alice : hello
 At the build phase `mkdocs` will send request to `puml_url` and substitute your
 diagram with the inline `svg` image.
 
+### Connect PlantUML service with Docker
+
+It is possible to run [plantuml/plantuml-server](https://hub.docker.com/r/plantuml/plantuml-server)
+inside Docker.
+
+Either follow the instructions on the plantuml docker page or add new service to the `docker-compose.yml`
+file
+
+```yaml
+version: "3"
+services:
+  puml:
+    image: plantuml/plantuml-server
+    ports:
+      - '8080:8080'
+```
+
+Then write the following instructions in your `mkdocs.yml` file
+
+```yaml
+markdown_extensions:
+    - mkdocs_puml.extensions:
+        puml_url: http://127.0.0.1:8080
+```
+
+Obviously, this approach works faster than using [plantuml.com](https://www.plantuml.com/plantuml/)
+directly.
+
 ### Use PlantUML converter directly
 
 If you wish, you can use `PlantUML` converter on your own without `mkdocs`.
