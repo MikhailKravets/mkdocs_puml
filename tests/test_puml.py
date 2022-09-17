@@ -1,3 +1,5 @@
+import pytest
+
 from mkdocs_puml.puml import PlantUML
 from tests.conftest import BASE_PUML_URL
 
@@ -10,6 +12,11 @@ def test_url_with_slash():
 def test_url_without_slash():
     puml = PlantUML(BASE_PUML_URL[:-1])
     assert puml.base_url.endswith('/')
+
+
+def test_num_worker_less_or_equal_zero():
+    with pytest.raises(ValueError):
+        PlantUML(BASE_PUML_URL, num_worker=0)
 
 
 def test_translate(diagram_and_encoded: (str, str), mock_requests):

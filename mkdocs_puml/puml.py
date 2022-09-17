@@ -31,6 +31,9 @@ class PlantUML:
 
     def __init__(self, base_url: str, num_worker: int = 5):
         self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
+
+        if num_worker <= 0:
+            raise ValueError("`num_worker` argument should be bigger than 0.")
         self.num_worker = num_worker
 
     def translate(self, diagrams: typing.List[str]) -> typing.List[str]:

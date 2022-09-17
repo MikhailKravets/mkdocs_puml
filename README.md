@@ -26,7 +26,7 @@ markdown_extensions:
 ```
 
 Where
-* `puml_url` is URL to the `PlantUML` service.
+* `puml_url` is URL to the plantuml service.
 * `num_workers` is max amount of concurrent workers that requests plantuml service.
     This variable should take the value of average amount of diagrams on a single page.
     This setting is set to 5 by default.
