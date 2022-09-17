@@ -28,9 +28,10 @@ markdown_extensions:
 Where
 * `puml_url` is URL to the `PlantUML` service.
 * `num_workers` is max amount of concurrent workers that requests plantuml service.
-    This variable should take the value of average amount of diagrams on the page.
-    Despite `num_workers` the extension processes each markdown page simultaneously.
-    **NOTE** this setting is NOT required.
+    This variable should take the value of average amount of diagrams on a single page.
+    This setting is set to 5 by default.
+    **NOTE** that the extension processes each markdown page simultaneously;
+    concurrent workers improves performance if you have more than 1 diagman per page.
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -50,7 +51,7 @@ diagram with the `svg` image from response.
 ### Run PlantUML service with Docker
 
 It is possible to run [plantuml/plantuml-server](https://hub.docker.com/r/plantuml/plantuml-server)
-in Docker.
+as a Docker container.
 
 Add a new service to the `docker-compose.yml` file
 
@@ -77,7 +78,7 @@ using [plantuml.com](https://www.plantuml.com/plantuml/).
 ### Standalone usage
 
 You can use `PlantUML` converter on your own without `mkdocs`.
-The example below shows how to do that.
+The example below shows it.
 
 ```python
 from mkdocs_puml.puml import PlantUML
