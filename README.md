@@ -1,10 +1,9 @@
-# MkDocs. PlantUML
+# mkdocs-puml
 
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 
-`mkdocs_puml` package brings `puml` diagrams into `mkdocs` documentation.
-It converts your inline puml diagrams into `svg` images.
-This package has a markdown extension to be used in `mkdocs.yml`.
+`mkdocs_puml` is a fast and simple package that brings PUML diagrams into `mkdocs`
+documentation.
 
 ## Install
 
@@ -23,9 +22,15 @@ To use puml with mkdocs, just add `mkdocs_puml.extensions` into
 markdown_extensions:
     - mkdocs_puml.extensions:
         puml_url: https://www.plantuml.com/plantuml/
+        num_workers: 5
 ```
 
-Where `puml_url` is URL to the `PlantUML` service.
+Where
+* `puml_url` is URL to the `PlantUML` service.
+* `num_workers` is max amount of concurrent workers that requests plantuml service.
+    This variable should take the value of average amount of diagrams on the page.
+    Despite `num_workers` the extension processes each markdown page simultaneously.
+    **NOTE** this setting is NOT required.
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -40,15 +45,14 @@ Bob -> Alice : hello
 </pre>
 
 At the build phase `mkdocs` will send request to `puml_url` and substitute your
-diagram with the inline `svg` image.
+diagram with the `svg` image from response.
 
-### Connect PlantUML service with Docker
+### Run PlantUML service with Docker
 
 It is possible to run [plantuml/plantuml-server](https://hub.docker.com/r/plantuml/plantuml-server)
 in Docker.
 
-Either follow the instructions of the plantuml docker page or add a new service
-to the `docker-compose.yml` file
+Add a new service to the `docker-compose.yml` file
 
 ```yaml
 version: "3"
@@ -59,7 +63,7 @@ services:
       - '8080:8080'
 ```
 
-Then write the following instructions in your `mkdocs.yml` file
+Then substitute `puml_url` setting with the local's one in the `mkdocs.yml` file
 
 ```yaml
 markdown_extensions:
@@ -70,9 +74,9 @@ markdown_extensions:
 Obviously, this approach works faster than
 using [plantuml.com](https://www.plantuml.com/plantuml/).
 
-### Use PlantUML converter directly
+### Standalone usage
 
-If you wish, you can use `PlantUML` converter on your own without `mkdocs`.
+You can use `PlantUML` converter on your own without `mkdocs`.
 The example below shows how to do that.
 
 ```python
@@ -80,14 +84,20 @@ from mkdocs_puml.puml import PlantUML
 
 puml_url = "https://www.plantuml.com/plantuml"
 
-diagram = """
+diagram1 = """
 @startuml
 Bob -> Alice : hello
 @enduml
 """
 
-puml = PlantUML(puml_url)
-svg = puml.translate(diagram)
+diagram2 = """
+@startuml
+Jon -> Sansa : hello
+@enduml
+"""
+
+puml = PlantUML(puml_url, num_worker=2)
+svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
 
 ## How it works
@@ -109,32 +119,8 @@ code blocks.
 **NOTE** you must set `puml` keyword as an indicator that the plant uml is located in the block.
 
 After the page is parsed, `mkdocs_puml` extension encodes diagrams and
-sends requests to `PlantUML` then substitutes `puml` diagram with the received `svg`
-in the final `html` file.
-
-Schematically, the overall process looks like
-
-```mermaid
-sequenceDiagram
-
-participant mkdocs as MkDocs
-participant mkdocs_puml as mkdocs_puml extension
-participant puml as PlantUML Service
-
-mkdocs ->>+ mkdocs_puml: Pass markdown to mkdocs_puml extension
-
-mkdocs_puml ->> mkdocs_puml: Select all ```puml ``` blocks
-
-loop For each puml diagram
-    mkdocs_puml ->> mkdocs_puml: Encode diagram
-    mkdocs_puml ->>+ puml: GET SVG diagram
-    puml ->>- mkdocs_puml: SVG returned
-    mkdocs_puml ->> mkdocs_puml: Save SVG
-end
-
-mkdocs_puml ->> mkdocs_puml: Substitute puml diagrams with corresponding SVG
-mkdocs_puml ->>- mkdocs: Return updated md string
-```
+sends requests to `PlantUML`. After responses are received, the package
+substitutes `puml` diagrams with the `svg` images.
 
 ## License
 

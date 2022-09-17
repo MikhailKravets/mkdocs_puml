@@ -7,11 +7,13 @@ from tests.conftest import BASE_PUML_URL
 
 def test_make_extension():
     url = BASE_PUML_URL
+    num_worker = 10
 
-    ext = makeExtension(puml_url=url)
+    ext = makeExtension(puml_url=url, num_worker=num_worker)
 
     assert isinstance(ext, PumlExtension)
     assert ext.puml.base_url == url
+    assert ext.puml.num_worker == num_worker
 
 
 def test_puml_extension():

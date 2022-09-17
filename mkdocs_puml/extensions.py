@@ -9,8 +9,8 @@ from mkdocs_puml.puml import PlantUML
 
 class PumlExtension(Extension):
     """PUML Extension for Python-Markdown"""
-    def __init__(self, puml_url):
-        self.puml = PlantUML(puml_url)
+    def __init__(self, puml_url, num_worker=5):
+        self.puml = PlantUML(puml_url, num_worker)
         super().__init__()
 
     def extendMarkdown(self, md: Markdown):
@@ -43,13 +43,10 @@ class PumlPreprocessor(Preprocessor):
 
     def run(self, lines):
         text = '\n'.join(lines)
-        schemes = {}
-        for scheme in self.regex.findall(text):
-            converted = self.puml.translate(scheme)
-            schemes[f"```{self.name}{scheme}```"] = converted
-
-        for k, v in schemes.items():
-            text = text.replace(k, f'<div class="{self.name}">{v}</div>')
+        schemes = self.regex.findall(text)
+        converted = self.puml.translate(schemes)
+        for scheme, svg in zip(schemes, converted):
+            text = text.replace(f"```{self.name}{scheme}```", f'<div class="{self.name}">{svg}</div>')
 
         return text.split('\n')
 
