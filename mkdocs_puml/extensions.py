@@ -9,8 +9,8 @@ from mkdocs_puml.puml import PlantUML
 
 class PumlExtension(Extension):
     """PUML Extension for Python-Markdown"""
-    def __init__(self, puml_url):
-        self.puml = PlantUML(puml_url)
+    def __init__(self, puml_url, num_worker=5):
+        self.puml = PlantUML(puml_url, num_worker)
         super().__init__()
 
     def extendMarkdown(self, md: Markdown):
