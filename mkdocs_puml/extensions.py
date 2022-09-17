@@ -43,13 +43,10 @@ class PumlPreprocessor(Preprocessor):
 
     def run(self, lines):
         text = '\n'.join(lines)
-        schemes = {}
-        for scheme in self.regex.findall(text):
-            converted = self.puml.translate(scheme)
-            schemes[f"```{self.name}{scheme}```"] = converted
-
-        for k, v in schemes.items():
-            text = text.replace(k, f'<div class="{self.name}">{v}</div>')
+        schemes = self.regex.findall(text)
+        converted = self.puml.translate(schemes)
+        for scheme, svg in zip(schemes, converted):
+            text = text.replace(scheme, f'<div class="{self.name}">{svg}</div>')
 
         return text.split('\n')
 
