@@ -42,10 +42,37 @@ class PlantUML:
         Returns:
              SVG image of built diagram
         """
-        encoded = encode(content)
+        encoded = self.preprocess(content)
+
         resp = requests.get(urljoin(self.base_url, f"{self._format}/{encoded}"))
         diagram_content = resp.content.decode('utf-8')
-        diagram_content = self._clean_comments(diagram_content)
+
+        return self.postprocess(diagram_content)
+
+    def preprocess(self, content: str) -> str:
+        """Preprocess the content before pass it
+        to the plantuml service.
+
+        Encoding of the content should be
+        done in the step of preprocessing.
+
+        Args:
+            content (str): string representation PUML diagram
+        Returns:
+            Preprocessed PUML diagram
+        """
+        return encode(content)
+
+    def postprocess(self, content: str) -> str:
+        """Postprocess the received from plantuml service
+        SVG diagram
+
+        Args:
+            content (str): SVG representation of build diagram
+        Returns:
+            Postprocessed SVG diagram
+        """
+        diagram_content = self._clean_comments(content)
 
         svg = self._convert_to_dom(diagram_content)
         self._stylize_svg(svg)
