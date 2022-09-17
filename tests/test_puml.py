@@ -13,12 +13,18 @@ def test_url_without_slash():
 
 
 def test_translate(diagram_and_encoded: (str, str), mock_requests):
-    _, encoded = diagram_and_encoded
+    diagram, encoded = diagram_and_encoded
+
+    diagrams = [diagram] * 2
 
     puml = PlantUML(BASE_PUML_URL)
-    resp = puml.translate(encoded)
+    resp = puml.translate(diagrams)
 
     assert puml.base_url.endswith('/')
-    assert resp.startswith("<svg")
-    assert not puml._html_comment_regex.search(resp)
-    assert 'preserveAspectRatio="true"' in resp
+
+    assert len(resp) == 2
+
+    for r in resp:
+        assert r.startswith("<svg")
+        assert not puml._html_comment_regex.search(r)
+        assert 'preserveAspectRatio="true"' in r
