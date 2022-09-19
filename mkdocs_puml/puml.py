@@ -1,6 +1,6 @@
 import re
 import typing
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urljoin
 from xml.dom.minidom import Element, parseString  # nosec
 
@@ -42,15 +42,14 @@ class PlantUML:
                 into <svg> image of the diagram
 
         Args:
-            diagrams (str): string representation of PUML diagram
+            diagrams (list): string representation of PUML diagram
         Returns:
              SVG image of built diagram
         """
         encoded = [self.preprocess(v) for v in diagrams]
 
         with ThreadPoolExecutor(max_workers=self.num_worker) as executor:
-            futures = [executor.submit(self.request, v) for v in encoded]
-            svg_images = [v.result() for v in as_completed(futures)]
+            svg_images = executor.map(self.request, encoded)
 
         return [self.postprocess(v) for v in svg_images]
 
