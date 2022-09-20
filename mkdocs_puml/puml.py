@@ -33,7 +33,7 @@ class PlantUML:
         self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
         self.num_worker = num_worker
 
-    def translate(self, diagrams: typing.List[str]) -> typing.List[str]:
+    def translate(self, diagrams: typing.Iterable[str]) -> typing.List[str]:
         """Translate string diagram into HTML div
         block containing the received SVG image.
 
