@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>This is the HTML output of the .md page.</p>
+<p>It still contains uuid instead of diagrams and in the
+step of on_post_page event it should be replaced with the SVG.</p>
+
+{% for v in uuids %}
+<pre class="{{ uuid_class }}">{{ v }}</pre>
+{% endfor %}
+
+</body>
+</html>
