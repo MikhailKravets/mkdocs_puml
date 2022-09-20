@@ -15,14 +15,17 @@ pip install mkdocs_puml
 
 ## How to use
 
-To use puml with mkdocs, just add `mkdocs_puml.extensions` into
-`markdown_extensions` block of your `mkdocs.yml` file.
+To use puml with mkdocs, just add `plantuml` plugin into
+`plugins` block of your `mkdocs.yml` file.
+
+`plantuml` plugin uses `PlantUML` only as http service. So, you should necessarily
+specify `puml_url` config.
 
 ```yaml
-markdown_extensions:
-    - mkdocs_puml.extensions:
+plugins:
+    - plantuml:
         puml_url: https://www.plantuml.com/plantuml/
-        num_workers: 5
+        num_workers: 8
 ```
 
 Where
@@ -45,7 +48,7 @@ Bob -> Alice : hello
 </pre>
 
 At the build phase `mkdocs` will send request to `puml_url` and substitute your
-diagram with the `svg` image from response.
+diagram with the `svg` images from the responses.
 
 ### Run PlantUML service with Docker
 
@@ -66,9 +69,10 @@ services:
 Then substitute `puml_url` setting with the local's one in the `mkdocs.yml` file
 
 ```yaml
-markdown_extensions:
-    - mkdocs_puml.extensions:
+plugins:
+    - plantuml:
         puml_url: http://127.0.0.1:8080
+        num_workers: 8
 ```
 
 Obviously, this approach works faster than
@@ -106,7 +110,7 @@ The package uses `PlantUML` as a service via HTTP. So, it encodes the diagram in
 a string that can be passed via URL. Then it sends GET request to
 the `PlantUML` service and receives `svg` image containing the diagram.
 
-The markdown extension just parses `.md` documentation files and looks for
+The `plantuml` plugin parses `.md` documentation files and looks for
 
 <pre>
 ```puml
@@ -114,13 +118,15 @@ The markdown extension just parses `.md` documentation files and looks for
 ```
 </pre>
 
-code blocks.
+code blocks. When `puml` code block is found it is saved to the buffer for
+a later requesting of `PlantUML` service and replaced on the diagram's uuid
+in markdown file.
 
 **NOTE** you must set `puml` keyword as an indicator that the plant uml is located in the block.
 
-After the page is parsed, `mkdocs_puml` extension encodes diagrams and
-sends requests to `PlantUML`. After responses are received, the package
-substitutes `puml` diagrams with the `svg` images.
+After all pages are parsed, `plantuml` plugin requests PlantUML service
+with the buffer of diagrams. After responses are received, the package
+substitutes uuid codes in markdown files with the `svg` images.
 
 ## License
 

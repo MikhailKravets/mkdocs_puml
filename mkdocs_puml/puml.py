@@ -1,6 +1,6 @@
 import re
 import typing
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urljoin
 from xml.dom.minidom import Element, parseString  # nosec
 
@@ -33,7 +33,7 @@ class PlantUML:
         self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
         self.num_worker = num_worker
 
-    def translate(self, diagrams: typing.List[str]) -> typing.List[str]:
+    def translate(self, diagrams: typing.Iterable[str]) -> typing.List[str]:
         """Translate string diagram into HTML div
         block containing the received SVG image.
 
@@ -42,15 +42,14 @@ class PlantUML:
                 into <svg> image of the diagram
 
         Args:
-            diagrams (str): string representation of PUML diagram
+            diagrams (list): string representation of PUML diagram
         Returns:
              SVG image of built diagram
         """
         encoded = [self.preprocess(v) for v in diagrams]
 
         with ThreadPoolExecutor(max_workers=self.num_worker) as executor:
-            futures = [executor.submit(self.request, v) for v in encoded]
-            svg_images = [v.result() for v in as_completed(futures)]
+            svg_images = executor.map(self.request, encoded)
 
         return [self.postprocess(v) for v in svg_images]
 
