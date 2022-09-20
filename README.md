@@ -31,10 +31,6 @@ plugins:
 Where
 * `puml_url` is URL to the plantuml service.
 * `num_workers` is max amount of concurrent workers that requests plantuml service.
-    This variable should take the value of average amount of diagrams on a single page.
-    This setting is set to 5 by default.
-    **NOTE** that the extension processes each markdown page simultaneously;
-    concurrent workers improves performance if you have more than 1 diagman per page.
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -107,9 +103,8 @@ svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 
 ## How it works
 
-The package uses `PlantUML` as a service via HTTP. So, it encodes the diagram into
-a string that can be passed via URL. Then it sends GET request to
-the `PlantUML` service and receives `svg` image containing the diagram.
+The package uses PlantUML as an HTTP service. It sends GET requests to
+the PlantUML service and receives `svg` images representing the diagrams.
 
 The `plantuml` plugin parses `.md` documentation files and looks for
 
@@ -120,10 +115,11 @@ The `plantuml` plugin parses `.md` documentation files and looks for
 </pre>
 
 code blocks. When `puml` code block is found it is saved to the buffer for
-a later requesting of `PlantUML` service and replaced on the diagram's uuid
-in markdown file.
+a later request of PlantUML service. In this step, we replace `puml` block
+with the uuid in markdown file.
 
-**NOTE** you must set `puml` keyword as an indicator that the plant uml is located in the block.
+**NOTE** you must set `puml` keyword as an indicator that the plant uml
+is located in the block.
 
 After all pages are parsed, `plantuml` plugin requests PlantUML service
 with the buffer of diagrams. After responses are received, the package
