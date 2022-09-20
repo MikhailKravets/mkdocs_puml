@@ -6,9 +6,9 @@ name = "pypi"
 [packages]
 requests = ">= 2.27"
 flit = "~=3.7"
+mkdocs = "*"
 
 [dev-packages]
-mkdocs = "*"
 mkdocs-material = "*"
 mkdocs-awesome-pages-plugin = "*"
 pytest = "*"

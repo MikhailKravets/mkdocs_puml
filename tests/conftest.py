@@ -25,7 +25,7 @@ def svg_diagram():
 
 @pytest.fixture(scope="package")
 def md_lines():
-    with open(TESTDATA_DIR.joinpath('test.md')) as f:
+    with open(TESTDATA_DIR.joinpath('markdown.md')) as f:
         return f.readlines()
 
 

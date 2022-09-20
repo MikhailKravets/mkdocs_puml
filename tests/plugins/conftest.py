@@ -1,3 +1,6 @@
+import uuid
+
+import jinja2
 import pytest
 
 from uuid import UUID
@@ -5,7 +8,7 @@ from uuid import UUID
 from mkdocs.config.config_options import Config
 
 from mkdocs_puml.plugins import PlantUMLPlugin
-from tests.conftest import BASE_PUML_URL
+from tests.conftest import BASE_PUML_URL, TESTDATA_DIR
 
 
 def is_uuid_valid(uuid_str: str) -> bool:
@@ -32,6 +35,12 @@ def plugin_config():
 
 
 @pytest.fixture
+def plugin_environment():
+    loader = jinja2.FileSystemLoader(searchpath=TESTDATA_DIR)
+    return jinja2.Environment(loader=loader)
+
+
+@pytest.fixture
 def plant_uml_plugin(plugin_config):
     plugin = PlantUMLPlugin()
     c = Config(schema=plugin.config_scheme)
@@ -40,3 +49,21 @@ def plant_uml_plugin(plugin_config):
     plugin.on_config(c)
 
     return plugin
+
+
+@pytest.fixture
+def diagrams_dict(diagram_and_encoded):
+    return {
+        str(uuid.uuid4()): diagram_and_encoded[0],
+        str(uuid.uuid4()): diagram_and_encoded[0],
+        str(uuid.uuid4()): diagram_and_encoded[0],
+    }
+
+
+@pytest.fixture
+def html_page(plugin_environment, diagrams_dict):
+    template = plugin_environment.get_template("output.html")
+    return template.render(
+        uuid_class=PlantUMLPlugin.pre_class_name,
+        uuids=diagrams_dict.keys()
+    )
