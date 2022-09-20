@@ -23,12 +23,6 @@ def svg_diagram():
         return f.read()
 
 
-@pytest.fixture(scope="package")
-def md_lines():
-    with open(TESTDATA_DIR.joinpath('markdown.md')) as f:
-        return f.readlines()
-
-
 @pytest.fixture(scope="function")
 def mock_requests(monkeypatch, svg_diagram):
     p = Mock()

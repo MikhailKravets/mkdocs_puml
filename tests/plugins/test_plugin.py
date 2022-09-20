@@ -40,4 +40,4 @@ def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
     plant_uml_plugin.diagrams = diagrams_dict
     output = plant_uml_plugin.on_post_page(html_page)
 
-    assert output.count(f'<div class="{plant_uml_plugin.name}">') == len(diagrams_dict)
+    assert output.count(f'<div class="{plant_uml_plugin.div_class_name}">') == len(diagrams_dict)

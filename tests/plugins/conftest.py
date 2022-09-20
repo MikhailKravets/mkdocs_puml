@@ -60,6 +60,12 @@ def diagrams_dict(diagram_and_encoded):
     }
 
 
+@pytest.fixture(scope="package")
+def md_lines():
+    with open(TESTDATA_DIR.joinpath('markdown.md')) as f:
+        return f.readlines()
+
+
 @pytest.fixture
 def html_page(plugin_environment, diagrams_dict):
     template = plugin_environment.get_template("output.html")
