@@ -11,12 +11,13 @@ classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 requires-python = ">=3.6"
 dependencies = [
-    "requests >= 2.27",
-    "markdown >= 3.4"
+    "requests >= 2.27, < 3.0",
+    "markdown >= 3.4, < 4.0",
+    "mkdocs >= 1.3, < 2.0"
 ]
 
 [project.urls]
-Home = "https://github.com/MikhailKravets/mkdocs_plantuml"
+Home = "https://github.com/MikhailKravets/mkdocs_puml"
 
 [project.entry-points."mkdocs.plugins"]
 plantuml = "mkdocs_puml.plugins:PlantUMLPlugin"
