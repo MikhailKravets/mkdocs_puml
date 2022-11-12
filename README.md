@@ -1,4 +1,4 @@
-# mkdocs-puml
+![logo](.docs/logo.png)
 
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 
