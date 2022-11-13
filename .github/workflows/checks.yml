@@ -13,6 +13,8 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+    outputs:
+      coverage: ${{ steps.test.outputs.test }}
 
     steps:
       - uses: actions/checkout@v3
@@ -45,7 +47,18 @@ jobs:
       - id: test
         name: Test with pytest
         run: |
+          echo "coverage=## ${{ matrix.python-version }}\n"
           pytest --cov-report term --cov=mkdocs_puml -q tests/
 
-      - name: Display Summary
-        run: echo "## ${{ matrix.python-version }} \n ${{ steps.test.outputs.response }}" >> $GITHUB_STEP_SUMMARY
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.pulls.createComment({
+              issue_number: context.pull.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
