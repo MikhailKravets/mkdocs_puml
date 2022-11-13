@@ -1,8 +1,8 @@
-# mkdocs-puml
+![logo](.docs/logo.png)
 
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 
-`mkdocs_puml` is a fast and simple package that brings PUML diagrams into `mkdocs`
+`mkdocs_puml` is a fast and simple package that brings plantuml diagrams into mkdocs
 documentation.
 
 ## Install
@@ -128,3 +128,5 @@ substitutes uuid codes in markdown files with the `svg` images.
 ## License
 
 The project is licensed under [MIT license](LICENSE).
+
+Diagram icon created by [Freepik](https://www.flaticon.com/free-icon/flow-chart_4411911?related_id=4411911&origin=search).
