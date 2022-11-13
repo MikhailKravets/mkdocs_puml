@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7"]  # , "3.8", "3.9", "3.10", "3.11"
+        python-version: ["3.7", "3.8"]  # , "3.8", "3.9", "3.10", "3.11"
     outputs:
       coverage: ${{ steps.test.outputs.coverage }}
 
@@ -50,7 +50,7 @@ jobs:
           echo "coverage<<EOF" >> $GITHUB_OUTPUT
           echo "## ${{ matrix.python-version }}\n" >> $GITHUB_OUTPUT
           pytest --cov-report term --cov=mkdocs_puml -q tests/ >> $GITHUB_OUTPUT
-          echo "EOF"
+          echo "EOF" >> $GITHUB_OUTPUT
 
   comment:
     runs-on: ubuntu-latest
