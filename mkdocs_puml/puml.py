@@ -17,14 +17,12 @@ class PlantUML:
     Attributes:
         base_url (str): Base URL to the PUML service
         num_worker (int): The size of pool to run requests in
-        _format (str): The format of build diagram. Used in the requesting URL
-        _html_comment_regex (re.Pattern): Regex pattern to remove html comments from received svg
 
     Examples:
         Use this class as::
 
             puml = PlantUML("https://www.plantuml.com")
-            svg = puml.translate(diagram)
+            svg = puml.translate([diagram])[0]
     """
     _format = 'svg'
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
