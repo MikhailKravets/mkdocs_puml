@@ -2,7 +2,7 @@
 
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 
-`mkdocs_puml` is a fast and simple package that brings PUML diagrams into `mkdocs`
+`mkdocs_puml` is a fast and simple package that brings plantuml diagrams into mkdocs
 documentation.
 
 ## Install
