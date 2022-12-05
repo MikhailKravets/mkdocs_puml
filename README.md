@@ -25,12 +25,12 @@ specify `puml_url` config.
 plugins:
     - plantuml:
         puml_url: https://www.plantuml.com/plantuml/
-        num_worker: 8
+        num_workers: 8
 ```
 
 Where
 * `puml_url` is URL to the plantuml service.
-* `num_worker` is max amount of concurrent workers that requests plantuml service.
+* `num_workers` is max amount of concurrent workers that requests plantuml service.
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -69,7 +69,7 @@ Then substitute `puml_url` setting with the local's one in the `mkdocs.yml` file
 plugins:
     - plantuml:
         puml_url: http://127.0.0.1:8080
-        num_worker: 8
+        num_workers: 8
 ```
 
 Obviously, this approach works faster than

@@ -17,7 +17,7 @@ class PlantUMLPlugin(BasePlugin):
             plugins:
                 - mkdocs_puml:
                     puml_url: https://www.plantuml.com/plantuml
-                    num_worker: 10
+                    num_workers: 10
 
     Attributes:
         div_class_name (str): the class that will be set to resulting <div> tag
@@ -36,7 +36,7 @@ class PlantUMLPlugin(BasePlugin):
 
     config_scheme = (
         ('puml_url', Type(str, required=True)),
-        ('num_worker', Type(int, default=8))
+        ('num_workers', Type(int, default=8))
     )
 
     def __init__(self):
@@ -60,7 +60,7 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Full config of the mkdocs
         """
-        self.puml = PlantUML(self.config['puml_url'], num_worker=self.config['num_worker'])
+        self.puml = PlantUML(self.config['puml_url'], num_workers=self.config['num_workers'])
         return config
 
     def on_page_markdown(self, markdown: str, *args, **kwargs) -> str:
