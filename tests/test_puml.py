@@ -16,7 +16,7 @@ def test_url_without_slash():
 
 def test_num_worker_less_or_equal_zero():
     with pytest.raises(ValueError):
-        PlantUML(BASE_PUML_URL, num_worker=0)
+        PlantUML(BASE_PUML_URL, num_workers=0)
 
 
 def test_translate(diagram_and_encoded: (str, str), mock_requests):

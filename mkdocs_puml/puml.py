@@ -16,7 +16,7 @@ class PlantUML:
 
     Attributes:
         base_url (str): Base URL to the PUML service
-        num_worker (int): The size of pool to run requests in
+        num_workers (int): The size of pool to run requests in
 
     Examples:
         Use this class as::
@@ -27,12 +27,12 @@ class PlantUML:
     _format = 'svg'
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
 
-    def __init__(self, base_url: str, num_worker: int = 5):
+    def __init__(self, base_url: str, num_workers: int = 5):
         self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
 
-        if num_worker <= 0:
-            raise ValueError("`num_worker` argument should be bigger than 0.")
-        self.num_worker = num_worker
+        if num_workers <= 0:
+            raise ValueError("`num_workers` argument should be bigger than 0.")
+        self.num_workers = num_workers
 
     def translate(self, diagrams: typing.Iterable[str]) -> typing.List[str]:
         """Translate string diagram into HTML div
@@ -49,7 +49,7 @@ class PlantUML:
         """
         encoded = [self.preprocess(v) for v in diagrams]
 
-        with ThreadPoolExecutor(max_workers=self.num_worker) as executor:
+        with ThreadPoolExecutor(max_workers=self.num_workers) as executor:
             svg_images = executor.map(self.request, encoded)
 
         return [self.postprocess(v) for v in svg_images]
