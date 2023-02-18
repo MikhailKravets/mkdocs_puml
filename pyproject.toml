@@ -20,4 +20,4 @@ dependencies = [
 Home = "https://github.com/MikhailKravets/mkdocs_puml"
 
 [project.entry-points."mkdocs.plugins"]
-plantuml = "mkdocs_puml.plugins:PlantUMLPlugin"
+plantuml = "mkdocs_puml.plugin:PlantUMLPlugin"

@@ -14,7 +14,7 @@ _TRANSLATE_MAP = bytes.maketrans(
 
 
 def encode(content: str) -> str:
-    """Encode plantUML diagram into string
+    """Encode plantUML diagram into a string
     that can be used in a communication with
     plantUML service.
 

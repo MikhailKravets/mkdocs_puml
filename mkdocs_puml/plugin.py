@@ -9,9 +9,9 @@ from mkdocs_puml.puml import PlantUML
 
 
 class PlantUMLPlugin(BasePlugin):
-    """MKDocs plugin that converts puml diagrams into inline SVG images.
+    """MKDocs plugin that converts puml diagrams into SVG images.
 
-    It works with remote PlantUML service only. You should add
+    It works only with a remote PlantUML service. You should add
     these configs into ``mkdocs.yml``::
 
             plugins:
@@ -49,7 +49,7 @@ class PlantUMLPlugin(BasePlugin):
         }
 
     def on_config(self, config: Config) -> Config:
-        """Event that is run by mkdocs when configs are created.
+        """Event that is fired by mkdocs when configs are created.
 
         self.puml instance is populated in this event.
 
@@ -69,7 +69,7 @@ class PlantUMLPlugin(BasePlugin):
         Here, all ``puml`` code blocks are found and added to self.diagrams
         with the corresponding uuid key.
 
-        Then, <pre class="...">uuid of diagram</pre> tags are added to
+        Then, <pre class="...">{uuid of diagram}</pre> tags are added to
         the markdown page.
 
         Args:
