@@ -9,7 +9,7 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 dependencies = [
     "requests >= 2.27, < 3.0",
     "markdown >= 3.2.1, < 4.0",
@@ -20,4 +20,4 @@ dependencies = [
 Home = "https://github.com/MikhailKravets/mkdocs_puml"
 
 [project.entry-points."mkdocs.plugins"]
-plantuml = "mkdocs_puml.plugins:PlantUMLPlugin"
+plantuml = "mkdocs_puml.plugin:PlantUMLPlugin"

@@ -1,3 +1,3 @@
-"""Package that brings PlantUML into MkDocs"""
+"""Package that brings PlantUML to MkDocs"""
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"

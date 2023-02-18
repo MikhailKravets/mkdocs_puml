@@ -12,7 +12,7 @@ from mkdocs_puml.encoder import encode
 class PlantUML:
     """PlantUML converter class.
     It requests PUML service, updates received `svg`
-    and returns to the user.
+    and returns it to the user.
 
     Attributes:
         base_url (str): Base URL to the PUML service

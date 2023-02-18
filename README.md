@@ -1,14 +1,14 @@
 ![logo](.docs/logo.png)
 
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://img.shields.io/pypi/dm/mkdocs_puml)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml)
 
-`mkdocs_puml` is a fast and simple package that brings plantuml diagrams into mkdocs
+`mkdocs_puml` is fast and simple package that brings plantuml diagrams to MkDocs
 documentation.
 
 ## Install
 
-Run the following command to install this package
+Run the following command to install the package
 
 ```shell
 pip install mkdocs_puml
@@ -16,10 +16,10 @@ pip install mkdocs_puml
 
 ## How to use
 
-To use puml with mkdocs, just add `plantuml` plugin into
-`plugins` block of your `mkdocs.yml` file.
+Just add `plantuml` plugin into `plugins` section of your `mkdocs.yml` file,
+in order to use puml with mkdocs.
 
-`plantuml` plugin uses `PlantUML` only as http service. So, you should necessarily
+`plantuml` plugin uses `PlantUML` only as an http service. So, you should necessarily
 specify `puml_url` config.
 
 ```yaml
@@ -31,7 +31,7 @@ plugins:
 
 Where
 * `puml_url` is URL to the plantuml service.
-* `num_workers` is max amount of concurrent workers that requests plantuml service.
+* `num_workers` is max amount of concurrent workers that request plantuml service.
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -45,7 +45,7 @@ Bob -> Alice : hello
 ```
 </pre>
 
-At the build phase `mkdocs` will send request to `puml_url` and substitute your
+At the build step `mkdocs` sends requests to `puml_url` and substitutes your
 diagram with the `svg` images from the responses.
 
 ### Run PlantUML service with Docker
@@ -64,7 +64,7 @@ services:
       - '8080:8080'
 ```
 
-Then substitute `puml_url` setting with the local's one in the `mkdocs.yml` file
+Then substitute `puml_url` config with the local URL in the `mkdocs.yml` file
 
 ```yaml
 plugins:
@@ -74,12 +74,11 @@ plugins:
 ```
 
 Obviously, this approach works faster than
-using [plantuml.com](https://www.plantuml.com/plantuml/).
+using remote [plantuml.com](https://www.plantuml.com/plantuml/).
 
 ### Standalone usage
 
-You can use `PlantUML` converter on your own without `mkdocs`.
-The example below shows it.
+You can use `PlantUML` converter without `mkdocs`. Below is the example,
 
 ```python
 from mkdocs_puml.puml import PlantUML
@@ -105,7 +104,7 @@ svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ## How it works
 
 The package uses PlantUML as an HTTP service. It sends GET requests to
-the PlantUML service and receives `svg` images representing the diagrams.
+PlantUML service and receives `svg` images representing the diagrams.
 
 The `plantuml` plugin parses `.md` documentation files and looks for
 
@@ -116,15 +115,15 @@ The `plantuml` plugin parses `.md` documentation files and looks for
 </pre>
 
 code blocks. When `puml` code block is found it is saved to the buffer for
-a later request of PlantUML service. In this step, we replace `puml` block
-with the uuid in markdown file.
+a later request to PlantUML service. In this step, we replace `puml` block
+with the uuid.
 
 **NOTE** you must set `puml` keyword as an indicator that the plant uml
 is located in the block.
 
 After all pages are parsed, `plantuml` plugin requests PlantUML service
-with the buffer of diagrams. After responses are received, the package
-substitutes uuid codes in markdown files with the `svg` images.
+with the collected diagrams. After the responses are received, the package
+substitutes uuid codes in markdown files with the corresponding `svg` images.
 
 ## License
 
