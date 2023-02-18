@@ -45,7 +45,7 @@ Bob -> Alice : hello
 ```
 </pre>
 
-At the build step `mkdocs` sends request to `puml_url` and substitutes your
+At the build step `mkdocs` sends requests to `puml_url` and substitutes your
 diagram with the `svg` images from the responses.
 
 ### Run PlantUML service with Docker
