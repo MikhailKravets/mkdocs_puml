@@ -3,7 +3,7 @@
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml)
 
-`mkdocs_puml` is fast and simple package that brings plantuml diagrams to MkDocs
+`mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
 documentation.
 
 ## Install
@@ -25,7 +25,7 @@ plugins:
         puml_url: https://www.plantuml.com/plantuml/
 ```
 
-`plantuml` plugin uses `PlantUML` only as an http service. So, you should necessarily
+`plantuml` plugin uses `PlantUML` only as an HTTP service. So, you should necessarily
 specify `puml_url` config.
 
 The `plantuml` config with the full list of parameters is below
@@ -131,8 +131,8 @@ code blocks. When `puml` code block is found it is saved to the buffer for
 a later request to PlantUML service. In this step, we replace `puml` block
 with the uuid.
 
-**NOTE** you must set `puml` keyword as an indicator that the plant uml
-is located in the block, default keyword can be changed for custom one
+**NOTE** you must set `puml` keyword as an indicator that the PlantUML diagram
+is located in the block. Default keyword can be changed for the custom one
 in `mkdocs.yml` config file by using `puml_keyword` parameter.
 
 After all pages are parsed, `plantuml` plugin requests PlantUML service
