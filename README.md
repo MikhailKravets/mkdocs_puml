@@ -132,7 +132,8 @@ a later request to PlantUML service. In this step, we replace `puml` block
 with the uuid.
 
 **NOTE** you must set `puml` keyword as an indicator that the plant uml
-is located in the block, default keyword can be changed for custom one in cofig file by using `puml_keyword` parameter.
+is located in the block, default keyword can be changed for custom one
+in `mkdocs.yml` config file by using `puml_keyword` parameter.
 
 After all pages are parsed, `plantuml` plugin requests PlantUML service
 with the collected diagrams. After the responses are received, the package
