@@ -97,7 +97,9 @@ class PlantUML:
             SVG representation of the diagram
         """
         resp = requests.get(urljoin(self.base_url, f"{self._format}/{encoded_diagram}"))
-        return resp.content.decode('utf-8')
+
+        # Use 'ignore' to strip non-utf chars
+        return resp.content.decode('utf-8', errors='ignore')
 
     def _clean_comments(self, content: str) -> str:
         return self._html_comment_regex.sub("", content)
