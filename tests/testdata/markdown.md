@@ -53,6 +53,14 @@ package user_devices {
 @enduml
 ```
 
+## This is the third diagram using custom keyword
+
+```plantuml
+@startuml
+A -> B
+@enduml
+```
+
 And here is just code
 
 ```python

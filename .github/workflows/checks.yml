@@ -2,9 +2,9 @@ name: Test, Linter
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "release/*", ]
   pull_request:
-    branches: [ "master", "release", "develop" ]
+    branches: [ "master", "release/*", ]
 
 jobs:
   test:

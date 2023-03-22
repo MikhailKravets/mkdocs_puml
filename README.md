@@ -3,7 +3,7 @@
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml)
 
-`mkdocs_puml` is fast and simple package that brings plantuml diagrams to MkDocs
+`mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
 documentation.
 
 ## Install
@@ -19,19 +19,32 @@ pip install mkdocs_puml
 Just add `plantuml` plugin into `plugins` section of your `mkdocs.yml` file,
 in order to use puml with mkdocs.
 
-`plantuml` plugin uses `PlantUML` only as an http service. So, you should necessarily
+```yaml
+plugins:
+    - plantuml:
+        puml_url: https://www.plantuml.com/plantuml/
+```
+
+`plantuml` plugin uses `PlantUML` only as an HTTP service. So, you should necessarily
 specify `puml_url` config.
+
+The `plantuml` config with the full list of parameters is below
 
 ```yaml
 plugins:
     - plantuml:
         puml_url: https://www.plantuml.com/plantuml/
         num_workers: 8
+        puml_keyword: puml
 ```
 
 Where
-* `puml_url` is URL to the plantuml service.
-* `num_workers` is max amount of concurrent workers that request plantuml service.
+
+| Parmeter | Type                 | Descripton                                                     |
+|----------|----------------------|----------------------------------------------------------------|
+| `puml_url` | `str`. Required      | URL to the plantuml service                                    |
+| `num_workers` | `int`. Default `8`   | Max amount of concurrent workers that request plantuml service |
+| `puml_keyword` | `str`. Default `puml` | The keyword for PlantUML code fence, i.e. \```puml \```        |
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -118,8 +131,9 @@ code blocks. When `puml` code block is found it is saved to the buffer for
 a later request to PlantUML service. In this step, we replace `puml` block
 with the uuid.
 
-**NOTE** you must set `puml` keyword as an indicator that the plant uml
-is located in the block.
+**NOTE** you must set `puml` keyword as an indicator that the PlantUML diagram
+is located in the block. Default keyword can be changed for the custom one
+in `mkdocs.yml` config file by using `puml_keyword` parameter.
 
 After all pages are parsed, `plantuml` plugin requests PlantUML service
 with the collected diagrams. After the responses are received, the package
