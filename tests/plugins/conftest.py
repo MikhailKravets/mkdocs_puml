@@ -8,7 +8,7 @@ from uuid import UUID
 from mkdocs.config.config_options import Config
 
 from mkdocs_puml.plugin import PlantUMLPlugin
-from tests.conftest import BASE_PUML_URL, TESTDATA_DIR
+from tests.conftest import BASE_PUML_URL, CUSTOM_PUML_KEYWORD, TESTDATA_DIR
 
 
 def is_uuid_valid(uuid_str: str) -> bool:
@@ -35,6 +35,14 @@ def plugin_config():
 
 
 @pytest.fixture
+def plugin_config_custom_keyword():
+    c = Config(schema=PlantUMLPlugin.config_scheme)
+    c['puml_url'] = BASE_PUML_URL
+    c['puml_keyword'] = CUSTOM_PUML_KEYWORD
+    return c
+
+
+@pytest.fixture
 def plugin_environment():
     loader = jinja2.FileSystemLoader(searchpath=TESTDATA_DIR)
     return jinja2.Environment(loader=loader)
@@ -45,6 +53,18 @@ def plant_uml_plugin(plugin_config):
     plugin = PlantUMLPlugin()
     c = Config(schema=plugin.config_scheme)
     c['puml_url'] = BASE_PUML_URL
+    plugin.config = c
+    plugin.on_config(c)
+
+    return plugin
+
+
+@pytest.fixture
+def plant_uml_plugin_custom_keyword(plugin_config_custom_keyword):
+    plugin = PlantUMLPlugin()
+    c = Config(schema=plugin.config_scheme)
+    c['puml_url'] = BASE_PUML_URL
+    c['puml_keyword'] = CUSTOM_PUML_KEYWORD
     plugin.config = c
     plugin.on_config(c)
 

@@ -1,6 +1,6 @@
 from mkdocs_puml.plugin import PlantUMLPlugin
 from mkdocs_puml.puml import PlantUML
-from tests.conftest import BASE_PUML_URL
+from tests.conftest import BASE_PUML_KEYWORD, BASE_PUML_URL, CUSTOM_PUML_KEYWORD
 from tests.plugins.conftest import is_uuid_valid
 
 
@@ -12,6 +12,18 @@ def test_on_config(plugin_config):
 
     assert isinstance(plugin.puml, PlantUML)
     assert plugin.puml.base_url == BASE_PUML_URL
+    assert plugin.puml_keyword == BASE_PUML_KEYWORD
+
+
+def test_on_config_custom_keyword(plugin_config_custom_keyword):
+    plugin = PlantUMLPlugin()
+    plugin.config = plugin_config_custom_keyword
+
+    plugin.on_config(plugin_config_custom_keyword)
+
+    assert isinstance(plugin.puml, PlantUML)
+    assert plugin.puml.base_url == BASE_PUML_URL
+    assert plugin.puml_keyword == CUSTOM_PUML_KEYWORD
 
 
 def test_on_page_markdown(plant_uml_plugin, md_lines):
@@ -23,6 +35,18 @@ def test_on_page_markdown(plant_uml_plugin, md_lines):
         assert is_uuid_valid(key)
 
     for val in plant_uml_plugin.diagrams.values():
+        assert "@startuml" in val and "@enduml" in val
+
+
+def test_on_page_markdown_custom_keyword(plant_uml_plugin_custom_keyword, md_lines):
+    plant_uml_plugin_custom_keyword.on_page_markdown("\n".join(md_lines))
+
+    assert len(plant_uml_plugin_custom_keyword.diagrams) == 1
+
+    for key in plant_uml_plugin_custom_keyword.diagrams.keys():
+        assert is_uuid_valid(key)
+
+    for val in plant_uml_plugin_custom_keyword.diagrams.values():
         assert "@startuml" in val and "@enduml" in val
 
 

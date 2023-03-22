@@ -27,11 +27,13 @@ plugins:
     - plantuml:
         puml_url: https://www.plantuml.com/plantuml/
         num_workers: 8
+        puml_keyword: puml
 ```
 
 Where
 * `puml_url` is URL to the plantuml service.
 * `num_workers` is max amount of concurrent workers that request plantuml service.
+* `puml_keyword` is an optional parameter, a keyword this plugin looks for within Markdown files, default keyword is `puml` but it can be changed to `plantuml` for example to be compatible with other `PlantUML` renderers.
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -119,7 +121,7 @@ a later request to PlantUML service. In this step, we replace `puml` block
 with the uuid.
 
 **NOTE** you must set `puml` keyword as an indicator that the plant uml
-is located in the block.
+is located in the block, default keyword can be changed for custom one in cofig file by using `puml_keyword` parameter.
 
 After all pages are parsed, `plantuml` plugin requests PlantUML service
 with the collected diagrams. After the responses are received, the package

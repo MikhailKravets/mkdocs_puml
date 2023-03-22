@@ -6,6 +6,8 @@ import requests
 
 
 BASE_PUML_URL = "https://mocked.org/"
+BASE_PUML_KEYWORD = "puml"
+CUSTOM_PUML_KEYWORD = "plantuml"
 TESTDATA_DIR = Path(__file__).resolve().parent.joinpath('testdata')
 
 
