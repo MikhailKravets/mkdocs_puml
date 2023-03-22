@@ -19,8 +19,16 @@ pip install mkdocs_puml
 Just add `plantuml` plugin into `plugins` section of your `mkdocs.yml` file,
 in order to use puml with mkdocs.
 
+```yaml
+plugins:
+    - plantuml:
+        puml_url: https://www.plantuml.com/plantuml/
+```
+
 `plantuml` plugin uses `PlantUML` only as an http service. So, you should necessarily
 specify `puml_url` config.
+
+The `plantuml` config with the full list of parameters is below
 
 ```yaml
 plugins:
@@ -31,9 +39,12 @@ plugins:
 ```
 
 Where
-* `puml_url` is URL to the plantuml service.
-* `num_workers` is max amount of concurrent workers that request plantuml service.
-* `puml_keyword` is an optional parameter, a keyword this plugin looks for within Markdown files, default keyword is `puml` but it can be changed to `plantuml` for example to be compatible with other `PlantUML` renderers.
+
+| Parmeter | Type                 | Descripton                                                        |
+|----------|----------------------|-------------------------------------------------------------------|
+| `puml_url` | `str`. Required      | URL to the plantuml service                                       |
+| `num_workers` | `int`. Default `8`   | Max amount of concurrent workers that request plantuml service    |
+| `puml_keyword` | `str`. Default `puml` | Specifies the keywork for PlantUML code fence, i.e. \```puml \``` |
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
