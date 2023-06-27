@@ -1,4 +1,5 @@
 import uuid
+from unittest.mock import MagicMock
 
 import jinja2
 import pytest
@@ -88,8 +89,11 @@ def md_lines():
 
 @pytest.fixture
 def html_page(plugin_environment, diagrams_dict):
+    page = MagicMock(title='Test, page', file=MagicMock(), config=MagicMock())
     template = plugin_environment.get_template("output.html")
-    return template.render(
+    page.content = template.render(
         uuid_class=PlantUMLPlugin.pre_class_name,
         uuids=diagrams_dict.keys()
     )
+    page.html = page.content
+    return page
