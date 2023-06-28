@@ -6,17 +6,19 @@ name = "pypi"
 [packages]
 requests = "~= 2.31"
 flit = "~=3.7"
-mkdocs = "~=1.3"
+mkdocs = "~=1.4"
 
 [dev-packages]
 mkdocs-material = "*"
 mkdocs-awesome-pages-plugin = "*"
-pytest = "~=7.2.0"
+pytest = "*"
 pytest-cov = "*"
 flake8 = "*"
 pre-commit = "*"
 importlib-metadata = {version = "*", markers = "python_version < '3.10'"}
 zipp = {version = "*", markers = "python_version < '3.10'"}
+exceptiongroup = {version = "*", markers = "python_version < '3.11'"}
+tomli = {version = "*", markers = "python_version < '3.11'"}
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"
