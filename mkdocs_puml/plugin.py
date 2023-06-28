@@ -127,7 +127,12 @@ class PlantUMLPlugin(BasePlugin):
         for v in schemes:
             output = self._replace(v, output)
             page.content = self._replace(v, page.content)
-            page.html = self._replace(v, page.html)
+
+            # MkDocs >=1.4 doesn't have html attribute.
+            # TODO: Remove the support of older versions in future releases
+            if hasattr(page, 'html'):
+                page.html = self._replace(v, page.html)
+
         return output
 
     def _replace(self, key: str, content: str) -> str:
