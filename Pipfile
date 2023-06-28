@@ -17,6 +17,7 @@ flake8 = "*"
 pre-commit = "*"
 importlib-metadata = {version = "*", markers = "python_version < '3.10'"}
 zipp = {version = "*", markers = "python_version < '3.10'"}
+exceptiongroup = {version = "*", markers = "python_version < '3.11'"}
 
 [requires]
 python_version = "3.11"
