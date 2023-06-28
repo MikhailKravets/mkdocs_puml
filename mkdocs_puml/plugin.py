@@ -3,7 +3,7 @@ import re
 import uuid
 
 from mkdocs.config.config_options import Type, Config
-from mkdocs.plugins import BasePlugin
+from mkdocs.plugins import BasePlugin, Page
 
 from mkdocs_puml.puml import PlantUML
 
@@ -111,21 +111,30 @@ class PlantUMLPlugin(BasePlugin):
             self.diagrams[key] = svg
         return env
 
-    def on_post_page(self, output: str, *args, **kwargs) -> str:
+    def on_post_page(self, output: str, page: Page, *args, **kwargs) -> str:
         """The event is fired after HTML page is rendered.
         Here, we substitute <pre> tags with uuid codes of diagrams
         with the corresponding SVG images.
 
         Args:
-            output: rendered HTML page
+            output: rendered HTML in str format
+            page: Page object
 
         Returns:
             HTML page containing SVG diagrams
         """
         schemes = self.uuid_regex.findall(output)
         for v in schemes:
-            output = output.replace(
-                f'<pre class="{self.pre_class_name}">{v}</pre>',
-                f'<div class="{self.div_class_name}">{self.diagrams[v]}</div>'
-            )
+            output = self._replace(v, output)
+            page.content = self._replace(v, page.content)
+            page.html = self._replace(v, page.html)
         return output
+
+    def _replace(self, key: str, content: str) -> str:
+        """Replace a UUID key with a real diagram in a
+        content
+        """
+        return content.replace(
+                f'<pre class="{self.pre_class_name}">{key}</pre>',
+                f'<div class="{self.div_class_name}">{self.diagrams[key]}</div>'
+            )
