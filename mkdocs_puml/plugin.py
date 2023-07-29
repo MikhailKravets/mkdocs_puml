@@ -3,7 +3,7 @@ import re
 import uuid
 
 from mkdocs.config.config_options import Type, Config
-from mkdocs.plugins import BasePlugin, Page
+from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.puml import PlantUML
 
@@ -111,7 +111,7 @@ class PlantUMLPlugin(BasePlugin):
             self.diagrams[key] = svg
         return env
 
-    def on_post_page(self, output: str, page: Page, *args, **kwargs) -> str:
+    def on_post_page(self, output: str, page, *args, **kwargs) -> str:
         """The event is fired after HTML page is rendered.
         Here, we substitute <pre> tags with uuid codes of diagrams
         with the corresponding SVG images.
@@ -129,6 +129,7 @@ class PlantUMLPlugin(BasePlugin):
             page.content = self._replace(v, page.content)
 
             # MkDocs >=1.4 doesn't have html attribute.
+            # This is required for integration with mkdocs-print-page plugin.
             # TODO: Remove the support of older versions in future releases
             if hasattr(page, 'html'):
                 page.html = self._replace(v, page.html)
