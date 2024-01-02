@@ -36,7 +36,6 @@ plugins:
         puml_url: https://www.plantuml.com/plantuml/
         num_workers: 8
         puml_keyword: puml
-        verify_ssl: true
 ```
 
 Where
@@ -46,7 +45,6 @@ Where
 | `puml_url` | `str`. Required      | URL to the plantuml service                                    |
 | `num_workers` | `int`. Default `8`   | Max amount of concurrent workers that request plantuml service |
 | `puml_keyword` | `str`. Default `puml` | The keyword for PlantUML code fence, i.e. \```puml \```        |
-| `verify_ssl` | `bool`. Default `True` | Designates whether `requests` should verify SSL or not |
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
