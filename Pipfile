@@ -21,4 +21,4 @@ exceptiongroup = {version = "*", markers = "python_version < '3.11'"}
 tomli = {version = "*", markers = "python_version < '3.11'"}
 
 [requires]
-python_version = "3.11"
+python_version = "3.12"
