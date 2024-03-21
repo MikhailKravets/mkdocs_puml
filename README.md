@@ -3,15 +3,15 @@
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml)
 
-`mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
-documentation.
+`rd_mkdocs_puml` is a fork of `mkdocs_puml`. It is a fast and simple package that brings plantuml diagrams to MkDocs
+documentation. The additional functionality it provides is that it can be used without ssl verification.
 
 ## Install
 
 Run the following command to install the package
 
 ```shell
-pip install mkdocs_puml
+pip install rd_mkdocs_puml
 ```
 
 ## How to use
@@ -36,15 +36,17 @@ plugins:
         puml_url: https://www.plantuml.com/plantuml/
         num_workers: 8
         puml_keyword: puml
+        verify_ssl: true
 ```
 
 Where
 
-| Parmeter | Type                 | Descripton                                                     |
-|----------|----------------------|----------------------------------------------------------------|
-| `puml_url` | `str`. Required      | URL to the plantuml service                                    |
-| `num_workers` | `int`. Default `8`   | Max amount of concurrent workers that request plantuml service |
-| `puml_keyword` | `str`. Default `puml` | The keyword for PlantUML code fence, i.e. \```puml \```        |
+| Parmeter       | Type                   | Descripton                                                     |
+|----------------|------------------------|----------------------------------------------------------------|
+| `puml_url`     | `str`. Required        | URL to the plantuml service                                    |
+| `num_workers`  | `int`. Default `8`     | Max amount of concurrent workers that request plantuml service |
+| `puml_keyword` | `str`. Default `puml`  | The keyword for PlantUML code fence, i.e. \```puml \```        |
+| `verify_ssl`   | `bool`. Default `True` | Designates whether `requests` should verify SSL or not         |
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -94,7 +96,7 @@ using remote [plantuml.com](https://www.plantuml.com/plantuml/).
 You can use `PlantUML` converter without `mkdocs`. Below is the example,
 
 ```python
-from mkdocs_puml.puml import PlantUML
+from rd_mkdocs_puml.puml import PlantUML
 
 puml_url = "https://www.plantuml.com/plantuml"
 

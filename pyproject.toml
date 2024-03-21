@@ -3,8 +3,8 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "mkdocs_puml"
-authors = [{name = "Mikhail Kravets", email = "michkravets@gmail.com"}]
+name = "rd_mkdocs_puml"
+authors = [{name = "Rishabh Devgon", email = "devgon.rishabh@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.urls]
-Home = "https://github.com/MikhailKravets/mkdocs_puml"
+Home = "https://github.com/RishabhDev42/rd_mkdocs_puml"
 
 [project.entry-points."mkdocs.plugins"]
-plantuml = "mkdocs_puml.plugin:PlantUMLPlugin"
+plantuml = "rd_mkdocs_puml.plugin:PlantUMLPlugin"

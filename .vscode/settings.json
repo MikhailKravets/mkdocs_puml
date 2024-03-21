@@ -1,6 +1,6 @@
 {
     "python.testing.pytestArgs": [
-        "--cov=mkdocs_puml/",
+        "--cov=rd_mkdocs_puml/",
         "--cov-branch",
         "--pdb",
         "tests",

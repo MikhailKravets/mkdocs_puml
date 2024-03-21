@@ -5,7 +5,7 @@ import uuid
 from mkdocs.config.config_options import Type, Config
 from mkdocs.plugins import BasePlugin
 
-from mkdocs_puml.puml import PlantUML
+from rd_mkdocs_puml.puml import PlantUML
 
 
 class PlantUMLPlugin(BasePlugin):
@@ -15,7 +15,7 @@ class PlantUMLPlugin(BasePlugin):
     these configs into ``mkdocs.yml``::
 
             plugins:
-                - mkdocs_puml:
+                - rd_mkdocs_puml:
                     puml_url: https://www.plantuml.com/plantuml
                     num_workers: 10
 
@@ -38,7 +38,8 @@ class PlantUMLPlugin(BasePlugin):
     config_scheme = (
         ('puml_url', Type(str, required=True)),
         ('num_workers', Type(int, default=8)),
-        ('puml_keyword', Type(str, default='puml'))
+        ('puml_keyword', Type(str, default='puml')),
+        ('verify_ssl', Type(bool, default=True))
     )
 
     def __init__(self):
@@ -62,7 +63,11 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Full config of the mkdocs
         """
-        self.puml = PlantUML(self.config['puml_url'], num_workers=self.config['num_workers'])
+        self.puml = PlantUML(
+            self.config['puml_url'],
+            num_workers=self.config['num_workers'],
+            verify_ssl=self.config['verify_ssl']
+        )
         self.puml_keyword = self.config['puml_keyword']
         self.regex = re.compile(rf"```{self.puml_keyword}(.+?)```", flags=re.DOTALL)
         return config

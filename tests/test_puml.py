@@ -1,6 +1,6 @@
 import pytest
 
-from mkdocs_puml.puml import PlantUML
+from rd_mkdocs_puml.puml import PlantUML
 from tests.conftest import BASE_PUML_URL
 
 

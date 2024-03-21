@@ -8,7 +8,7 @@ from uuid import UUID
 
 from mkdocs.config.config_options import Config
 
-from mkdocs_puml.plugin import PlantUMLPlugin
+from rd_mkdocs_puml.plugin import PlantUMLPlugin
 from tests.conftest import BASE_PUML_URL, CUSTOM_PUML_KEYWORD, TESTDATA_DIR
 
 

@@ -6,7 +6,7 @@ from xml.dom.minidom import Element, parseString  # nosec
 
 import requests
 
-from mkdocs_puml.encoder import encode
+from rd_mkdocs_puml.encoder import encode
 
 
 class PlantUML:
@@ -17,6 +17,7 @@ class PlantUML:
     Attributes:
         base_url (str): Base URL to the PUML service
         num_workers (int): The size of pool to run requests in
+        verify_ssl (bool): Designates whether requests should verify SSL certiticates
 
     Examples:
         Use this class as::
@@ -27,8 +28,9 @@ class PlantUML:
     _format = 'svg'
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
 
-    def __init__(self, base_url: str, num_workers: int = 5):
+    def __init__(self, base_url: str, num_workers: int = 5, verify_ssl: bool = True):
         self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
+        self.verify_ssl = verify_ssl
 
         if num_workers <= 0:
             raise ValueError("`num_workers` argument should be bigger than 0.")
@@ -96,7 +98,7 @@ class PlantUML:
         Returns:
             SVG representation of the diagram
         """
-        resp = requests.get(urljoin(self.base_url, f"{self._format}/{encoded_diagram}"))
+        resp = requests.get(urljoin(self.base_url, f"{self._format}/{encoded_diagram}"), verify=self.verify_ssl)
 
         # Use 'ignore' to strip non-utf chars
         return resp.content.decode('utf-8', errors='ignore')

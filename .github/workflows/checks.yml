@@ -43,4 +43,4 @@ jobs:
 
       - id: test
         name: Test with pytest
-        run: pytest --cov-report term --cov=mkdocs_puml -q tests/
+        run: pytest --cov-report term --cov=rd_mkdocs_puml -q tests/
