@@ -31,6 +31,7 @@ class PlantUMLPlugin(BasePlugin):
         puml (PlantUML): PlantUML instance that requests PlantUML service
         diagrams (dict): Dictionary containing the diagrams (puml and later svg) and their keys
         puml_keyword (str): keyword used to find PlantUML blocks within Markdown files
+        verify_ssl (bool): Designates whether the ``requests`` should verify SSL certiticate
     """
     div_class_name = "puml"
     pre_class_name = "diagram-uuid"
@@ -38,7 +39,8 @@ class PlantUMLPlugin(BasePlugin):
     config_scheme = (
         ('puml_url', Type(str, required=True)),
         ('num_workers', Type(int, default=8)),
-        ('puml_keyword', Type(str, default='puml'))
+        ('puml_keyword', Type(str, default='puml')),
+        ('verify_ssl', Type(bool, default=True))
     )
 
     def __init__(self):
@@ -62,7 +64,11 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Full config of the mkdocs
         """
-        self.puml = PlantUML(self.config['puml_url'], num_workers=self.config['num_workers'])
+        self.puml = PlantUML(
+            self.config['puml_url'],
+            num_workers=self.config['num_workers'],
+            verify_ssl=self.config['verify_ssl']
+        )
         self.puml_keyword = self.config['puml_keyword']
         self.regex = re.compile(rf"```{self.puml_keyword}(.+?)```", flags=re.DOTALL)
         return config
