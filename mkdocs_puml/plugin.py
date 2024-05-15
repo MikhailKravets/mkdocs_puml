@@ -137,7 +137,7 @@ class PlantUMLPlugin(BasePlugin):
             # MkDocs >=1.4 doesn't have html attribute.
             # This is required for integration with mkdocs-print-page plugin.
             # TODO: Remove the support of older versions in future releases
-            if hasattr(page, 'html'):
+            if hasattr(page, 'html') and page.html is not None:
                 page.html = self._replace(v, page.html)
 
         return output
