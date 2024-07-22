@@ -129,4 +129,4 @@ class PlantUML:
             It can be used to add support of light / dark theme.
         """
         svg.setAttribute('preserveAspectRatio', "true")
-        svg.setAttribute('style', 'background: #ffffff')
+        svg.setAttribute('style', 'background: var(--md-default-bg-color)')
