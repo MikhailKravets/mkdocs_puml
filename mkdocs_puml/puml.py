@@ -36,7 +36,7 @@ class PlantUML:
         self.num_workers = num_workers
         self.verify_ssl = verify_ssl
 
-    def translate(self, diagrams: typing.Iterable[str]) -> typing.List[str]:
+    def translate(self, diagrams: typing.Iterable[str], dark_mode: bool = False) -> typing.List[str]:
         """Translate string diagram into HTML div
         block containing the received SVG image.
 
@@ -46,13 +46,15 @@ class PlantUML:
 
         Args:
             diagrams (list): string representation of PUML diagram
+            dark_mode (bool): Flag to indicate if dark mode variant is requested
+
         Returns:
-             SVG image of built diagram
+            SVG image of built diagram
         """
         encoded = [self.preprocess(v) for v in diagrams]
 
         with ThreadPoolExecutor(max_workers=self.num_workers) as executor:
-            svg_images = executor.map(self.request, encoded)
+            svg_images = executor.map(lambda ed: self.request(ed, dark_mode), encoded)
 
         return [self.postprocess(v) for v in svg_images]
 
@@ -89,19 +91,22 @@ class PlantUML:
 
         return svg.toxml()
 
-    def request(self, encoded_diagram: str) -> str:
+    def request(self, encoded_diagram: str, dark_mode: bool = False) -> str:
         """Request plantuml service with the encoded diagram;
         return SVG content
 
         Args:
             encoded_diagram (str): Encoded string representation of the diagram
+             dark_mode (bool): Flag to indicate if dark mode variant is requested
         Returns:
             SVG representation of the diagram
         """
+        format_path = "dsvg" if dark_mode else self._format
         resp = requests.get(
-            urljoin(self.base_url, f"{self._format}/{encoded_diagram}"),
+            urljoin(self.base_url, f"{format_path}/{encoded_diagram}"),
             verify=self.verify_ssl
         )
+        return resp.content.decode('utf-8', errors='ignore')
 
         # Use 'ignore' to strip non-utf chars
         return resp.content.decode('utf-8', errors='ignore')
