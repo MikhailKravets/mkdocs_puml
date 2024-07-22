@@ -125,7 +125,7 @@ Jon -> Sansa : hello
 @enduml
 """
 
-puml = PlantUML(puml_url, num_worker=2)
+puml = PlantUML(puml_url, num_workers=2)
 svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
 
