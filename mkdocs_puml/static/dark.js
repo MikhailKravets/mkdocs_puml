@@ -22,7 +22,7 @@
  */
 
 // Set this flag to true for debugging output, false to suppress logs
-const DEBUG = true;
+const DEBUG = false;
 
 /**
  * Helper function for controlled logging.
