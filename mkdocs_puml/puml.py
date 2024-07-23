@@ -106,7 +106,6 @@ class PlantUML:
             urljoin(self.base_url, f"{format_path}/{encoded_diagram}"),
             verify=self.verify_ssl
         )
-        return resp.content.decode('utf-8', errors='ignore')
 
         # Use 'ignore' to strip non-utf chars
         return resp.content.decode('utf-8', errors='ignore')
