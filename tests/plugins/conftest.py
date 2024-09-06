@@ -31,15 +31,15 @@ def is_uuid_valid(uuid_str: str) -> bool:
 @pytest.fixture
 def plugin_config():
     c = Config(schema=PlantUMLPlugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
+    c["puml_url"] = BASE_PUML_URL
     return c
 
 
 @pytest.fixture
 def plugin_config_custom_keyword():
     c = Config(schema=PlantUMLPlugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
-    c['puml_keyword'] = CUSTOM_PUML_KEYWORD
+    c["puml_url"] = BASE_PUML_URL
+    c["puml_keyword"] = CUSTOM_PUML_KEYWORD
     return c
 
 
@@ -53,7 +53,7 @@ def plugin_environment():
 def plant_uml_plugin(plugin_config):
     plugin = PlantUMLPlugin()
     c = Config(schema=plugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
+    c["puml_url"] = BASE_PUML_URL
     plugin.config = c
     plugin.on_config(c)
 
@@ -64,8 +64,8 @@ def plant_uml_plugin(plugin_config):
 def plant_uml_plugin_custom_keyword(plugin_config_custom_keyword):
     plugin = PlantUMLPlugin()
     c = Config(schema=plugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
-    c['puml_keyword'] = CUSTOM_PUML_KEYWORD
+    c["puml_url"] = BASE_PUML_URL
+    c["puml_keyword"] = CUSTOM_PUML_KEYWORD
     plugin.config = c
     plugin.on_config(c)
 
@@ -83,17 +83,16 @@ def diagrams_dict(diagram_and_encoded):
 
 @pytest.fixture(scope="package")
 def md_lines():
-    with open(TESTDATA_DIR.joinpath('markdown.md')) as f:
+    with open(TESTDATA_DIR.joinpath("markdown.md")) as f:
         return f.readlines()
 
 
 @pytest.fixture
 def html_page(plugin_environment, diagrams_dict):
-    page = MagicMock(title='Test, page', file=MagicMock(), config=MagicMock())
+    page = MagicMock(title="Test, page", file=MagicMock(), config=MagicMock())
     template = plugin_environment.get_template("output.html")
     page.content = template.render(
-        uuid_class=PlantUMLPlugin.pre_class_name,
-        uuids=diagrams_dict.keys()
+        uuid_class=PlantUMLPlugin.pre_class_name, uuids=diagrams_dict.keys()
     )
     page.html = page.content
     return page

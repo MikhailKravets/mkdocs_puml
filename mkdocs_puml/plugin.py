@@ -36,20 +36,23 @@ class PlantUMLPlugin(BasePlugin):
         verify_ssl (bool): Designates whether the ``requests`` should verify SSL certiticate
         auto_dark (bool): Designates whether the plugin should automatically generate dark mode images.
     """
+
     div_class_name = "puml"
     pre_class_name = "diagram-uuid"
 
     config_scheme = (
-        ('puml_url', Type(str, required=True)),
-        ('num_workers', Type(int, default=8)),
-        ('puml_keyword', Type(str, default='puml')),
-        ('verify_ssl', Type(bool, default=True)),
-        ('auto_dark', Type(bool, default=False))
+        ("puml_url", Type(str, required=True)),
+        ("num_workers", Type(int, default=8)),
+        ("puml_keyword", Type(str, default="puml")),
+        ("verify_ssl", Type(bool, default=True)),
+        ("auto_dark", Type(bool, default=False)),
     )
 
     def __init__(self):
         self.regex: typing.Optional[typing.Any] = None
-        self.uuid_regex = re.compile(rf'<pre class="{self.pre_class_name}">(.+?)</pre>', flags=re.DOTALL)
+        self.uuid_regex = re.compile(
+            rf'<pre class="{self.pre_class_name}">(.+?)</pre>', flags=re.DOTALL
+        )
 
         self.puml: typing.Optional[PlantUML] = None
         self.diagrams = {
@@ -69,20 +72,20 @@ class PlantUMLPlugin(BasePlugin):
             Full config of the mkdocs
         """
         self.puml_light = PlantUML(
-            self.config['puml_url'],
-            num_workers=self.config['num_workers'],
-            verify_ssl=self.config['verify_ssl'],
-            output_format="svg"
+            self.config["puml_url"],
+            num_workers=self.config["num_workers"],
+            verify_ssl=self.config["verify_ssl"],
+            output_format="svg",
         )
         self.puml_dark = PlantUML(
-            self.config['puml_url'],
-            num_workers=self.config['num_workers'],
-            verify_ssl=self.config['verify_ssl'],
-            output_format="dsvg"
+            self.config["puml_url"],
+            num_workers=self.config["num_workers"],
+            verify_ssl=self.config["verify_ssl"],
+            output_format="dsvg",
         )
-        self.puml_keyword = self.config['puml_keyword']
+        self.puml_keyword = self.config["puml_keyword"]
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
-        self.auto_dark = self.config['auto_dark']
+        self.auto_dark = self.config["auto_dark"]
         return config
 
     def on_page_markdown(self, markdown: str, *args, **kwargs) -> str:
@@ -106,8 +109,7 @@ class PlantUMLPlugin(BasePlugin):
             id_ = str(uuid.uuid4())
             self.diagrams[id_] = v
             markdown = markdown.replace(
-                f"```{self.puml_keyword}{v}```",
-                f'<pre class="{self.pre_class_name}">{id_}</pre>'
+                f"```{self.puml_keyword}{v}```", f'<pre class="{self.pre_class_name}">{id_}</pre>'
             )
 
         return markdown
@@ -124,7 +126,7 @@ class PlantUMLPlugin(BasePlugin):
             Jinja environment
         """
         diagram_contents = [diagram for diagram, _ in self.diagrams.values()]
-        
+
         if self.auto_dark:
             light_svgs = self.puml_light.translate(diagram_contents)
             dark_svgs = self.puml_dark.translate(diagram_contents)
@@ -156,13 +158,13 @@ class PlantUMLPlugin(BasePlugin):
             # MkDocs >=1.4 doesn't have html attribute.
             # This is required for integration with mkdocs-print-page plugin.
             # TODO: Remove the support of older versions in future releases
-            if hasattr(page, 'html') and page.html is not None:
+            if hasattr(page, "html") and page.html is not None:
                 page.html = self._replace(v, page.html)
-                
+
             # Inject custom JavaScript only if PUML diagrams are present
             script_tag = '<script src="assets/javascripts/puml/dark.js"></script>'
             if script_tag not in output:
-                output = output.replace('</body>', f'{script_tag}</body>')
+                output = output.replace("</body>", f"{script_tag}</body>")
 
         return output
 
@@ -178,10 +180,7 @@ class PlantUMLPlugin(BasePlugin):
             )
         else:
             replacement = f'<div class="{self.div_class_name}">{light_svg}</div>'
-        return content.replace(
-            f'<pre class="{self.pre_class_name}">{key}</pre>',
-            replacement
-        )
+        return content.replace(f'<pre class="{self.pre_class_name}">{key}</pre>', replacement)
 
     def on_post_build(self, config):
         """
@@ -197,9 +196,9 @@ class PlantUMLPlugin(BasePlugin):
 
         """
         # Path to the static directory in the plugin
-        static_dir = os.path.join(os.path.dirname(__file__), 'static')
+        static_dir = os.path.join(os.path.dirname(__file__), "static")
         # Destination directory in the site output
-        dest_dir = os.path.join(config['site_dir'], 'assets/javascripts/puml')
+        dest_dir = os.path.join(config["site_dir"], "assets/javascripts/puml")
 
         if not os.path.exists(dest_dir):
             os.makedirs(dest_dir)

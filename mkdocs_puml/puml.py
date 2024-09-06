@@ -26,10 +26,17 @@ class PlantUML:
             puml = PlantUML("https://www.plantuml.com")
             svg = puml.translate([diagram])[0]
     """
+
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
 
-    def __init__(self, base_url: str, num_workers: int = 5, verify_ssl: bool = True, output_format: str = "svg"):
-        self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
+    def __init__(
+        self,
+        base_url: str,
+        num_workers: int = 5,
+        verify_ssl: bool = True,
+        output_format: str = "svg",
+    ):
+        self.base_url = base_url if base_url.endswith("/") else f"{base_url}/"
         self.base_url = f"{self.base_url}{output_format}/"
 
         if num_workers <= 0:
@@ -100,13 +107,10 @@ class PlantUML:
         Returns:
             SVG representation of the diagram
         """
-        resp = requests.get(
-            urljoin(self.base_url, encoded_diagram),
-            verify=self.verify_ssl
-        )
+        resp = requests.get(urljoin(self.base_url, encoded_diagram), verify=self.verify_ssl)
 
         # Use 'ignore' to strip non-utf chars
-        return resp.content.decode('utf-8', errors='ignore')
+        return resp.content.decode("utf-8", errors="ignore")
 
     def _clean_comments(self, content: str) -> str:
         return self._html_comment_regex.sub("", content)
@@ -116,7 +120,7 @@ class PlantUML:
         for future modifications
         """
         dom = parseString(content)  # nosec
-        svg = dom.getElementsByTagName('svg')[0]
+        svg = dom.getElementsByTagName("svg")[0]
         return svg
 
     def _stylize_svg(self, svg: Element):
@@ -125,5 +129,5 @@ class PlantUML:
         Notes:
             It can be used to add support of light / dark theme.
         """
-        svg.setAttribute('preserveAspectRatio', "true")
-        svg.setAttribute('style', 'background: var(--md-default-bg-color)')
+        svg.setAttribute("preserveAspectRatio", "true")
+        svg.setAttribute("style", "background: var(--md-default-bg-color)")

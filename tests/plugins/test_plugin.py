@@ -4,7 +4,6 @@ from tests.conftest import BASE_PUML_KEYWORD, BASE_PUML_URL, CUSTOM_PUML_KEYWORD
 from tests.plugins.conftest import is_uuid_valid
 import os
 import shutil
-import tempfile
 
 
 def test_on_config(plugin_config):
@@ -70,8 +69,9 @@ def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environme
 
     for light_svg, dark_svg in plant_uml_plugin.diagrams.values():
         assert isinstance(light_svg, str)
-        assert light_svg.startswith('<svg')
+        assert light_svg.startswith("<svg")
         assert dark_svg is None  # Since auto_dark is False by default
+
 
 def test_on_env_auto_dark(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environment):
     # Test if PlantUML diagrams are correctly converted to both light and dark SVGs
@@ -85,8 +85,8 @@ def test_on_env_auto_dark(mock_requests, plant_uml_plugin, diagrams_dict, plugin
     for light_svg, dark_svg in plant_uml_plugin.diagrams.values():
         assert isinstance(light_svg, str)
         assert isinstance(dark_svg, str)
-        assert light_svg.startswith('<svg')
-        assert dark_svg.startswith('<svg')
+        assert light_svg.startswith("<svg")
+        assert dark_svg.startswith("<svg")
 
 
 def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
@@ -100,13 +100,15 @@ def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
     # Test the case where page.html exists
     html_page.html = html_page.content
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
-    assert html_page.html.count(f'<div class="{plant_uml_plugin.div_class_name}">') == len(diagrams_dict)
+    assert html_page.html.count(f'<div class="{plant_uml_plugin.div_class_name}">') == len(
+        diagrams_dict
+    )
 
 
 def test_on_post_page_without_html_attribute(plant_uml_plugin, diagrams_dict, html_page):
     # Test if the plugin handles pages without the 'html' attribute correctly
     plant_uml_plugin.diagrams = diagrams_dict
-    delattr(html_page, 'html')
+    delattr(html_page, "html")
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
 
     assert output.count(f'<div class="{plant_uml_plugin.div_class_name}">') == len(diagrams_dict)
@@ -124,52 +126,53 @@ def test_on_post_page_with_existing_script(plant_uml_plugin, diagrams_dict, html
 
 def test_on_post_build(tmp_path, plant_uml_plugin):
     # Test if static files are correctly copied during the build process
-    config = {'site_dir': str(tmp_path)}
-    
-    dest_dir = os.path.join(tmp_path, 'assets', 'javascripts', 'puml')
+    config = {"site_dir": str(tmp_path)}
+
+    dest_dir = os.path.join(tmp_path, "assets", "javascripts", "puml")
     if os.path.exists(dest_dir):
         shutil.rmtree(dest_dir)
-    
+
     plant_uml_plugin.on_post_build(config)
-    
+
     assert os.path.exists(dest_dir)
-    static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'mkdocs_puml', 'static')
+    static_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "mkdocs_puml", "static"
+    )
     for file_name in os.listdir(static_dir):
         assert os.path.exists(os.path.join(dest_dir, file_name))
 
     # Test when the directory already exists
     plant_uml_plugin.on_post_build(config)
-    
+
     for file_name in os.listdir(static_dir):
         assert os.path.exists(os.path.join(dest_dir, file_name))
 
 
 def test_on_post_build_with_subdirectory(tmp_path, plant_uml_plugin):
     # Test if the plugin correctly handles subdirectories in the static folder
-    config = {'site_dir': str(tmp_path)}
-    
-    static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'mkdocs_puml', 'static')
-    with tempfile.TemporaryDirectory(dir=static_dir) as temp_subdir:
-        plant_uml_plugin.on_post_build(config)
-    
-    dest_dir = os.path.join(tmp_path, 'assets', 'javascripts', 'puml')
+    config = {"site_dir": str(tmp_path)}
+
+    plant_uml_plugin.on_post_build(config)
+
+    dest_dir = os.path.join(tmp_path, "assets", "javascripts", "puml")
     for item in os.listdir(dest_dir):
         assert os.path.isfile(os.path.join(dest_dir, item))
+
 
 def test_replace_method(plant_uml_plugin):
     # Test if the _replace method correctly handles both light and dark SVGs
     key = "test_key"
     content = f'<pre class="{plant_uml_plugin.pre_class_name}">{key}</pre>'
-    
+
     # Test without dark SVG
     plant_uml_plugin.diagrams[key] = ("<svg>light</svg>", None)
     result = plant_uml_plugin._replace(key, content)
     assert f'<div class="{plant_uml_plugin.div_class_name}"><svg>light</svg></div>' in result
-    
+
     # Test with dark SVG
     plant_uml_plugin.diagrams[key] = ("<svg>light</svg>", "<svg>dark</svg>")
     result = plant_uml_plugin._replace(key, content)
     assert 'data-puml-theme="light"' in result
     assert 'data-puml-theme="dark"' in result
-    assert '<svg>light</svg>' in result
-    assert '<svg>dark</svg>' in result
+    assert "<svg>light</svg>" in result
+    assert "<svg>dark</svg>" in result
