@@ -59,7 +59,7 @@ class PlantUMLPlugin(BasePlugin):
     def on_config(self, config: Config) -> Config:
         """Event that is fired by mkdocs when configs are created.
 
-        self.puml instance is populated in this event.
+        self.puml instances are populated in this event.
 
         Args:
             config: Full mkdocs.yml config file. To access configs of PlantUMLPlugin only,
@@ -68,10 +68,17 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Full config of the mkdocs
         """
-        self.puml = PlantUML(
+        self.puml_light = PlantUML(
             self.config['puml_url'],
             num_workers=self.config['num_workers'],
             verify_ssl=self.config['verify_ssl'],
+            output_format="svg"
+        )
+        self.puml_dark = PlantUML(
+            self.config['puml_url'],
+            num_workers=self.config['num_workers'],
+            verify_ssl=self.config['verify_ssl'],
+            output_format="dsvg"
         )
         self.puml_keyword = self.config['puml_keyword']
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
@@ -117,12 +124,12 @@ class PlantUMLPlugin(BasePlugin):
             Jinja environment
         """
         if self.auto_dark:
-            light_svgs = self.puml.translate(self.diagrams.values())
-            dark_svgs = self.puml.translate(self.diagrams.values(), dark_mode=True)
+            light_svgs = self.puml_light.translate(self.diagrams.values())
+            dark_svgs = self.puml_dark.translate(self.diagrams.values())
             for key, (light_svg, dark_svg) in zip(self.diagrams.keys(), zip(light_svgs, dark_svgs)):
                 self.diagrams[key] = (light_svg, dark_svg)
         else:
-            svgs = self.puml.translate(self.diagrams.values())
+            svgs = self.puml_light.translate(self.diagrams.values())
             for key, svg in zip(self.diagrams.keys(), svgs):
                 self.diagrams[key] = (svg, None)
         return env

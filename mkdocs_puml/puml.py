@@ -18,6 +18,7 @@ class PlantUML:
         base_url (str): Base URL to the PUML service
         num_workers (int): The size of pool to run requests in
         verify_ssl (bool): Designates whether the ``requests`` should verify SSL certiticate
+        output_format (str): The output format for the diagrams (e.g., "svg" or "dsvg")
 
     Examples:
         Use this class as::
@@ -25,18 +26,18 @@ class PlantUML:
             puml = PlantUML("https://www.plantuml.com")
             svg = puml.translate([diagram])[0]
     """
-    _format = 'svg'
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
 
-    def __init__(self, base_url: str, num_workers: int = 5, verify_ssl: bool = True):
+    def __init__(self, base_url: str, num_workers: int = 5, verify_ssl: bool = True, output_format: str = "svg"):
         self.base_url = base_url if base_url.endswith('/') else f"{base_url}/"
+        self.base_url = f"{self.base_url}{output_format}/"
 
         if num_workers <= 0:
             raise ValueError("`num_workers` argument should be bigger than 0.")
         self.num_workers = num_workers
         self.verify_ssl = verify_ssl
 
-    def translate(self, diagrams: typing.Iterable[str], dark_mode: bool = False) -> typing.List[str]:
+    def translate(self, diagrams: typing.Iterable[str]) -> typing.List[str]:
         """Translate string diagram into HTML div
         block containing the received SVG image.
 
@@ -46,7 +47,6 @@ class PlantUML:
 
         Args:
             diagrams (list): string representation of PUML diagram
-            dark_mode (bool): Flag to indicate if dark mode variant is requested
 
         Returns:
             SVG image of built diagram
@@ -54,7 +54,7 @@ class PlantUML:
         encoded = [self.preprocess(v) for v in diagrams]
 
         with ThreadPoolExecutor(max_workers=self.num_workers) as executor:
-            svg_images = executor.map(lambda ed: self.request(ed, dark_mode), encoded)
+            svg_images = executor.map(self.request, encoded)
 
         return [self.postprocess(v) for v in svg_images]
 
@@ -91,19 +91,17 @@ class PlantUML:
 
         return svg.toxml()
 
-    def request(self, encoded_diagram: str, dark_mode: bool = False) -> str:
+    def request(self, encoded_diagram: str) -> str:
         """Request plantuml service with the encoded diagram;
         return SVG content
 
         Args:
             encoded_diagram (str): Encoded string representation of the diagram
-             dark_mode (bool): Flag to indicate if dark mode variant is requested
         Returns:
             SVG representation of the diagram
         """
-        format_path = "dsvg" if dark_mode else self._format
         resp = requests.get(
-            urljoin(self.base_url, f"{format_path}/{encoded_diagram}"),
+            urljoin(self.base_url, encoded_diagram),
             verify=self.verify_ssl
         )
 
