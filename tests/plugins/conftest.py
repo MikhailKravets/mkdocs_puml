@@ -75,9 +75,9 @@ def plant_uml_plugin_custom_keyword(plugin_config_custom_keyword):
 @pytest.fixture
 def diagrams_dict(diagram_and_encoded):
     return {
-        str(uuid.uuid4()): diagram_and_encoded[0],
-        str(uuid.uuid4()): diagram_and_encoded[0],
-        str(uuid.uuid4()): diagram_and_encoded[0],
+        str(uuid.uuid4()): (diagram_and_encoded[0], None),
+        str(uuid.uuid4()): (diagram_and_encoded[0], None),
+        str(uuid.uuid4()): (diagram_and_encoded[0], None),
     }
 
 
