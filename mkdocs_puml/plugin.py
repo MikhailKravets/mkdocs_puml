@@ -123,14 +123,16 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Jinja environment
         """
+        diagram_contents = [diagram for diagram, _ in self.diagrams.values()]
+        
         if self.auto_dark:
-            light_svgs = self.puml_light.translate(self.diagrams.values())
-            dark_svgs = self.puml_dark.translate(self.diagrams.values())
-            for key, (light_svg, dark_svg) in zip(self.diagrams.keys(), zip(light_svgs, dark_svgs)):
+            light_svgs = self.puml_light.translate(diagram_contents)
+            dark_svgs = self.puml_dark.translate(diagram_contents)
+            for (key, _), light_svg, dark_svg in zip(self.diagrams.items(), light_svgs, dark_svgs):
                 self.diagrams[key] = (light_svg, dark_svg)
         else:
-            svgs = self.puml_light.translate(self.diagrams.values())
-            for key, svg in zip(self.diagrams.keys(), svgs):
+            svgs = self.puml_light.translate(diagram_contents)
+            for (key, _), svg in zip(self.diagrams.items(), svgs):
                 self.diagrams[key] = (svg, None)
         return env
 
