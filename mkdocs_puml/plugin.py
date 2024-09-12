@@ -130,11 +130,11 @@ class PlantUMLPlugin(BasePlugin):
         if self.auto_dark:
             light_svgs = self.puml_light.translate(diagram_contents)
             dark_svgs = self.puml_dark.translate(diagram_contents)
-            for (key, _), light_svg, dark_svg in zip(self.diagrams.items(), light_svgs, dark_svgs):
+            for key, light_svg, dark_svg in zip(self.diagrams, light_svgs, dark_svgs):
                 self.diagrams[key] = (light_svg, dark_svg)
         else:
             svgs = self.puml_light.translate(diagram_contents)
-            for (key, _), svg in zip(self.diagrams.items(), svgs):
+            for key, svg in zip(self.diagrams, svgs):
                 self.diagrams[key] = (svg, None)
         return env
 

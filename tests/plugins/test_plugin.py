@@ -73,16 +73,14 @@ def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environme
         assert dark_svg is None  # Since auto_dark is False by default
 
 
-def test_on_env_auto_dark(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environment):
+def test_on_env_auto_dark(mock_requests, plant_uml_plugin_dark, diagrams_dict, plugin_environment):
     # Test if PlantUML diagrams are correctly converted to both light and dark SVGs
-    plant_uml_plugin.auto_dark = True
-    plant_uml_plugin.diagrams = diagrams_dict
-    mock_requests.reset_mock()
-    plant_uml_plugin.on_env(plugin_environment)
+    plant_uml_plugin_dark.diagrams = diagrams_dict
+    plant_uml_plugin_dark.on_env(plugin_environment)
 
     assert mock_requests.call_count == 2 * len(diagrams_dict)
 
-    for light_svg, dark_svg in plant_uml_plugin.diagrams.values():
+    for light_svg, dark_svg in plant_uml_plugin_dark.diagrams.values():
         assert isinstance(light_svg, str)
         assert isinstance(dark_svg, str)
         assert light_svg.startswith("<svg")

@@ -73,6 +73,18 @@ def plant_uml_plugin_custom_keyword(plugin_config_custom_keyword):
 
 
 @pytest.fixture
+def plant_uml_plugin_dark(plugin_config_custom_keyword: Config):
+    plugin = PlantUMLPlugin()
+    c = Config(schema=plugin.config_scheme)
+    c["puml_url"] = BASE_PUML_URL
+    c["auto_dark"] = True
+    plugin.config = c
+    plugin.on_config(c)
+
+    return plugin
+
+
+@pytest.fixture
 def diagrams_dict(diagram_and_encoded):
     return {
         str(uuid.uuid4()): (diagram_and_encoded[0], None),
