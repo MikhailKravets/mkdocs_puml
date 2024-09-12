@@ -19,7 +19,7 @@ def test_num_worker_less_or_equal_zero():
         PlantUML(BASE_PUML_URL, num_workers=0)
 
 
-def test_translate(diagram_and_encoded: (str, str), mock_requests):
+def test_translate(diagram_and_encoded: tuple[str], mock_requests):
     diagram, encoded = diagram_and_encoded
 
     diagrams = [diagram] * 2
@@ -34,4 +34,4 @@ def test_translate(diagram_and_encoded: (str, str), mock_requests):
     for r in resp:
         assert r.startswith("<svg")
         assert not puml._html_comment_regex.search(r)
-        assert 'preserveAspectRatio="true"' in r
+        assert 'preserveAspectRatio="xMidYMid meet"' in r
