@@ -37,16 +37,19 @@ plugins:
         num_workers: 8
         puml_keyword: puml
         verify_ssl: true
+        auto_dark: false
 ```
 
 Where
 
-| Parmeter | Type                 | Descripton                                                     |
-|----------|----------------------|----------------------------------------------------------------|
-| `puml_url` | `str`. Required      | URL to the plantuml service                                    |
-| `num_workers` | `int`. Default `8`   | Max amount of concurrent workers that request plantuml service |
-| `puml_keyword` | `str`. Default `puml` | The keyword for PlantUML code fence, i.e. \```puml \```        |
-| `verify_ssl` | `bool`. Default `True` | Designates whether `requests` should verify SSL or not |
+| Parameter      | Type                   | Description                                                                 |
+|----------------|------------------------|-----------------------------------------------------------------------------|
+| `puml_url`     | `str`. Required        | URL to the PlantUML service                                                 |
+| `num_workers`  | `int`. Default `8`     | Max amount of concurrent workers that request the PlantUML service          |
+| `puml_keyword` | `str`. Default `puml`  | The keyword for PlantUML code fence, i.e. \```puml \```                     |
+| `verify_ssl`   | `bool`. Default `True` | Designates whether `requests` should verify SSL or not                      |
+| `auto_dark`    | `bool`. Default `False`| Designates whether the plugin should also generate dark mode images         |
+
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -62,6 +65,16 @@ Bob -> Alice : hello
 
 At the build step `mkdocs` sends requests to `puml_url` and substitutes your
 diagram with the `svg` images from the responses.
+
+### Dark Mode Support
+
+The module supports dark mode, this can be enabled with the `auto_dark` option.
+
+When this option is set the module will generate a second copy of the diagram in dark mode using the `/dsvg` server option.
+
+In order to dynamically switch the image choice the module include a javascript file [dark.js](mkdocs_puml/static/dark.js).
+
+> **Tip:** Try it with the `skinparam backgroundColor transparent` directive in your puml to see if it looks better :)
 
 ### Run PlantUML service with Docker
 
@@ -112,7 +125,7 @@ Jon -> Sansa : hello
 @enduml
 """
 
-puml = PlantUML(puml_url, num_worker=2)
+puml = PlantUML(puml_url, num_workers=2)
 svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
 

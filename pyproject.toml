@@ -21,3 +21,7 @@ Home = "https://github.com/MikhailKravets/mkdocs_puml"
 
 [project.entry-points."mkdocs.plugins"]
 plantuml = "mkdocs_puml.plugin:PlantUMLPlugin"
+
+[tool.flit.sdist]
+# Specify the files to include in the source distribution
+include = ["mkdocs_puml/static/custom.js"]
