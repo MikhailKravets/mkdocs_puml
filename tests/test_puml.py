@@ -41,4 +41,4 @@ def test_translate(diagram_and_encoded: tuple[str, str], mock_requests):
     for r in resp:
         assert r.startswith("<svg")
         assert not puml._html_comment_regex.search(r)
-        assert 'preserveAspectRatio="true"' in r
+        assert 'preserveAspectRatio="xMidYMid meet"' in r
