@@ -1,10 +1,12 @@
+from pathlib import Path
 import typing
 import re
 import uuid
 import os
 import shutil
 
-from mkdocs.config.config_options import Type, Config
+from mkdocs.config.base import Config
+from mkdocs.config.config_options import Type
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.puml import PlantUML
@@ -33,7 +35,7 @@ class PlantUMLPlugin(BasePlugin):
         puml (PlantUML): PlantUML instance that requests PlantUML service
         diagrams (dict): Dictionary containing the diagrams (puml and later svg) and their keys
         puml_keyword (str): keyword used to find PlantUML blocks within Markdown files
-        verify_ssl (bool): Designates whether the ``requests`` should verify SSL certiticate
+        verify_ssl (bool): Designates whether the ``requests`` should verify SSL certificate
         auto_dark (bool): Designates whether the plugin should automatically generate dark mode images.
     """
 
@@ -71,6 +73,7 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Full config of the mkdocs
         """
+        config['extra_css'].append("assets/stylesheets/puml.css")
         self.puml_light = PlantUML(
             self.config["puml_url"],
             num_workers=self.config["num_workers"],
@@ -125,7 +128,11 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Jinja environment
         """
-        diagram_contents = [diagram for diagram, _ in self.diagrams.values()]
+        # TODO: self.diagrams changes its structure throughout a program run:
+        #       1. Initially it's {key: "value"}
+        #       2. After translate, it's {key: ("light_svg", "dark_svg" | None)}
+        #       3. Align to a single format
+        diagram_contents = [diagram for diagram in self.diagrams.values()]
 
         if self.auto_dark:
             light_svgs = self.puml_light.translate(diagram_contents)
@@ -153,7 +160,7 @@ class PlantUMLPlugin(BasePlugin):
         schemes = self.uuid_regex.findall(output)
         for v in schemes:
             output = self._replace(v, output)
-            page.content = self._replace(v, page.content)
+            page.content = output
 
             # MkDocs >=1.4 doesn't have html attribute.
             # This is required for integration with mkdocs-print-page plugin.
@@ -162,9 +169,9 @@ class PlantUMLPlugin(BasePlugin):
                 page.html = self._replace(v, page.html)
 
             # Inject custom JavaScript only if PUML diagrams are present
-            script_tag = '<script src="assets/javascripts/puml/dark.js"></script>'
-            if script_tag not in output:
-                output = output.replace("</body>", f"{script_tag}</body>")
+            # script_tag = '<script src="assets/javascripts/puml/dark.js"></script>'
+            # if script_tag not in output:
+            #     output = output.replace("</body>", f"{script_tag}</body>")
 
         return output
 
@@ -175,11 +182,11 @@ class PlantUMLPlugin(BasePlugin):
         light_svg, dark_svg = self.diagrams[key]
         if dark_svg:
             replacement = (
-                f'<div class="{self.div_class_name}" data-puml-theme="light">{light_svg}</div>'
-                f'<div class="{self.div_class_name}" data-puml-theme="dark" style="display:none;">{dark_svg}</div>'
+                f'<div class="puml light">{light_svg}</div>'
+                f'<div class="puml dark">{dark_svg}</div>'
             )
         else:
-            replacement = f'<div class="{self.div_class_name}">{light_svg}</div>'
+            replacement = f'<div class="puml light">{light_svg}</div>'
         return content.replace(f'<pre class="{self.pre_class_name}">{key}</pre>', replacement)
 
     def on_post_build(self, config):
@@ -195,16 +202,13 @@ class PlantUMLPlugin(BasePlugin):
             config (dict): The MkDocs configuration object.
 
         """
+        site_dir = Path(config["site_dir"])
         # Path to the static directory in the plugin
-        static_dir = os.path.join(os.path.dirname(__file__), "static")
+        static_dir = Path(__file__).parent.joinpath("static/puml.css")
         # Destination directory in the site output
-        dest_dir = os.path.join(config["site_dir"], "assets/javascripts/puml")
+        dest_dir = site_dir.joinpath("assets/stylesheets/")
 
-        if not os.path.exists(dest_dir):
+        if not dest_dir.exists():
             os.makedirs(dest_dir)
 
-        # Copy static files
-        for file_name in os.listdir(static_dir):
-            full_file_name = os.path.join(static_dir, file_name)
-            if os.path.isfile(full_file_name):
-                shutil.copy(full_file_name, dest_dir)
+        shutil.copy(static_dir, dest_dir)
