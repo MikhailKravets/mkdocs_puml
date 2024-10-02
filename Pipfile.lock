@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "61b15927d686e62ae063b660a78260adea321b275f8ff8c64cdbd056fb1adc8c"
+            "sha256": "7e06d8b2518e926672590358194dcd8086f83783675eac3ca68d7c4ecf2b054e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1181,7 +1181,8 @@
             "version": "==1.16.0"
         },
         "tomli": {
-            "markers": "python_version < '3.11'"
+            "markers": "python_version < '3.11'",
+            "version": "==2.0"
         },
         "urllib3": {
             "hashes": [
@@ -1244,7 +1245,8 @@
             "version": "==10.0"
         },
         "zipp": {
-            "markers": "python_version < '3.10'"
+            "markers": "python_version < '3.10'",
+            "version": "==3.20"
         }
     }
 }
