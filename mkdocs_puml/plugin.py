@@ -44,7 +44,7 @@ class PlantUMLPlugin(BasePlugin):
         ("num_workers", Type(int, default=8)),
         ("puml_keyword", Type(str, default="puml")),
         ("verify_ssl", Type(bool, default=True)),
-        ("auto_dark", Type(bool, default=False)),
+        ("auto_dark", Type(bool, default=True)),
     )
 
     def __init__(self):
