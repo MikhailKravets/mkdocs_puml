@@ -24,4 +24,4 @@ plantuml = "mkdocs_puml.plugin:PlantUMLPlugin"
 
 [tool.flit.sdist]
 # Specify the files to include in the source distribution
-include = ["mkdocs_puml/static/custom.js"]
+include = ["mkdocs_puml/static/puml.css"]
