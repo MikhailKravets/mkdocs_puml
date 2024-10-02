@@ -1,0 +1,13 @@
+body[data-md-color-scheme="default"] .puml.light {
+    display: block;
+}
+body[data-md-color-scheme="slate"] .puml.light {
+    display: none;
+}
+
+body[data-md-color-scheme="default"] .puml.dark {
+    display: none;
+}
+body[data-md-color-scheme="slate"] .puml.dark {
+    display: block;
+}

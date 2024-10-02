@@ -31,16 +31,16 @@ def is_uuid_valid(uuid_str: str) -> bool:
 @pytest.fixture
 def plugin_config():
     c = Config(schema=PlantUMLPlugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
+    c["puml_url"] = BASE_PUML_URL
+    c["auto_dark"] = False
+    c["extra_css"] = []
     return c
 
 
 @pytest.fixture
-def plugin_config_custom_keyword():
-    c = Config(schema=PlantUMLPlugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
-    c['puml_keyword'] = CUSTOM_PUML_KEYWORD
-    return c
+def plugin_config_custom_keyword(plugin_config):
+    plugin_config["puml_keyword"] = CUSTOM_PUML_KEYWORD
+    return plugin_config
 
 
 @pytest.fixture
@@ -52,10 +52,8 @@ def plugin_environment():
 @pytest.fixture
 def plant_uml_plugin(plugin_config):
     plugin = PlantUMLPlugin()
-    c = Config(schema=plugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
-    plugin.config = c
-    plugin.on_config(c)
+    plugin.config = plugin_config
+    plugin.on_config(plugin_config)
 
     return plugin
 
@@ -63,11 +61,18 @@ def plant_uml_plugin(plugin_config):
 @pytest.fixture
 def plant_uml_plugin_custom_keyword(plugin_config_custom_keyword):
     plugin = PlantUMLPlugin()
-    c = Config(schema=plugin.config_scheme)
-    c['puml_url'] = BASE_PUML_URL
-    c['puml_keyword'] = CUSTOM_PUML_KEYWORD
-    plugin.config = c
-    plugin.on_config(c)
+    plugin.config = plugin_config_custom_keyword
+    plugin.on_config(plugin_config_custom_keyword)
+
+    return plugin
+
+
+@pytest.fixture
+def plant_uml_plugin_dark(plugin_config_custom_keyword: Config):
+    plugin = PlantUMLPlugin()
+    plugin_config_custom_keyword["auto_dark"] = True
+    plugin.config = plugin_config_custom_keyword
+    plugin.on_config(plugin_config_custom_keyword)
 
     return plugin
 
@@ -83,17 +88,16 @@ def diagrams_dict(diagram_and_encoded):
 
 @pytest.fixture(scope="package")
 def md_lines():
-    with open(TESTDATA_DIR.joinpath('markdown.md')) as f:
+    with open(TESTDATA_DIR.joinpath("markdown.md")) as f:
         return f.readlines()
 
 
 @pytest.fixture
 def html_page(plugin_environment, diagrams_dict):
-    page = MagicMock(title='Test, page', file=MagicMock(), config=MagicMock())
+    page = MagicMock(title="Test, page", file=MagicMock(), config=MagicMock())
     template = plugin_environment.get_template("output.html")
     page.content = template.render(
-        uuid_class=PlantUMLPlugin.pre_class_name,
-        uuids=diagrams_dict.keys()
+        uuid_class=PlantUMLPlugin.pre_class_name, uuids=diagrams_dict.keys()
     )
     page.html = page.content
     return page

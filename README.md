@@ -37,16 +37,18 @@ plugins:
         num_workers: 8
         puml_keyword: puml
         verify_ssl: true
+        auto_dark: true
 ```
 
 Where
 
-| Parmeter | Type                 | Descripton                                                     |
-|----------|----------------------|----------------------------------------------------------------|
-| `puml_url` | `str`. Required      | URL to the plantuml service                                    |
-| `num_workers` | `int`. Default `8`   | Max amount of concurrent workers that request plantuml service |
-| `puml_keyword` | `str`. Default `puml` | The keyword for PlantUML code fence, i.e. \```puml \```        |
-| `verify_ssl` | `bool`. Default `True` | Designates whether `requests` should verify SSL or not |
+| Parameter      | Type                   | Description                                                                 |
+|----------------|------------------------|-----------------------------------------------------------------------------|
+| `puml_url`     | `str`. Required        | URL to the PlantUML service                                                 |
+| `num_workers`  | `int`. Default `8`     | Max amount of concurrent workers that request the PlantUML service          |
+| `puml_keyword` | `str`. Default `puml`  | The keyword for PlantUML code fence, i.e. \```puml \```                     |
+| `verify_ssl`   | `bool`. Default `True` | Designates whether `requests` should verify SSL or not                      |
+| `auto_dark`    | `bool`. Default `True` | Enables `slate` diagrams generation                                         |
 
 Now, you can put your puml diagrams into your `.md` documentation. For example,
 
@@ -62,6 +64,17 @@ Bob -> Alice : hello
 
 At the build step `mkdocs` sends requests to `puml_url` and substitutes your
 diagram with the `svg` images from the responses.
+
+### Dark Mode
+
+Since version `1.4.0` this plugin integrates with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
+to display diagrams based on the current theme.
+However, it comes at a cost: the plugin needs to generate two copies of each
+diagram — one for the light theme and another for the dark one.
+During the generation of dark-themed diagrams, the plugin uses a `/dsvg` path when requesting PlantUML server.
+
+ℹ️ You can use `skinparam backgroundColor transparent` directive inside your puml code which
+can enhance the appearance of your diagrams when the dark theme is enabled.
 
 ### Run PlantUML service with Docker
 
@@ -112,7 +125,7 @@ Jon -> Sansa : hello
 @enduml
 """
 
-puml = PlantUML(puml_url, num_worker=2)
+puml = PlantUML(puml_url, num_workers=2)
 svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
 
