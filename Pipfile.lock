@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4e4f74e2a04cdcc9320bfb0ef737e441db5bf2b56140fd69d8f8be0835ab5699"
+            "sha256": "61b15927d686e62ae063b660a78260adea321b275f8ff8c64cdbd056fb1adc8c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -679,7 +679,7 @@
         },
         "exceptiongroup": {
             "markers": "python_version < '3.11'",
-            "version": "==1.0"
+            "version": "==1.2"
         },
         "filelock": {
             "hashes": [
@@ -722,7 +722,8 @@
             "version": "==3.10"
         },
         "importlib-metadata": {
-            "markers": "python_version < '3.10'"
+            "markers": "python_version < '3.10'",
+            "version": "==8.5"
         },
         "iniconfig": {
             "hashes": [
