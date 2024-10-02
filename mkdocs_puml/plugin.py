@@ -61,7 +61,8 @@ class PlantUMLPlugin(BasePlugin):
     def on_config(self, config: Config) -> Config:
         """Event that is fired by mkdocs when configs are created.
 
-        self.puml instances are populated in this event.
+        self.puml_light, self.puml_dark instances are populated in this event.
+        Also, `puml.css` that enable dark / light mode styles is added to `extra_css`.
 
         Args:
             config: Full mkdocs.yml config file. To access configs of PlantUMLPlugin only,
@@ -117,7 +118,7 @@ class PlantUMLPlugin(BasePlugin):
     def on_env(self, env, *args, **kwargs):
         """The event is fired when jinja environment is configured.
         Such as it is fired once when all .md pages are processed,
-        we can use it to request PlantUML service to convert our
+        we can use it to request PlantUML service and convert the
         diagrams.
 
         Args:
@@ -144,8 +145,7 @@ class PlantUMLPlugin(BasePlugin):
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
         """The event is fired after HTML page is rendered.
-        Here, we substitute <pre> tags with uuid codes of diagrams
-        with the corresponding SVG images.
+        Here, we substitute <pre> tags with the corresponding SVG images.
 
         Args:
             output: rendered HTML in str format
@@ -163,12 +163,7 @@ class PlantUMLPlugin(BasePlugin):
             # This is required for integration with mkdocs-print-page plugin.
             # TODO: Remove the support of older versions in future releases
             if hasattr(page, "html") and page.html is not None:
-                page.html = self._replace(v, page.html)
-
-            # Inject custom JavaScript only if PUML diagrams are present
-            # script_tag = '<script src="assets/javascripts/puml/dark.js"></script>'
-            # if script_tag not in output:
-            #     output = output.replace("</body>", f"{script_tag}</body>")
+                page.html = output
 
         return output
 
@@ -199,13 +194,12 @@ class PlantUMLPlugin(BasePlugin):
             config (dict): The MkDocs configuration object.
 
         """
-        site_dir = Path(config["site_dir"])
         # Path to the static directory in the plugin
-        static_dir = Path(__file__).parent.joinpath("static/puml.css")
+        puml_css = Path(__file__).parent.joinpath("static/puml.css")
         # Destination directory in the site output
-        dest_dir = site_dir.joinpath("assets/stylesheets/")
+        dest_dir = Path(config["site_dir"]).joinpath("assets/stylesheets/")
 
         if not dest_dir.exists():
             os.makedirs(dest_dir)
 
-        shutil.copy(static_dir, dest_dir)
+        shutil.copy(puml_css, dest_dir)
