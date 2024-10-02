@@ -24,8 +24,6 @@ class PlantUMLPlugin(BasePlugin):
                     num_workers: 10
 
     Attributes:
-        div_class_name (str): the class that will be set to resulting <div> tag
-                              containing the diagram
         pre_class_name (str): the class that will be set to intermediate <pre> tag
                               containing uuid code
         config_scheme (str): config scheme to set by user in mkdocs.yml file
@@ -39,7 +37,6 @@ class PlantUMLPlugin(BasePlugin):
         auto_dark (bool): Designates whether the plugin should automatically generate dark mode images.
     """
 
-    div_class_name = "puml"
     pre_class_name = "diagram-uuid"
 
     config_scheme = (
