@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "259014b6f58fefffb0f3f436218252d7391e7e1f6dd1401618eb6a712de7756d"
+            "sha256": "4e4f74e2a04cdcc9320bfb0ef737e441db5bf2b56140fd69d8f8be0835ab5699"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -678,7 +678,8 @@
             "version": "==0.3.8"
         },
         "exceptiongroup": {
-            "markers": "python_version < '3.11'"
+            "markers": "python_version < '3.11'",
+            "version": "==1.0"
         },
         "filelock": {
             "hashes": [
