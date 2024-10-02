@@ -32,6 +32,7 @@ def is_uuid_valid(uuid_str: str) -> bool:
 def plugin_config():
     c = Config(schema=PlantUMLPlugin.config_scheme)
     c["puml_url"] = BASE_PUML_URL
+    c["auto_dark"] = False
     c["extra_css"] = []
     return c
 
