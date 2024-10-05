@@ -151,3 +151,17 @@ def test_replace_method(plant_uml_plugin):
     result = plant_uml_plugin._replace(key, content)
     assert '<div class="puml light"><svg>light</svg></div>' in result
     assert '<div class="puml dark"><svg>dark</svg></div>' in result
+
+
+def test_unsupported_output(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environment):
+    # All requests return an erroneous response
+    mock_requests.return_value.ok = False
+
+    # Try converting to SVG
+    plant_uml_plugin.auto_dark = True
+    plant_uml_plugin.diagrams = diagrams_dict
+    plant_uml_plugin.on_env(plugin_environment)
+
+    for diagram in plant_uml_plugin.diagrams.values():
+        for variant in diagram:
+            assert '<text>Error</text>' in variant

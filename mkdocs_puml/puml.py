@@ -1,3 +1,4 @@
+import logging
 import re
 import typing
 from concurrent.futures import ThreadPoolExecutor
@@ -7,6 +8,9 @@ from xml.dom.minidom import Element, parseString  # nosec
 import requests
 
 from mkdocs_puml.encoder import encode
+
+
+logger = logging.getLogger("mkdocs.plugins.plantuml")
 
 
 class PlantUML:
@@ -28,6 +32,7 @@ class PlantUML:
     """
 
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
+    ERROR_SVG = "<svg><text>Error</text></svg>"
 
     def __init__(
         self,
@@ -107,7 +112,16 @@ class PlantUML:
         Returns:
             SVG representation of the diagram
         """
-        resp = requests.get(urljoin(self.base_url, encoded_diagram), verify=self.verify_ssl)
+        resp = requests.get(
+            urljoin(self.base_url, encoded_diagram), verify=self.verify_ssl
+        )
+
+        if not resp.ok:
+            logger.warning(
+                f"While building diagram \n\n{encoded_diagram}\n\nServer responded"
+                f" with a status {resp.status_code}"
+            )
+            return self.ERROR_SVG
 
         # Use 'ignore' to strip non-utf chars
         return resp.content.decode("utf-8", errors="ignore")
@@ -129,5 +143,5 @@ class PlantUML:
         Notes:
             It can be used to add support of light / dark theme.
         """
-        svg.setAttribute('preserveAspectRatio', "xMidYMid meet")
+        svg.setAttribute("preserveAspectRatio", "xMidYMid meet")
         svg.setAttribute("style", "background: var(--md-default-bg-color)")
