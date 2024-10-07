@@ -6,13 +6,27 @@ import os
 import shutil
 
 from mkdocs.config.base import Config
-from mkdocs.config.config_options import Type
+from mkdocs.config.config_options import Type, SubConfig
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.puml import PlantUML
 
 
-class PlantUMLPlugin(BasePlugin):
+class ThemeConfig(Config):
+    light = Type(str)
+    dark = Type(str)
+
+
+class PlantUMLConfig(Config):
+    puml_url = Type(str)
+    num_workers = Type(int, default=8)
+    puml_keyword = Type(str, default="puml")
+    verify_ssl = Type(bool, default=True)
+    auto_dark = Type(bool, default=True)  # TODO: deprecate!
+    theme = SubConfig(ThemeConfig)  # TODO: allow accepting None value
+
+
+class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
     """MKDocs plugin that converts puml diagrams into SVG images.
 
     It works only with a remote PlantUML service. You should add
@@ -39,14 +53,6 @@ class PlantUMLPlugin(BasePlugin):
 
     pre_class_name = "diagram-uuid"
 
-    config_scheme = (
-        ("puml_url", Type(str, required=True)),
-        ("num_workers", Type(int, default=8)),
-        ("puml_keyword", Type(str, default="puml")),
-        ("verify_ssl", Type(bool, default=True)),
-        ("auto_dark", Type(bool, default=True)),
-    )
-
     def __init__(self):
         self.regex: typing.Optional[typing.Any] = None
         self.uuid_regex = re.compile(
@@ -54,6 +60,8 @@ class PlantUMLPlugin(BasePlugin):
         )
 
         self.puml: typing.Optional[PlantUML] = None
+
+        # TODO: use @dataclass container??
         self.diagrams = {
             # key - uuid: value - puml. After on_env — svg
         }
@@ -71,7 +79,7 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Full config of the mkdocs
         """
-        config['extra_css'].append("assets/stylesheets/puml.css")
+        config["extra_css"].append("assets/stylesheets/puml.css")
         self.puml_light = PlantUML(
             self.config["puml_url"],
             num_workers=self.config["num_workers"],
@@ -110,7 +118,8 @@ class PlantUMLPlugin(BasePlugin):
             id_ = str(uuid.uuid4())
             self.diagrams[id_] = v
             markdown = markdown.replace(
-                f"```{self.puml_keyword}{v}```", f'<pre class="{self.pre_class_name}">{id_}</pre>'
+                f"```{self.puml_keyword}{v}```",
+                f'<pre class="{self.pre_class_name}">{id_}</pre>',
             )
 
         return markdown
@@ -179,7 +188,9 @@ class PlantUMLPlugin(BasePlugin):
             )
         else:
             replacement = f'<div class="puml light">{light_svg}</div>'
-        return content.replace(f'<pre class="{self.pre_class_name}">{key}</pre>', replacement)
+        return content.replace(
+            f'<pre class="{self.pre_class_name}">{key}</pre>', replacement
+        )
 
     def on_post_build(self, config):
         """
