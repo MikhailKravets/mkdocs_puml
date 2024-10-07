@@ -33,6 +33,8 @@ class PlantUML:
     """
 
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
+
+    # TODO: Remove when themes are integrated!
     ERROR_SVG = "<svg><text>Error</text></svg>"
 
     def __init__(
