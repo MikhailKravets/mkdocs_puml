@@ -80,6 +80,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             Full config of the mkdocs
         """
         config["extra_css"].append("assets/stylesheets/puml.css")
+
+        # TODO: what to do with these two classes when `theme: none`?
         self.puml_light = PlantUML(
             self.config["puml_url"],
             num_workers=self.config["num_workers"],
