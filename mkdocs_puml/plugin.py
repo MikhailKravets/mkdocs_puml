@@ -82,6 +82,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         config["extra_css"].append("assets/stylesheets/puml.css")
 
         # TODO: what to do with these two classes when `theme: none`?
+        #       actually we can use one PlantUML instance...
+        #       we anyway include theme into each diagram, so...
         self.puml_light = PlantUML(
             self.config["puml_url"],
             num_workers=self.config["num_workers"],
