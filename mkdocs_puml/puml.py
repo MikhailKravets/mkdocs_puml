@@ -8,6 +8,7 @@ from xml.dom.minidom import Element, parseString  # nosec
 import requests
 
 from mkdocs_puml.encoder import encode
+from mkdocs_puml.utils import sanitize_url
 
 
 logger = logging.getLogger("mkdocs.plugins.plantuml")
@@ -41,7 +42,7 @@ class PlantUML:
         verify_ssl: bool = True,
         output_format: str = "svg",
     ):
-        self.base_url = base_url if base_url.endswith("/") else f"{base_url}/"
+        self.base_url = sanitize_url(base_url)
         self.base_url = f"{self.base_url}{output_format}/"
 
         if num_workers <= 0:
