@@ -44,6 +44,7 @@ class PlantUML:
         verify_ssl: bool = True,
         output_format: str = "svg",
     ):
+        # TODO: use urljoin here? and remove sanitize_url then?
         self.base_url = sanitize_url(base_url)
         self.base_url = f"{self.base_url}{output_format}/"
 
