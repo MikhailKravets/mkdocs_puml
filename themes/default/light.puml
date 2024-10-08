@@ -503,7 +503,7 @@ nwdiagDiagram {
 }
 
 ' C4 styles
-.container, .person, .system, .external_person, .external_system, .external_container {
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
     HorizontalAlignment center
 }
 </style>
