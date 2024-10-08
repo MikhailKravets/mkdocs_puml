@@ -83,7 +83,6 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
 
         self.puml: typing.Optional[PlantUML] = None
 
-        # TODO: use @dataclass container??
         self.diagrams: dict[str, Diagram] = {
             # key - uuid: value - Diagram dataclass.
         }
@@ -111,6 +110,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.puml_keyword = self.config["puml_keyword"]
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
 
+        # TODO: plugin must be used even without explicit theme config!
+        # TODO: how to add theme for C4?
         if self.config.theme:
             self.themer = Theme.from_github(
                 self.config.theme.github.maintainer, self.config.theme.github.branch
@@ -142,10 +143,6 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         """
         schemes = self.regex.findall(markdown)
 
-        # TODO: Define definitions:
-        #       1. Schema — PlantUML code
-        #       2. Diagram — Image (visual) representation of schema
-
         for v in schemes:
             if self.themer:
                 replace_into = self._store_dual(v)
@@ -175,7 +172,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
 
         return (
             f'<pre class="{self.pre_class_name}">{key}</pre>\n'
-            '<pre class="{self.pre_class_name}">{key_dark}</pre>'
+            f'<pre class="{self.pre_class_name}">{key_dark}</pre>'
         )
 
     def on_env(self, env, *args, **kwargs):

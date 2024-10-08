@@ -98,7 +98,7 @@ element {
 group {
 	BackGroundColor transparent
   	LineThickness 1.0
-  
+
   	package {
 		LineThickness 1.5
     	LineColor white
@@ -114,7 +114,7 @@ sequenceDiagram {
 		LineThickness 1.5
 		FontSize 11
 		FontStyle bold
-		
+
 		LineColor white
 	}
 
@@ -452,7 +452,7 @@ timingDiagram {
 	    FontStyle plain
 	    FontColor darkblue`
 	    LineThickness 1.5
-		
+
 	    LineColor lightblue
 	}
 	constraintArrow {
@@ -513,5 +513,54 @@ nwdiagDiagram {
 	arrow {
 		FontSize 11
 	}
+}
+
+' C4 styles
+.container, .person, .system, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary {
+    FontColor white
+    LineColor white
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
+
+.person {
+    BackGroundColor #003871
+}
+
+.system {
+    BackGroundColor #075EB3
+}
+
+.container {
+    BackGroundColor #1183CB
+    LineColor #0065AD
+}
+
+.component {
+    BackGroundColor #7BB1E6
+}
+
+.external_person {
+	BackGroundColor #5E5E5E
+}
+
+.external_system {
+	BackGroundColor #8F8F8F
+}
+
+.external_container {
+    BackGroundColor #8B8B8B
+}
+
+.node {
+    BackgroundColor transparent
+    FontColor white
 }
 </style>
