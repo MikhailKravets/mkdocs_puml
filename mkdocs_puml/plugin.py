@@ -6,15 +6,22 @@ import os
 import shutil
 
 from mkdocs.config.base import Config
-from mkdocs.config.config_options import Type, SubConfig
+from mkdocs.config.config_options import Type, SubConfig, Optional
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.puml import PlantUML
+from mkdocs_puml.themes import Theme
+
+
+class GitHubConfig(Config):
+    maintainer = Type(str, default="MikhailKravets")
+    branch = Type(str, default="master")
 
 
 class ThemeConfig(Config):
     light = Type(str)
     dark = Type(str)
+    github = SubConfig(GitHubConfig)
 
 
 class PlantUMLConfig(Config):
@@ -22,8 +29,10 @@ class PlantUMLConfig(Config):
     num_workers = Type(int, default=8)
     puml_keyword = Type(str, default="puml")
     verify_ssl = Type(bool, default=True)
-    auto_dark = Type(bool, default=True)  # TODO: deprecate!
-    theme = SubConfig(ThemeConfig)  # TODO: allow accepting None value
+    auto_dark = Type(
+        bool, default=True
+    )  # TODO: deprecate! And we can set 1.5.0 version
+    theme = Optional(SubConfig(ThemeConfig))
 
 
 class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
@@ -84,21 +93,21 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         # TODO: what to do with these two classes when `theme: none`?
         #       actually we can use one PlantUML instance...
         #       we anyway include theme into each diagram, so...
-        self.puml_light = PlantUML(
+        self.puml = PlantUML(
             self.config["puml_url"],
             num_workers=self.config["num_workers"],
             verify_ssl=self.config["verify_ssl"],
-            output_format="svg",
-        )
-        self.puml_dark = PlantUML(
-            self.config["puml_url"],
-            num_workers=self.config["num_workers"],
-            verify_ssl=self.config["verify_ssl"],
-            output_format="dsvg",
         )
         self.puml_keyword = self.config["puml_keyword"]
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
-        self.auto_dark = self.config["auto_dark"]
+
+        self.themer = Theme.from_github(
+            self.config.theme.github.maintainer, self.config.theme.github.branch
+        )
+
+        self.theme_light = self.config.theme.light
+        self.theme_dark = self.config.theme.dark
+
         return config
 
     def on_page_markdown(self, markdown: str, *args, **kwargs) -> str:
@@ -119,6 +128,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         schemes = self.regex.findall(markdown)
 
         for v in schemes:
+            # TODO: create uuid-dark id for dark diagram.
+            #       Include 2 versions of <pre> with light and dark
             id_ = str(uuid.uuid4())
             self.diagrams[id_] = v
             markdown = markdown.replace(
@@ -145,15 +156,9 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         #       3. Align to a single format
         diagram_contents = [diagram for diagram in self.diagrams.values()]
 
-        if self.auto_dark:
-            light_svgs = self.puml_light.translate(diagram_contents)
-            dark_svgs = self.puml_dark.translate(diagram_contents)
-            for key, light_svg, dark_svg in zip(self.diagrams, light_svgs, dark_svgs):
-                self.diagrams[key] = (light_svg, dark_svg)
-        else:
-            svgs = self.puml_light.translate(diagram_contents)
-            for key, svg in zip(self.diagrams, svgs):
-                self.diagrams[key] = (svg, None)
+        svgs = self.puml.translate(diagram_contents)
+        for key, svg in zip(self.diagrams, svgs):
+            self.diagrams[key] = (svg, None)
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
