@@ -34,9 +34,6 @@ class PlantUML:
 
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
 
-    # TODO: Remove when themes are integrated!
-    ERROR_SVG = "<svg><text>Error</text></svg>"
-
     def __init__(
         self,
         base_url: str,
@@ -125,7 +122,6 @@ class PlantUML:
                 f"While building diagram \n\n{encoded_diagram}\n\nServer responded"
                 f" with a status {resp.status_code}"
             )
-            return self.ERROR_SVG
 
         # Use 'ignore' to strip non-utf chars
         return resp.content.decode("utf-8", errors="ignore")

@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from pathlib import Path
 import typing
 import re
@@ -29,10 +30,22 @@ class PlantUMLConfig(Config):
     num_workers = Type(int, default=8)
     puml_keyword = Type(str, default="puml")
     verify_ssl = Type(bool, default=True)
-    auto_dark = Type(
+    auto_dark = Type(  # TODO: deprecate! And we can set 1.5.0 version?
         bool, default=True
-    )  # TODO: deprecate! And we can set 1.5.0 version
-    theme = Optional(SubConfig(ThemeConfig))
+    )
+    theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default
+
+
+class ThemeMode:
+    LIGHT = "light"
+    DARK = "dark"
+
+
+@dataclass
+class Diagram:
+    scheme: str
+    mode: ThemeMode
+    diagram: Optional[str] = None
 
 
 class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
@@ -60,7 +73,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         auto_dark (bool): Designates whether the plugin should automatically generate dark mode images.
     """
 
-    pre_class_name = "diagram-uuid"
+    pre_class_name = "diagram-key"
 
     def __init__(self):
         self.regex: typing.Optional[typing.Any] = None
@@ -71,8 +84,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.puml: typing.Optional[PlantUML] = None
 
         # TODO: use @dataclass container??
-        self.diagrams = {
-            # key - uuid: value - puml. After on_env — svg
+        self.diagrams: dict[str, Diagram] = {
+            # key - uuid: value - Diagram dataclass.
         }
 
     def on_config(self, config: Config) -> Config:
@@ -90,9 +103,6 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         """
         config["extra_css"].append("assets/stylesheets/puml.css")
 
-        # TODO: what to do with these two classes when `theme: none`?
-        #       actually we can use one PlantUML instance...
-        #       we anyway include theme into each diagram, so...
         self.puml = PlantUML(
             self.config["puml_url"],
             num_workers=self.config["num_workers"],
@@ -137,8 +147,6 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         #       2. Diagram — Image (visual) representation of schema
 
         for v in schemes:
-            # TODO: create uuid-dark id for dark schema.
-            #       Include 2 versions of <pre> with light and dark
             if self.themer:
                 replace_into = self._store_dual(v)
             else:
@@ -150,18 +158,25 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
 
         return markdown
 
-    def _store_single(self, schema: str) -> str:
+    def _store_single(self, scheme: str) -> str:
         key = str(uuid.uuid4())
-        self.diagrams[key] = schema
+        self.diagrams[key] = Diagram(scheme, mode=ThemeMode.LIGHT)
         return f'<pre class="{self.pre_class_name}">{key}</pre>'
 
-    def _store_dual(self, schema: str) -> str:
+    def _store_dual(self, scheme: str) -> str:
         key = str(uuid.uuid4())
         key_dark = f"{key}-dark"
-        self.diagrams[key] = self.themer.include(self.config.theme.light, schema)
-        self.diagrams[key_dark] = self.themer.include(self.config.theme.dark, schema)
+        self.diagrams[key] = Diagram(
+            self.themer.include(self.config.theme.light, scheme), mode=ThemeMode.LIGHT
+        )
+        self.diagrams[key_dark] = Diagram(
+            self.themer.include(self.config.theme.dark, scheme), mode=ThemeMode.DARK
+        )
 
-        return f'<pre class="{self.pre_class_name}">{key}</pre>\n<pre class="{self.pre_class_name}">{key_dark}</pre>'
+        return (
+            f'<pre class="{self.pre_class_name}">{key}</pre>\n'
+            '<pre class="{self.pre_class_name}">{key_dark}</pre>'
+        )
 
     def on_env(self, env, *args, **kwargs):
         """The event is fired when jinja environment is configured.
@@ -174,17 +189,12 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         Returns:
             Jinja environment
         """
-        # TODO: self.diagrams changes its structure throughout a program run:
-        #       1. Initially it's {key: "value"}
-        #       2. After translate, it's {key: ("light_svg", "dark_svg" | None)}
-        #       3. Align to a single format
-        #
         # Why it was even added??
         # diagram_contents = [diagram for diagram in self.diagrams.values()]
 
-        svgs = self.puml.translate(self.diagrams.values())
+        svgs = self.puml.translate((v.scheme for v in self.diagrams.values()))
         for key, svg in zip(self.diagrams, svgs):
-            self.diagrams[key] = svg
+            self.diagrams[key].diagram = svg
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
@@ -215,14 +225,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         """Replace a UUID key with a real diagram in a
         content
         """
-        light_svg, dark_svg = self.diagrams[key]
-        if dark_svg:
-            replacement = (
-                f'<div class="puml light">{light_svg}</div>'
-                f'<div class="puml dark">{dark_svg}</div>'
-            )
-        else:
-            replacement = f'<div class="puml light">{light_svg}</div>'
+        diagram = self.diagrams[key]
+        replacement = f'<div class="puml {diagram.mode}">{diagram.diagram}</div>'
         return content.replace(
             f'<pre class="{self.pre_class_name}">{key}</pre>', replacement
         )
@@ -232,7 +236,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         Event triggered after the build process is complete.
 
         This method is responsible for copying static files from the plugin's
-        `static` directory to the specified `assets/javascripts/puml` directory
+        `static` directory to the specified `assets/stylesheets/puml` directory
         in the site output. This ensures that the necessary JavaScript files
         are available in the final site.
 
