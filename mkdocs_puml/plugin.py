@@ -20,9 +20,9 @@ class GitHubConfig(Config):
 
 
 class ThemeConfig(Config):
-    light = Type(str)
-    dark = Type(str)
-    github = SubConfig(GitHubConfig)
+    light = Type(str, default="default/light")
+    dark = Type(str, default="default/dark")
+    github = SubConfig(GitHubConfig)  # TODO: change it on URL?? Yeah, I guess it will be better
 
 
 class PlantUMLConfig(Config):
