@@ -501,4 +501,9 @@ nwdiagDiagram {
 		FontSize 11
 	}
 }
+
+' C4 styles
+.container, .person, .system, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+}
 </style>
