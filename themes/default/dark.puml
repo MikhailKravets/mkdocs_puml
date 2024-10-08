@@ -520,7 +520,7 @@ nwdiagDiagram {
     HorizontalAlignment center
 }
 
-.container_boundary, .system_boundary, .enterprise_boundary {
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
     FontColor white
     LineColor white
 
