@@ -101,12 +101,17 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.puml_keyword = self.config["puml_keyword"]
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
 
-        self.themer = Theme.from_github(
-            self.config.theme.github.maintainer, self.config.theme.github.branch
-        )
+        if self.config.theme:
+            self.themer = Theme.from_github(
+                self.config.theme.github.maintainer, self.config.theme.github.branch
+            )
 
-        self.theme_light = self.config.theme.light
-        self.theme_dark = self.config.theme.dark
+            self.theme_light = self.config.theme.light
+            self.theme_dark = self.config.theme.dark
+        else:
+            self.themer = None
+            self.theme_light = None
+            self.theme_dark = None
 
         return config
 
@@ -127,17 +132,36 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         """
         schemes = self.regex.findall(markdown)
 
+        # TODO: Define definitions:
+        #       1. Schema — PlantUML code
+        #       2. Diagram — Image (visual) representation of schema
+
         for v in schemes:
-            # TODO: create uuid-dark id for dark diagram.
+            # TODO: create uuid-dark id for dark schema.
             #       Include 2 versions of <pre> with light and dark
-            id_ = str(uuid.uuid4())
-            self.diagrams[id_] = v
+            if self.themer:
+                replace_into = self._store_dual(v)
+            else:
+                replace_into = self._store_single(v)
             markdown = markdown.replace(
                 f"```{self.puml_keyword}{v}```",
-                f'<pre class="{self.pre_class_name}">{id_}</pre>',
+                replace_into,
             )
 
         return markdown
+
+    def _store_single(self, schema: str) -> str:
+        key = str(uuid.uuid4())
+        self.diagrams[key] = schema
+        return f'<pre class="{self.pre_class_name}">{key}</pre>'
+
+    def _store_dual(self, schema: str) -> str:
+        key = str(uuid.uuid4())
+        key_dark = f"{key}-dark"
+        self.diagrams[key] = self.themer.include(self.config.theme.light, schema)
+        self.diagrams[key_dark] = self.themer.include(self.config.theme.dark, schema)
+
+        return f'<pre class="{self.pre_class_name}">{key}</pre>\n<pre class="{self.pre_class_name}">{key_dark}</pre>'
 
     def on_env(self, env, *args, **kwargs):
         """The event is fired when jinja environment is configured.
@@ -154,11 +178,13 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         #       1. Initially it's {key: "value"}
         #       2. After translate, it's {key: ("light_svg", "dark_svg" | None)}
         #       3. Align to a single format
-        diagram_contents = [diagram for diagram in self.diagrams.values()]
+        #
+        # Why it was even added??
+        # diagram_contents = [diagram for diagram in self.diagrams.values()]
 
-        svgs = self.puml.translate(diagram_contents)
+        svgs = self.puml.translate(self.diagrams.values())
         for key, svg in zip(self.diagrams, svgs):
-            self.diagrams[key] = (svg, None)
+            self.diagrams[key] = svg
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
