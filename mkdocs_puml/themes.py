@@ -1,8 +1,14 @@
+import re
 from mkdocs_puml.utils import sanitize_url
+
+C4_REGEX = re.compile(r"(!include(?:.+)(?:[Cc]4)(?:.+).puml)")
 
 
 class Theme:
-    """Theme class helps integrate available themes in diagrams
+    """Theme class helps integrate available themes into PlantUML code.
+
+    Theme includes theme url after all C4 inclusions. It makes possible
+    to provide custom styling to C4 code as well.
 
     Args:
         url (str): repository of themes
@@ -38,16 +44,23 @@ class Theme:
             str: PlantUML diagram with theme included
         """
         diagram = diagram.strip()
-        if diagram.startswith("@startuml"):
-            head, _, tail = diagram.partition("\n")
-        else:
-            head, tail = None, diagram
-
+        with_c4 = C4_REGEX.split(diagram)
         url = self.url_for(theme)
 
-        if head:
-            return f"{head}\n!include {url}\n{tail}"
-        return f"!include {url}\n{tail}"
+        if len(with_c4) == 1:
+            if diagram.startswith("@startuml"):
+                head, _, tail = diagram.partition("\n")
+            else:
+                head, tail = None, diagram
+
+            if head:
+                return f"{head}\n!include {url}\n{tail}"
+            return f"!include {url}\n{tail}"
+        else:
+            tail = with_c4[-1]
+            with_c4[-1] = f"\n!include {url}"
+            with_c4.append(tail)
+            return "".join(with_c4)
 
     def url_for(self, theme: str) -> str:
         """Create full url for theme

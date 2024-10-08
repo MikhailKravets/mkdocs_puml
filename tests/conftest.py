@@ -5,7 +5,7 @@ import pytest
 import requests
 
 
-BASE_PUML_URL = "https://mocked.org/"
+BASE_PUML_URL = "http://mocked/"
 BASE_PUML_KEYWORD = "puml"
 CUSTOM_PUML_KEYWORD = "plantuml"
 TESTDATA_DIR = Path(__file__).resolve().parent.joinpath("testdata")
@@ -20,6 +20,16 @@ def diagram_and_encoded():
         "@startuml\nBob -> Alice : hello\n@enduml",
         "SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80",
     )
+
+
+@pytest.fixture(scope="package")
+def c4_diagram():
+    return """
+    @startuml
+    !include https://raw.git.../C4-PlantUML/master/C4_Container.puml
+    System(test, "Test", "Test system")
+    @enduml
+    """
 
 
 @pytest.fixture(scope="package")
