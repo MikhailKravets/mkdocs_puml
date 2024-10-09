@@ -17,22 +17,6 @@ class Theme:
     def __init__(self, url: str):
         self.url = sanitize_url(url)
 
-    @classmethod
-    def from_github(cls, maintainer: str, branch: str = "master"):
-        """Create a URL of themes located in GitHub repository
-
-        Args:
-            maintainer (str): maintainer of the repository
-            branch (str, optional): git branch with themes. Defaults to "master".
-
-        Returns:
-            str: URL to raw GitHub content
-        """
-        # TODO: is it ok to hardcode extension .puml??
-        return cls(
-            f"https://raw.githubusercontent.com/{maintainer}/mkdocs_puml/{branch}/themes/"
-        )
-
     def include(self, theme: str, diagram: str) -> str:
         """Includes theme to the beginning of PlantUML diagram
 

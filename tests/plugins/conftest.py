@@ -6,8 +6,8 @@ import pytest
 
 from uuid import UUID
 
-from mkdocs_puml.plugin import Diagram, GitHubConfig, PlantUMLPlugin, PlantUMLConfig, ThemeConfig, ThemeMode
-from tests.conftest import BASE_PUML_URL, CUSTOM_PUML_KEYWORD, TESTDATA_DIR
+from mkdocs_puml.plugin import Diagram, PlantUMLPlugin, PlantUMLConfig, ThemeConfig, ThemeMode
+from tests.conftest import BASE_PUML_URL, TESTDATA_DIR
 
 
 def is_uuid_valid(uuid_str: str) -> bool:
@@ -27,6 +27,7 @@ def is_uuid_valid(uuid_str: str) -> bool:
 
 
 def patch_plugin_to_single_theme(plugin: PlantUMLPlugin):
+    plugin.config.theme.enabled = False
     plugin.themer = None
     plugin.theme_light = None
     plugin.theme_dark = None
@@ -36,7 +37,7 @@ def patch_plugin_to_single_theme(plugin: PlantUMLPlugin):
 def plugin_config() -> PlantUMLConfig:
     c = PlantUMLConfig()
     t = ThemeConfig()
-    t.load_dict({"light": "default/light", "dark": "default/dark", "github": GitHubConfig()})
+    t.load_dict({"light": "default/light", "dark": "default/dark", "url": "test.url/themes"})
     c.load_dict(
         {
             "puml_url": BASE_PUML_URL,
@@ -45,12 +46,6 @@ def plugin_config() -> PlantUMLConfig:
         }
     )
     return c
-
-
-@pytest.fixture
-def plugin_config_custom_keyword(plugin_config):
-    plugin_config["puml_keyword"] = CUSTOM_PUML_KEYWORD
-    return plugin_config
 
 
 @pytest.fixture
@@ -64,25 +59,6 @@ def plant_uml_plugin(plugin_config):
     plugin = PlantUMLPlugin()
     plugin.config = plugin_config
     plugin.on_config(plugin_config)
-
-    return plugin
-
-
-@pytest.fixture
-def plant_uml_plugin_custom_keyword(plugin_config_custom_keyword):
-    plugin = PlantUMLPlugin()
-    plugin.config = plugin_config_custom_keyword
-    plugin.on_config(plugin_config_custom_keyword)
-
-    return plugin
-
-
-@pytest.fixture
-def plant_uml_plugin_dark(plugin_config_custom_keyword):
-    plugin = PlantUMLPlugin()
-    plugin_config_custom_keyword["auto_dark"] = True
-    plugin.config = plugin_config_custom_keyword
-    plugin.on_config(plugin_config_custom_keyword)
 
     return plugin
 

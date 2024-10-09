@@ -1,3 +1,4 @@
+import os
 from mkdocs_puml.plugin import PlantUMLPlugin, ThemeMode
 from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme
@@ -21,14 +22,21 @@ def test_on_config(plugin_config):
     assert "assets/stylesheets/puml.css" in plugin_config["extra_css"]
 
 
-def test_on_config_custom_keyword(plugin_config_custom_keyword):
-    # Test if the plugin is correctly configured with a custom keyword
+def test_on_config_theme_disabled(plugin_config):
+    # Test if the plugin is correctly configured with default settings
     plugin = PlantUMLPlugin()
-    plugin.config = plugin_config_custom_keyword
+    plugin_config.theme.enabled = False
+    plugin.config = plugin_config
 
-    plugin.on_config(plugin_config_custom_keyword)
+    plugin.on_config(plugin_config)
 
-    assert plugin.puml_keyword == CUSTOM_PUML_KEYWORD
+    assert isinstance(plugin.puml, PlantUML)
+    assert plugin.themer is None
+
+    assert plugin.theme_light is None
+    assert plugin.theme_dark is None
+    assert plugin.puml_keyword == BASE_PUML_KEYWORD
+    assert "assets/stylesheets/puml.css" in plugin_config["extra_css"]
 
 
 def test_on_page_markdown_single_theme(plant_uml_plugin, md_lines):
@@ -62,11 +70,12 @@ def test_on_page_markdown_dual_themes(plant_uml_plugin, md_lines):
         assert "@startuml" in val.scheme and "@enduml" in val.scheme
 
 
-def test_on_page_markdown_custom_keyword(plant_uml_plugin_custom_keyword, md_lines):
+def test_on_page_markdown_custom_keyword(plant_uml_plugin, md_lines):
     # Test if PlantUML diagrams are correctly extracted with a custom keyword
-    plant_uml_plugin_custom_keyword.on_page_markdown("\n".join(md_lines))
+    plant_uml_plugin.config.puml_keyword = CUSTOM_PUML_KEYWORD
+    plant_uml_plugin.on_page_markdown("\n".join(md_lines))
 
-    assert len(plant_uml_plugin_custom_keyword.diagrams) == 2
+    assert len(plant_uml_plugin.diagrams) == 4  # 2 (light / dark) on each diagram
 
 
 def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environment):
@@ -84,10 +93,10 @@ def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
     plant_uml_plugin.diagrams = diagrams_dict
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
 
-    assert output.count('<div class="puml light">') == len(
+    assert output.count('<div class="puml light" style="">') == len(
         [True for v in diagrams_dict.values() if v.mode == ThemeMode.LIGHT]
     )
-    assert output.count('<div class="puml dark">') == len(
+    assert output.count('<div class="puml dark" style="">') == len(
         [True for v in diagrams_dict.values() if v.mode == ThemeMode.DARK]
     )
 
@@ -95,7 +104,7 @@ def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
     # TODO: deprecated! After we raise mkdocs>=1.4 strictly, this will be never a case
     html_page.html = html_page.content
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
-    assert html_page.html.count('<div class="puml light">') == len(
+    assert html_page.html.count('<div class="puml light" style="">') == len(
         [True for v in diagrams_dict.values() if v.mode == ThemeMode.LIGHT]
     )
 
@@ -108,7 +117,7 @@ def test_on_post_page_without_html_attribute(
     delattr(html_page, "html")
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
 
-    assert output.count('<div class="puml light">') == len(
+    assert output.count('<div class="puml light" style="">') == len(
         [True for v in diagrams_dict.values() if v.mode == ThemeMode.LIGHT]
     )
 
@@ -117,6 +126,7 @@ def test_on_post_build(tmp_path, plant_uml_plugin):
     # Test if static files are correctly copied during the build process
     config = {"site_dir": str(tmp_path)}
     dest_dir = tmp_path.joinpath("assets/stylesheets")
+    os.makedirs(dest_dir)
 
     plant_uml_plugin.on_post_build(config)
 

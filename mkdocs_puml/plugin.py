@@ -14,15 +14,14 @@ from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme
 
 
-class GitHubConfig(Config):
-    maintainer = Type(str, default="MikhailKravets")
-    branch = Type(str, default="master")
-
-
 class ThemeConfig(Config):
+    enabled = Type(bool, default=True)
     light = Type(str, default="default/light")
     dark = Type(str, default="default/dark")
-    github = SubConfig(GitHubConfig)  # TODO: change it on URL?? Yeah, I guess it will be better
+    url = Type(
+        str,
+        default="https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/feature/themes/themes",
+    )
 
 
 class PlantUMLConfig(Config):
@@ -110,12 +109,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.puml_keyword = self.config["puml_keyword"]
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
 
-        # TODO: plugin must be used even without explicit theme config!
-        # TODO: how to add theme for C4?
-        if self.config.theme:
-            self.themer = Theme.from_github(
-                self.config.theme.github.maintainer, self.config.theme.github.branch
-            )
+        if self.config.theme.enabled:
+            self.themer = Theme(self.config.theme.url)
 
             self.theme_light = self.config.theme.light
             self.theme_dark = self.config.theme.dark
@@ -223,7 +218,14 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         content
         """
         diagram = self.diagrams[key]
-        replacement = f'<div class="puml {diagram.mode}">{diagram.diagram}</div>'
+
+        # When theming is not enabled, user will manually manage themes in each diagram.
+        # Also, only one version of diagram will be generated for each scheme, which
+        # should be displayed always although light / dark mode of mkdocs-material.
+        style = "display: block" if not self.config.theme.enabled else ""
+        replacement = (
+            f'<div class="puml {diagram.mode}" style="{style}">{diagram.diagram}</div>'
+        )
         return content.replace(
             f'<pre class="{self.pre_class_name}">{key}</pre>', replacement
         )
