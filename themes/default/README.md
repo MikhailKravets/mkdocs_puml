@@ -22,8 +22,9 @@ This theme is actually identical to the default PlantUML theme, so there’s no 
 
 ### C4
 
-This theme, also, patches [C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML).
-The `default/dark` flavor enhances the visibility of C4 diagrams.
+This theme patches [C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML).
+The `default/dark` flavor enhances the visibility of C4 diagrams. However, to make it
+work, you should include `default/dark` after including all the `C4` code files.
 
 [**c4_dark.puml**](examples/c4_dark.puml)
 ![c4_dark](examples/c4_dark.svg)
