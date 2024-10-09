@@ -145,7 +145,6 @@ as a Docker container.
 Add a new service to the `docker-compose.yml` file
 
 ```yaml
-version: "3"
 services:
   puml:
     image: plantuml/plantuml-server
