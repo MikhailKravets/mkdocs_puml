@@ -135,7 +135,7 @@ theme:
 If you like to know what themes are available or how to compose your own theme,
 click on the link below.
 
-🌗 [**Read more about theming in mkdocs_puml**](themes/default/README.md)
+🌗 [**Read more about theming in mkdocs_puml**](themes/README.md)
 
 ### Run PlantUML service with Docker
 
