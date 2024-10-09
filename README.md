@@ -25,8 +25,8 @@ plugins:
         puml_url: https://www.plantuml.com/plantuml/
 ```
 
-`plantuml` plugin uses `PlantUML` only as an HTTP service. So, you should necessarily
-specify `puml_url` config.
+`plantuml` plugin uses `PlantUML` exclusively as an HTTP service.
+So, you should necessarily specify `puml_url` config.
 
 The `plantuml` config with the full list of parameters is below
 
@@ -37,7 +37,11 @@ plugins:
         num_workers: 8
         puml_keyword: puml
         verify_ssl: true
-        auto_dark: true
+        theme:
+          enabled: true
+          light: default/light
+          dark: default/dark
+          url: https://raw.githubusercontent.com/.../mkdocs_puml/.../themes/
 ```
 
 Where
@@ -48,9 +52,13 @@ Where
 | `num_workers`  | `int`. Default `8`     | Max amount of concurrent workers that request the PlantUML service          |
 | `puml_keyword` | `str`. Default `puml`  | The keyword for PlantUML code fence, i.e. \```puml \```                     |
 | `verify_ssl`   | `bool`. Default `True` | Designates whether `requests` should verify SSL or not                      |
-| `auto_dark`    | `bool`. Default `True` | Enables `slate` diagrams generation                                         |
+| `theme.enabled` | `bool`. Default `True` | Designates whether `plantuml` plugin should manage themes of the diagrams |
+| `theme.light`  | `str`. Default `default/light` | Name of the theme to use when `mkdocs-material` is in light mode |
+| `theme.dark`  | `str`. Default `default/dark` | Name of the theme to use when `mkdocs-material` is in dark mode |
+| `theme.url`   | `str`. Defaults to this repository URL | URL to the repository folder where themes are located |
 
-Now, you can put your puml diagrams into your `.md` documentation. For example,
+
+Now, add PlantUML diagrams into your `.md` documentation. For example,
 
 <pre>
 ## PUML Diagram
@@ -75,6 +83,10 @@ During the generation of dark-themed diagrams, the plugin uses a `/dsvg` path wh
 
 ℹ️ You can use `skinparam backgroundColor transparent` directive inside your puml code which
 can enhance the appearance of your diagrams when the dark theme is enabled.
+
+## Themes
+
+
 
 ### Run PlantUML service with Docker
 
