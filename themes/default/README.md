@@ -8,7 +8,7 @@ Default PlantUML theme that contains `light` and `dark` flavors.
 
 ## How to use
 
-In order to use this theme with `mkdocs_puml`, set this to `theme` config
+In order to use this theme with `mkdocs_puml`, set `theme` config of the plugin as follows:
 
 ```yml
 theme:
