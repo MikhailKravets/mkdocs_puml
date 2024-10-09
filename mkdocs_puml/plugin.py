@@ -20,7 +20,7 @@ class ThemeConfig(Config):
     dark = Type(str, default="default/dark")
     url = Type(
         str,
-        default="https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/feature/themes/themes",
+        default="https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/feature/themes/themes/",
     )
 
 

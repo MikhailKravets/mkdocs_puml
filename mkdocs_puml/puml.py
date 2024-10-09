@@ -8,6 +8,7 @@ from xml.dom.minidom import Element, parseString  # nosec
 import requests
 
 from mkdocs_puml.encoder import encode
+from mkdocs_puml.utils import sanitize_url
 
 
 logger = logging.getLogger("mkdocs.plugins.plantuml")
@@ -40,7 +41,10 @@ class PlantUML:
         verify_ssl: bool = True,
         output_format: str = "svg",
     ):
-        self.base_url = urljoin(base_url, output_format)
+        # Use sanitize_url because urllib removes last part of url which doesn't
+        # end with / which makes it inconvenient to work with.
+        self.base_url = sanitize_url(base_url)
+        self.base_url = f"{self.base_url}{output_format}/"
 
         if num_workers <= 0:
             raise ValueError("`num_workers` argument should be bigger than 0.")
