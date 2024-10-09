@@ -1,5 +1,5 @@
 import re
-from mkdocs_puml.utils import sanitize_url
+from urllib.parse import urljoin
 
 C4_REGEX = re.compile(r"(!include(?:.+)(?:[Cc]4)(?:.+).puml)")
 
@@ -15,7 +15,7 @@ class Theme:
     """
 
     def __init__(self, url: str):
-        self.url = sanitize_url(url)
+        self.url = url
 
     def include(self, theme: str, diagram: str) -> str:
         """Includes theme to the beginning of PlantUML diagram
@@ -55,4 +55,4 @@ class Theme:
         Returns:
             str: full url for theme
         """
-        return f"{self.url}{theme}.puml"
+        return urljoin(self.url, f"{theme}.puml")
