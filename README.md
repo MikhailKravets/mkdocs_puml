@@ -73,20 +73,69 @@ Bob -> Alice : hello
 At the build step `mkdocs` sends requests to `puml_url` and substitutes your
 diagram with the `svg` images from the responses.
 
-### Dark Mode
-
-Since version `1.4.0` this plugin integrates with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
-to display diagrams based on the current theme.
-However, it comes at a cost: the plugin needs to generate two copies of each
-diagram — one for the light theme and another for the dark one.
-During the generation of dark-themed diagrams, the plugin uses a `/dsvg` path when requesting PlantUML server.
-
-ℹ️ You can use `skinparam backgroundColor transparent` directive inside your puml code which
-can enhance the appearance of your diagrams when the dark theme is enabled.
-
 ## Themes
 
+`mkdocs_puml` integrates with
+[mkdocs-material](https://squidfunk.github.io/mkdocs-material/) to display the diagrams
+based on the selected light or dark mode. The plugin automatically includes the
+configured theme into the first line of the PlantUML diagram (if it's not C4 diagram).
+This allows developers to add custom styles to each diagram, which will take priority
+over pre-defined themes.
 
+In case of C4 diagrams, their styles are kept inside C4 library files. Since
+`mkdocs_puml` themes contain styling of C4 as well, they will be included after
+the last C4 library file. This way, it's **highly advised** to place C4
+`!include` instructions at the top of the diagram.
+
+### How to use themes
+
+In order to configure themes you should add `theme` config as follows
+
+```yml
+theme:
+  light: default/light
+  dark: default/dark
+```
+
+- `light` specifies the theme to display on light mode
+- `dark` specifies the theme to display on dark mode
+
+Typically, a single theme has several flavors, allowing you to set the corresponding theme for each mode. For example, `default` theme has two flavors: `light` and `dark`.
+
+By default `mkdocs_puml` uses themes from its GitHub repository. However, if you like
+to use your own themes, you should set `url` attribute and themes from that url
+
+```yml
+theme:
+  url: https://your.custom.puml/themes
+  light: custom/light
+  dark: custom/dark
+```
+
+`mkdocs_puml` then builds a special URLs to access themes that follows this format
+
+```
+{url}/{mode}.puml
+```
+
+For our example above, `mkdocs_puml` will include into PlantUML diagrams these URLs
+
+- Light mode `https://your.custom.puml/themes/custom/light.puml`
+- Dark mode `https://your.custom.puml/themes/custom/dark.puml`
+
+Pay attention that for each PlantUML diagram, `mkdocs_puml` generates two `svg` images:
+one for light mode and another for dark mode. If you want to disable theming and
+generate one `svg` for each diagram, set `enabled` to `false` as follows
+
+```yml
+theme:
+  enabled: false
+```
+
+If you like to know what themes are available or how to compose your own theme,
+click on the link below.
+
+🌗 [**Read more about theming in mkdocs_puml**](themes/default/README.md)
 
 ### Run PlantUML service with Docker
 
