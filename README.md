@@ -217,5 +217,3 @@ substitutes uuid codes in markdown files with the corresponding `svg` images.
 ## License
 
 The project is licensed under [MIT license](LICENSE).
-
-Diagram icon created by [Freepik](https://www.flaticon.com/free-icon/flow-chart_4411911?related_id=4411911&origin=search).
