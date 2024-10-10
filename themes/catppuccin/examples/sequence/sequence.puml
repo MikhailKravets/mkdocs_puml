@@ -1,7 +1,7 @@
 @startuml
 
 ' Substitute the link on desired theme
-!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/feature/themes/themes/catppuccin/latte.puml
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/catppuccin/latte.puml
 
 participant Participant as Foo
 actor       Actor       as Foo1
