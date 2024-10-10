@@ -7,11 +7,11 @@
 <path d="M134 133C136.761 133 139 135.239 139 138C139 140.761 136.761 143 134 143V133ZM134 143H90.4516V133H134V143Z" fill="#113178"/>
 <path d="M44 28L44 138" stroke="#17419E" stroke-width="10" stroke-linecap="round"/>
 <path d="M134 138V83" stroke="#113178" stroke-width="10" stroke-linecap="round"/>
-<rect x="100" y="11" width="68" height="33" rx="5" fill="#A6DA95"/>
-<rect x="100" y="68" width="68" height="33" rx="5" fill="#EA999C"/>
-<rect x="12" y="68" width="68" height="33" rx="5" fill="#A6DA95"/>
+<rect x="100" y="11" width="68" height="33" rx="5" fill="#CA9EE6"/>
+<rect x="100" y="68" width="68" height="33" rx="5" fill="#EEBEBE"/>
+<rect x="12" y="68" width="68" height="33" rx="5" fill="#81C8BE"/>
 <rect x="12" y="123" width="68" height="33" rx="5" fill="#F7CE40"/>
-<circle cx="134" cy="138" r="19" fill="#A6DA95"/>
+<circle cx="134" cy="138" r="19" fill="#BABBF1"/>
 </g>
 <defs>
 <clipPath id="clip0_0_3">
