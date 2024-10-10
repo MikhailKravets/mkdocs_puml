@@ -12,8 +12,8 @@ In order to use this theme with `mkdocs_puml`, set `theme` config of the plugin 
 
 ```yml
 theme:
-    light: "default/light"
-    dark: "default/dark"
+    light: default/light
+    dark: default/dark
 ```
 
 ## Examples

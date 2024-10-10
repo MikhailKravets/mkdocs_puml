@@ -1,6 +1,7 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
-!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/feature/themes/themes/default/dark.puml
+
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/feature/themes/themes/catppuccin/latte.puml
 
 !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
 !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
@@ -22,5 +23,4 @@ ContainerDb(redis, "Cache & MB", "Redis", "Cache and simple message broker", $sp
 Rel_D(user, spa, "Uses")
 Rel_R(spa, api, "Uses")
 Rel_R(api, db, "Reads/Writes")
-
 @enduml
