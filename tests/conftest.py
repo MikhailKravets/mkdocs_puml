@@ -43,3 +43,11 @@ def mock_requests(httpx_mock: HTTPXMock, svg_diagram):
         for _ in range(call_count):
             httpx_mock.add_response(content=svg_diagram.encode("utf-8"))
     return expect
+
+
+@pytest.fixture
+def mock_requests_fallback(httpx_mock: HTTPXMock):
+    def expect(call_count: int):
+        for _ in range(call_count):
+            httpx_mock.add_response(status_code=509, content=b"error")
+    return expect

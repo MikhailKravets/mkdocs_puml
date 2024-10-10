@@ -33,3 +33,20 @@ def test_translate(diagram_and_encoded: tuple[str, str], mock_requests):
         assert r.startswith("<svg")
         assert not puml._html_comment_regex.search(r)
         assert 'preserveAspectRatio="xMidYMid meet"' in r
+
+
+def test_translate_fallback(diagram_and_encoded: tuple[str, str], mock_requests_fallback):
+    # Verify translation of multiple diagrams to SVG
+    diagram, encoded = diagram_and_encoded
+
+    diagrams = [diagram] * 2
+
+    mock_requests_fallback(len(diagrams))
+
+    puml = PlantUML(BASE_PUML_URL)
+    resp = puml.translate(diagrams)
+
+    assert len(resp) == 2
+
+    for r in resp:
+        assert r.startswith("509")

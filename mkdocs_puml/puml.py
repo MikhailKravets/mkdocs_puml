@@ -21,7 +21,7 @@ class Fallback:
     status_code: int
     message: str
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         return f"{self.status_code}. {self.message}"
 
 
