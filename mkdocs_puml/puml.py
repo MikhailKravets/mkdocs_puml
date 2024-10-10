@@ -1,17 +1,28 @@
+import asyncio
+from dataclasses import dataclass
 import logging
-import re
 import typing
-from concurrent.futures import ThreadPoolExecutor
+import re
+
 from urllib.parse import urljoin
 from xml.dom.minidom import Element, parseString  # nosec
 
-import requests
+from httpx import AsyncClient, Response
 
 from mkdocs_puml.encoder import encode
 from mkdocs_puml.utils import sanitize_url
 
 
 logger = logging.getLogger("mkdocs.plugins.plantuml")
+
+
+@dataclass
+class Fallback:
+    status_code: int
+    message: str
+
+    def __str__(self):
+        return f"{self.status_code}. {self.message}"
 
 
 class PlantUML:
@@ -37,19 +48,17 @@ class PlantUML:
     def __init__(
         self,
         base_url: str,
-        num_workers: int = 5,
         verify_ssl: bool = True,
         output_format: str = "svg",
+        timeout: int = 10
     ):
         # Use sanitize_url because urllib removes last part of url which doesn't
         # end with / which makes it inconvenient to work with.
         self.base_url = sanitize_url(base_url)
         self.base_url = f"{self.base_url}{output_format}/"
 
-        if num_workers <= 0:
-            raise ValueError("`num_workers` argument should be bigger than 0.")
-        self.num_workers = num_workers
         self.verify_ssl = verify_ssl
+        self.timeout = timeout
 
     def translate(self, diagrams: typing.Iterable[str]) -> typing.List[str]:
         """Translate string diagram into HTML div
@@ -67,10 +76,12 @@ class PlantUML:
         """
         encoded = [self.preprocess(v) for v in diagrams]
 
-        with ThreadPoolExecutor(max_workers=self.num_workers) as executor:
-            svg_images = executor.map(self.request, encoded)
+        svg_images = self.request(encoded)
 
-        return [self.postprocess(v) for v in svg_images]
+        for i, v in enumerate(svg_images):
+            svg_images[i] = self.postprocess(v)
+
+        return svg_images
 
     def preprocess(self, content: str) -> str:
         """Preprocess the content before pass it
@@ -86,7 +97,7 @@ class PlantUML:
         """
         return encode(content)
 
-    def postprocess(self, content: str) -> str:
+    def postprocess(self, content: typing.Union[str, Fallback]) -> str:
         """Postprocess the received from plantuml service
         SVG diagram.
 
@@ -98,6 +109,9 @@ class PlantUML:
         Returns:
             Postprocessed SVG diagram
         """
+        if isinstance(content, Fallback):
+            return str(content)
+
         diagram_content = self._clean_comments(content)
 
         svg = self._convert_to_dom(diagram_content)
@@ -105,27 +119,40 @@ class PlantUML:
 
         return svg.toxml()
 
-    def request(self, encoded_diagram: str) -> str:
-        """Request plantuml service with the encoded diagram;
+    def request(self, schemes: list[str]) -> list[typing.Union[str, Fallback]]:
+        """Request PlantUML service with the encoded diagram;
         return SVG content
 
         Args:
-            encoded_diagram (str): Encoded string representation of the diagram
+            schemes (str): Encoded string representation of the diagram diagrams
         Returns:
             SVG representation of the diagram
         """
-        resp = requests.get(
-            urljoin(self.base_url, encoded_diagram), verify=self.verify_ssl
+        responses: list[Response] = asyncio.run(self._request_all(schemes))
+
+        svgs = []
+        for s, resp in zip(schemes, responses):
+            # Use 'ignore' to strip non-utf chars
+            c = resp.content.decode("utf-8", errors="ignore")
+            if not resp.is_success:
+                logger.warning(
+                    f"While building diagram \n\n{s}\n\nServer responded"
+                    f" with a status {resp.status_code}"
+                )
+                svgs.append(Fallback(status_code=resp.status_code, message=c))
+            else:
+                svgs.append(c)
+
+        return svgs
+
+    async def _request_one(self, uri: str) -> Response:
+        async with AsyncClient(verify=self.verify_ssl, timeout=self.timeout) as client:
+            return await client.get(uri)
+
+    async def _request_all(self, schemes: list[str]):
+        return await asyncio.gather(
+            *(self._request_one(urljoin(self.base_url, v)) for v in schemes)
         )
-
-        if not resp.ok:
-            logger.warning(
-                f"While building diagram \n\n{encoded_diagram}\n\nServer responded"
-                f" with a status {resp.status_code}"
-            )
-
-        # Use 'ignore' to strip non-utf chars
-        return resp.content.decode("utf-8", errors="ignore")
 
     def _clean_comments(self, content: str) -> str:
         return self._html_comment_regex.sub("", content)
@@ -139,10 +166,6 @@ class PlantUML:
         return svg
 
     def _stylize_svg(self, svg: Element):
-        """This method is used for SVG tags modifications.
-
-        Notes:
-            It can be used to add support of light / dark theme.
-        """
+        """This method is used for SVG tags modifications"""
         svg.setAttribute("preserveAspectRatio", "xMidYMid meet")
         svg.setAttribute("style", "background: var(--md-default-bg-color)")

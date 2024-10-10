@@ -79,11 +79,10 @@ def test_on_page_markdown_custom_keyword(plant_uml_plugin, md_lines):
 
 
 def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environment):
-    # Test if PlantUML diagrams are correctly converted to SVG
+    mock_requests(len(diagrams_dict))
+
     plant_uml_plugin.diagrams = diagrams_dict
     plant_uml_plugin.on_env(plugin_environment)
-
-    assert mock_requests.call_count == len(diagrams_dict)
 
     for diagram in plant_uml_plugin.diagrams.values():
         assert diagram.diagram.startswith("<svg")

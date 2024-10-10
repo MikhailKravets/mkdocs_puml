@@ -28,7 +28,6 @@ class ThemeConfig(Config):
 
 class PlantUMLConfig(Config):
     puml_url = Type(str)
-    num_workers = Type(int, default=8)
     puml_keyword = Type(str, default="puml")
     verify_ssl = Type(bool, default=True)
     auto_dark = Type(  # TODO: deprecate! And we can set 1.5.0 version?
@@ -105,7 +104,6 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
 
         self.puml = PlantUML(
             self.config["puml_url"],
-            num_workers=self.config["num_workers"],
             verify_ssl=self.config["verify_ssl"],
         )
         self.puml_keyword = self.config["puml_keyword"]
