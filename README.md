@@ -34,7 +34,6 @@ The `plantuml` config with the full list of parameters is below
 plugins:
     - plantuml:
         puml_url: https://www.plantuml.com/plantuml/
-        num_workers: 8
         puml_keyword: puml
         verify_ssl: true
         theme:
@@ -49,7 +48,6 @@ Where
 | Parameter      | Type                   | Description                                                                 |
 |----------------|------------------------|-----------------------------------------------------------------------------|
 | `puml_url`     | `str`. Required        | URL to the PlantUML service                                                 |
-| `num_workers`  | `int`. Default `8`     | Max amount of concurrent workers that request the PlantUML service          |
 | `puml_keyword` | `str`. Default `puml`  | The keyword for PlantUML code fence, i.e. \```puml \```                     |
 | `verify_ssl`   | `bool`. Default `True` | Designates whether `requests` should verify SSL or not                      |
 | `theme.enabled` | `bool`. Default `True` | Designates whether `plantuml` plugin should manage themes of the diagrams |
@@ -188,31 +186,6 @@ Jon -> Sansa : hello
 puml = PlantUML(puml_url, num_workers=2)
 svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
-
-## How it works
-
-The package uses PlantUML as an HTTP service. It sends GET requests to
-PlantUML service and receives `svg` images representing the diagrams.
-
-The `plantuml` plugin parses `.md` documentation files and looks for
-
-<pre>
-```puml
-
-```
-</pre>
-
-code blocks. When `puml` code block is found it is saved to the buffer for
-a later request to PlantUML service. In this step, we replace `puml` block
-with the uuid.
-
-**NOTE** you must set `puml` keyword as an indicator that the PlantUML diagram
-is located in the block. Default keyword can be changed for the custom one
-in `mkdocs.yml` config file by using `puml_keyword` parameter.
-
-After all pages are parsed, `plantuml` plugin requests PlantUML service
-with the collected diagrams. After the responses are received, the package
-substitutes uuid codes in markdown files with the corresponding `svg` images.
 
 ## License
 
