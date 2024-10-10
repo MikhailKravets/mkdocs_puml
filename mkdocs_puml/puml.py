@@ -18,6 +18,8 @@ logger = logging.getLogger("mkdocs.plugins.plantuml")
 
 @dataclass
 class Fallback:
+    """Fallback message for a scheme when PlantUML returns an error"""
+
     status_code: int
     message: str
 
@@ -50,7 +52,7 @@ class PlantUML:
         base_url: str,
         verify_ssl: bool = True,
         output_format: str = "svg",
-        timeout: int = 10
+        timeout: int = 10,
     ):
         # Use sanitize_url because urllib removes last part of url which doesn't
         # end with / which makes it inconvenient to work with.
@@ -60,21 +62,16 @@ class PlantUML:
         self.verify_ssl = verify_ssl
         self.timeout = timeout
 
-    def translate(self, diagrams: typing.Iterable[str]) -> typing.List[str]:
-        """Translate string diagram into HTML div
-        block containing the received SVG image.
-
-        Examples:
-                This method translates content
-                into <svg> image of the diagram
+    def translate(self, schemes: typing.Iterable[str]) -> typing.List[str]:
+        """Translate PlantUML schemes into the received SVG image.
 
         Args:
-            diagrams (list): string representation of PUML diagram
+            schemes (list): string representation of PUML diagram
 
         Returns:
             SVG image of built diagram
         """
-        encoded = [self.preprocess(v) for v in diagrams]
+        encoded = [self.preprocess(v) for v in schemes]
 
         svg_images = self.request(encoded)
 
@@ -84,8 +81,8 @@ class PlantUML:
         return svg_images
 
     def preprocess(self, content: str) -> str:
-        """Preprocess the content before pass it
-        to the plantuml service.
+        """Pre-process the content before passing it
+        to the PlantUML service.
 
         Encoding of the content should be
         done in the step of preprocessing.
@@ -93,21 +90,19 @@ class PlantUML:
         Args:
             content (str): string representation PUML diagram
         Returns:
-            Preprocessed PUML diagram
+            Encoded and pre-processed PUML diagram
         """
         return encode(content)
 
     def postprocess(self, content: typing.Union[str, Fallback]) -> str:
-        """Postprocess the received from plantuml service
-        SVG diagram.
+        """Postprocess an SVG diagram received from PlantUML server.
 
-        Potentially, here could be the code
-        that applies CSS styling to the SVG.
+        The code that applies CSS styling to the SVG can be placed here.
 
         Args:
             content (str): SVG representation of build diagram
         Returns:
-            Postprocessed SVG diagram
+            Post-processed SVG diagram
         """
         if isinstance(content, Fallback):
             return str(content)
@@ -146,15 +141,33 @@ class PlantUML:
         return svgs
 
     async def _request_one(self, uri: str) -> Response:
+        """Request request PlantUML server asynchronously
+
+        Args:
+            uri (str): URI with encoded diagram attached to it
+
+        Returns:
+            Response: response from PlantUML server
+        """
         async with AsyncClient(verify=self.verify_ssl, timeout=self.timeout) as client:
             return await client.get(uri)
 
     async def _request_all(self, schemes: list[str]):
+        """Asynchronous wrapper that creates request coroutine for
+        each scheme and after await returns an ordered list of responses.
+
+        Args:
+            schemes (list[str]): encoded PlantUML diagrams
+
+        Returns:
+            list[Response]: ordered list of Responses
+        """
         return await asyncio.gather(
             *(self._request_one(urljoin(self.base_url, v)) for v in schemes)
         )
 
     def _clean_comments(self, content: str) -> str:
+        """Remove comments from HTML content"""
         return self._html_comment_regex.sub("", content)
 
     def _convert_to_dom(self, content: str) -> Element:
