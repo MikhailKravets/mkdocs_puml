@@ -3,11 +3,15 @@ root {
     --base: #eff1f5
     --blue: #1e66f5
     --text: #4c4f69
+    --textalt: #f6f6f9
+    ' --textalt: #cdd6f4
 
     --subtext1: #5c5f77
     --subtext0: #6c6f85
 
     --overlay0: #9ca0b0
+    --overlay1: #8c8fa1
+    --overlay2: #7c7f93
 
     --crust: #dce0e8
     --mantle: #e6e9ef
@@ -292,7 +296,7 @@ stateDiagram {
     }
     element {
         title {
-        FontStyle plain
+            FontStyle plain
         }
     }
     group {
@@ -329,7 +333,7 @@ swimlane {
 arrow {
   FontSize 13
   LineThickness 1.0
-  BackGroundColor black
+  BackGroundColor: var(--subtext1)
 }
 
 note {
@@ -484,31 +488,35 @@ usecase {
 }
 
 yamlDiagram,jsonDiagram {
-  FontColor black
-  LineColor black
-  arrow {
-    LineThickness 1
-    LineStyle 3-3
-  }
-  node {
-    LineThickness 1.5
-  	RoundCorner 10
-  	separator {
-      LineThickness 1
-  	}
-  	header {
-  	  FontStyle bold
-  	}
-    highlight {
-	  BackGroundColor #ccff02
+    BackGroundColor: var(--base)
+    FontColor: var(--text)
+    LineColor: var(--flamingo)
+    arrow {
+        LineThickness 1
+        LineStyle 3-3
     }
-  }
+    node {
+        LineThickness 1.5
+        RoundCorner 20
+        BackGroundColor: var(--mantle)
+        separator {
+            LineThickness 1
+            LineColor: var(--surface2)
+        }
+        header {
+            FontStyle bold
+        }
+        highlight {
+            BackGroundColor: var(--surface1)
+        }
+    }
 }
 
 
 timingDiagram {
-	LineColor #3
-	FontColor #3
+    BackGroundColor: var(--base)
+	LineColor: var(--flamingo)
+	FontColor: var(--maroon)
 	FontStyle bold
     LineThickness 0.5
     timeline {
@@ -517,67 +525,134 @@ timingDiagram {
       LineThickness 2
     }
     note {
-      LineThickness 0.5
+        FontSize 13
+        FontStyle plain
+        FontColor: var(--text)
+        BackGroundColor: var(--mantle)
+        LineThickness 0.5
+        LineColor: var(--peach)
     }
 	arrow {
 	    FontName Serif
 	    FontSize 14
 	    FontStyle plain
-	    FontColor darkblue
-	    LineColor darkblue
+	    FontColor: var(--blue)
+	    LineColor: var(--blue)
 	    LineThickness 1.5
 	}
 	constraintArrow {
 	    FontSize 12
 		FontStyle plain
-	    FontColor darkred
-	    LineColor darkred
+        FontColor: var(--maroon)
+	    LineColor: var(--flamingo)
 	    LineThickness 1.5
 	}
 	clock {
-	  LineColor darkgreen
-      LineThickness 1.5
+        LineColor: var(--teal)
+        LineThickness 1.5
 	}
 	concise {
 	  FontSize 12
-	  LineColor darkgreen
-	  BackgroundColor: var(--grey-blue);
-      LineThickness 1.5
+        LineColor: var(--overlay0)
+        ' FontColor: var(--teal)
+        BackgroundColor: var(--crust);
+        LineThickness 1.5
 	}
 	robust {
-	  FontStyle plain
-	  FontSize 12
-	  LineColor darkgreen
-      LineThickness 2
-	  BackgroundColor: var(--grey-blue);
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--teal)
+        LineThickness 2
+        BackgroundColor: var(--crust);
 	}
 	binary {
-	  FontStyle plain
-	  FontSize 12
-	  LineColor darkgreen
-      LineThickness 2
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--teal)
+        LineThickness 2
 	}
 	highlight {
-	  BackgroundColor #e
-	  LineThickness 2
-	  LineStyle 4-4
+        ' TODO: plantuml doesn't have FontColor for text inside highlight?
+        BackgroundColor: var(--mantle)
+        LineThickness 2
+        LineStyle 4-4
 	}
 }
 
 nwdiagDiagram {
+    BackGroundColor: var(--base)
+    FontColor: var(--text)
+
 	network {
-	    BackgroundColor: var(--grey-blue);
+	    BackgroundColor: var(--rosevater);
 		FontSize 12
 	}
 	server {
 		FontSize 12
+        LineColor: var(--subtext1)
 	}
 	group {
 		FontSize 12
-		BackGroundColor #e7e7e7
+		BackGroundColor: var(--crust)
 	}
 	arrow {
 		FontSize 11
+        LineColor: var(--subtext1)
 	}
+}
+
+' C4
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+    LineColor: var(--subtext0)
+    FontColor: var(--textalt)
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor: var(--subtext0)
+    LineColor: var(--subtext0)
+    RoundCorner 0
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
+
+.person {
+    BackGroundColor: var(--sapphire)
+    LineColor: var(--crust)
+}
+
+.system {
+    BackGroundColor: var(--flamingo)
+    LineColor: var(--crust)
+}
+
+.container {
+    BackGroundColor: var(--maroon)
+    LineColor: var(--crust)
+}
+
+.component {
+    BackGroundColor: var(--lavander)
+    LineColor: var(--crust)
+}
+
+.external_person {
+	BackGroundColor: var(--overlay0)
+}
+
+.external_system {
+	BackGroundColor: var(--overlay1)
+}
+
+.external_container {
+    BackGroundColor: var(--overlay2)
+}
+
+.node {
+    BackgroundColor transparent
+    FontColor white
 }
 </style>
