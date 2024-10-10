@@ -1,8 +1,7 @@
 from pathlib import Path
-from unittest.mock import Mock
 
 import pytest
-import requests
+from pytest_httpx import HTTPXMock
 
 
 BASE_PUML_URL = "http://mocked/"
@@ -38,9 +37,17 @@ def svg_diagram():
         return f.read()
 
 
-@pytest.fixture(scope="function")
-def mock_requests(monkeypatch, svg_diagram):
-    p = Mock()
-    p.return_value.content = svg_diagram.encode("utf-8")
-    monkeypatch.setattr(requests, "get", p)
-    yield p
+@pytest.fixture
+def mock_requests(httpx_mock: HTTPXMock, svg_diagram):
+    def expect(call_count: int):
+        for _ in range(call_count):
+            httpx_mock.add_response(content=svg_diagram.encode("utf-8"))
+    return expect
+
+
+@pytest.fixture
+def mock_requests_fallback(httpx_mock: HTTPXMock):
+    def expect(call_count: int):
+        for _ in range(call_count):
+            httpx_mock.add_response(status_code=509, content=b"error")
+    return expect
