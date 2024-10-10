@@ -7,7 +7,7 @@
 
 -----------------
 
-[Catppuccin](https://catppuccin.com/) color palette implementation for PlantUML diagrams.
+[Catppuccin](https://catppuccin.com/) color palette for PlantUML diagrams.
 
 ## How to use
 
