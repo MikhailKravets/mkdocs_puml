@@ -606,6 +606,7 @@ nwdiagDiagram {
     HorizontalAlignment center
     LineColor: var(--subtext0)
     FontColor: var(--textalt)
+    RoundCorner 5
 }
 
 .container_boundary, .system_boundary, .enterprise_boundary, .boundary {
@@ -652,7 +653,8 @@ nwdiagDiagram {
 }
 
 .node {
-    BackgroundColor transparent
-    FontColor white
+    BackgroundColor: var(--mantle)
+    RoundCorner 5
+    FontColor: var(--text)
 }
 </style>

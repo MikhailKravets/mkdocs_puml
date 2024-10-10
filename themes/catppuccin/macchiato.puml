@@ -1,40 +1,40 @@
 <style>
 root {
-    --base: #1e1e2e
+    --base: #24273a
 
-    --text: #cdd6f4
-    --textalt: #070c1e
+    --text: #cad3f5
+    --textalt: #060b1e
     ' --textalt: #4c4f69
 
-    --subtext0: #a6adc8
-    --subtext1: #bac2de
+    --subtext0: #a5adcb
+    --subtext1: #b8c0e0
 
-    --overlay0: #6c7086
-    --overlay1: #7f849c
-    --overlay2: #9399b2
+    --overlay0: #6e738d
+    --overlay1: #8087a2
+    --overlay2: #939ab7
 
-    --crust: #11111b
-    --mantle: #181825
+    --crust: #181926
+    --mantle: #1e2030
 
-    --surface0: #313244
-    --surface1: #45475a
-    --surface2: #585b70
+    --surface0: #363a4f
+    --surface1: #494d64
+    --surface2: #5b6078
 
-    --blue: #89b4fa
-    --pink: #f5c2e7
-    --maroon: #eba0ac
-    --peach: #fab387
-    --flamingo: #f2cdcd
-    --sapphire: #74c7ec
-    --lavander: #b4befe
-    --teal: #94e2d5
-    --mauve: #cba6f7
-    --rosevater: #f5e0dc
+    --blue: #8aadf4
+    --pink: #f5bde6
+    --maroon: #ee99a0
+    --peach: #f5a97f
+    --flamingo: #f0c6c6
+    --sapphire: #7dc4e4
+    --lavander: #b7bdf8
+    --teal: #8bd5ca
+    --mauve: #c6a0f6
+    --rosevater: #f4dbd6
 
-    --green: #a6e3a1
-    --red: #f38ba8
-    --yellow: #f9e2af
-    --sky: #89dceb
+    --green: #a6da95
+    --red: #ed8796
+    --yellow: #eed49f
+    --sky: #91d7e3
 
     ' Closed usde in gantt diagrams but for what?
     --closed: #190d0d

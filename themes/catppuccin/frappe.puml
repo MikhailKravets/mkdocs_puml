@@ -1,43 +1,43 @@
 <style>
 root {
-    --base: #1e1e2e
+    --base: #303446
 
-    --text: #cdd6f4
-    --textalt: #070c1e
+    --text: #c6d0f5
+    --textalt: #05091a
     ' --textalt: #4c4f69
 
-    --subtext0: #a6adc8
-    --subtext1: #bac2de
+    --subtext0: #a5adce
+    --subtext1: #b5bfe2
 
-    --overlay0: #6c7086
-    --overlay1: #7f849c
-    --overlay2: #9399b2
+    --overlay0: #737994
+    --overlay1: #838ba7
+    --overlay2: #949cbb
 
-    --crust: #11111b
-    --mantle: #181825
+    --crust: #232634
+    --mantle: #292c3c
 
-    --surface0: #313244
-    --surface1: #45475a
-    --surface2: #585b70
+    --surface0: #414559
+    --surface1: #51576d
+    --surface2: #626880
 
-    --blue: #89b4fa
-    --pink: #f5c2e7
-    --maroon: #eba0ac
-    --peach: #fab387
-    --flamingo: #f2cdcd
-    --sapphire: #74c7ec
-    --lavander: #b4befe
-    --teal: #94e2d5
-    --mauve: #cba6f7
-    --rosevater: #f5e0dc
+    --blue: #8caaee
+    --pink: #f4b8e4
+    --maroon: #ea999c
+    --peach: #ef9f76
+    --flamingo: #eebebe
+    --sapphire: #85c1dc
+    --lavander: #babbf1
+    --teal: #81c8be
+    --mauve: #ca9ee6
+    --rosevater: #f2d5cf
 
-    --green: #a6e3a1
-    --red: #f38ba8
-    --yellow: #f9e2af
-    --sky: #89dceb
+    --green: #a6d189
+    --red: #e78284
+    --yellow: #e5c890
+    --sky: #99d1db
 
     ' Closed usde in gantt diagrams but for what?
-    --closed: #190d0d
+    --closed: #181a23
 
     FontName SansSerif
     HyperLinkColor: var(--blue)
