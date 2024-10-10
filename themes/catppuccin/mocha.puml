@@ -1,0 +1,672 @@
+<style>
+root {
+    --base: #1e1e2e
+
+    --text: #cdd6f4
+    --textalt: #070c1e
+    ' --textalt: #4c4f69
+
+    --subtext0: #a6adc8
+    --subtext1: #bac2de
+
+    --overlay0: #6c7086
+    --overlay1: #7f849c
+    --overlay2: #9399b2
+
+    --crust: #11111b
+    --mantle: #181825
+
+    --surface0: #313244
+    --surface1: #45475a
+    --surface2: #585b70
+
+    --blue: #89b4fa
+    --pink: #f5c2e7
+    --maroon: #eba0ac
+    --peach: #fab387
+    --flamingo: #f2cdcd
+    --sapphire: #74c7ec
+    --lavander: #b4befe
+    --teal: #94e2d5
+    --mauve: #cba6f7
+    --rosevater: #f5e0dc
+
+    --green: #a6e3a1
+    --red: #f38ba8
+    --yellow: #f9e2af
+    --sky: #89dceb
+
+    ' Closed usde in gantt diagrams but for what?
+    --closed: #190d0d
+
+    FontName SansSerif
+    HyperLinkColor: var(--blue)
+    HyperLinkUnderlineThickness 1
+    FontColor: var(--text)
+    FontSize 14
+    FontStyle plain
+    HorizontalAlignment left
+    RoundCorner 0
+    DiagonalCorner 0
+    LineThickness 1.0
+
+    ' TODO: subtext or maroon
+    LineColor: var(--subtext1)
+    BackGroundColor: var(--mantle);
+    Shadowing: 0.0;
+}
+
+document {
+  BackGroundColor: var(--base)
+  header {
+    HorizontalAlignment right
+    FontSize 10
+    FontColor: var(--subtext0)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  title {
+    HorizontalAlignment center
+    FontSize 14
+    FontStyle bold
+    Padding 5
+    Margin 5
+    LineColor transparent
+    BackGroundColor transparent
+  }
+  footer {
+    HorizontalAlignment center
+    FontSize 10
+    FontColor: var(--subtext0)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  legend {
+    LineColor: var(--subtext1)
+    BackGroundColor: var(--crust)
+    FontSize 14
+    RoundCorner 15
+    Padding 5
+    Margin 12
+  }
+  caption {
+    HorizontalAlignment center
+    FontSize 14
+    FontColor: var(--subtext1)
+    Padding 0
+    Margin 1
+    LineColor transparent
+    BackGroundColor transparent
+  }
+}
+
+frame {
+    LineColor: var(--subtext1)
+    LineThickness 1.5
+}
+
+package {
+    title {
+        FontStyle bold
+        FontColor: var(--maroon)
+    }
+}
+
+
+stereotype {
+  FontStyle italic
+}
+
+
+mainframe {
+  Padding 1 5
+  LineThickness 1.5
+  Margin 10 5
+}
+
+element {
+  Shadowing 0.0
+  LineThickness 0.5
+
+  LineColor: var(--subtext1)
+
+  composite {
+    title {
+      FontStyle bold
+    }
+  }
+}
+
+group {
+  BackGroundColor transparent
+  LineThickness 1.0
+  package {
+    LineThickness 1
+    BackGroundColor: var(--base)
+    LineColor: var(--maroon)
+  }
+}
+
+folder {
+    LineThickness 0.5
+}
+
+sequenceDiagram {
+    BackGroundColor: var(--base)
+    LineColor: var(--subtext1)
+
+	group {
+        BackGroundColor: var(--base)
+        LineColor: var(--flamingo)
+        LineThickness 1.5
+        FontSize 11
+        FontStyle bold
+	}
+
+	groupHeader {
+        LineThickness 1.5
+        BackGroundColor: var(--flamingo)
+        LineColor: var(--flamingo)
+        FontColor: var(--textalt)
+        FontSize 13
+        FontStyle bold
+	}
+
+	lifeLine {
+        BackGroundColor: var(--rosevater)
+        LineStyle 5
+	}
+
+	reference {
+        FontSize 12
+        BackGroundColor: var(--base)
+        LineColor: var(--flamingo)
+        LineThickness 1.5
+        HorizontalAlignment center
+	}
+
+	referenceHeader {
+        LineColor: var(--flamingo)
+        BackGroundColor: var(--flamingo)
+        FontSize 13
+        FontStyle bold
+        LineThickness 2.0
+	}
+
+	box {
+        BackGroundColor: var(--mantle)
+        LineColor: var(--flamingo)
+        RoundCorner 15
+
+        FontSize 13
+        FontStyle bold
+	}
+
+	separator {
+        LineColor: var(--maroon)
+        LineThickness 2.0
+        BackGroundColor: var(--mantle)
+
+        FontSize 13
+        FontStyle bold
+	}
+	participant {
+	    RoundCorner 5
+	}
+
+	participant,actor,boundary,control,entity,queue,database,collections {
+        BackgroundColor: var(--mantle);
+        HorizontalAlignment center
+        LineColor: var(--lavander)
+        RoundCorner 15
+	}
+}
+
+classDiagram,componentDiagram,objectDiagram {
+    element {
+        RoundCorner 15
+    }
+}
+
+visibilityIcon {
+    public {
+        LineColor: var(--green)
+        BackgroundColor: var(--green)
+    }
+    private {
+        LineColor: var(--red)
+        BackgroundColor: var(--red)
+    }
+    protected {
+        LineColor: var(--yellow)
+        BackgroundColor: var(--yellow)
+    }
+    package {
+        LineColor: var(--sky)
+        BackgroundColor: var(--sky)
+    }
+
+    ' This is the dot at the left of entity attribute
+    IEMandatory {
+        LineColor: var(--flamingo)
+        BackgroundColor: var(--flamingo)
+    }
+}
+
+spot {
+    FontColor: var(--subtext1)
+    spotAnnotation {
+        BackgroundColor: var(--flamingo)
+        LineColor: var(--subtext0)
+        FontColor: var(--textalt)
+    }
+    spotAbstractClass {
+        BackgroundColor: var(--sky)
+        LineColor: var(--subtext0)
+        FontColor: var(--textalt)
+    }
+    spotClass {
+        BackgroundColor: var(--lavander)
+        LineColor: var(--subtext0)
+        FontColor: var(--textalt)
+    }
+    spotInterface {
+        BackgroundColor: var(--pink)
+        FontColor: var(--textalt)
+    }
+    spotEnum {
+        BackgroundColor: var(--rosevater)
+        FontColor: var(--textalt)
+    }
+    spotEntity {
+        BackgroundColor: var(--yellow)
+        FontColor: var(--textalt)
+    }
+    spotException {
+        BackgroundColor: var(--red)
+        FontColor: var(--textalt)
+    }
+    spotMetaClass {
+        BackgroundColor: var(--teal)
+        FontColor: var(--textalt)
+    }
+    spotStereotype {
+        BackgroundColor: var(--peach)
+        FontColor: var(--textalt)
+    }
+}
+
+
+stateDiagram {
+    BackGroundColor: var(--base)
+    LineColor: var(--subtext1)
+    state {
+        RoundCorner 25
+        BackGroundColor: var(--crust)
+    }
+    stateBody {
+        BackGroundColor transparent
+    }
+    element {
+        title {
+            FontStyle plain
+        }
+    }
+    group {
+        LineThickness 0.5
+    }
+
+    header {
+        FontSize 12
+    }
+    circle {
+        start, stop, end {
+            LineColor: var(--subtext0)
+            BackgroundColor: var(--sky)
+        }
+    }
+}
+
+
+delay {
+  FontSize 11
+  FontStyle plain
+  HorizontalAlignment center
+}
+
+
+
+swimlane {
+  BackGroundColor transparent
+  LineColor: var(--subtext1)
+  LineThickness 1.5
+  FontSize 18
+}
+
+arrow {
+  FontSize 13
+  LineThickness 1.0
+  BackGroundColor: var(--subtext1)
+}
+
+note {
+  FontSize 13
+  BackGroundColor: var(--crust)
+  LineThickness 0.5
+  LineColor: var(--peach)
+}
+
+partition {
+}
+
+circle {
+}
+
+mindmapDiagram {
+}
+
+mindmapDiagram {
+	node {
+	    Padding 10
+	    Margin 10
+	    RoundCorner 25
+	    LineThickness 1.3
+        BackGroundColor: var(--mantle)
+	}
+	arrow {
+	    LineThickness 1.0
+	}
+}
+
+
+wbsDiagram {
+    Padding 10
+    Margin 15
+    RoundCorner 0
+    LineThickness 1.5
+    FontSize 12
+}
+
+activityDiagram {
+	activity {
+	    Padding 10
+	    FontSize 12
+	    RoundCorner 25
+	}
+
+	composite {
+	    LineColor: var(--flamingo)
+        FontColor: var(--subtext1)
+	    BackgroundColor transparent
+	    LineThickness 1.5
+	}
+	diamond {
+	    FontSize 11
+	}
+	arrow {
+	    FontSize 11
+	    LineThickness 1
+	}
+	circle {
+	    start, stop, end {
+		    LineColor: var(-subtext0)
+            BackgroundColor: var(--teal)
+	    }
+	}
+	activityBar {
+	  BackgroundColor: var(--teal)
+      LineColor: var(-subtext1)
+	}
+}
+
+
+task {
+    FontSize 11
+    LineColor: var(--subtext0)
+}
+
+' TODO: it was originaly in root. I don't know why it's here. I copied it under ganttDiagram
+milestone {
+    FontSize 11
+	BackGroundColor: var(--peach)
+	LineColor: var(--subtext1)
+}
+
+ganttDiagram {
+    BackGroundColor: var(--base)
+
+    milestone {
+        FontSize 11
+        BackGroundColor: var(--maroon)
+        LineColor: var(--subtext1)
+    }
+
+	arrow {
+	  LineThickness 1.5
+      LineColor: var(--lavander)
+	}
+	note {
+	  FontSize 9
+      BackGroundColor: var(--base);
+	}
+	separator {
+	  FontSize 11
+	  FontStyle plain
+	  BackGroundColor transparent
+      LineColor: var(--subtext1)
+      FontColor: var(--subtext1)
+	  Margin 5
+	  Padding 5
+	}
+	verticalSeparator {
+	  LineThickness 2
+	  LineStyle 2-2
+	  LineColor: var(--subtext1)
+      FontColor: var(--subtext1)
+	}
+	timeline {
+	    BackgroundColor transparent
+	    LineColor: var(--crust)
+	    FontSize 10
+	    month {
+	      FontSize 12
+	    }
+	    year {
+	      FontSize 14
+	    }
+	}
+	closed {
+        BackGroundColor: var(--closed)
+        FontColor: var(--surface2)
+    }
+	task {
+        BackGroundColor: var(--mantle)
+        LineColor: var(--lavander)
+		RoundCorner 5
+        Margin 2 2 2 2
+        Padding 2
+	}
+	undone {
+        BackGroundColor: var(--surface0)
+	}
+	milestone {
+        Margin 2
+        Padding 3
+	}
+}
+
+
+usecase {
+  HorizontalAlignment center
+}
+
+yamlDiagram,jsonDiagram {
+    BackGroundColor: var(--base)
+    FontColor: var(--text)
+    LineColor: var(--flamingo)
+    arrow {
+        LineThickness 1
+        LineStyle 3-3
+    }
+    node {
+        LineThickness 1.5
+        RoundCorner 20
+        BackGroundColor: var(--mantle)
+        separator {
+            LineThickness 1
+            LineColor: var(--surface2)
+        }
+        header {
+            FontStyle bold
+        }
+        highlight {
+            BackGroundColor: var(--surface1)
+        }
+    }
+}
+
+
+timingDiagram {
+    BackGroundColor: var(--base)
+	LineColor: var(--flamingo)
+	FontColor: var(--maroon)
+	FontStyle bold
+    LineThickness 0.5
+    timeline {
+	  FontStyle plain
+	  FontSize 11
+      LineThickness 2
+    }
+    note {
+        FontSize 13
+        FontStyle plain
+        FontColor: var(--text)
+        BackGroundColor: var(--mantle)
+        LineThickness 0.5
+        LineColor: var(--peach)
+    }
+	arrow {
+	    FontName Serif
+	    FontSize 14
+	    FontStyle plain
+	    FontColor: var(--blue)
+	    LineColor: var(--blue)
+	    LineThickness 1.5
+	}
+	constraintArrow {
+	    FontSize 12
+		FontStyle plain
+        FontColor: var(--maroon)
+	    LineColor: var(--flamingo)
+	    LineThickness 1.5
+	}
+	clock {
+        LineColor: var(--teal)
+        LineThickness 1.5
+	}
+	concise {
+	  FontSize 12
+        LineColor: var(--overlay0)
+        ' FontColor: var(--teal)
+        BackgroundColor: var(--crust);
+        LineThickness 1.5
+	}
+	robust {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--teal)
+        LineThickness 2
+        BackgroundColor: var(--crust);
+	}
+	binary {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--teal)
+        LineThickness 2
+	}
+	highlight {
+        ' TODO: plantuml doesn't have FontColor for text inside highlight?
+        BackgroundColor: var(--mantle)
+        LineThickness 2
+        LineStyle 4-4
+	}
+}
+
+nwdiagDiagram {
+    BackGroundColor: var(--base)
+    FontColor: var(--text)
+
+	network {
+	    BackgroundColor: var(--rosevater);
+		FontSize 12
+	}
+	server {
+		FontSize 12
+        LineColor: var(--subtext1)
+	}
+	group {
+		FontSize 12
+		BackGroundColor: var(--crust)
+	}
+	arrow {
+		FontSize 11
+        LineColor: var(--subtext1)
+	}
+}
+
+' C4
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+    LineColor: var(--subtext0)
+    FontColor: var(--textalt)
+    RoundCorner 5
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor: var(--subtext0)
+    LineColor: var(--subtext0)
+    RoundCorner 0
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
+
+.person {
+    BackGroundColor: var(--sapphire)
+    LineColor: var(--crust)
+}
+
+.system {
+    BackGroundColor: var(--flamingo)
+    LineColor: var(--crust)
+}
+
+.container {
+    BackGroundColor: var(--maroon)
+    LineColor: var(--crust)
+}
+
+.component {
+    BackGroundColor: var(--lavander)
+    LineColor: var(--crust)
+}
+
+.external_person {
+	BackGroundColor: var(--overlay0)
+}
+
+.external_system {
+	BackGroundColor: var(--overlay1)
+}
+
+.external_container {
+    BackGroundColor: var(--overlay2)
+}
+
+.node {
+    BackgroundColor: var(--mantle)
+    FontColor: var(--text)
+}
+</style>

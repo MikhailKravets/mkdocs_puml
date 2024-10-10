@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from pathlib import Path
 import typing
 import re
@@ -6,13 +7,49 @@ import os
 import shutil
 
 from mkdocs.config.base import Config
-from mkdocs.config.config_options import Type
+from mkdocs.config.config_options import Type, SubConfig, Optional
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.puml import PlantUML
+from mkdocs_puml.themes import Theme
 
 
-class PlantUMLPlugin(BasePlugin):
+class ThemeConfig(Config):
+    enabled = Type(bool, default=True)
+    light = Type(str, default="default/light")
+    dark = Type(str, default="default/dark")
+
+    # TODO: update when release
+    url = Type(
+        str,
+        default="https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/",
+    )
+
+
+class PlantUMLConfig(Config):
+    puml_url = Type(str)
+    num_workers = Type(int, default=8)
+    puml_keyword = Type(str, default="puml")
+    verify_ssl = Type(bool, default=True)
+    auto_dark = Type(  # TODO: deprecate! And we can set 1.5.0 version?
+        bool, default=True
+    )
+    theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default
+
+
+class ThemeMode:
+    LIGHT = "light"
+    DARK = "dark"
+
+
+@dataclass
+class Diagram:
+    scheme: str
+    mode: ThemeMode
+    diagram: Optional[str] = None
+
+
+class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
     """MKDocs plugin that converts puml diagrams into SVG images.
 
     It works only with a remote PlantUML service. You should add
@@ -37,15 +74,7 @@ class PlantUMLPlugin(BasePlugin):
         auto_dark (bool): Designates whether the plugin should automatically generate dark mode images.
     """
 
-    pre_class_name = "diagram-uuid"
-
-    config_scheme = (
-        ("puml_url", Type(str, required=True)),
-        ("num_workers", Type(int, default=8)),
-        ("puml_keyword", Type(str, default="puml")),
-        ("verify_ssl", Type(bool, default=True)),
-        ("auto_dark", Type(bool, default=True)),
-    )
+    pre_class_name = "diagram-key"
 
     def __init__(self):
         self.regex: typing.Optional[typing.Any] = None
@@ -54,8 +83,9 @@ class PlantUMLPlugin(BasePlugin):
         )
 
         self.puml: typing.Optional[PlantUML] = None
-        self.diagrams = {
-            # key - uuid: value - puml. After on_env — svg
+
+        self.diagrams: dict[str, Diagram] = {
+            # key - uuid: value - Diagram dataclass.
         }
 
     def on_config(self, config: Config) -> Config:
@@ -71,22 +101,26 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Full config of the mkdocs
         """
-        config['extra_css'].append("assets/stylesheets/puml.css")
-        self.puml_light = PlantUML(
+        config["extra_css"].append("assets/stylesheets/puml.css")
+
+        self.puml = PlantUML(
             self.config["puml_url"],
             num_workers=self.config["num_workers"],
             verify_ssl=self.config["verify_ssl"],
-            output_format="svg",
-        )
-        self.puml_dark = PlantUML(
-            self.config["puml_url"],
-            num_workers=self.config["num_workers"],
-            verify_ssl=self.config["verify_ssl"],
-            output_format="dsvg",
         )
         self.puml_keyword = self.config["puml_keyword"]
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
-        self.auto_dark = self.config["auto_dark"]
+
+        if self.config.theme.enabled:
+            self.themer = Theme(self.config.theme.url)
+
+            self.theme_light = self.config.theme.light
+            self.theme_dark = self.config.theme.dark
+        else:
+            self.themer = None
+            self.theme_light = None
+            self.theme_dark = None
+
         return config
 
     def on_page_markdown(self, markdown: str, *args, **kwargs) -> str:
@@ -107,13 +141,36 @@ class PlantUMLPlugin(BasePlugin):
         schemes = self.regex.findall(markdown)
 
         for v in schemes:
-            id_ = str(uuid.uuid4())
-            self.diagrams[id_] = v
+            if self.themer:
+                replace_into = self._store_dual(v)
+            else:
+                replace_into = self._store_single(v)
             markdown = markdown.replace(
-                f"```{self.puml_keyword}{v}```", f'<pre class="{self.pre_class_name}">{id_}</pre>'
+                f"```{self.puml_keyword}{v}```",
+                replace_into,
             )
 
         return markdown
+
+    def _store_single(self, scheme: str) -> str:
+        key = str(uuid.uuid4())
+        self.diagrams[key] = Diagram(scheme, mode=ThemeMode.LIGHT)
+        return f'<pre class="{self.pre_class_name}">{key}</pre>'
+
+    def _store_dual(self, scheme: str) -> str:
+        key = str(uuid.uuid4())
+        key_dark = f"{key}-dark"
+        self.diagrams[key] = Diagram(
+            self.themer.include(self.config.theme.light, scheme), mode=ThemeMode.LIGHT
+        )
+        self.diagrams[key_dark] = Diagram(
+            self.themer.include(self.config.theme.dark, scheme), mode=ThemeMode.DARK
+        )
+
+        return (
+            f'<pre class="{self.pre_class_name}">{key}</pre>\n'
+            f'<pre class="{self.pre_class_name}">{key_dark}</pre>'
+        )
 
     def on_env(self, env, *args, **kwargs):
         """The event is fired when jinja environment is configured.
@@ -126,21 +183,12 @@ class PlantUMLPlugin(BasePlugin):
         Returns:
             Jinja environment
         """
-        # TODO: self.diagrams changes its structure throughout a program run:
-        #       1. Initially it's {key: "value"}
-        #       2. After translate, it's {key: ("light_svg", "dark_svg" | None)}
-        #       3. Align to a single format
-        diagram_contents = [diagram for diagram in self.diagrams.values()]
+        # Why it was even added??
+        # diagram_contents = [diagram for diagram in self.diagrams.values()]
 
-        if self.auto_dark:
-            light_svgs = self.puml_light.translate(diagram_contents)
-            dark_svgs = self.puml_dark.translate(diagram_contents)
-            for key, light_svg, dark_svg in zip(self.diagrams, light_svgs, dark_svgs):
-                self.diagrams[key] = (light_svg, dark_svg)
-        else:
-            svgs = self.puml_light.translate(diagram_contents)
-            for key, svg in zip(self.diagrams, svgs):
-                self.diagrams[key] = (svg, None)
+        svgs = self.puml.translate((v.scheme for v in self.diagrams.values()))
+        for key, svg in zip(self.diagrams, svgs):
+            self.diagrams[key].diagram = svg
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
@@ -171,22 +219,25 @@ class PlantUMLPlugin(BasePlugin):
         """Replace a UUID key with a real diagram in a
         content
         """
-        light_svg, dark_svg = self.diagrams[key]
-        if dark_svg:
-            replacement = (
-                f'<div class="puml light">{light_svg}</div>'
-                f'<div class="puml dark">{dark_svg}</div>'
-            )
-        else:
-            replacement = f'<div class="puml light">{light_svg}</div>'
-        return content.replace(f'<pre class="{self.pre_class_name}">{key}</pre>', replacement)
+        diagram = self.diagrams[key]
+
+        # When theming is not enabled, user will manually manage themes in each diagram.
+        # Also, only one version of diagram will be generated for each scheme, which
+        # should be displayed always although light / dark mode of mkdocs-material.
+        style = "display: block" if not self.config.theme.enabled else ""
+        replacement = (
+            f'<div class="puml {diagram.mode}" style="{style}">{diagram.diagram}</div>'
+        )
+        return content.replace(
+            f'<pre class="{self.pre_class_name}">{key}</pre>', replacement
+        )
 
     def on_post_build(self, config):
         """
         Event triggered after the build process is complete.
 
         This method is responsible for copying static files from the plugin's
-        `static` directory to the specified `assets/javascripts/puml` directory
+        `static` directory to the specified `assets/stylesheets/puml` directory
         in the site output. This ensures that the necessary JavaScript files
         are available in the final site.
 

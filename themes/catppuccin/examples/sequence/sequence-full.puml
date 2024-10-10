@@ -1,0 +1,27 @@
+@startuml
+
+' Substitute the link on desired theme
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/catppuccin/latte.puml
+
+Alice -> Bob: Authentication Request
+
+== Initialization ==
+
+note left: this is a first note
+
+alt successful case
+
+    Bob -> Alice: Authentication Accepted
+
+else some kind of failure
+
+    Bob -> Alice: Authentication Failure
+    Alice -> Log : Log attack start
+    Alice -> Log : Log attack end
+
+else Another type of failure
+
+   Bob -> Alice: Please repeat
+
+end
+@enduml

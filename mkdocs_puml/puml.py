@@ -8,6 +8,7 @@ from xml.dom.minidom import Element, parseString  # nosec
 import requests
 
 from mkdocs_puml.encoder import encode
+from mkdocs_puml.utils import sanitize_url
 
 
 logger = logging.getLogger("mkdocs.plugins.plantuml")
@@ -32,7 +33,6 @@ class PlantUML:
     """
 
     _html_comment_regex = re.compile(r"<!--.*?-->", flags=re.DOTALL)
-    ERROR_SVG = "<svg><text>Error</text></svg>"
 
     def __init__(
         self,
@@ -41,7 +41,9 @@ class PlantUML:
         verify_ssl: bool = True,
         output_format: str = "svg",
     ):
-        self.base_url = base_url if base_url.endswith("/") else f"{base_url}/"
+        # Use sanitize_url because urllib removes last part of url which doesn't
+        # end with / which makes it inconvenient to work with.
+        self.base_url = sanitize_url(base_url)
         self.base_url = f"{self.base_url}{output_format}/"
 
         if num_workers <= 0:
@@ -121,7 +123,6 @@ class PlantUML:
                 f"While building diagram \n\n{encoded_diagram}\n\nServer responded"
                 f" with a status {resp.status_code}"
             )
-            return self.ERROR_SVG
 
         # Use 'ignore' to strip non-utf chars
         return resp.content.decode("utf-8", errors="ignore")

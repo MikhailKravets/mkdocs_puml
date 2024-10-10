@@ -34,7 +34,7 @@ def test_translate(diagram_and_encoded: tuple[str, str], mock_requests):
     puml = PlantUML(BASE_PUML_URL)
     resp = puml.translate(diagrams)
 
-    assert puml.base_url.endswith("/")
+    assert puml.base_url == f"{BASE_PUML_URL}svg/"
 
     assert len(resp) == 2
 
