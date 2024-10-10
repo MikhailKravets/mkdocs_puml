@@ -18,6 +18,8 @@ class ThemeConfig(Config):
     enabled = Type(bool, default=True)
     light = Type(str, default="default/light")
     dark = Type(str, default="default/dark")
+
+    # TODO: update when release
     url = Type(
         str,
         default="https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/",
