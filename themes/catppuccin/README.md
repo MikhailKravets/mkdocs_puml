@@ -48,7 +48,7 @@ Simple sequence diagram looks as follows
 |![macchiato](examples/sequence/sequence-macchiato.svg)|![mocha](examples/sequence/sequence-mocha.svg)|
 |**cattpuccin/macchiato**|**cattpuccin/mocha**|
 
-Sequence diagram with groups, notes, and dividers is
+Sequence diagram with groups, notes, and dividers looks
 
 |**cattpuccin/latte**|**cattpuccin/frappe**|
 |:-------:|:--------:|
