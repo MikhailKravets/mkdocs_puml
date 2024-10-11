@@ -51,10 +51,6 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.themer: typing.Optional[Theme] = None
         self.storage: typing.Optional[AbstractStorage] = None
 
-        # self.diagrams: dict[str, Diagram] = {
-        #     # key - uuid: value - Diagram dataclass.
-        # }
-
     def on_config(self, config: Config) -> Config:
         """Event that is fired by mkdocs when configs are created.
 
@@ -155,8 +151,12 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         # Why it was even added??
         # diagram_contents = [diagram for diagram in self.diagrams.values()]
 
-        svgs = self.puml.translate(self.storage.schemes)
-        self.storage.update(zip(self.storage.keys, svgs))
+        # TODO: here lies a problem. self.storage.schemes and self.storage.keys can have a different
+        #       sizes and values. For example, 5 cached diagrams will not be returned but keys
+        #       returns all keys!
+        to_request = self.storage.schemes()
+        svgs = self.puml.translate(to_request.values())
+        self.storage.update(zip(to_request.keys(), svgs))
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
@@ -222,3 +222,5 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             os.makedirs(dest_dir)
 
         shutil.copy(puml_css, dest_dir)
+
+        self.storage.save()

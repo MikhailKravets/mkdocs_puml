@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
+import dataclasses
+import hashlib
+from pathlib import Path
 from typing import Iterable
 import uuid
+
+import msgpack
 
 from mkdocs_puml.configs import CacheBackend, CacheConfig
 from mkdocs_puml.diagrams import Diagram, ThemeMode
@@ -34,19 +39,12 @@ class AbstractStorage(ABC):
     def save(self):
         pass
 
-    @property
-    def schemes(self) -> Iterable[str]:
-        return (v.scheme for v in self.data.values() if v.diagram is None)
+    def schemes(self) -> dict[str, str]:
+        return {k: v.scheme for k, v in self.data.items() if v.diagram is None}
 
-    @property
-    def iter_svg(self) -> Iterable[str]:
-        return (v.diagram for v in self.data.values())
+    def items(self) -> dict[str, Diagram]:
+        return [(k, v) for k, v in self.data.items()]
 
-    @property
-    def diagrams(self) -> Iterable[Diagram]:
-        return self.data.values()
-
-    @property
     def keys(self) -> Iterable[str]:
         return self.data.keys()
 
@@ -67,11 +65,38 @@ class NaiveStorage(AbstractStorage):
 
 
 class FileStorage(AbstractStorage):
-    pass
+
+    def __init__(self, base_dir: Path, filename: str = "storage.mpack"):
+        super().__init__()
+
+        work_dir = Path.cwd().name
+        dir = base_dir.expanduser() / work_dir
+        dir.mkdir(parents=True, exist_ok=True)
+
+        self.path = dir / filename
+        print(self.path)
+        self._read_data()
+
+    def hash(self, d: Diagram):
+        return hashlib.blake2b(d.scheme.encode("utf-8")).hexdigest()
+
+    # TODO: how to invalidate data?
+    def save(self):
+        with open(self.path, "wb") as f:
+            msgpack.dump({k: dataclasses.asdict(v) for k, v in self.data.items()}, f)
+        print("saved")
+
+    def _read_data(self):
+        if not self.path.exists() or self.path.stat().st_size == 0:
+            return
+
+        with open(self.path, "rb") as f:
+            raw = msgpack.load(f)
+            self.data = {k: Diagram(**v) for k, v in raw.items()}
 
 
 def build_storage(config: CacheConfig) -> AbstractStorage:
     if config.backend == CacheBackend.DISABLED.value:
         return NaiveStorage()
     elif config.backend == CacheBackend.LOCAL.value:
-        return FileStorage()
+        return FileStorage(Path(config.local.path))
