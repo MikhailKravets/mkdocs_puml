@@ -8,7 +8,7 @@ import uuid
 import msgpack
 
 from mkdocs_puml.configs import CacheBackend, CacheConfig
-from mkdocs_puml.diagrams import Diagram, ThemeMode
+from mkdocs_puml.model import Diagram, ThemeMode
 
 
 class AbstractStorage(ABC):

@@ -1,5 +1,5 @@
 import os
-from mkdocs_puml.diagrams.storage import FileStorage, NaiveStorage
+from mkdocs_puml.storage import FileStorage, NaiveStorage
 from mkdocs_puml.plugin import PlantUMLPlugin, ThemeMode
 from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme

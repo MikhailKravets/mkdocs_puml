@@ -1,6 +1,6 @@
 import pytest
-from mkdocs_puml.diagrams.models import Diagram, ThemeMode
-from mkdocs_puml.diagrams.storage import NaiveStorage
+from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.storage import NaiveStorage
 from tests.plugins.conftest import is_uuid_valid
 
 

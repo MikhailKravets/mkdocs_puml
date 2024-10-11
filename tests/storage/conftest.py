@@ -4,7 +4,7 @@ from unittest.mock import mock_open
 
 import msgpack
 import pytest
-from mkdocs_puml.diagrams.models import Diagram, ThemeMode
+from mkdocs_puml.model import Diagram, ThemeMode
 
 
 @pytest.fixture

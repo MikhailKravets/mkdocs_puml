@@ -7,7 +7,7 @@ import pytest
 from uuid import UUID
 
 from mkdocs_puml.configs import CacheConfig, LocalCacheConfig, PlantUMLConfig, ThemeConfig
-from mkdocs_puml.diagrams.models import ThemeMode
+from mkdocs_puml.model import ThemeMode
 from mkdocs_puml.plugin import Diagram, PlantUMLPlugin
 from tests.conftest import BASE_PUML_URL, TESTDATA_DIR
 

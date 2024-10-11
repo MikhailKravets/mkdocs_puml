@@ -8,8 +8,8 @@ from mkdocs.config.base import Config
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.configs import PlantUMLConfig
-from mkdocs_puml.diagrams import Diagram, ThemeMode
-from mkdocs_puml.diagrams.storage import AbstractStorage, build_storage
+from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.storage import AbstractStorage, build_storage
 from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme
 

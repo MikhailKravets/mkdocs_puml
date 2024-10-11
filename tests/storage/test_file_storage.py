@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 
-from mkdocs_puml.diagrams.models import Diagram, ThemeMode
-from mkdocs_puml.diagrams.storage import FileStorage
+from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.storage import FileStorage
 
 
 def test_read_nonexistent_file(patch_path):
