@@ -16,7 +16,7 @@ class AbstractStorage(ABC):
         self.data: dict[str, Diagram] = {}
 
     @abstractmethod
-    def add(self, d: Diagram) -> str:
+    def add(self, d: Diagram) -> str:  # pragma: no coverage
         pass
 
     def update(self, d: Iterable[tuple[str, str]]):
@@ -24,11 +24,11 @@ class AbstractStorage(ABC):
             self.data[key].diagram = svg
 
     @abstractmethod
-    def hash(self, d: Diagram) -> str:
+    def hash(self, d: Diagram) -> str:  # pragma: no coverage
         pass
 
     @abstractmethod
-    def save(self):
+    def save(self):  # pragma: no coverage
         pass
 
     def schemes(self) -> dict[str, str]:
@@ -54,13 +54,10 @@ class NaiveStorage(AbstractStorage):
 
     def add(self, d: Diagram):
         h = self.hash(d)
-
-        if h not in self.data:
-            self.data[h] = d
-
+        self.data[h] = d
         return h
 
-    def save(self):
+    def save(self):  # pragma: no coverage
         """NaiveStorage keeps diagrams in RAM only"""
 
 
