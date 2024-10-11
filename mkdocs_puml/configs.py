@@ -37,8 +37,6 @@ class PlantUMLConfig(Config):
     puml_url = Type(str)
     puml_keyword = Type(str, default="puml")
     verify_ssl = Type(bool, default=True)
-    auto_dark = Type(  # TODO: deprecate! And we can set 1.5.0 version?
-        bool, default=True
-    )
+    verbose = Type(bool, default=True)
     theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default
     cache = SubConfig(CacheConfig)

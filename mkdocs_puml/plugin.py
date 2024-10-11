@@ -4,6 +4,8 @@ import re
 import os
 import shutil
 
+from rich.console import Console
+
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.configs import PlantUMLConfig
@@ -43,6 +45,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.puml: typing.Optional[PlantUML] = None
         self.themer: typing.Optional[Theme] = None
         self.storage: typing.Optional[AbstractStorage] = None
+        self.console: typing.Optional[Console] = None
 
     def on_config(self, config: PlantUMLConfig) -> PlantUMLConfig:
         """Event that is fired by mkdocs when configs are created.
@@ -60,6 +63,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         """
         config["extra_css"].append("assets/stylesheets/puml.css")
 
+        self.console = Console(quiet=not self.config.verbose)
         self.puml = PlantUML(
             self.config.puml_url,
             verify_ssl=self.config.verify_ssl,
@@ -95,17 +99,20 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         Returns:
             Updated markdown page
         """
-        schemes = self.regex.findall(markdown)
+        with self.console.status(
+            "[bold dim cyan]Search puml in markdown", spinner="dots2", spinner_style="magenta"
+        ):
+            schemes = self.regex.findall(markdown)
 
-        for v in schemes:
-            if self.themer:
-                replace_into = self._store_dual(v)
-            else:
-                replace_into = self._store_single(v)
-            markdown = markdown.replace(
-                f"```{self.puml_keyword}{v}```",
-                replace_into,
-            )
+            for v in schemes:
+                if self.themer:
+                    replace_into = self._store_dual(v)
+                else:
+                    replace_into = self._store_single(v)
+                markdown = markdown.replace(
+                    f"```{self.puml_keyword}{v}```",
+                    replace_into,
+                )
 
         return markdown
 
@@ -141,9 +148,19 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         Returns:
             Jinja environment
         """
-        to_request = self.storage.schemes()
-        svgs = self.puml.translate(to_request.values())
-        self.storage.update(zip(to_request.keys(), svgs))
+        with self.console.status(
+            "[bold dim cyan]Building PlantUML diagrams", spinner="dots2", spinner_style="magenta"
+        ):
+            to_request = self.storage.schemes()
+            svgs = self.puml.translate(to_request.values())
+            self.storage.update(zip(to_request.keys(), svgs))
+
+        built_len = len(to_request)
+        total_len = len(self.storage.keys())
+        self.console.print(
+            f"[dim][bold magenta]mkdocs_puml[/bold magenta]: Built {built_len} diagrams, "
+            f"retrieved {total_len - built_len} from cache[/dim] [green bold]✔️[/green bold]"
+        )
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:

@@ -36,6 +36,7 @@ plugins:
         puml_url: https://www.plantuml.com/plantuml/
         puml_keyword: puml
         verify_ssl: true
+        verbose: true
         theme:
           enabled: true
           light: default/light
@@ -54,6 +55,7 @@ Where
 | `puml_url`     | `str`. Required        | URL to the PlantUML service                                                 |
 | `puml_keyword` | `str`. Default `puml`  | The keyword for PlantUML code fence, i.e. \```puml \```                     |
 | `verify_ssl`   | `bool`. Default `True` | Designates whether `requests` should verify SSL or not                      |
+| `verbose`      | `bool`. Default `True` | Designates whether `mkdocs_puml` should print status messages to console    |
 | `theme.enabled` | `bool`. Default `True` | Designates whether `plantuml` plugin should manage themes of the diagrams |
 | `theme.light`  | `str`. Default `default/light` | Name of the theme to use when `mkdocs-material` is in light mode |
 | `theme.dark`  | `str`. Default `default/dark` | Name of the theme to use when `mkdocs-material` is in dark mode |
