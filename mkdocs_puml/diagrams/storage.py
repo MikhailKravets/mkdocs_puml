@@ -16,7 +16,7 @@ class AbstractStorage(ABC):
         self.data: dict[str, Diagram] = {}
 
     @abstractmethod
-    def add(self, d: Diagram) -> str:  # pragma: no coverage
+    def add(self, d: Diagram) -> str:  # pragma: no cover
         pass
 
     def update(self, d: Iterable[tuple[str, str]]):
@@ -24,11 +24,11 @@ class AbstractStorage(ABC):
             self.data[key].diagram = svg
 
     @abstractmethod
-    def hash(self, d: Diagram) -> str:  # pragma: no coverage
+    def hash(self, d: Diagram) -> str:  # pragma: no cover
         pass
 
     @abstractmethod
-    def save(self):  # pragma: no coverage
+    def save(self):  # pragma: no cover
         pass
 
     def schemes(self) -> dict[str, str]:

@@ -1,4 +1,5 @@
 from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
 from pytest_httpx import HTTPXMock
@@ -51,3 +52,16 @@ def mock_requests_fallback(httpx_mock: HTTPXMock):
         for _ in range(call_count):
             httpx_mock.add_response(status_code=509, content=b"error")
     return expect
+
+
+@pytest.fixture
+def patch_path(monkeypatch):
+    """Patches pathlib.Path to return a MagicMock,
+    preventing direct file system interactions
+    """
+    path_mock = MagicMock()
+    path_mock.expanduser.return_value = path_mock
+    path_mock.__truediv__.return_value = path_mock
+    monkeypatch.setattr("pathlib.Path", path_mock)
+
+    return path_mock

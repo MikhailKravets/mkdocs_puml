@@ -6,7 +6,7 @@ import pytest
 
 from uuid import UUID
 
-from mkdocs_puml.configs import CacheConfig, PlantUMLConfig, ThemeConfig
+from mkdocs_puml.configs import CacheConfig, LocalCacheConfig, PlantUMLConfig, ThemeConfig
 from mkdocs_puml.diagrams.models import ThemeMode
 from mkdocs_puml.plugin import Diagram, PlantUMLPlugin
 from tests.conftest import BASE_PUML_URL, TESTDATA_DIR
@@ -43,7 +43,7 @@ def plugin_config() -> PlantUMLConfig:
     t.load_dict({"light": "default/light", "dark": "default/dark", "url": "test.url/themes"})
 
     cache = CacheConfig()
-    cache.load_dict({"backend": "disabled"})
+    cache.load_dict({"backend": "disabled", "local": LocalCacheConfig()})
     c.load_dict(
         {
             "puml_url": BASE_PUML_URL,

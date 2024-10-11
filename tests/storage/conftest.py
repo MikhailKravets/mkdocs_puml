@@ -1,20 +1,10 @@
 import dataclasses
 import hashlib
-from unittest.mock import MagicMock, mock_open
+from unittest.mock import mock_open
 
 import msgpack
 import pytest
 from mkdocs_puml.diagrams.models import Diagram, ThemeMode
-
-
-@pytest.fixture
-def patch_path(monkeypatch):
-    path_mock = MagicMock()
-    path_mock.expanduser.return_value = path_mock
-    path_mock.__truediv__.return_value = path_mock
-    monkeypatch.setattr("pathlib.Path", path_mock)
-
-    return path_mock
 
 
 @pytest.fixture

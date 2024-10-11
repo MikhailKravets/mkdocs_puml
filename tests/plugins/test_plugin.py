@@ -1,4 +1,5 @@
 import os
+from mkdocs_puml.diagrams.storage import FileStorage, NaiveStorage
 from mkdocs_puml.plugin import PlantUMLPlugin, ThemeMode
 from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme
@@ -15,6 +16,7 @@ def test_on_config(plugin_config):
 
     assert isinstance(plugin.puml, PlantUML)
     assert isinstance(plugin.themer, Theme)
+    assert isinstance(plugin.storage, NaiveStorage)
 
     assert plugin.theme_light == "default/light"
     assert plugin.theme_dark == "default/dark"
@@ -35,8 +37,18 @@ def test_on_config_theme_disabled(plugin_config):
 
     assert plugin.theme_light is None
     assert plugin.theme_dark is None
-    assert plugin.puml_keyword == BASE_PUML_KEYWORD
     assert "assets/stylesheets/puml.css" in plugin_config["extra_css"]
+
+
+def test_on_config_file_storage(plugin_config, patch_path):
+    plugin = PlantUMLPlugin()
+    plugin.config = plugin_config
+    plugin_config.cache.backend = "local"
+    plugin_config.cache.local.load_dict({"path": "test"})
+
+    plugin.on_config(plugin_config)
+
+    assert isinstance(plugin.storage, FileStorage)
 
 
 def test_on_page_markdown_single_theme(plant_uml_plugin, md_lines):
