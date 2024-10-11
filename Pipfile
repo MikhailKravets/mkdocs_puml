@@ -8,6 +8,7 @@ flit = "~=3.7"
 mkdocs = ">= 1.4, < 2.0"
 httpx = "*"
 msgpack = "*"
+rich = "*"
 
 [dev-packages]
 mkdocs-material = "*"
