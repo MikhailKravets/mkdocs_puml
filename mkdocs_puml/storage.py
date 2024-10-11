@@ -12,35 +12,69 @@ from mkdocs_puml.model import Diagram, ThemeMode
 
 
 class AbstractStorage(ABC):
+    """PlantUML may take up to several seconds to render
+    a single diagram. Storage adds a persistence to the built SVG,
+    allowing to use it as a cache for the diagrams.
+    """
+
     def __init__(self):
         self.data: dict[str, Diagram] = {}
 
     @abstractmethod
     def add(self, d: Diagram) -> str:  # pragma: no cover
-        pass
+        """Add a diagram to the storage and return
+        a key of the diagram.
 
-    def update(self, d: Iterable[tuple[str, str]]):
-        for key, svg in d:
-            self.data[key].diagram = svg
+        Args:
+            d (Diagram): diagram object to add to the storage
+
+        Returns:
+            str: key of the diagram
+        """
+
+    def update(self, svg: Iterable[tuple[str, str]]):
+        """Update a collection of diagrams from an
+        iterable of SVG images.
+
+        Args:
+            svg (Iterable[tuple[str, str]]): iterable of tuples `(diagram key, svg)`
+        """
+        for key, s in svg:
+            self.data[key].diagram = s
 
     @abstractmethod
     def hash(self, d: Diagram) -> str:  # pragma: no cover
-        pass
+        """Returns a collision-free string hash for the diagram
+
+        Args:
+            d (Diagram): diagram object
+
+        Returns:
+            str: string hash of the diagram
+        """
 
     @abstractmethod
     def save(self):  # pragma: no cover
-        pass
+        """Saves data to a persistent storage: a file,
+        database, etc
+        """
 
     def schemes(self) -> dict[str, str]:
+        """A dictionary where the key is the diagram's key
+        and the value is the diagram's schema
+        """
         return {k: v.scheme for k, v in self.data.items() if v.diagram is None}
 
-    def items(self) -> dict[str, Diagram]:
+    def items(self) -> list[str, Diagram]:
+        """A list of (key, Dictionary) tuples"""
         return [(k, v) for k, v in self.data.items()]
 
     def keys(self) -> Iterable[str]:
+        """Iterable of diagram keys"""
         return self.data.keys()
 
     def __getitem__(self, key: str) -> Diagram:
+        """Get diagram by key"""
         return self.data[key]
 
 
