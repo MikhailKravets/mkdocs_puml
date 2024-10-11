@@ -1,51 +1,17 @@
-from dataclasses import dataclass
 from pathlib import Path
 import typing
 import re
-import uuid
 import os
 import shutil
 
 from mkdocs.config.base import Config
-from mkdocs.config.config_options import Type, SubConfig, Optional
 from mkdocs.plugins import BasePlugin
 
+from mkdocs_puml.configs import PlantUMLConfig
+from mkdocs_puml.diagrams import Diagram, ThemeMode
+from mkdocs_puml.diagrams.storage import AbstractStorage, build_storage
 from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme
-
-
-class ThemeConfig(Config):
-    enabled = Type(bool, default=True)
-    light = Type(str, default="default/light")
-    dark = Type(str, default="default/dark")
-
-    # TODO: update when release
-    url = Type(
-        str,
-        default="https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/",
-    )
-
-
-class PlantUMLConfig(Config):
-    puml_url = Type(str)
-    puml_keyword = Type(str, default="puml")
-    verify_ssl = Type(bool, default=True)
-    auto_dark = Type(  # TODO: deprecate! And we can set 1.5.0 version?
-        bool, default=True
-    )
-    theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default
-
-
-class ThemeMode:
-    LIGHT = "light"
-    DARK = "dark"
-
-
-@dataclass
-class Diagram:
-    scheme: str
-    mode: ThemeMode
-    diagram: Optional[str] = None
 
 
 class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
@@ -82,10 +48,12 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         )
 
         self.puml: typing.Optional[PlantUML] = None
+        self.themer: typing.Optional[Theme] = None
+        self.storage: typing.Optional[AbstractStorage] = None
 
-        self.diagrams: dict[str, Diagram] = {
-            # key - uuid: value - Diagram dataclass.
-        }
+        # self.diagrams: dict[str, Diagram] = {
+        #     # key - uuid: value - Diagram dataclass.
+        # }
 
     def on_config(self, config: Config) -> Config:
         """Event that is fired by mkdocs when configs are created.
@@ -119,6 +87,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             self.theme_light = None
             self.theme_dark = None
 
+        self.storage = build_storage(self.config.cache)
+
         return config
 
     def on_page_markdown(self, markdown: str, *args, **kwargs) -> str:
@@ -151,22 +121,23 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         return markdown
 
     def _store_single(self, scheme: str) -> str:
-        key = str(uuid.uuid4())
-        self.diagrams[key] = Diagram(scheme, mode=ThemeMode.LIGHT)
+        d = Diagram(scheme, mode=ThemeMode.LIGHT)
+        key = self.storage.add(d)
         return f'<pre class="{self.pre_class_name}">{key}</pre>'
 
     def _store_dual(self, scheme: str) -> str:
-        key = str(uuid.uuid4())
-        key_dark = f"{key}-dark"
-        self.diagrams[key] = Diagram(
+        d_light = Diagram(
             self.themer.include(self.config.theme.light, scheme), mode=ThemeMode.LIGHT
         )
-        self.diagrams[key_dark] = Diagram(
+        d_dark = Diagram(
             self.themer.include(self.config.theme.dark, scheme), mode=ThemeMode.DARK
         )
 
+        key_light = self.storage.add(d_light)
+        key_dark = self.storage.add(d_dark)
+
         return (
-            f'<pre class="{self.pre_class_name}">{key}</pre>\n'
+            f'<pre class="{self.pre_class_name}">{key_light}</pre>\n'
             f'<pre class="{self.pre_class_name}">{key_dark}</pre>'
         )
 
@@ -184,9 +155,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         # Why it was even added??
         # diagram_contents = [diagram for diagram in self.diagrams.values()]
 
-        svgs = self.puml.translate((v.scheme for v in self.diagrams.values()))
-        for key, svg in zip(self.diagrams, svgs):
-            self.diagrams[key].diagram = svg
+        svgs = self.puml.translate(self.storage.schemes)
+        self.storage.update(zip(self.storage.keys, svgs))
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
@@ -217,7 +187,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         """Replace a UUID key with a real diagram in a
         content
         """
-        diagram = self.diagrams[key]
+        diagram = self.storage[key]
 
         # When theming is not enabled, user will manually manage themes in each diagram.
         # Also, only one version of diagram will be generated for each scheme, which

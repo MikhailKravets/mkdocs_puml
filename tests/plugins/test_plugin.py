@@ -44,21 +44,21 @@ def test_on_page_markdown_single_theme(plant_uml_plugin, md_lines):
 
     plant_uml_plugin.on_page_markdown("\n".join(md_lines))
 
-    assert len(plant_uml_plugin.diagrams) == 2
+    assert len(plant_uml_plugin.storage.diagrams) == 2
 
-    for key in plant_uml_plugin.diagrams:
+    for key in plant_uml_plugin.storage.keys:
         assert is_uuid_valid(key)
 
-    for val in plant_uml_plugin.diagrams.values():
-        assert "@startuml" in val.scheme and "@enduml" in val.scheme
+    for val in plant_uml_plugin.storage.schemes:
+        assert "@startuml" in val and "@enduml" in val
 
 
 def test_on_page_markdown_dual_themes(plant_uml_plugin, md_lines):
     plant_uml_plugin.on_page_markdown("\n".join(md_lines))
 
-    assert len(plant_uml_plugin.diagrams) == 4
+    assert len(plant_uml_plugin.storage.keys) == 4
 
-    for key, val in plant_uml_plugin.diagrams.items():
+    for key, val in zip(plant_uml_plugin.storage.keys, plant_uml_plugin.storage.diagrams):
         if val.mode == ThemeMode.LIGHT:
             assert is_uuid_valid(key)
         else:
@@ -66,8 +66,8 @@ def test_on_page_markdown_dual_themes(plant_uml_plugin, md_lines):
             assert is_uuid_valid(uuid_key)
             assert dark == "dark"
 
-    for val in plant_uml_plugin.diagrams.values():
-        assert "@startuml" in val.scheme and "@enduml" in val.scheme
+    for val in plant_uml_plugin.storage.schemes:
+        assert "@startuml" in val and "@enduml" in val
 
 
 def test_on_page_markdown_custom_keyword(plant_uml_plugin, md_lines):
@@ -75,21 +75,21 @@ def test_on_page_markdown_custom_keyword(plant_uml_plugin, md_lines):
     plant_uml_plugin.config.puml_keyword = CUSTOM_PUML_KEYWORD
     plant_uml_plugin.on_page_markdown("\n".join(md_lines))
 
-    assert len(plant_uml_plugin.diagrams) == 4  # 2 (light / dark) on each diagram
+    assert len(plant_uml_plugin.storage.diagrams) == 4  # 2 (light / dark) on each diagram
 
 
 def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environment):
     mock_requests(len(diagrams_dict))
 
-    plant_uml_plugin.diagrams = diagrams_dict
+    plant_uml_plugin.storage.data = diagrams_dict
     plant_uml_plugin.on_env(plugin_environment)
 
-    for diagram in plant_uml_plugin.diagrams.values():
-        assert diagram.diagram.startswith("<svg")
+    for diagram in plant_uml_plugin.storage.iter_svg:
+        assert diagram.startswith("<svg")
 
 
 def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
-    plant_uml_plugin.diagrams = diagrams_dict
+    plant_uml_plugin.storage.data = diagrams_dict
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
 
     assert output.count('<div class="puml light" style="">') == len(
@@ -112,7 +112,7 @@ def test_on_post_page_without_html_attribute(
     plant_uml_plugin, diagrams_dict, html_page
 ):
     # TODO: deprecated! After we raise mkdocs>=1.4 strictly, this will be never a case
-    plant_uml_plugin.diagrams = diagrams_dict
+    plant_uml_plugin.storage.data = diagrams_dict
     delattr(html_page, "html")
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
 
