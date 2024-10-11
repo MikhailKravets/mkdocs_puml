@@ -1,5 +1,5 @@
 import os
-from mkdocs_puml.storage import FileStorage, NaiveStorage
+from mkdocs_puml.storage import FileStorage, RAMStorage
 from mkdocs_puml.plugin import PlantUMLPlugin, ThemeMode
 from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme
@@ -16,7 +16,7 @@ def test_on_config(plugin_config):
 
     assert isinstance(plugin.puml, PlantUML)
     assert isinstance(plugin.themer, Theme)
-    assert isinstance(plugin.storage, NaiveStorage)
+    assert isinstance(plugin.storage, RAMStorage)
 
     assert plugin.theme_light == "default/light"
     assert plugin.theme_dark == "default/dark"

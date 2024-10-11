@@ -1,6 +1,6 @@
 import pytest
 from mkdocs_puml.model import Diagram, ThemeMode
-from mkdocs_puml.storage import NaiveStorage
+from mkdocs_puml.storage import RAMStorage
 from tests.plugins.conftest import is_uuid_valid
 
 
@@ -10,13 +10,13 @@ def diagram_object():
 
 
 def test_hash_light(diagram_object):
-    storage = NaiveStorage()
+    storage = RAMStorage()
     assert is_uuid_valid(storage.hash(diagram_object))
 
 
 def test_hash_dark(diagram_object):
     diagram_object.mode = ThemeMode.DARK
-    storage = NaiveStorage()
+    storage = RAMStorage()
 
     h, _, dark = storage.hash(diagram_object).rpartition("-")
     assert is_uuid_valid(h)
@@ -24,7 +24,7 @@ def test_hash_dark(diagram_object):
 
 
 def test_add(diagram_object):
-    storage = NaiveStorage()
+    storage = RAMStorage()
     key = storage.add(diagram_object)
 
     assert is_uuid_valid(key)

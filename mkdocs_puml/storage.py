@@ -44,7 +44,7 @@ class AbstractStorage(ABC):
 
     @abstractmethod
     def hash(self, d: Diagram) -> str:  # pragma: no cover
-        """Returns a collision-free string hash for the diagram
+        """Returns a collision-free hash for the diagram
 
         Args:
             d (Diagram): diagram object
@@ -60,8 +60,12 @@ class AbstractStorage(ABC):
         """
 
     def schemes(self) -> dict[str, str]:
-        """A dictionary where the key is the diagram's key
-        and the value is the diagram's schema
+        """A dictionary of diagrams that doesn't have SVG
+        image rendered for them.
+
+        Returns:
+            dict[str, str]: dictionary where key is diagram key
+                            and value is diagram scheme
         """
         return {k: v.scheme for k, v in self.data.items() if v.diagram is None}
 
@@ -78,7 +82,12 @@ class AbstractStorage(ABC):
         return self.data[key]
 
 
-class NaiveStorage(AbstractStorage):
+class RAMStorage(AbstractStorage):
+    """RAMStorage doesn't provide persistence.
+    The diagrams are stored in memory only.
+
+    It may be useful when user wants to disable caching.
+    """
 
     def hash(self, d: Diagram):
         if d.mode == ThemeMode.LIGHT:
@@ -92,10 +101,22 @@ class NaiveStorage(AbstractStorage):
         return h
 
     def save(self):  # pragma: no coverage
-        """NaiveStorage keeps diagrams in RAM only"""
+        """RAMStorage keeps diagrams in RAM only"""
 
 
 class FileStorage(AbstractStorage):
+    """`FileStorage` handles diagrams stored in a file
+    using the MessagePack format.
+
+    This class can be used as a cache, sending only diagrams
+    without an SVG image to the PlantUML server.
+
+    `FileStorage` uses `blake2b` as a hasher for diagrams.
+
+    Args:
+        base_dir (Path): the directory where `FileStorage` stores the file.
+        filename (str, optional): name of the file. Defaults to "storage.mpack".
+    """
 
     def __init__(self, base_dir: Path, filename: str = "storage.mpack"):
         super().__init__()
@@ -151,7 +172,15 @@ class FileStorage(AbstractStorage):
 
 
 def build_storage(config: CacheConfig) -> AbstractStorage:
+    """Factory function that returns a storage class instance
+    based on the `CacheConfig`.
+
+    Cache backend:
+
+    * `disabled` — build `RAMStorage` instance
+    * `local` — build `FileStorage` instance
+    """
     if config.backend == CacheBackend.DISABLED.value:
-        return NaiveStorage()
+        return RAMStorage()
     elif config.backend == CacheBackend.LOCAL.value:
         return FileStorage(Path(config.local.path))
