@@ -40,7 +40,7 @@ def test_on_config_theme_disabled(plugin_config):
     assert "assets/stylesheets/puml.css" in plugin_config["extra_css"]
 
 
-def test_on_config_file_storage(plugin_config, patch_path):
+def test_on_config_file_storage(plugin_config, patch_path_mkdir):
     plugin = PlantUMLPlugin()
     plugin.config = plugin_config
     plugin_config.cache.backend = "local"

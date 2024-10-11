@@ -122,10 +122,10 @@ class FileStorage(AbstractStorage):
         super().__init__()
 
         work_dir = Path.cwd().name
-        dir = base_dir.expanduser() / work_dir
+        dir = base_dir.expanduser().joinpath(work_dir)
         dir.mkdir(parents=True, exist_ok=True)
 
-        self.path = dir / filename
+        self.path = dir.joinpath(filename)
         self._read_data()
 
         # This attribute helps in finding invalid diagrams
