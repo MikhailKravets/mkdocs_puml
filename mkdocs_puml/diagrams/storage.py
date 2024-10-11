@@ -74,7 +74,6 @@ class FileStorage(AbstractStorage):
         dir.mkdir(parents=True, exist_ok=True)
 
         self.path = dir / filename
-        print(self.path)
         self._read_data()
 
     def hash(self, d: Diagram):
@@ -84,7 +83,6 @@ class FileStorage(AbstractStorage):
     def save(self):
         with open(self.path, "wb") as f:
             msgpack.dump({k: dataclasses.asdict(v) for k, v in self.data.items()}, f)
-        print("saved")
 
     def _read_data(self):
         if not self.path.exists() or self.path.stat().st_size == 0:
