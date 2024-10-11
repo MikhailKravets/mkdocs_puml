@@ -15,17 +15,9 @@ class AbstractStorage(ABC):
     def __init__(self):
         self.data: dict[str, Diagram] = {}
 
-    def add(self, d: Diagram, replace: bool = False) -> str:
-        h = self.hash(d)
-
-        if replace:
-            self.data[h] = d
-            return h
-
-        if h not in self.data:
-            self.data[h] = d
-
-        return h
+    @abstractmethod
+    def add(self, d: Diagram) -> str:
+        pass
 
     def update(self, d: Iterable[tuple[str, str]]):
         for key, svg in d:
@@ -60,6 +52,14 @@ class NaiveStorage(AbstractStorage):
         elif d.mode == ThemeMode.DARK:
             return f"{uuid.uuid4()}-dark"
 
+    def add(self, d: Diagram):
+        h = self.hash(d)
+
+        if h not in self.data:
+            self.data[h] = d
+
+        return h
+
     def save(self):
         """NaiveStorage keeps diagrams in RAM only"""
 
@@ -76,13 +76,39 @@ class FileStorage(AbstractStorage):
         self.path = dir / filename
         self._read_data()
 
+        # This attribute helps in finding invalid diagrams
+        # that don't exists in docs anymore but present in storage.
+        #
+        # During the build self.data will be populated by call of
+        # self.add method. If the key was never added through self.add
+        # method, then this diagram doesn't exist anymore in the docs
+        # and it can be safely deleted from storage.
+        self.invalid = set(self.data.keys())
+
     def hash(self, d: Diagram):
         return hashlib.blake2b(d.scheme.encode("utf-8")).hexdigest()
 
-    # TODO: how to invalidate data?
+    def add(self, d: Diagram):
+        h = self.hash(d)
+
+        if h in self.invalid:
+            self.invalid.remove(h)
+
+        if h not in self.data:
+            self.data[h] = d
+
+        return h
+
     def save(self):
         with open(self.path, "wb") as f:
-            msgpack.dump({k: dataclasses.asdict(v) for k, v in self.data.items()}, f)
+            msgpack.dump(
+                {
+                    k: dataclasses.asdict(v)
+                    for k, v in self.data.items()
+                    if k not in self.invalid
+                },
+                f,
+            )
 
     def _read_data(self):
         if not self.path.exists() or self.path.stat().st_size == 0:
