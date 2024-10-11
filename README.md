@@ -41,6 +41,10 @@ plugins:
           light: default/light
           dark: default/dark
           url: https://raw.githubusercontent.com/.../mkdocs_puml/.../themes/
+        cache:
+          backend: local
+          local:
+            path: "~/.cache/mkdocs_puml"
 ```
 
 Where
@@ -54,6 +58,8 @@ Where
 | `theme.light`  | `str`. Default `default/light` | Name of the theme to use when `mkdocs-material` is in light mode |
 | `theme.dark`  | `str`. Default `default/dark` | Name of the theme to use when `mkdocs-material` is in dark mode |
 | `theme.url`   | `str`. Defaults to this repository URL | URL to the repository folder where themes are located |
+| `cache.backend` | `enum`. `disabled` or `local` | Specifies the storage to use for preserving diagrams |
+| `cache.local.path` | `str` Defaults to `~/.cache/mkdocs_puml` | Defines path where `mkdocs_puml` stores diagrams |
 
 
 Now, add PlantUML diagrams into your `.md` documentation. For example,
