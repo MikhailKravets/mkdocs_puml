@@ -52,7 +52,7 @@ class PlantUML:
         base_url: str,
         verify_ssl: bool = True,
         output_format: str = "svg",
-        timeout: int = 10,
+        timeout: int = 40,
     ):
         # Use sanitize_url because urllib removes last part of url which doesn't
         # end with / which makes it inconvenient to work with.
