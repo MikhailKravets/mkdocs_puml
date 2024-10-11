@@ -1,51 +1,16 @@
-from dataclasses import dataclass
 from pathlib import Path
 import typing
 import re
-import uuid
 import os
 import shutil
 
-from mkdocs.config.base import Config
-from mkdocs.config.config_options import Type, SubConfig, Optional
 from mkdocs.plugins import BasePlugin
 
+from mkdocs_puml.configs import PlantUMLConfig
+from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.storage import AbstractStorage, build_storage
 from mkdocs_puml.puml import PlantUML
 from mkdocs_puml.themes import Theme
-
-
-class ThemeConfig(Config):
-    enabled = Type(bool, default=True)
-    light = Type(str, default="default/light")
-    dark = Type(str, default="default/dark")
-
-    # TODO: update when release
-    url = Type(
-        str,
-        default="https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/",
-    )
-
-
-class PlantUMLConfig(Config):
-    puml_url = Type(str)
-    puml_keyword = Type(str, default="puml")
-    verify_ssl = Type(bool, default=True)
-    auto_dark = Type(  # TODO: deprecate! And we can set 1.5.0 version?
-        bool, default=True
-    )
-    theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default
-
-
-class ThemeMode:
-    LIGHT = "light"
-    DARK = "dark"
-
-
-@dataclass
-class Diagram:
-    scheme: str
-    mode: ThemeMode
-    diagram: Optional[str] = None
 
 
 class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
@@ -57,20 +22,14 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             plugins:
                 - mkdocs_puml:
                     puml_url: https://www.plantuml.com/plantuml
-                    num_workers: 10
+
+    The rest of configuration is optional. Please refer to plugin
+    documentation to view them all
 
     Attributes:
         pre_class_name (str): the class that will be set to intermediate <pre> tag
                               containing uuid code
         config_scheme (str): config scheme to set by user in mkdocs.yml file
-
-        regex (re.Pattern): regex to find all puml code blocks
-        uuid_regex (re.Pattern): regex to find all uuid <pre> blocks
-        puml (PlantUML): PlantUML instance that requests PlantUML service
-        diagrams (dict): Dictionary containing the diagrams (puml and later svg) and their keys
-        puml_keyword (str): keyword used to find PlantUML blocks within Markdown files
-        verify_ssl (bool): Designates whether the ``requests`` should verify SSL certificate
-        auto_dark (bool): Designates whether the plugin should automatically generate dark mode images.
     """
 
     pre_class_name = "diagram-key"
@@ -82,16 +41,15 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         )
 
         self.puml: typing.Optional[PlantUML] = None
+        self.themer: typing.Optional[Theme] = None
+        self.storage: typing.Optional[AbstractStorage] = None
 
-        self.diagrams: dict[str, Diagram] = {
-            # key - uuid: value - Diagram dataclass.
-        }
-
-    def on_config(self, config: Config) -> Config:
+    def on_config(self, config: PlantUMLConfig) -> PlantUMLConfig:
         """Event that is fired by mkdocs when configs are created.
 
-        self.puml_light, self.puml_dark instances are populated in this event.
-        Also, `puml.css` that enable dark / light mode styles is added to `extra_css`.
+        All required classes such as PlantUML, Theme, or any class for storage
+        are initialized in this method.
+        Also, `puml.css` file that enable dark / light mode styles is added to `extra_css`.
 
         Args:
             config: Full mkdocs.yml config file. To access configs of PlantUMLPlugin only,
@@ -103,10 +61,10 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         config["extra_css"].append("assets/stylesheets/puml.css")
 
         self.puml = PlantUML(
-            self.config["puml_url"],
-            verify_ssl=self.config["verify_ssl"],
+            self.config.puml_url,
+            verify_ssl=self.config.verify_ssl,
         )
-        self.puml_keyword = self.config["puml_keyword"]
+        self.puml_keyword = self.config.puml_keyword
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
 
         if self.config.theme.enabled:
@@ -119,19 +77,20 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             self.theme_light = None
             self.theme_dark = None
 
+        self.storage = build_storage(self.config.cache)
+
         return config
 
     def on_page_markdown(self, markdown: str, *args, **kwargs) -> str:
         """Event to fire for each .md page.
 
-        Here, all ``puml`` code blocks are found and added to self.diagrams
-        with the corresponding uuid key.
+        Here, all ``puml`` code blocks are found and added to a storage.
 
-        Then, <pre class="...">{uuid of diagram}</pre> tags are added to
+        Then, <pre class="...">{key of diagram}</pre> tags are added to
         the markdown page.
 
         Args:
-            markdown: Markdown page in which to look for ``puml`` diagrams.
+            markdown: Markdown page in which to look for PlantUML diagrams.
 
         Returns:
             Updated markdown page
@@ -151,22 +110,23 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         return markdown
 
     def _store_single(self, scheme: str) -> str:
-        key = str(uuid.uuid4())
-        self.diagrams[key] = Diagram(scheme, mode=ThemeMode.LIGHT)
+        d = Diagram(scheme, mode=ThemeMode.LIGHT)
+        key = self.storage.add(d)
         return f'<pre class="{self.pre_class_name}">{key}</pre>'
 
     def _store_dual(self, scheme: str) -> str:
-        key = str(uuid.uuid4())
-        key_dark = f"{key}-dark"
-        self.diagrams[key] = Diagram(
+        d_light = Diagram(
             self.themer.include(self.config.theme.light, scheme), mode=ThemeMode.LIGHT
         )
-        self.diagrams[key_dark] = Diagram(
+        d_dark = Diagram(
             self.themer.include(self.config.theme.dark, scheme), mode=ThemeMode.DARK
         )
 
+        key_light = self.storage.add(d_light)
+        key_dark = self.storage.add(d_dark)
+
         return (
-            f'<pre class="{self.pre_class_name}">{key}</pre>\n'
+            f'<pre class="{self.pre_class_name}">{key_light}</pre>\n'
             f'<pre class="{self.pre_class_name}">{key_dark}</pre>'
         )
 
@@ -181,12 +141,9 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         Returns:
             Jinja environment
         """
-        # Why it was even added??
-        # diagram_contents = [diagram for diagram in self.diagrams.values()]
-
-        svgs = self.puml.translate((v.scheme for v in self.diagrams.values()))
-        for key, svg in zip(self.diagrams, svgs):
-            self.diagrams[key].diagram = svg
+        to_request = self.storage.schemes()
+        svgs = self.puml.translate(to_request.values())
+        self.storage.update(zip(to_request.keys(), svgs))
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
@@ -214,10 +171,10 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         return output
 
     def _replace(self, key: str, content: str) -> str:
-        """Replace a UUID key with a real diagram in a
+        """Replace a key of a diagram with a diagram svg in a
         content
         """
-        diagram = self.diagrams[key]
+        diagram = self.storage[key]
 
         # When theming is not enabled, user will manually manage themes in each diagram.
         # Also, only one version of diagram will be generated for each scheme, which
@@ -231,13 +188,10 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         )
 
     def on_post_build(self, config):
-        """
-        Event triggered after the build process is complete.
+        """Event triggered after the build process is complete.
 
-        This method is responsible for copying static files from the plugin's
-        `static` directory to the specified `assets/stylesheets/puml` directory
-        in the site output. This ensures that the necessary JavaScript files
-        are available in the final site.
+        This method copies static assest of the plugin and saves
+        the diagrams to the storage.
 
         Args:
             config (dict): The MkDocs configuration object.
@@ -252,3 +206,5 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             os.makedirs(dest_dir)
 
         shutil.copy(puml_css, dest_dir)
+
+        self.storage.save()
