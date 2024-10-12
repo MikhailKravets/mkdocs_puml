@@ -195,7 +195,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
 
         # When theming is not enabled, user will manually manage themes in each diagram.
         # Also, only one version of diagram will be generated for each scheme, which
-        # should be displayed always although light / dark mode of mkdocs-material.
+        # should be displayed always despite the light / dark mode of mkdocs-material.
         style = "display: block" if not self.config.theme.enabled else ""
         replacement = (
             f'<div class="puml {diagram.mode}" style="{style}">{diagram.diagram}</div>'
