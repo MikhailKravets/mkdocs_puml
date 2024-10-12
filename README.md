@@ -68,7 +68,7 @@ Where
 | `cache.local.path` | `str` Defaults to `~/.cache/mkdocs_puml` | Defines path where `mkdocs_puml` stores diagrams |
 
 </details>
-<br />
+
 Now, add PlantUML diagrams into your `.md` documentation. For example,
 
 <pre>
