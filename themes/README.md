@@ -55,9 +55,43 @@ For our example above, `mkdocs_puml` will include into PlantUML diagrams these U
 
 ## Contribute theme
 
-We welcome theme contributors to this project! Whether you have a creative idea
-or want to implement a popular color palette for PlantUML,
-we encourage you to get involved and share your work with the community.
+We welcome contributions from theme creators to this project!
+Whether you have a creative idea or want to implement a popular color
+palette for PlantUML, we encourage you to get involved and share your
+work with the community.
 Follow the guide below to add your theme or update existing one in the repository.
 
-**TODO**: write guide.
+### Structuring a theme
+
+Each new theme should be placed in a folder named after the theme. The final `.puml`
+file represents the theme flavor. Each theme folder should include a `README.md`
+file that describes the theme and provides examples of diagrams that use this theme.
+Examples can be placed under `examples/` folder.
+
+So, showing what's being said, the theme structure should look like
+
+```
+theme_name/
+  examples/
+  light_flavor.puml
+  dark_flavor.puml
+  dimmed_flavor.puml
+  README.md
+```
+
+### Work on theme
+
+We encourage you to use a new styling API of PlantUML. You may read about styling API
+at [Style (or CSS like style)](https://plantuml.com/en/style-evolution).
+Although many features of the styling API are still in progress, it is a powerful mechanism for theming. You may use [default](default) theme as a base theme when
+styling.
+
+### Publishing your theme
+
+Once you have prepared the theme flavors, please complete the theme card
+(its `README.md`) to explain the theme and provide examples of various diagrams that
+utilize it.
+
+Then, please create a PR on the themes branch.
+
+🙌 Thank you for your contribution!
