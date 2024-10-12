@@ -6,7 +6,11 @@
 `mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
 documentation.
 
-#### 🎨 [**View mkdocs_puml themes**](themes/README.md)
+---------
+
+🎨 [**View mkdocs_puml themes**](themes/README.md)
+
+---------
 
 ## Install
 
