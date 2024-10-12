@@ -92,6 +92,6 @@ Once you have prepared the theme flavors, please complete the theme card
 (its `README.md`) to explain the theme, provide examples of various diagrams that
 utilize it, and update [Themes available](#themes-available) table.
 
-Then, please create a PR on the themes branch.
+Then, please create a PR on the `themes` branch.
 
 🙌 Thank you for your contribution!
