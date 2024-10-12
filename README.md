@@ -8,7 +8,7 @@ documentation.
 
 ---------
 
-#### 🎨 [**View mkdocs_puml themes**](themes/README.md)
+#### 🎨 [**View mkdocs_puml themes**](themes)
 
 ---------
 
@@ -104,7 +104,7 @@ the last C4 library file. This way, it's **highly advised** to place C4
 `!include` instructions at the top of the diagram.
 
 To learn how to use and view available themes, check out the
-🎨 [**dedicated `mkdocs_puml` themes page**](themes/README.md).
+🎨 [**dedicated `mkdocs_puml` themes page**](themes).
 
 Pay attention that for each PlantUML diagram, `mkdocs_puml` generates two `svg` images:
 one for light mode and another for dark mode. If you want to disable theming and
