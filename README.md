@@ -8,7 +8,7 @@ documentation.
 
 ---------
 
-🎨 [**View mkdocs_puml themes**](themes/README.md)
+#### 🎨 [**View mkdocs_puml themes**](themes/README.md)
 
 ---------
 
