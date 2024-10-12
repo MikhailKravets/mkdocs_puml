@@ -139,12 +139,12 @@ plugins:
         num_workers: 8
 ```
 
-Obviously, this approach works faster than
-using remote [plantuml.com](https://www.plantuml.com/plantuml/).
+This approach works a bit faster than [plantuml.com](https://www.plantuml.com/plantuml/)
+and you can avoid `509 Bandwidth Limit Exceeded` error.
 
 ### Standalone usage
 
-You can use `PlantUML` converter without `mkdocs`. Below is the example,
+You can use `PlantUML` converter without `mkdocs`. See an example below
 
 ```python
 from mkdocs_puml.puml import PlantUML
