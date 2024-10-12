@@ -6,6 +6,8 @@
 `mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
 documentation.
 
+🎨 [**View mkdocs_puml themes**](themes/README.md)
+
 ## Install
 
 Run the following command to install the package
@@ -28,6 +30,8 @@ plugins:
 `plantuml` plugin uses `PlantUML` exclusively as an HTTP service.
 So, you should necessarily specify `puml_url` config.
 
+<details>
+<summary>📋 <b>Full list of plugin parameters</b></summary>
 The `plantuml` config with the full list of parameters is below
 
 ```yaml
@@ -63,7 +67,8 @@ Where
 | `cache.backend` | `enum`. `disabled` or `local` | Specifies the storage to use for preserving diagrams |
 | `cache.local.path` | `str` Defaults to `~/.cache/mkdocs_puml` | Defines path where `mkdocs_puml` stores diagrams |
 
-
+</details>
+<br />
 Now, add PlantUML diagrams into your `.md` documentation. For example,
 
 <pre>
@@ -88,46 +93,13 @@ configured theme into the first line of the PlantUML diagram (if it's not C4 dia
 This allows developers to add custom styles to each diagram, which will take priority
 over pre-defined themes.
 
-In case of C4 diagrams, their styles are kept inside C4 library files. Since
-`mkdocs_puml` themes contain styling of C4 as well, they will be included after
+⚠️ In case of C4 diagrams, their styles are kept inside C4 library files. Since
+`mkdocs_puml` themes contain styling of C4 as well, our themes will be included after
 the last C4 library file. This way, it's **highly advised** to place C4
 `!include` instructions at the top of the diagram.
 
-### How to use themes
-
-In order to configure themes you should add `theme` config as follows
-
-```yml
-theme:
-  light: default/light
-  dark: default/dark
-```
-
-- `light` specifies the theme to display on light mode
-- `dark` specifies the theme to display on dark mode
-
-Typically, a single theme has several flavors, allowing you to set the corresponding theme for each mode. For example, `default` theme has two flavors: `light` and `dark`.
-
-By default `mkdocs_puml` uses themes from its GitHub repository. However, if you like
-to use your own themes, you should set `url` attribute and themes from that url
-
-```yml
-theme:
-  url: https://your.custom.puml/themes
-  light: custom/light
-  dark: custom/dark
-```
-
-`mkdocs_puml` then builds a special URLs to access themes that follows this format
-
-```
-{url}/{mode}.puml
-```
-
-For our example above, `mkdocs_puml` will include into PlantUML diagrams these URLs
-
-- Light mode `https://your.custom.puml/themes/custom/light.puml`
-- Dark mode `https://your.custom.puml/themes/custom/dark.puml`
+To learn how to use and view available themes, check out the
+🎨 [**dedicated `mkdocs_puml` themes page**](themes/README.md).
 
 Pay attention that for each PlantUML diagram, `mkdocs_puml` generates two `svg` images:
 one for light mode and another for dark mode. If you want to disable theming and
@@ -137,11 +109,6 @@ generate one `svg` for each diagram, set `enabled` to `false` as follows
 theme:
   enabled: false
 ```
-
-If you like to know what themes are available or how to compose your own theme,
-click on the link below.
-
-🌗 [**Read more about theming in mkdocs_puml**](themes/README.md)
 
 ### Run PlantUML service with Docker
 
@@ -191,7 +158,7 @@ Jon -> Sansa : hello
 @enduml
 """
 
-puml = PlantUML(puml_url, num_workers=2)
+puml = PlantUML(puml_url)
 svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
 
