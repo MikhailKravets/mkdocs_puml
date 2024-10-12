@@ -156,6 +156,8 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             self.storage.update(zip(to_request.keys(), svgs))
 
         built_len = len(to_request)
+
+        # TODO: total_len counts invalid diagrams as well! Count only valid!
         total_len = len(self.storage.keys())
         self.console.print(
             f"[dim][bold magenta]mkdocs_puml[/bold magenta]: Built {built_len} diagrams, "
