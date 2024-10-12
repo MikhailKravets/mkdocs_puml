@@ -32,6 +32,7 @@ So, you should necessarily specify `puml_url` config.
 
 <details>
 <summary>📋 <b>Full list of plugin parameters</b></summary>
+
 The `plantuml` config with the full list of parameters is below
 
 ```yaml
