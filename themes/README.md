@@ -89,8 +89,8 @@ styling.
 ### Publishing your theme
 
 Once you have prepared the theme flavors, please complete the theme card
-(its `README.md`) to explain the theme and provide examples of various diagrams that
-utilize it.
+(its `README.md`) to explain the theme, provide examples of various diagrams that
+utilize it, and update [Themes available](#themes-available) table.
 
 Then, please create a PR on the themes branch.
 
