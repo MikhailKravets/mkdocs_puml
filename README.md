@@ -202,14 +202,16 @@ puml = PlantUML(puml_url)
 svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
 
+## Special Thanks
+
+We would like to acknowledge the authors whose work, while not directly related to this project, has been instrumental in shaping it.
+
+* [panzoom](https://github.com/timmywil/panzoom) is the library we use for
+  diagrams interaction.
+* [catppuccin](https://catppuccin.com/) provided a great color palette that
+  we incorporated into one of our themes
+* [lucide](https://lucide.dev/) offers a consistent collection of free SVG icons.
+
 ## License
 
 The project is licensed under [MIT license](LICENSE).
-
-## Special Thanks
-
-**TODO: thank developers**
-
-* catppuccin
-* lucide
-* https://github.com/timmywil/panzoom?tab=readme-ov-file
