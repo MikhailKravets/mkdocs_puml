@@ -6,6 +6,12 @@
 `mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
 documentation.
 
+---------
+
+#### 🎨 [**View mkdocs_puml themes**](themes)
+
+---------
+
 ## Install
 
 Run the following command to install the package
@@ -28,6 +34,9 @@ plugins:
 `plantuml` plugin uses `PlantUML` exclusively as an HTTP service.
 So, you should necessarily specify `puml_url` config.
 
+<details>
+<summary>📋 <b>Full list of plugin parameters</b></summary>
+
 The `plantuml` config with the full list of parameters is below
 
 ```yaml
@@ -46,6 +55,8 @@ plugins:
           backend: local
           local:
             path: "~/.cache/mkdocs_puml"
+        interaction:
+          enabled: true
 ```
 
 Where
@@ -61,8 +72,10 @@ Where
 | `theme.dark`  | `str`. Default `default/dark` | Name of the theme to use when `mkdocs-material` is in dark mode |
 | `theme.url`   | `str`. Defaults to this repository URL | URL to the repository folder where themes are located |
 | `cache.backend` | `enum`. `disabled` or `local` | Specifies the storage to use for preserving diagrams |
-| `cache.local.path` | `str` Defaults to `~/.cache/mkdocs_puml` | Defines path where `mkdocs_puml` stores diagrams |
+| `cache.local.path` | `str`. Defaults to `~/.cache/mkdocs_puml` | Defines path where `mkdocs_puml` stores diagrams |
+| `interaction.enabled` | `bool`. Defaults to `True` | Designates whether rendered diagrams should be interactive |
 
+</details>
 
 Now, add PlantUML diagrams into your `.md` documentation. For example,
 
@@ -89,61 +102,56 @@ This allows developers to add custom styles to each diagram, which will take pri
 over pre-defined themes.
 
 In case of C4 diagrams, their styles are kept inside C4 library files. Since
-`mkdocs_puml` themes contain styling of C4 as well, they will be included after
+`mkdocs_puml` themes contain styling of C4 as well, our themes will be included after
 the last C4 library file. This way, it's **highly advised** to place C4
 `!include` instructions at the top of the diagram.
 
-### How to use themes
-
-In order to configure themes you should add `theme` config as follows
-
-```yml
-theme:
-  light: default/light
-  dark: default/dark
-```
-
-- `light` specifies the theme to display on light mode
-- `dark` specifies the theme to display on dark mode
-
-Typically, a single theme has several flavors, allowing you to set the corresponding theme for each mode. For example, `default` theme has two flavors: `light` and `dark`.
-
-By default `mkdocs_puml` uses themes from its GitHub repository. However, if you like
-to use your own themes, you should set `url` attribute and themes from that url
-
-```yml
-theme:
-  url: https://your.custom.puml/themes
-  light: custom/light
-  dark: custom/dark
-```
-
-`mkdocs_puml` then builds a special URLs to access themes that follows this format
-
-```
-{url}/{mode}.puml
-```
-
-For our example above, `mkdocs_puml` will include into PlantUML diagrams these URLs
-
-- Light mode `https://your.custom.puml/themes/custom/light.puml`
-- Dark mode `https://your.custom.puml/themes/custom/dark.puml`
+To learn how to use and view available themes, check out the
+🎨 [**dedicated `mkdocs_puml` themes page**](themes).
 
 Pay attention that for each PlantUML diagram, `mkdocs_puml` generates two `svg` images:
 one for light mode and another for dark mode. If you want to disable theming and
 generate one `svg` for each diagram, set `enabled` to `false` as follows
 
 ```yml
-theme:
-  enabled: false
+plantuml:
+  ...
+  theme:
+    enabled: false
 ```
 
-If you like to know what themes are available or how to compose your own theme,
-click on the link below.
+## 🌀 Interactive diagrams
 
-🌗 [**Read more about theming in mkdocs_puml**](themes/README.md)
+By default all diagrams are now interactive. When you hover mouse over a diagram
+few buttons will appear at the top left corner:
 
-### Run PlantUML service with Docker
+* `Copy` button copies the SVG code to the clipboard.
+* `Plus` button zooms in on the diagram.
+* `Home` resets the diagram to its default view.
+* `Minus` button zooms out on the diagram.
+
+Additionally, the following mouse events are supported
+
+* `Drag` the diagram moves it.
+* `Shift` + `Scroll` zooms in or out on the diagram.
+
+<details>
+<summary>💡 <b>View an example</b></summary>
+
+![interaction](.docs/examples/interaction.gif)
+</details>
+
+⚠️ This is still an experimental feature that require thorough testing.
+If you want to disable interactive diagrams add this plugin's configuration
+
+```yml
+plantuml:
+  ...
+  interaction:
+    enabled: false
+```
+
+## Run PlantUML service with Docker
 
 It is possible to run [plantuml/plantuml-server](https://hub.docker.com/r/plantuml/plantuml-server)
 as a Docker container.
@@ -164,15 +172,14 @@ Then substitute `puml_url` config with the local URL in the `mkdocs.yml` file
 plugins:
     - plantuml:
         puml_url: http://127.0.0.1:8080
-        num_workers: 8
 ```
 
-Obviously, this approach works faster than
-using remote [plantuml.com](https://www.plantuml.com/plantuml/).
+This approach works a bit faster than [plantuml.com](https://www.plantuml.com/plantuml/)
+and you can avoid `509 Bandwidth Limit Exceeded` error.
 
 ### Standalone usage
 
-You can use `PlantUML` converter without `mkdocs`. Below is the example,
+You can use `PlantUML` converter without `mkdocs`. See an example below
 
 ```python
 from mkdocs_puml.puml import PlantUML
@@ -191,9 +198,19 @@ Jon -> Sansa : hello
 @enduml
 """
 
-puml = PlantUML(puml_url, num_workers=2)
+puml = PlantUML(puml_url)
 svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ```
+
+## Special Thanks
+
+We would like to acknowledge the authors whose work, while not directly related to this project, has been instrumental in shaping it.
+
+* [panzoom](https://github.com/timmywil/panzoom) is the library we use for
+  diagrams interaction.
+* [catppuccin](https://catppuccin.com/) provided a great color palette that
+  we incorporated into one of our themes
+* [lucide](https://lucide.dev/) offers a consistent collection of free SVG icons.
 
 ## License
 

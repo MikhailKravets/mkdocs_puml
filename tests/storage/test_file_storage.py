@@ -69,6 +69,26 @@ def test_add_new(patch_exist_stat, patch_stream, hash_diagrams):
     assert len(fs.invalid) == len(hash_diagrams)
 
 
+def test_count_total(patch_exist_stat, patch_stream, hash_diagrams):
+    fs = FileStorage(Path("test"), "test.mock")
+    d = Diagram("test_new", ThemeMode.DARK, "test")
+    fs.add(d)
+
+    c = fs.count(True)
+    assert c.light == 1
+    assert c.dark == 2
+
+
+def test_count_to_request(patch_exist_stat, patch_stream, hash_diagrams):
+    fs = FileStorage(Path("test"), "test.mock")
+    d = Diagram("test_new", ThemeMode.DARK, None)
+    fs.add(d)
+
+    c = fs.count()
+    assert c.light == 0
+    assert c.dark == 1
+
+
 def test_add_existing(patch_exist_stat, patch_stream, hash_diagrams):
     fs = FileStorage(Path("test"), "test.mock")
 
@@ -81,8 +101,19 @@ def test_add_existing(patch_exist_stat, patch_stream, hash_diagrams):
     assert diagram_list[0][0] not in fs.invalid
 
 
+def test_update(patch_exist_stat, patch_stream, hash_diagrams_with_fallback):
+    fs = FileStorage(Path("test"), "test.mock")
+    fs.update(hash_diagrams_with_fallback.items())
+
+    # One from patch_stream, and one Fallback from hash_diagrams_with_fallback
+    assert len(fs.invalid) == 1 + 1
+
+
 def test_save(patch_exist_stat, patch_stream, hash_diagrams):
     fs = FileStorage(Path("test"), "test.mock")
+
+    fs.invalid.remove(list(hash_diagrams.items())[0][0])
     fs.save()
 
+    # One from patch_stream, and one Fallback from hash_diagrams_with_fallback
     assert patch_stream.return_value.write.call_count == 1

@@ -1,4 +1,4 @@
-from mkdocs_puml.puml import PlantUML
+from mkdocs_puml.puml import Fallback, PlantUML
 from tests.conftest import BASE_PUML_URL
 
 
@@ -49,4 +49,5 @@ def test_translate_fallback(diagram_and_encoded: tuple[str, str], mock_requests_
     assert len(resp) == 2
 
     for r in resp:
-        assert r.startswith("509")
+        assert isinstance(r, Fallback)
+        assert r.status_code == 509
