@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         const g = svg.querySelector('g');
-        const panzoom = Panzoom(g);
+        const panzoom = Panzoom(g, {canvas: true});
 
         g.parentElement.addEventListener('wheel', function (event) {
             if (!event.shiftKey) return
