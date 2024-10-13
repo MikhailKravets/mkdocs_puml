@@ -10,6 +10,18 @@
             "request": "launch",
             "module": "pytest",
             "args": ["tests"]
+        },
+
+        // In stall this package in editable mode.
+        // Create mkdocs web-site under .examples/
+        // directory and debug the library
+        {
+            "name": "Debug MkDocs",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "mkdocs",
+            "args": ["serve"],
+            "cwd": "${workspaceFolder}/.examples"
         }
     ]
 }
