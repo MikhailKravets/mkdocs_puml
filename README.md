@@ -172,7 +172,6 @@ Then substitute `puml_url` config with the local URL in the `mkdocs.yml` file
 plugins:
     - plantuml:
         puml_url: http://127.0.0.1:8080
-        num_workers: 8
 ```
 
 This approach works a bit faster than [plantuml.com](https://www.plantuml.com/plantuml/)
