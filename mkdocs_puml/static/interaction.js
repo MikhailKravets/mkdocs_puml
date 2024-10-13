@@ -96,15 +96,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         copyBtn.addEventListener("click", e => {
             const svgString = new XMLSerializer().serializeToString(svg);
-
-            if(ClipboardItem.supports('image/svg+xml')){
-                // Copy svg as file works only for https
-                const blob = new Blob([svgString], { type: 'image/svg+xml' });
-                navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
-            } else {
-                // otherwise copy svg as text
-                navigator.clipboard.writeText(svgString);
-            }
+            // Copy svg as text
+            navigator.clipboard.writeText(svgString);
         });
     });
 });
