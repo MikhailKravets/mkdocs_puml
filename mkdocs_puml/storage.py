@@ -7,7 +7,7 @@ import uuid
 
 import msgpack
 
-from mkdocs_puml.configs import CacheBackend, CacheConfig
+from mkdocs_puml.config import CacheBackend, CacheConfig
 from mkdocs_puml.model import Diagram, ThemeMode
 
 

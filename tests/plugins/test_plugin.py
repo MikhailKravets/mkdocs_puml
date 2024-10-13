@@ -8,7 +8,6 @@ from tests.plugins.conftest import is_uuid_valid, patch_plugin_to_single_theme
 
 
 def test_on_config(plugin_config):
-    # Test if the plugin is correctly configured with default settings
     plugin = PlantUMLPlugin()
     plugin.config = plugin_config
 
@@ -21,11 +20,14 @@ def test_on_config(plugin_config):
     assert plugin.theme_light == "default/light"
     assert plugin.theme_dark == "default/dark"
     assert plugin.puml_keyword == BASE_PUML_KEYWORD
-    assert "assets/stylesheets/puml.css" in plugin_config["extra_css"]
+    assert "assets/mkdocs_puml/puml.css" in plugin_config["extra_css"]
+    assert "assets/mkdocs_puml/puml.js" in plugin_config["extra_javascript"]
+
+    assert "assets/mkdocs_puml/interaction.css" in plugin_config["extra_css"]
+    assert "assets/mkdocs_puml/interaction.js" in plugin_config["extra_javascript"]
 
 
 def test_on_config_theme_disabled(plugin_config):
-    # Test if the plugin is correctly configured with default settings
     plugin = PlantUMLPlugin()
     plugin_config.theme.enabled = False
     plugin.config = plugin_config
@@ -37,7 +39,8 @@ def test_on_config_theme_disabled(plugin_config):
 
     assert plugin.theme_light is None
     assert plugin.theme_dark is None
-    assert "assets/stylesheets/puml.css" in plugin_config["extra_css"]
+    assert "assets/mkdocs_puml/puml.css" in plugin_config["extra_css"]
+    assert "assets/mkdocs_puml/puml.js" in plugin_config["extra_javascript"]
 
 
 def test_on_config_file_storage(plugin_config, patch_path_mkdir):
@@ -49,6 +52,28 @@ def test_on_config_file_storage(plugin_config, patch_path_mkdir):
     plugin.on_config(plugin_config)
 
     assert isinstance(plugin.storage, FileStorage)
+
+
+def test_on_config_interaction_disabled(plugin_config):
+    plugin_config.interaction.enabled = False
+
+    plugin = PlantUMLPlugin()
+    plugin.config = plugin_config
+
+    plugin.on_config(plugin_config)
+
+    assert isinstance(plugin.puml, PlantUML)
+    assert isinstance(plugin.themer, Theme)
+    assert isinstance(plugin.storage, RAMStorage)
+
+    assert plugin.theme_light == "default/light"
+    assert plugin.theme_dark == "default/dark"
+    assert plugin.puml_keyword == BASE_PUML_KEYWORD
+    assert "assets/mkdocs_puml/puml.css" in plugin_config["extra_css"]
+    assert "assets/mkdocs_puml/puml.js" in plugin_config["extra_javascript"]
+
+    assert "assets/mkdocs_puml/interaction.css" not in plugin_config["extra_css"]
+    assert "assets/mkdocs_puml/interaction.js" not in plugin_config["extra_javascript"]
 
 
 def test_on_page_markdown_single_theme(plant_uml_plugin, md_lines):
@@ -136,12 +161,16 @@ def test_on_post_page_without_html_attribute(
 def test_on_post_build(tmp_path, plant_uml_plugin):
     # Test if static files are correctly copied during the build process
     config = {"site_dir": str(tmp_path)}
-    dest_dir = tmp_path.joinpath("assets/stylesheets")
+    dest_dir = tmp_path.joinpath("assets/mkdocs_puml")
     os.makedirs(dest_dir)
 
     plant_uml_plugin.on_post_build(config)
 
     assert dest_dir.joinpath("puml.css").exists()
+    assert dest_dir.joinpath("puml.js").exists()
+
+    assert dest_dir.joinpath("interaction.css").exists()
+    assert dest_dir.joinpath("interaction.js").exists()
 
 
 def test_on_post_build_with_subdirectory(tmp_path, plant_uml_plugin):
@@ -150,5 +179,5 @@ def test_on_post_build_with_subdirectory(tmp_path, plant_uml_plugin):
 
     plant_uml_plugin.on_post_build(config)
 
-    dest_dir = tmp_path.joinpath("assets/stylesheets")
+    dest_dir = tmp_path.joinpath("assets/mkdocs_puml")
     assert dest_dir.joinpath("puml.css").exists()

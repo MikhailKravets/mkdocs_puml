@@ -6,9 +6,10 @@ import shutil
 
 from rich.console import Console
 
+from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 
-from mkdocs_puml.configs import PlantUMLConfig
+from mkdocs_puml.config import PlantUMLConfig
 from mkdocs_puml.model import Diagram, ThemeMode
 from mkdocs_puml.storage import AbstractStorage, build_storage
 from mkdocs_puml.puml import PlantUML
@@ -47,7 +48,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.storage: typing.Optional[AbstractStorage] = None
         self.console: typing.Optional[Console] = None
 
-    def on_config(self, config: PlantUMLConfig) -> PlantUMLConfig:
+    def on_config(self, config: MkDocsConfig) -> MkDocsConfig:
         """Event that is fired by mkdocs when configs are created.
 
         All required classes such as PlantUML, Theme, or any class for storage
@@ -61,15 +62,17 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         Returns:
             Full config of the mkdocs
         """
-        # TODO: separate puml.css to puml.css and control.css + control.js
-        # TODO: include control only when enabled?
         config["extra_css"].append("assets/mkdocs_puml/puml.css")
-        config["extra_javascript"].extend(
-            [
-                "https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js",
-                "assets/mkdocs_puml/puml.js",
-            ]
-        )
+        config["extra_javascript"].append("assets/mkdocs_puml/puml.js")
+
+        if self.config.interaction.enabled:
+            config["extra_css"].append("assets/mkdocs_puml/interaction.css")
+            config["extra_javascript"].extend(
+                [
+                    "https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js",
+                    "assets/mkdocs_puml/interaction.js",
+                ]
+            )
 
         self.console = Console(quiet=not self.config.verbose)
         self.puml = PlantUML(
