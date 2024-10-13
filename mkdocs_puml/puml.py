@@ -176,9 +176,9 @@ class PlantUML:
         """
         dom = parseString(content)  # nosec
         svg = dom.getElementsByTagName("svg")[0]
+        svg.setAttribute("class", "diagram")
         return svg
 
     def _stylize_svg(self, svg: Element):
         """This method is used for SVG tags modifications"""
         svg.setAttribute("preserveAspectRatio", "xMidYMid meet")
-        svg.setAttribute("style", "background: var(--md-default-bg-color)")

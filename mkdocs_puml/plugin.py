@@ -61,7 +61,15 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         Returns:
             Full config of the mkdocs
         """
-        config["extra_css"].append("assets/stylesheets/puml.css")
+        # TODO: separate puml.css to puml.css and control.css + control.js
+        # TODO: include control only when enabled?
+        config["extra_css"].append("assets/mkdocs_puml/puml.css")
+        config["extra_javascript"].extend(
+            [
+                "https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js",
+                "assets/mkdocs_puml/puml.js",
+            ]
+        )
 
         self.console = Console(quiet=not self.config.verbose)
         self.puml = PlantUML(
@@ -100,7 +108,9 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             Updated markdown page
         """
         with self.console.status(
-            "[bold dim cyan]Search puml in markdown", spinner="dots2", spinner_style="magenta"
+            "[bold dim cyan]Search puml in markdown",
+            spinner="dots2",
+            spinner_style="magenta",
         ):
             schemes = self.regex.findall(markdown)
 
@@ -149,19 +159,20 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             Jinja environment
         """
         with self.console.status(
-            "[bold dim cyan]Building PlantUML diagrams", spinner="dots2", spinner_style="magenta"
+            "[bold dim cyan]Building PlantUML diagrams",
+            spinner="dots2",
+            spinner_style="magenta",
         ):
             to_request = self.storage.schemes()
             svgs = self.puml.translate(to_request.values())
             self.storage.update(zip(to_request.keys(), svgs))
 
         built_len = len(to_request)
-
-        # TODO: total_len counts invalid diagrams as well! Count only valid!
-        total_len = len(self.storage.keys())
+        if self.config.theme.enabled:
+            built_len = int(built_len / 2)
         self.console.print(
             f"[dim][bold magenta]mkdocs_puml[/bold magenta]: Built {built_len} diagrams, "
-            f"retrieved {total_len - built_len} from cache[/dim] [green bold]✔️[/green bold]"
+            f"[/dim] [green bold]✔️[/green bold]"
         )
         return env
 
@@ -211,13 +222,15 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
 
         """
         # Path to the static directory in the plugin
-        puml_css = Path(__file__).parent.joinpath("static/puml.css")
+        static_dir = Path(__file__).parent.joinpath("static")
         # Destination directory in the site output
-        dest_dir = Path(config["site_dir"]).joinpath("assets/stylesheets/")
+        dest_dir = Path(config["site_dir"]).joinpath("assets/mkdocs_puml/")
 
         if not dest_dir.exists():
             os.makedirs(dest_dir)
 
-        shutil.copy(puml_css, dest_dir)
+        # shutil.copy(static_dir, dest_dir)
+        # shutil.copy(puml_js, dest_dir)
+        shutil.copytree(static_dir, dest_dir, dirs_exist_ok=True)
 
         self.storage.save()
