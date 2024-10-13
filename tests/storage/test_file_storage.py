@@ -69,6 +69,26 @@ def test_add_new(patch_exist_stat, patch_stream, hash_diagrams):
     assert len(fs.invalid) == len(hash_diagrams)
 
 
+def test_count_total(patch_exist_stat, patch_stream, hash_diagrams):
+    fs = FileStorage(Path("test"), "test.mock")
+    d = Diagram("test_new", ThemeMode.DARK, "test")
+    fs.add(d)
+
+    c = fs.count(True)
+    assert c.light == 1
+    assert c.dark == 2
+
+
+def test_count_to_request(patch_exist_stat, patch_stream, hash_diagrams):
+    fs = FileStorage(Path("test"), "test.mock")
+    d = Diagram("test_new", ThemeMode.DARK, None)
+    fs.add(d)
+
+    c = fs.count()
+    assert c.light == 0
+    assert c.dark == 1
+
+
 def test_add_existing(patch_exist_stat, patch_stream, hash_diagrams):
     fs = FileStorage(Path("test"), "test.mock")
 

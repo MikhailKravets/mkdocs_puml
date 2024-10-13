@@ -1,4 +1,7 @@
 import os
+
+import pytest
+from mkdocs_puml.model import Count
 from mkdocs_puml.storage import FileStorage, RAMStorage
 from mkdocs_puml.plugin import PlantUMLPlugin, ThemeMode
 from mkdocs_puml.puml import Fallback, PlantUML
@@ -112,7 +115,9 @@ def test_on_page_markdown_custom_keyword(plant_uml_plugin, md_lines):
     plant_uml_plugin.config.puml_keyword = CUSTOM_PUML_KEYWORD
     plant_uml_plugin.on_page_markdown("\n".join(md_lines))
 
-    assert len(plant_uml_plugin.storage.items()) == 4  # 2 (light / dark) on each diagram
+    assert (
+        len(plant_uml_plugin.storage.items()) == 4
+    )  # 2 (light / dark) on each diagram
 
 
 def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environment):
@@ -125,7 +130,9 @@ def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environme
         assert diagram.diagram.startswith("<svg")
 
 
-def test_on_env_fallback(mock_requests_fallback, plant_uml_plugin, diagrams_dict, plugin_environment):
+def test_on_env_fallback(
+    mock_requests_fallback, plant_uml_plugin, diagrams_dict, plugin_environment
+):
     mock_requests_fallback(len(diagrams_dict))
 
     plant_uml_plugin.storage.data = diagrams_dict
@@ -172,3 +179,51 @@ def test_on_post_build_with_subdirectory(tmp_path, plant_uml_plugin):
 
     dest_dir = tmp_path.joinpath("assets/mkdocs_puml")
     assert dest_dir.joinpath("puml.css").exists()
+
+
+@pytest.mark.parametrize(
+    "fallback,count,expected",
+    [
+        (
+            0,
+            Count(1, 0),
+            "[dim][bold magenta]mkdocs_puml[/bold magenta]: Built 1 light diagram[/dim] [green bold]✔️[/green bold]",
+        ),
+        (
+            0,
+            Count(0, 1),
+            "[dim][bold magenta]mkdocs_puml[/bold magenta]: Built 1 dark diagram[/dim] [green bold]✔️[/green bold]",
+        ),
+        (
+            0,
+            Count(2, 0),
+            "[dim][bold magenta]mkdocs_puml[/bold magenta]: Built 2 light diagrams[/dim] [green bold]✔️[/green bold]",
+        ),
+        (
+            0,
+            Count(0, 2),
+            "[dim][bold magenta]mkdocs_puml[/bold magenta]: Built 2 dark diagrams[/dim] [green bold]✔️[/green bold]",
+        ),
+        (
+            0,
+            Count(1, 1),
+            "[dim][bold magenta]mkdocs_puml[/bold magenta]: Built 1 light and 1 dark diagrams[/dim] "
+            "[green bold]✔️[/green bold]",
+        ),
+        (
+            0,
+            Count(0, 0),
+            "[dim][bold magenta]mkdocs_puml[/bold magenta]: All diagrams loaded from cache"
+            "[/dim] [green bold]✔️[/green bold]",
+        ),
+        (
+            3,
+            Count(3, 0),
+            "[dim][bold magenta]mkdocs_puml[/bold magenta]: Built 3 light diagrams."
+            "[/dim][bold red] 3 diagram failed to render ⨯[/bold red]",
+        ),
+    ],
+)
+def test_status_message(plant_uml_plugin, fallback, count, expected):
+    msg = plant_uml_plugin._prepare_status_message(fallback, count)
+    assert msg == expected

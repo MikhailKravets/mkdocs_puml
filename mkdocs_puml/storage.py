@@ -9,7 +9,7 @@ import uuid
 import msgpack
 
 from mkdocs_puml.config import CacheBackend, CacheConfig
-from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.model import Count, Diagram, ThemeMode
 from mkdocs_puml.puml import Fallback
 
 
@@ -84,6 +84,22 @@ class AbstractStorage(ABC):
     def keys(self) -> Iterable[str]:
         """Iterable of diagram keys"""
         return self.data.keys()
+
+    def count(self, total: bool = False) -> Count:
+        light, dark = 0, 0
+        for v in self.data.values():
+            if total:
+                if v.mode == ThemeMode.LIGHT:
+                    light += 1
+                else:
+                    dark += 1
+            elif v.diagram is None:
+                if v.mode == ThemeMode.LIGHT:
+                    light += 1
+                else:
+                    dark += 1
+
+        return Count(light, dark)
 
     def __getitem__(self, key: str) -> Diagram:
         """Get diagram by key"""

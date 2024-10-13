@@ -10,9 +10,9 @@ from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_puml.config import PlantUMLConfig
-from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.model import Count, Diagram, ThemeMode
 from mkdocs_puml.storage import AbstractStorage, build_storage
-from mkdocs_puml.puml import PlantUML
+from mkdocs_puml.puml import Fallback, PlantUML
 from mkdocs_puml.themes import Theme
 
 
@@ -167,16 +167,13 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             spinner_style="magenta",
         ):
             to_request = self.storage.schemes()
+            to_req_count = self.storage.count()
             svgs = self.puml.translate(to_request.values())
             self.storage.update(zip(to_request.keys(), svgs))
 
-        built_len = len(to_request)
-        if self.config.theme.enabled:
-            built_len = int(built_len / 2)
-        self.console.print(
-            f"[dim][bold magenta]mkdocs_puml[/bold magenta]: Built {built_len} diagrams, "
-            f"[/dim] [green bold]✔️[/green bold]"
-        )
+            fallback_count = len([True for v in svgs if isinstance(v, Fallback)])
+
+        self.console.print(self._prepare_status_message(fallback_count, to_req_count))
         return env
 
     def on_post_page(self, output: str, page, *args, **kwargs) -> str:
@@ -197,27 +194,10 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
 
         return output
 
-    def _replace(self, key: str, content: str) -> str:
-        """Replace a key of a diagram with a diagram svg in a
-        content
-        """
-        diagram = self.storage[key]
-
-        # When theming is not enabled, user will manually manage themes in each diagram.
-        # Also, only one version of diagram will be generated for each scheme, which
-        # should be displayed always despite the light / dark mode of mkdocs-material.
-        style = "display: block" if not self.config.theme.enabled else ""
-        replacement = (
-            f'<div class="puml {diagram.mode}" style="{style}">{diagram.diagram}</div>'
-        )
-        return content.replace(
-            f'<pre class="{self.pre_class_name}">{key}</pre>', replacement
-        )
-
     def on_post_build(self, config):
         """Event triggered after the build process is complete.
 
-        This method copies static assest of the plugin and saves
+        This method copies static assets of the plugin and saves
         the diagrams to the storage.
 
         Args:
@@ -237,3 +217,39 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         shutil.copytree(static_dir, dest_dir, dirs_exist_ok=True)
 
         self.storage.save()
+
+    def _replace(self, key: str, content: str) -> str:
+        """Replace a key of a diagram with a diagram svg in a
+        content
+        """
+        diagram = self.storage[key]
+
+        # When theming is not enabled, user will manually manage themes in each diagram.
+        # Also, only one version of diagram will be generated for each scheme, which
+        # should be displayed always despite the light / dark mode of mkdocs-material.
+        style = "display: block" if not self.config.theme.enabled else ""
+        replacement = (
+            f'<div class="puml {diagram.mode}" style="{style}">{diagram.diagram}</div>'
+        )
+        return content.replace(
+            f'<pre class="{self.pre_class_name}">{key}</pre>', replacement
+        )
+
+    def _prepare_status_message(self, fallback_count: int, req_count: Count):
+        if fallback_count:
+            ok_msg = f".[/dim][bold red] {fallback_count} diagram failed to render ⨯[/bold red]"
+        else:
+            ok_msg = "[/dim] [green bold]✔️[/green bold]"
+
+        if req_count.light == 0 and req_count.dark == 0:
+            built_msg = "All diagrams loaded from cache"
+        elif req_count.light == 0:
+            d = "diagram" if req_count.dark == 1 else "diagrams"
+            built_msg = f"Built {req_count.dark} dark {d}"
+        elif req_count.dark == 0:
+            d = "diagram" if req_count.light == 1 else "diagrams"
+            built_msg = f"Built {req_count.light} light {d}"
+        else:
+            built_msg = f"Built {req_count.light} light and {req_count.dark} dark diagrams"
+
+        return "[dim][bold magenta]mkdocs_puml[/bold magenta]: " + built_msg + ok_msg

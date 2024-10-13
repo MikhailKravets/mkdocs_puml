@@ -15,3 +15,9 @@ class Diagram:
     scheme: str
     mode: ThemeMode
     diagram: Optional[typing.Union[str, Fallback]] = None
+
+
+@dataclass
+class Count:
+    light: int
+    dark: int
