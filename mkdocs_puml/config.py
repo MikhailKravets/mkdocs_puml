@@ -33,6 +33,10 @@ class CacheConfig(Config):
     local = SubConfig(LocalCacheConfig)
 
 
+class InteractionConfig(Config):
+    enabled = Type(bool, default=True)
+
+
 class PlantUMLConfig(Config):
     puml_url = Type(str)
     puml_keyword = Type(str, default="puml")
@@ -40,3 +44,4 @@ class PlantUMLConfig(Config):
     verbose = Type(bool, default=True)
     theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default
     cache = SubConfig(CacheConfig)
+    interaction = SubConfig(InteractionConfig)

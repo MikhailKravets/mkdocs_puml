@@ -11,3 +11,17 @@ body[data-md-color-scheme="default"] .puml.dark {
 body[data-md-color-scheme="slate"] .puml.dark {
     display: block;
 }
+
+.puml {
+    display: block;
+    position: relative;
+}
+
+.puml .diagram {
+    width: 100% !important;
+    min-height: 300px !important;
+}
+
+.puml .diagram.wide-svg {
+    height: auto !important;
+}

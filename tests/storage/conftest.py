@@ -5,12 +5,23 @@ from unittest.mock import mock_open
 import msgpack
 import pytest
 from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.puml import Fallback
 
 
 @pytest.fixture
 def hash_diagrams():
     d = [
         Diagram("test_one", ThemeMode.LIGHT, "test"),
+        Diagram("test_two", ThemeMode.DARK, "test"),
+    ]
+
+    return {hashlib.blake2b(v.scheme.encode("utf-8")).hexdigest(): v for v in d}
+
+
+@pytest.fixture
+def hash_diagrams_with_fallback():
+    d = [
+        Diagram("test_one", ThemeMode.LIGHT, Fallback(400, "Test")),
         Diagram("test_two", ThemeMode.DARK, "test"),
     ]
 

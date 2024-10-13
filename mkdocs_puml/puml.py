@@ -62,7 +62,7 @@ class PlantUML:
         self.verify_ssl = verify_ssl
         self.timeout = timeout
 
-    def translate(self, schemes: typing.Iterable[str]) -> typing.List[str]:
+    def translate(self, schemes: typing.Iterable[str]) -> typing.List[typing.Union[str, Fallback]]:
         """Translate PlantUML schemes into the received SVG image.
 
         Args:
@@ -94,7 +94,7 @@ class PlantUML:
         """
         return encode(content)
 
-    def postprocess(self, content: typing.Union[str, Fallback]) -> str:
+    def postprocess(self, content: typing.Union[str, Fallback]) -> typing.Union[Fallback]:
         """Postprocess an SVG diagram received from PlantUML server.
 
         The code that applies CSS styling to the SVG can be placed here.
@@ -105,7 +105,7 @@ class PlantUML:
             Post-processed SVG diagram
         """
         if isinstance(content, Fallback):
-            return str(content)
+            return content
 
         diagram_content = self._clean_comments(content)
 
@@ -176,9 +176,9 @@ class PlantUML:
         """
         dom = parseString(content)  # nosec
         svg = dom.getElementsByTagName("svg")[0]
+        svg.setAttribute("class", "diagram")
         return svg
 
     def _stylize_svg(self, svg: Element):
         """This method is used for SVG tags modifications"""
         svg.setAttribute("preserveAspectRatio", "xMidYMid meet")
-        svg.setAttribute("style", "background: var(--md-default-bg-color)")

@@ -55,6 +55,8 @@ plugins:
           backend: local
           local:
             path: "~/.cache/mkdocs_puml"
+        interaction:
+          enabled: true
 ```
 
 Where
@@ -70,7 +72,8 @@ Where
 | `theme.dark`  | `str`. Default `default/dark` | Name of the theme to use when `mkdocs-material` is in dark mode |
 | `theme.url`   | `str`. Defaults to this repository URL | URL to the repository folder where themes are located |
 | `cache.backend` | `enum`. `disabled` or `local` | Specifies the storage to use for preserving diagrams |
-| `cache.local.path` | `str` Defaults to `~/.cache/mkdocs_puml` | Defines path where `mkdocs_puml` stores diagrams |
+| `cache.local.path` | `str`. Defaults to `~/.cache/mkdocs_puml` | Defines path where `mkdocs_puml` stores diagrams |
+| `interaction.enabled` | `bool`. Defaults to `True` | Designates whether rendered diagrams should be interactive |
 
 </details>
 
@@ -111,11 +114,43 @@ one for light mode and another for dark mode. If you want to disable theming and
 generate one `svg` for each diagram, set `enabled` to `false` as follows
 
 ```yml
-theme:
-  enabled: false
+plantuml:
+  ...
+  theme:
+    enabled: false
 ```
 
-### Run PlantUML service with Docker
+## 🌀 Interactive diagrams
+
+By default all diagrams are now interactive. When you hover mouse over a diagram
+few buttons will appear at the top left corner:
+
+* `Copy` button copies the SVG code to the clipboard.
+* `Plus` button zooms in on the diagram.
+* `Home` resets the diagram to its default view.
+* `Minus` button zooms out on the diagram.
+
+Additionally, the following mouse events are supported
+
+* `Drag` the diagram moves it.
+* `Shift` + `Scroll` zooms in or out on the diagram.
+
+<details>
+<summary>💡 <b>View an example</b></summary>
+
+![interaction](.docs/examples/interaction.gif)
+</details>
+
+If you want to disable interactive diagrams add this plugin's config
+
+```yml
+plantuml:
+  ...
+  interaction:
+    enabled: false
+```
+
+## Run PlantUML service with Docker
 
 It is possible to run [plantuml/plantuml-server](https://hub.docker.com/r/plantuml/plantuml-server)
 as a Docker container.
@@ -170,3 +205,11 @@ svg_for_diag1, svg_for_diag2 = puml.translate([diagram1, diagram2])
 ## License
 
 The project is licensed under [MIT license](LICENSE).
+
+## Special Thanks
+
+**TODO: thank developers**
+
+* catppuccin
+* lucide
+* https://github.com/timmywil/panzoom?tab=readme-ov-file
