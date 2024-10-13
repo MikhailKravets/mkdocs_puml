@@ -141,7 +141,8 @@ Additionally, the following mouse events are supported
 ![interaction](.docs/examples/interaction.gif)
 </details>
 
-If you want to disable interactive diagrams add this plugin's config
+⚠️ This is still an experimental feature that require thorough testing.
+If you want to disable interactive diagrams add this plugin's configuration
 
 ```yml
 plantuml:
