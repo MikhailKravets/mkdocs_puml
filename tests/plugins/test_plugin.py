@@ -1,7 +1,7 @@
 import os
 from mkdocs_puml.storage import FileStorage, RAMStorage
 from mkdocs_puml.plugin import PlantUMLPlugin, ThemeMode
-from mkdocs_puml.puml import PlantUML
+from mkdocs_puml.puml import Fallback, PlantUML
 from mkdocs_puml.themes import Theme
 from tests.conftest import BASE_PUML_KEYWORD, CUSTOM_PUML_KEYWORD
 from tests.plugins.conftest import is_uuid_valid, patch_plugin_to_single_theme
@@ -125,6 +125,18 @@ def test_on_env(mock_requests, plant_uml_plugin, diagrams_dict, plugin_environme
         assert diagram.diagram.startswith("<svg")
 
 
+def test_on_env_fallback(mock_requests_fallback, plant_uml_plugin, diagrams_dict, plugin_environment):
+    mock_requests_fallback(len(diagrams_dict))
+
+    plant_uml_plugin.storage.data = diagrams_dict
+    plant_uml_plugin.on_env(plugin_environment)
+
+    for _, diagram in plant_uml_plugin.storage.items():
+        assert isinstance(diagram.diagram, Fallback)
+
+    assert len(plant_uml_plugin.storage.invalid) == len(diagrams_dict)
+
+
 def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
     plant_uml_plugin.storage.data = diagrams_dict
     output = plant_uml_plugin.on_post_page(html_page.content, html_page)
@@ -134,27 +146,6 @@ def test_on_post_page(plant_uml_plugin, diagrams_dict, html_page):
     )
     assert output.count('<div class="puml dark" style="">') == len(
         [True for v in diagrams_dict.values() if v.mode == ThemeMode.DARK]
-    )
-
-    # Test the case where page.html exists
-    # TODO: deprecated! After we raise mkdocs>=1.4 strictly, this will be never a case
-    html_page.html = html_page.content
-    output = plant_uml_plugin.on_post_page(html_page.content, html_page)
-    assert html_page.html.count('<div class="puml light" style="">') == len(
-        [True for v in diagrams_dict.values() if v.mode == ThemeMode.LIGHT]
-    )
-
-
-def test_on_post_page_without_html_attribute(
-    plant_uml_plugin, diagrams_dict, html_page
-):
-    # TODO: deprecated! After we raise mkdocs>=1.4 strictly, this will be never a case
-    plant_uml_plugin.storage.data = diagrams_dict
-    delattr(html_page, "html")
-    output = plant_uml_plugin.on_post_page(html_page.content, html_page)
-
-    assert output.count('<div class="puml light" style="">') == len(
-        [True for v in diagrams_dict.values() if v.mode == ThemeMode.LIGHT]
     )
 
 
