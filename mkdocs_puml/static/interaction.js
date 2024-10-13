@@ -34,7 +34,7 @@ let controls = `
 </div>
 `;
 
-document.addEventListener("DOMContentLoaded", function() {
+function processDiagrams() {
     const svgs = document.querySelectorAll('.puml .diagram');
     svgs.forEach(svg => {
         // Get the computed width and height of each SVG
@@ -100,4 +100,12 @@ document.addEventListener("DOMContentLoaded", function() {
             navigator.clipboard.writeText(svgString);
         });
     });
-});
+}
+
+// This checks if mkdocs-material is installed, use document$.subscribe.
+// Otherwise, add listener to DOMContentLoaded
+if (typeof document$ !== 'undefined' && document$.subscribe){
+    document$.subscribe(processDiagrams);
+} else {
+    document.addEventListener('DOMContentLoaded', processDiagrams);
+}

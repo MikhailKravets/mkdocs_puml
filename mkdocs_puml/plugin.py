@@ -65,8 +65,6 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         config["extra_css"].append("assets/mkdocs_puml/puml.css")
         config["extra_javascript"].append("assets/mkdocs_puml/puml.js")
 
-        # FIXME: there is bug. When you open a new page, the interaction script
-        # doesn't attach control elements!!
         if self.config.interaction.enabled:
             config["extra_css"].append("assets/mkdocs_puml/interaction.css")
             config["extra_javascript"].extend(
