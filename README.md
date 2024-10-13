@@ -101,7 +101,7 @@ configured theme into the first line of the PlantUML diagram (if it's not C4 dia
 This allows developers to add custom styles to each diagram, which will take priority
 over pre-defined themes.
 
-⚠️ In case of C4 diagrams, their styles are kept inside C4 library files. Since
+In case of C4 diagrams, their styles are kept inside C4 library files. Since
 `mkdocs_puml` themes contain styling of C4 as well, our themes will be included after
 the last C4 library file. This way, it's **highly advised** to place C4
 `!include` instructions at the top of the diagram.
@@ -141,7 +141,8 @@ Additionally, the following mouse events are supported
 ![interaction](.docs/examples/interaction.gif)
 </details>
 
-If you want to disable interactive diagrams add this plugin's config
+⚠️ This is still an experimental feature that require thorough testing.
+If you want to disable interactive diagrams add this plugin's configuration
 
 ```yml
 plantuml:
