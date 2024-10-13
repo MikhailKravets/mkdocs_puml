@@ -3,12 +3,14 @@ import dataclasses
 import hashlib
 from pathlib import Path
 from typing import Iterable
+import typing
 import uuid
 
 import msgpack
 
 from mkdocs_puml.config import CacheBackend, CacheConfig
 from mkdocs_puml.model import Diagram, ThemeMode
+from mkdocs_puml.puml import Fallback
 
 
 class AbstractStorage(ABC):
@@ -19,6 +21,10 @@ class AbstractStorage(ABC):
 
     def __init__(self):
         self.data: dict[str, Diagram] = {}
+
+        # this is a set of keys that should not be saved
+        # in the next save(..) iteration
+        self.invalid: set[str] = set()
 
     @abstractmethod
     def add(self, d: Diagram) -> str:  # pragma: no cover
@@ -32,14 +38,16 @@ class AbstractStorage(ABC):
             str: key of the diagram
         """
 
-    def update(self, svg: Iterable[tuple[str, str]]):
+    def update(self, svg: Iterable[tuple[str, typing.Union[str, Fallback]]]):
         """Update a collection of diagrams from an
         iterable of SVG images.
 
         Args:
-            svg (Iterable[tuple[str, str]]): iterable of tuples `(diagram key, svg)`
+            svg (Iterable[tuple[str, str | Fallback]]): iterable of tuples `(diagram key, svg)`
         """
         for key, s in svg:
+            if isinstance(s, Fallback):
+                self.invalid.add(key)
             self.data[key].diagram = s
 
     @abstractmethod
@@ -153,14 +161,11 @@ class FileStorage(AbstractStorage):
 
     def save(self):
         with open(self.path, "wb") as f:
-            msgpack.dump(
-                {
-                    k: dataclasses.asdict(v)
-                    for k, v in self.data.items()
-                    if k not in self.invalid
-                },
-                f,
-            )
+            to_save = {}
+            for k, v in self.data.items():
+                if k not in self.invalid:
+                    to_save[k] = dataclasses.asdict(v)
+            msgpack.dump(to_save, f)
 
     def _read_data(self):
         if not self.path.exists() or self.path.stat().st_size == 0:

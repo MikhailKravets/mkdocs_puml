@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
+import typing
+
+from mkdocs_puml.puml import Fallback
 
 
 class ThemeMode:
@@ -11,4 +14,4 @@ class ThemeMode:
 class Diagram:
     scheme: str
     mode: ThemeMode
-    diagram: Optional[str] = None
+    diagram: Optional[typing.Union[str, Fallback]] = None
