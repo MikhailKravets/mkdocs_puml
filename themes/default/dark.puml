@@ -1,0 +1,566 @@
+<style>
+root {
+	FontName SansSerif
+  	HyperLinkUnderlineThickness 1
+  	FontSize 14
+  	FontStyle plain
+  	HorizontalAlignment left
+  	RoundCorner 0
+  	DiagonalCorner 0
+  	LineThickness 1.0
+  	Shadowing: 0.0;
+
+  	HyperLinkColor blue
+  	FontColor white
+  	LineColor #e7e7e7
+  	BackGroundColor #313139
+}
+
+document {
+	BackGroundColor #1B1B1B
+  	header {
+		HorizontalAlignment right
+    	FontSize 10
+    	BackGroundColor transparent
+    	LineColor transparent
+
+    	FontColor #7
+  	}
+  	title {
+		HorizontalAlignment center
+		FontSize 14
+		FontStyle bold
+		Padding 5
+		Margin 5
+		LineColor transparent
+		BackGroundColor transparent
+  	}
+	footer {
+		HorizontalAlignment center
+		FontSize 10
+		BackGroundColor transparent
+		LineColor transparent
+
+		FontColor #7
+	}
+	legend {
+		FontSize 14
+		RoundCorner 15
+		Padding 5
+		Margin 12
+
+		LineColor white
+		BackGroundColor #2
+	}
+	caption {
+		HorizontalAlignment center
+		FontSize 14
+		Padding 0
+		Margin 1
+		LineColor transparent
+		BackGroundColor transparent
+	}
+	frame {
+		LineThickness 1.5
+
+		LineColor white
+	}
+}
+
+package {
+	title {
+		FontStyle bold
+	}
+}
+
+
+stereotype {
+  	FontStyle italic
+}
+
+
+mainframe {
+	Padding 1 5
+	LineThickness 1.5
+	Margin 10 5
+}
+
+element {
+	Shadowing 0.0
+	LineThickness 0.5
+	composite {
+		title {
+			FontStyle bold
+		}
+	}
+}
+
+group {
+	BackGroundColor transparent
+  	LineThickness 1.0
+
+  	package {
+		LineThickness 1.5
+    	LineColor white
+  	}
+  	folder {
+		LineThickness 1.5
+    	LineColor white
+  	}
+}
+
+sequenceDiagram {
+	group {
+		LineThickness 1.5
+		FontSize 11
+		FontStyle bold
+
+		LineColor white
+	}
+
+	groupHeader {
+		LineThickness 1.5
+		FontSize 13
+		FontStyle bold
+
+		BackGroundColor #5
+		LineColor white
+	}
+
+	lifeLine {
+		LineStyle 5
+
+		BackGroundColor black
+	}
+
+	reference {
+	  	FontSize 12
+		BackGroundColor transparent
+		LineThickness 1.5
+		HorizontalAlignment center
+
+		LineColor #d
+	}
+
+	referenceHeader {
+		FontSize 13
+		FontStyle bold
+		LineThickness 2.0
+
+		LineColor #d
+		FontColor white
+		BackGroundColor #4
+	}
+
+	box {
+		FontSize 13
+	  	FontStyle bold
+
+	  	BackGroundColor #2
+	}
+
+	separator {
+		LineThickness 2.0
+		FontSize 13
+		FontStyle bold
+
+		LineColor white
+		BackGroundColor #1
+	}
+
+	participant {
+	  	RoundCorner 5
+	}
+
+	participant,actor,boundary,control,entity,queue,database,collections {
+	  BackgroundColor: #2;
+	  HorizontalAlignment center
+	}
+
+}
+
+classDiagram,componentDiagram,objectDiagram {
+	element {
+		RoundCorner 5
+	}
+}
+
+visibilityIcon {
+	public {
+		LineColor #038048
+		BackgroundColor #84BE84
+	}
+	private {
+		LineColor #C82930
+		BackgroundColor #F24D5C
+	}
+	protected {
+		LineColor #B38D22
+		BackgroundColor #FFFF44
+	}
+	package {
+		LineColor #1963A0
+		BackgroundColor #4177AF
+	}
+	IEMandatory {
+		LineColor black
+		BackgroundColor black
+	}
+}
+
+spot {
+	spotAnnotation {
+		BackgroundColor #4A0000
+	}
+	spotAbstractClass {
+		BackgroundColor #2A5D60
+	}
+	spotClass {
+		BackgroundColor #2E5233
+	}
+	spotInterface {
+		BackgroundColor #352866
+	}
+	spotEnum {
+		BackgroundColor #852D19
+	}
+	spotEntity {
+		BackgroundColor #2E5233
+	}
+	spotException {
+		BackgroundColor #7D0000
+	}
+	spotMetaClass {
+		BackgroundColor #7C7C7C
+	}
+	spotStereotype {
+		BackgroundColor #890089
+	}
+}
+
+stateDiagram {
+	state {
+		RoundCorner 25
+	}
+	stateBody {
+		BackGroundColor transparent
+	}
+	element {
+		title {
+		FontStyle plain
+		}
+	}
+	group {
+		LineThickness 0.5
+	}
+	header {
+		FontSize 12
+	}
+	circle {
+	start, stop, end {
+			LineColor #2
+			BackgroundColor #2
+		}
+	}
+}
+
+delay {
+	FontSize 11
+	FontStyle plain
+	HorizontalAlignment center
+}
+
+swimlane {
+	BackGroundColor transparent
+	LineThickness 1.5
+	FontSize 18
+
+	LineColor white
+}
+
+arrow {
+	FontSize 13
+	LineThickness 1.0
+	BackGroundColor black
+}
+
+note {
+	FontSize 13
+	LineThickness 0.5
+
+	BackGroundColor #714137
+}
+
+mindmapDiagram {
+	node {
+	    Padding 10
+	    Margin 10
+	    RoundCorner 25
+	    LineThickness 1.5
+	}
+	arrow {
+	    LineThickness 1.0
+	}
+}
+
+
+wbsDiagram {
+    Padding 10
+    Margin 15
+    RoundCorner 0
+    LineThickness 1.5
+    FontSize 12
+}
+
+activityDiagram {
+	activity {
+	    Padding 10
+	    FontSize 12
+	    RoundCorner 25
+	}
+	composite {
+	    LineColor black
+	    BackgroundColor transparent
+	    LineThickness 1.5
+	}
+	diamond {
+	    FontSize 11
+	}
+	arrow {
+	    FontSize 11
+	    LineThickness 1
+	}
+	partition {
+	    LineColor white
+	}
+	circle {
+	    start, stop, end {
+		    LineColor #d
+		    BackgroundColor #d
+	    }
+	}
+	activityBar {
+	  	BackgroundColor #a
+	}
+}
+
+task {
+    FontSize 11
+}
+
+milestone {
+	FontSize 11
+
+	BackGroundColor white
+	LineColor white
+}
+
+ganttDiagram {
+	arrow {
+	  	LineThickness 1.5
+	}
+	note {
+	  	FontSize 9
+	}
+	separator {
+		FontSize 11
+		FontStyle plain
+		BackGroundColor transparent
+		Margin 5
+		Padding 5
+	}
+	verticalSeparator {
+		LineThickness 2
+		LineStyle 2-2
+		LineColor black
+	}
+	task {
+		RoundCorner 0
+        Margin 2 2 2 2
+        Padding 0
+
+	    BackGroundColor #555
+	}
+	timeline {
+		BackgroundColor transparent
+	    LineColor #C0C0C0
+	    FontSize 10
+	    month {
+	      	FontSize 12
+	    }
+	    year {
+	      	FontSize 14
+	    }
+
+	    LineColor #3f3f3f
+	}
+	closed {
+        BackGroundColor #1f1f1f
+        FontColor #676767
+    }
+	undone {
+        BackGroundColor black
+	}
+	milestone {
+        Margin 2
+        Padding 3
+	}
+}
+
+usecase {
+  HorizontalAlignment center
+}
+
+yamlDiagram,jsonDiagram {
+	FontColor white
+	LineColor white
+	arrow {
+    	LineThickness 1
+    	LineStyle 3-3
+  	}
+	node {
+		LineThickness 1.5
+		RoundCorner 10
+		separator {
+			LineThickness 1
+		}
+		header {
+			FontStyle bold
+		}
+		highlight {
+			BackGroundColor #ccff02
+		}
+	}
+}
+
+timingDiagram {
+	LineColor #d
+	FontColor #d
+	FontStyle bold
+    LineThickness 0.5
+    timeline {
+		FontStyle plain
+		FontSize 11
+		LineThickness 2
+    }
+    note {
+      	LineThickness 0.5
+    }
+	arrow {
+		FontName Serif
+	    FontSize 14
+	    FontStyle plain
+	    FontColor darkblue`
+	    LineThickness 1.5
+
+	    LineColor lightblue
+	}
+	constraintArrow {
+		FontSize 12
+		FontStyle plain
+	    LineThickness 1.5
+
+	    LineColor tomato
+	    FontColor tomato
+	}
+	clock {
+	  LineColor lightgreen
+	  LineThickness 1.5
+	}
+	concise {
+		FontSize 12
+      	LineThickness 1.5
+
+		LineColor lightgreen
+		BackgroundColor #6
+	}
+	robust {
+		FontStyle plain
+		FontSize 12
+		LineThickness 2
+
+		LineColor lightgreen
+		BackgroundColor #3
+	}
+	binary {
+		FontStyle plain
+		FontSize 12
+		LineColor darkgreen
+		LineThickness 2
+	}
+	highlight {
+		LineThickness 2
+	  	LineStyle 4-4
+
+	  	BackgroundColor #1
+	}
+}
+
+nwdiagDiagram {
+	network {
+		FontSize 12
+
+	    BackGroundColor #555
+	}
+	server {
+		FontSize 12
+	}
+	group {
+		FontSize 12
+
+		BackGroundColor #2
+	}
+	arrow {
+		FontSize 11
+	}
+}
+
+' C4 styles
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor white
+    LineColor white
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
+
+.person {
+    BackGroundColor #003871
+}
+
+.system {
+    BackGroundColor #075EB3
+}
+
+.container {
+    BackGroundColor #1183CB
+    LineColor #0065AD
+}
+
+.component {
+    BackGroundColor #7BB1E6
+}
+
+.external_person {
+	BackGroundColor #5E5E5E
+}
+
+.external_system {
+	BackGroundColor #8F8F8F
+}
+
+.external_container {
+    BackGroundColor #8B8B8B
+}
+
+.node {
+    BackgroundColor transparent
+    FontColor white
+}
+</style>

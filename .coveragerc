@@ -14,5 +14,7 @@ branch = True
 [report]
 show_missing = True
 skip_empty = True
-exclude_lines=
+exclude_also=
     raise NotImplementedError
+    if __name__ == .__main__.:
+    @(abc\.)?abstractmethod

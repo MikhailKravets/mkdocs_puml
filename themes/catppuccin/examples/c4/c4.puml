@@ -1,0 +1,26 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/catppuccin/latte.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/angular.puml
+!include DEVICONS/java.puml
+!include DEVICONS/msql_server.puml
+!include DEVICONS/redis.puml
+!include FONTAWESOME/users.puml
+
+Person(user, "Customer", "People that need products", $sprite="users")
+Container(spa, "SPA", "angular", "The main interface that the customer interacts with", $sprite="angular")
+Container(api, "API", "java", "Handles all business logic", $sprite="java")
+
+Container_Boundary(db_boundary, "Databases"){
+ContainerDb(db, "Database", "Microsoft SQL", "Holds product, order and invoice information", $sprite="msql_server")
+ContainerDb(redis, "Cache & MB", "Redis", "Cache and simple message broker", $sprite="redis")
+}
+
+Rel_D(user, spa, "Uses")
+Rel_R(spa, api, "Uses")
+Rel_R(api, db, "Reads/Writes")
+@enduml

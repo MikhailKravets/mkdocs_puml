@@ -1,0 +1,46 @@
+@startuml
+
+' Substitute the link on desired theme
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/catppuccin/macchiato.puml
+
+abstract class Reader {
+    Extend this interface to implement
+    reader
+    ..
+    + read()
+    ~ auth()
+}
+
+class FileReader {
+    Read files
+    ..
+    + read()
+    ~ auth()
+    - open_file()
+}
+
+package urllib {
+    class URLReader {
+        Read from URL
+        ..
+        + read()
+        ~ auth()
+        - connect()
+    }
+
+    class URL {
+        Represents URL
+        ..
+        - url
+        + join()
+    }
+}
+note right of FileReader::auth
+    Do nothing. Auth in files?
+end note
+
+FileReader -up-> Reader
+URLReader -up-> Reader
+
+
+@enduml

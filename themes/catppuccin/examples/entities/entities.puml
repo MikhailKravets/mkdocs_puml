@@ -1,0 +1,69 @@
+@startuml
+
+' Substitute the link on desired theme
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/catppuccin/macchiato.puml
+
+title "Database Entities"
+
+skinparam linetype ortho
+
+package "authentication.models" as auth_models{
+    entity User{
+        *id: INT<PK>
+        ..
+        *email: VARCHAR<unique, case_insensitive>
+        *password: VARCHAR<argon2>
+        *is_staff: BOOLEAN
+        *is_superuser: BOOLEAN
+        *is_active: BOOLEAN
+        *last_login_at: TIMESTAMP
+        *created_at: TIMESTAMP
+    }
+}
+
+package "projects.models" as projects{
+    entity Project{
+        * id: INT<PK>
+        ..
+        * user: INT<FK>
+        * name: VARCHAR
+        * last_updated_at: TIMESTAMP
+        * created_at: TIMESTAMP
+    }
+    entity UML{
+        * id: INT<PK>
+        ..
+        * project: INT<FK>
+        * c4_type: ENUM
+        * diagram: TEXT
+    }
+    UML }--|| Project
+    Project }o--|| User
+}
+
+package "user_cards.models" as user_cards{
+    entity Card{
+        * id: INT<PK>
+        ..
+        * user: INT<FK>
+        * stripe_token: VARCHAR
+        name: VARCHAR
+        last_numbers: VARCHAR(4)
+        * created_at: TIMESTAMP
+    }
+    Card }o--|| User
+}
+
+package "user_devices.models" as user_devices{
+    entity PhoneDevice{
+        * id: INT<PK>
+        ..
+        * user: INT<FK, unique>
+        * phone_number: VARCHAR<unique=True>
+        * secret_key: VARCHAR
+    }
+
+    PhoneDevice |o--|| User
+}
+
+@enduml

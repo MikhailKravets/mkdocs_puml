@@ -6,10 +6,10 @@ import pytest
 
 from uuid import UUID
 
-from mkdocs.config.config_options import Config
-
-from mkdocs_puml.plugin import PlantUMLPlugin
-from tests.conftest import BASE_PUML_URL, CUSTOM_PUML_KEYWORD, TESTDATA_DIR
+from mkdocs_puml.config import CacheConfig, InteractionConfig, LocalCacheConfig, PlantUMLConfig, ThemeConfig
+from mkdocs_puml.model import ThemeMode
+from mkdocs_puml.plugin import Diagram, PlantUMLPlugin
+from tests.conftest import BASE_PUML_URL, TESTDATA_DIR
 
 
 def is_uuid_valid(uuid_str: str) -> bool:
@@ -28,19 +28,36 @@ def is_uuid_valid(uuid_str: str) -> bool:
     return str(uuid_obj) == uuid_str
 
 
+def patch_plugin_to_single_theme(plugin: PlantUMLPlugin):
+    plugin.config.theme.enabled = False
+    plugin.themer = None
+    plugin.theme_light = None
+    plugin.theme_dark = None
+
+
 @pytest.fixture
-def plugin_config():
-    c = Config(schema=PlantUMLPlugin.config_scheme)
-    c["puml_url"] = BASE_PUML_URL
-    c["auto_dark"] = False
-    c["extra_css"] = []
+def plugin_config() -> PlantUMLConfig:
+    c = PlantUMLConfig()
+
+    t = ThemeConfig()
+    t.load_dict({"light": "default/light", "dark": "default/dark", "url": "test.url/themes"})
+
+    cache = CacheConfig()
+    cache.load_dict({"backend": "disabled", "local": LocalCacheConfig()})
+
+    inter = InteractionConfig()
+    inter.load_dict({"enabled": True})
+    c.load_dict(
+        {
+            "puml_url": BASE_PUML_URL,
+            "extra_css": [],
+            "extra_javascript": [],
+            "theme": t,
+            "cache": cache,
+            "interaction": inter
+        }
+    )
     return c
-
-
-@pytest.fixture
-def plugin_config_custom_keyword(plugin_config):
-    plugin_config["puml_keyword"] = CUSTOM_PUML_KEYWORD
-    return plugin_config
 
 
 @pytest.fixture
@@ -59,30 +76,11 @@ def plant_uml_plugin(plugin_config):
 
 
 @pytest.fixture
-def plant_uml_plugin_custom_keyword(plugin_config_custom_keyword):
-    plugin = PlantUMLPlugin()
-    plugin.config = plugin_config_custom_keyword
-    plugin.on_config(plugin_config_custom_keyword)
-
-    return plugin
-
-
-@pytest.fixture
-def plant_uml_plugin_dark(plugin_config_custom_keyword: Config):
-    plugin = PlantUMLPlugin()
-    plugin_config_custom_keyword["auto_dark"] = True
-    plugin.config = plugin_config_custom_keyword
-    plugin.on_config(plugin_config_custom_keyword)
-
-    return plugin
-
-
-@pytest.fixture
 def diagrams_dict(diagram_and_encoded):
     return {
-        str(uuid.uuid4()): diagram_and_encoded[0],
-        str(uuid.uuid4()): diagram_and_encoded[0],
-        str(uuid.uuid4()): diagram_and_encoded[0],
+        str(uuid.uuid4()): Diagram(diagram_and_encoded[0], mode=ThemeMode.LIGHT),
+        str(uuid.uuid4()): Diagram(diagram_and_encoded[0], mode=ThemeMode.DARK),
+        str(uuid.uuid4()): Diagram(diagram_and_encoded[0], mode=ThemeMode.LIGHT),
     }
 
 

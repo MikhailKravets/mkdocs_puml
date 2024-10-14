@@ -2,7 +2,6 @@
     "python.testing.pytestArgs": [
         "--cov=mkdocs_puml/",
         "--cov-branch",
-        "--pdb",
         "tests",
     ],
     "python.testing.unittestEnabled": false,
