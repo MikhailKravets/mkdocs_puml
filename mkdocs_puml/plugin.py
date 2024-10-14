@@ -13,7 +13,7 @@ from mkdocs_puml.config import PlantUMLConfig
 from mkdocs_puml.model import Count, Diagram, ThemeMode
 from mkdocs_puml.storage import AbstractStorage, build_storage
 from mkdocs_puml.puml import Fallback, PlantUML
-from mkdocs_puml.themes import Theme
+from mkdocs_puml.theme import Theme
 
 
 class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
