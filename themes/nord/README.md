@@ -31,3 +31,33 @@ This theme comes in two flavors
 |**nord/day**|**nord/night**|
 |:-------:|:--------:|
 |![](examples/classes/classes-day.svg)|![](examples/classes/classes-night.svg)|
+
+## Examples
+
+Below are some examples showcasing how this theme appears on various diagrams
+
+## Sequence
+
+|**nord/day**|**nord/night**|
+|:-------:|:--------:|
+|![](examples/sequence/sequence-day.svg)|![](examples/sequence/sequence-night.svg)|
+
+### Entity Diagram
+
+|**nord/day**|**nord/night**|
+|:-------:|:--------:|
+|![](examples/entity/entity-day.svg)|![](examples/entity/entity-night.svg)|
+
+### Timing
+
+|**nord/day**|**nord/night**|
+|:-------:|:--------:|
+|![](examples/timing/timing-day.svg)|![](examples/timing/timing-night.svg)|
+
+### C4
+
+`Nord` theme contains styling of C4 diagrams
+
+|**nord/day**|**nord/night**|
+|:-------:|:--------:|
+|![](examples/c4/c4-day.svg)|![](examples/c4/c4-night.svg)|
