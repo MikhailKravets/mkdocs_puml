@@ -1,5 +1,5 @@
 @startuml
-!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/theme/kanagawa/themes/kanagawa/fuji.puml
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
 
 skinparam backgroundcolor white
 start
