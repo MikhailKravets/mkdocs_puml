@@ -140,7 +140,7 @@ group {
   LineThickness 1.0
   package {
     LineThickness 2
-    BackGroundColor: var(--nord0)
+    BackGroundColor: transparent
     LineColor: var(--nord7)
   }
 }
@@ -650,17 +650,17 @@ nwdiagDiagram {
 }
 
 .system {
-    BackGroundColor: var(--nord7)
+    BackGroundColor: var(--nord13)
     LineColor: var(--nord3)
 }
 
 .container {
-    BackGroundColor: var(--nord12)
+    BackGroundColor: var(--nord8)
     LineColor: var(--nord3)
 }
 
 .component {
-    BackGroundColor: var(--nord8)
+    BackGroundColor: var(--nord7)
     LineColor: var(--nord3)
 }
 
