@@ -190,21 +190,27 @@ spot {
     }
     spotInterface {
         BackgroundColor: var(--nord10)
+        LineColor: var(--nord1)
     }
     spotEnum {
         BackgroundColor: var(--nord13)
+        LineColor: var(--nord1)
     }
     spotEntity {
         BackgroundColor: var(--nord13)
+        LineColor: var(--nord1)
     }
     spotException {
         BackgroundColor: var(--nord12)
+        LineColor: var(--nord1)
     }
     spotMetaClass {
         BackgroundColor: var(--nord15)
+        LineColor: var(--nord1)
     }
     spotStereotype {
         BackgroundColor: var(--nord15)
+        LineColor: var(--nord1)
     }
 }
 
