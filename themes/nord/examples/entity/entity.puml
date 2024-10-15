@@ -2,7 +2,7 @@
 ' Substitute the link on desired theme
 !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/theme/nord/themes/nord/day.puml
 
-title "Database Entities"
+title "Database"
 
 skinparam linetype ortho
 
