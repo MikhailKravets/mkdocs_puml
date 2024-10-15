@@ -1,4 +1,4 @@
-from mkdocs_puml.themes import Theme
+from mkdocs_puml.theme import Theme
 
 
 def test_theme(diagram_and_encoded: tuple[str, str]):

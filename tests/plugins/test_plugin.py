@@ -5,7 +5,7 @@ from mkdocs_puml.model import Count
 from mkdocs_puml.storage import FileStorage, RAMStorage
 from mkdocs_puml.plugin import PlantUMLPlugin, ThemeMode
 from mkdocs_puml.puml import Fallback, PlantUML
-from mkdocs_puml.themes import Theme
+from mkdocs_puml.theme import Theme
 from tests.conftest import BASE_PUML_KEYWORD, CUSTOM_PUML_KEYWORD
 from tests.plugins.conftest import is_uuid_valid, patch_plugin_to_single_theme
 

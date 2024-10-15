@@ -1,0 +1,693 @@
+<style>
+root {
+    ' Polar Night
+    --nord0: #2e3440
+    --nord1: #3b4252
+    --nord2: #434c5e
+    --nord3: #4c566a
+
+    ' Snow Storm
+    --nord4: #d8dee9
+    --nord5: #e5e9f0
+    --nord6: #eceff4
+
+    ' Frost
+    --nord7: #8fbcbb
+    --nord8: #88c0d0
+    --nord9: #81a1c1
+    --nord10: #5e81ac
+
+    ' Aurora
+    --nord11: #bf616a
+    --nord12: #d08770
+    --nord13: #ebcb8b
+    --nord14: #a3be8c
+    --nord15: #b48ead
+
+    FontName SansSerif
+    HyperLinkColor: var(--nord10)
+    HyperLinkUnderlineThickness 1
+    FontColor: var(--nord4)
+    FontSize 14
+    FontStyle plain
+    HorizontalAlignment left
+    RoundCorner 0
+    DiagonalCorner 0
+    LineThickness 1.0
+
+    LineColor: var(--nord4)
+    BackGroundColor: var(--nord0);
+    Shadowing: 0.0;
+}
+
+document {
+  BackGroundColor: var(--nord0)
+  header {
+    HorizontalAlignment right
+    FontSize 10
+    FontColor: var(--nord3)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  title {
+    HorizontalAlignment center
+    FontSize 14
+    FontStyle bold
+    Padding 5
+    Margin 5
+    LineColor transparent
+    BackGroundColor transparent
+  }
+  footer {
+    HorizontalAlignment center
+    FontSize 10
+    FontColor: var(--nord3)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  legend {
+    LineColor: var(--nord3)
+    BackGroundColor: var(--nord0)
+    FontSize 14
+    RoundCorner 15
+    Padding 5
+    Margin 12
+  }
+  caption {
+    HorizontalAlignment center
+    FontSize 14
+    FontColor: var(--nord4)
+    Padding 0
+    Margin 1
+    LineColor transparent
+    BackGroundColor transparent
+  }
+}
+
+frame {
+    LineColor: var(--nord4)
+    LineThickness 1.5
+}
+
+package {
+    title {
+        FontStyle bold
+        FontColor: var(--nord7)
+    }
+}
+
+
+stereotype {
+  FontStyle italic
+}
+
+
+mainframe {
+  Padding 1 5
+  LineThickness 1.5
+  Margin 10 5
+}
+
+element {
+  Shadowing 0.0
+  LineThickness 0.3
+
+  LineColor: var(--nord4)
+
+  composite {
+    title {
+      FontStyle bold
+    }
+
+  }
+}
+
+classDiagram,componentDiagram,objectDiagram {
+    element {
+        RoundCorner 10
+        LineThickness 2.5
+
+        LineColor: var(--nord3)
+
+    }
+    arrow {
+        LineColor: var(--nord9)
+    }
+}
+
+group {
+  BackGroundColor transparent
+  LineThickness 1.0
+  package {
+    LineThickness 2
+    BackGroundColor: transparent
+    LineColor: var(--nord7)
+  }
+}
+
+folder {
+    LineThickness 0.3
+}
+
+visibilityIcon {
+    public {
+        LineColor: var(--nord14)
+        BackgroundColor: var(--nord14)
+    }
+    private {
+        LineColor: var(--nord11)
+        BackgroundColor: var(--nord11)
+    }
+    protected {
+        LineColor: var(--nord13)
+        BackgroundColor: var(--nord13)
+    }
+    package {
+        LineColor: var(--nord12)
+        BackgroundColor: var(--nord12)
+    }
+
+    ' This is the dot in entity item
+    IEMandatory {
+        LineColor: var(--nord4)
+        BackgroundColor: var(--nord4)
+    }
+}
+
+spot {
+    FontColor: var(--nord1)
+    spotAnnotation {
+        BackgroundColor: var(--nord14)
+        LineColor: var(--nord1)
+    }
+    spotAbstractClass {
+        BackgroundColor: var(--nord8)
+        LineColor: var(--nord1)
+    }
+    spotClass {
+        BackgroundColor: var(--nord8)
+        LineColor: var(--nord1)
+    }
+    spotInterface {
+        BackgroundColor: var(--nord10)
+        LineColor: var(--nord1)
+    }
+    spotEnum {
+        BackgroundColor: var(--nord13)
+        LineColor: var(--nord1)
+    }
+    spotEntity {
+        BackgroundColor: var(--nord13)
+        LineColor: var(--nord1)
+    }
+    spotException {
+        BackgroundColor: var(--nord12)
+        LineColor: var(--nord1)
+    }
+    spotMetaClass {
+        BackgroundColor: var(--nord15)
+        LineColor: var(--nord1)
+    }
+    spotStereotype {
+        BackgroundColor: var(--nord15)
+        LineColor: var(--nord1)
+    }
+}
+
+
+sequenceDiagram {
+    BackGroundColor: var(--nord0)
+    LineColor: var(--nord4)
+
+	group {
+        BackGroundColor: transparent
+        LineColor: var(--nord7)
+        LineThickness 1.5
+        FontSize 11
+        FontStyle bold
+	}
+
+	groupHeader {
+        LineThickness 1.5
+        BackGroundColor: var(--nord7)
+        LineColor: var(--nord7)
+	}
+
+	lifeLine {
+        BackGroundColor: var(--nord7)
+        LineStyle 5
+	}
+
+	reference {
+        FontSize 12
+        BackGroundColor: transparent
+        LineColor: var(--nord7)
+        LineThickness 1.5
+        HorizontalAlignment center
+	}
+
+	referenceHeader {
+        LineColor: var(--nord7)
+        BackGroundColor: var(--nord7)
+	}
+
+    groupHeader, referenceHeader {
+        FontColor: var(--nord1)
+        FontSize 13
+        FontStyle bold
+        LineThickness 2.0
+    }
+
+	box {
+        BackGroundColor: var(--nord1)
+        LineColor: var(--nord7)
+        RoundCorner 15
+
+        FontSize 13
+        FontStyle bold
+	}
+
+	separator {
+        LineColor: var(--nord9)
+        LineThickness 1.5
+        BackGroundColor: var(--nord1)
+
+        FontSize 13
+        ' FontStyle bold
+	}
+	participant {
+	    RoundCorner 5
+	}
+
+	participant,actor,boundary,control,entity,queue,database,collections {
+        BackgroundColor: var(--nord1);
+        HorizontalAlignment center
+        LineColor: var(--nord10)
+        RoundCorner 15
+	}
+}
+
+
+stateDiagram {
+    BackGroundColor: var(--nord0)
+    LineColor: var(--nord9)
+    state {
+        RoundCorner 15
+        BackGroundColor: var(--nord1)
+        LineColor: var(--nord3)
+        LineThickness 2.5
+    }
+    stateBody {
+        BackGroundColor transparent
+    }
+    element {
+        title {
+            FontStyle plain
+        }
+    }
+    group {
+        LineThickness 0.5
+    }
+
+    header {
+        FontSize 12
+    }
+    circle {
+        start, stop, end {
+            LineColor: var(--nord1)
+            BackgroundColor: var(--nord8)
+        }
+    }
+}
+
+
+delay {
+  FontSize 11
+  FontStyle plain
+  HorizontalAlignment center
+}
+
+
+
+swimlane {
+  BackGroundColor transparent
+  LineColor: var(--nord4)
+  LineThickness 1.5
+  FontSize 18
+}
+
+arrow {
+  FontSize 13
+  LineThickness 1.0
+  BackGroundColor: var(--nord4)
+  FontColor: var(--nord9)
+}
+
+note {
+  FontSize 13
+  BackGroundColor: var(--nord1)
+  LineThickness 0.5
+  LineColor: var(--nord9)
+}
+
+partition {
+}
+
+circle {
+}
+
+mindmapDiagram {
+}
+
+mindmapDiagram {
+	node {
+	    Padding 10
+	    Margin 10
+	    RoundCorner 25
+	    LineThickness 1.5
+        LineColor: var(--nord3)
+        BackGroundColor: var(--nord1)
+	}
+	arrow {
+	    LineThickness 1.2
+        LineColor: var(--nord3)
+	}
+}
+
+
+wbsDiagram {
+    Padding 10
+    Margin 15
+    RoundCorner 0
+    LineThickness 2.5
+    FontSize 12
+    LineColor: var(--nord3)
+    FontColor: var(--nord4)
+}
+
+activityDiagram {
+
+	activity {
+	    Padding 10
+	    FontSize 12
+	    RoundCorner 15
+        LineColor: var(--nord3)
+        BackGroundColor: var(--nord1)
+        LineThickness 2.5
+	}
+
+	composite {
+	    LineColor: var(--nord7)
+        FontColor: var(--nord7)
+	    BackgroundColor transparent
+	    LineThickness 1.5
+        RoundCorner 10
+        FontSize 11
+        FontStyle bold
+	}
+	diamond {
+	    FontSize 11
+	}
+	arrow {
+	    FontSize 11
+	    LineThickness 2.5
+        LineColor: var(--nord3)
+	}
+	circle {
+	    start, stop, end {
+		    LineColor: var(--nord1)
+            BackgroundColor: var(--nord10)
+	    }
+
+        stop {
+            LineColor: var(--nord10)
+        }
+
+        end {
+            LineColor: var(--nord10)
+        }
+	}
+	activityBar {
+	  BackgroundColor: var(--nord7)
+      LineColor: var(--nord4)
+	}
+}
+
+
+task {
+    FontSize 11
+    LineColor: var(--nord4)
+}
+
+' TODO: it was originaly in root. I don't know why it's here. I copied it under ganttDiagram
+' milestone {
+'     FontSize 11
+' 	BackGroundColor: var(--peach)
+' 	LineColor: var(--subtext1)
+' }
+
+ganttDiagram {
+    BackGroundColor: var(--nord0)
+
+    milestone {
+        FontSize 11
+        BackGroundColor: var(--nord11)
+        LineColor: var(--nord7)
+    }
+
+	arrow {
+	  LineThickness 1.5
+      LineColor: var(--nord7)
+	}
+	note {
+	  FontSize 9
+      BackGroundColor: var(--nord1);
+	}
+	separator {
+	  FontSize 11
+	  FontStyle plain
+	  BackGroundColor transparent
+      LineColor: var(--nord14)
+      FontColor: var(--nord14)
+	  Margin 5
+	  Padding 5
+	}
+	verticalSeparator {
+	  LineThickness 2
+	  LineStyle 2-2
+	  LineColor: var(--nord14)
+      FontColor: var(--nord14)
+	}
+	timeline {
+	    BackgroundColor transparent
+	    LineColor: var(--nord3)
+	    FontSize 10
+	    month {
+	      FontSize 12
+	    }
+	    year {
+	      FontSize 14
+	    }
+	}
+	closed {
+        BackGroundColor: var(--nord1)
+        FontColor: var(--nord3)
+    }
+	task {
+        BackGroundColor: var(--nord1)
+        LineColor: var(--nord7)
+		RoundCorner 5
+        Margin 2 2 2 2
+        Padding 2
+	}
+	undone {
+        BackGroundColor: var(--nord3)
+	}
+	milestone {
+        Margin 2
+        Padding 3
+	}
+}
+
+
+usecase {
+  HorizontalAlignment center
+}
+
+yamlDiagram,jsonDiagram {
+    BackGroundColor: var(--nord0)
+    FontColor: var(--nord4)
+    LineColor: var(--nord8)
+    arrow {
+        LineThickness 2.5
+        LineStyle 3-3
+        LineColor: var(--nord8)
+    }
+    node {
+        LineThickness 1.5
+        RoundCorner 10
+        BackGroundColor: var(--nord1)
+        separator {
+            LineThickness 1.5
+            LineColor: var(--nord3)
+        }
+        header {
+            FontStyle bold
+        }
+        highlight {
+            BackGroundColor: var(--nord0)
+        }
+    }
+}
+
+
+timingDiagram {
+    BackGroundColor: var(--nord0)
+	LineColor: var(--nord3)
+	FontColor: var(--nord8)
+	FontStyle bold
+    LineThickness 2.5
+    timeline {
+	  FontStyle plain
+	  FontSize 11
+      LineThickness 2
+    }
+    note {
+        FontSize 13
+        FontStyle plain
+        FontColor: var(--nord4)
+        BackGroundColor: var(--nord1)
+        LineThickness 0.5
+        LineColor: var(--nord9)
+    }
+	arrow {
+	    FontName Serif
+	    FontSize 14
+	    FontStyle plain
+	    FontColor: var(--nord8)
+	    LineColor: var(--nord8)
+	    LineThickness 1.5
+	}
+	constraintArrow {
+	    FontSize 12
+		FontStyle plain
+        FontColor: var(--nord11)
+	    LineColor: var(--nord11)
+	    LineThickness 1.5
+	}
+	clock {
+        LineColor: var(--nord7)
+        LineThickness 1.5
+	}
+	concise {
+	  FontSize 12
+        LineColor: var(--nord3)
+        BackgroundColor: var(--nord1);
+        LineThickness 2.5
+	}
+	robust {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--nord7)
+        LineThickness 2
+        BackgroundColor: var(--nord1);
+	}
+	binary {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--nord7)
+        LineThickness 2
+	}
+	highlight {
+        ' TODO: plantuml doesn't have FontColor for text inside highlight?
+        BackgroundColor: var(--nord1)
+        LineThickness 2
+        LineStyle 4-4
+	}
+}
+
+nwdiagDiagram {
+    BackGroundColor: var(--nord0)
+    FontColor: var(--nord4)
+    LineThickness 2.5
+
+	network {
+	    BackgroundColor: var(--nord7);
+        LineColor: var(--nord1)
+		FontSize 12
+	}
+	server {
+		FontSize 12
+        LineColor: var(--nord3)
+        RoundCorner 10
+	}
+	group {
+		FontSize 12
+		BackGroundColor: var(--nord1)
+	}
+	arrow {
+		FontSize 11
+        LineColor: var(--nord3)
+	}
+}
+
+' C4
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+    LineColor: var(--nord3)
+    FontColor: var(--nord0)
+    RoundCorner 5
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor: var(--nord9)
+    LineColor: var(--nord9)
+    RoundCorner 0
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
+
+.person {
+    BackGroundColor: var(--nord14)
+    LineColor: var(--nord3)
+}
+
+.system {
+    BackGroundColor: var(--nord13)
+    LineColor: var(--nord3)
+}
+
+.container {
+    BackGroundColor: var(--nord8)
+    LineColor: var(--nord3)
+}
+
+.component {
+    BackGroundColor: var(--nord7)
+    LineColor: var(--nord3)
+}
+
+.external_person {
+	BackGroundColor: var(--nord2)
+    FontColor: var(--nord4)
+}
+
+.external_system {
+	BackGroundColor: var(--nord1)
+    FontColor: var(--nord4)
+}
+
+.external_container {
+    BackGroundColor: var(--nord0)
+    FontColor: var(--nord4)
+}
+
+.node {
+    BackgroundColor: var(--nord1)
+    RoundCorner 5
+    FontColor: var(--nord4)
+}
+</style>
