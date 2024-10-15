@@ -167,10 +167,10 @@ visibilityIcon {
         BackgroundColor: var(--nord12)
     }
 
-    ' TODO: what is it?
+    ' This is the dot in entity item
     IEMandatory {
-        LineColor black
-        BackgroundColor black
+        LineColor: var(--nord3)
+        BackgroundColor: var(--nord3)
     }
 }
 
