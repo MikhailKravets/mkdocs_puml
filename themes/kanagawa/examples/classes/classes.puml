@@ -1,7 +1,8 @@
 @startuml
-
 ' Substitute the link on desired theme
-!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/day.puml
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/theme/kanagawa/themes/kanagawa/fuji.puml
+
+' skinparam backgroundcolor white
 
 class FileReader {
     Read files
@@ -33,5 +34,4 @@ end note
 
 FileReader -up-> Reader
 URLReader -up-> Reader
-
 @enduml
