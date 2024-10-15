@@ -58,7 +58,7 @@ root {
     FontName SansSerif
     HyperLinkColor: var(--crystalBlue)
     HyperLinkUnderlineThickness 1
-    FontColor: var(--sumiInk0)
+    FontColor: var(--fujiWhite)
     FontSize 14
     FontStyle plain
     HorizontalAlignment left
@@ -66,17 +66,17 @@ root {
     DiagonalCorner 0
     LineThickness 1.0
 
-    LineColor: var(--sumiInk0)
-    BackGroundColor: var(--fujiWhite);
+    LineColor: var(--sumiInk4)
+    BackGroundColor: var(--sumiInk1);
     Shadowing: 0.0;
 }
 
 document {
-  BackGroundColor: transparent
+  BackGroundColor: var(--sumiInk1)
   header {
     HorizontalAlignment right
     FontSize 10
-    FontColor: var(--sumiInk3)
+    FontColor: var(--fujiGray)
     BackGroundColor transparent
     LineColor transparent
   }
@@ -92,13 +92,13 @@ document {
   footer {
     HorizontalAlignment center
     FontSize 10
-    FontColor: var(--sumiInk3)
+    FontColor: var(--fujiGray)
     BackGroundColor transparent
     LineColor transparent
   }
   legend {
-    LineColor: var(--sumiInk4)
-    BackGroundColor: var(--fujiLighter)
+    LineColor: var(--sumiInk5)
+    BackGroundColor: var(--sumiInk0)
     FontSize 14
     RoundCorner 15
     Padding 5
@@ -107,7 +107,7 @@ document {
   caption {
     HorizontalAlignment center
     FontSize 14
-    FontColor: var(--sumiInk0)
+    FontColor: var(--fujiWhite)
     Padding 0
     Margin 1
     LineColor transparent
@@ -123,7 +123,7 @@ frame {
 package {
     title {
         FontStyle bold
-        FontColor: var(--waveRed)
+        FontColor: var(--waveAqua2)
     }
 }
 
@@ -143,7 +143,7 @@ element {
   Shadowing 0.0
   LineThickness 0.3
 
-  LineColor: var(--sumiInk4)
+  LineColor: var(--sumiInk2)
 
   composite {
     title {
@@ -156,13 +156,13 @@ element {
 classDiagram,componentDiagram,objectDiagram {
     element {
         RoundCorner 5
-        LineThickness 1
-        BackGroundColor: var(--fujiLighter)
-        LineColor: var(--sumiInk4)
+        LineThickness 2
+        BackGroundColor: var(--sumiInk0)
+        LineColor: var(--sumiInk2)
 
     }
     arrow {
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk5)
     }
 }
 
@@ -171,9 +171,9 @@ group {
   LineThickness 1.0
   package {
     RoundCorner 10
-    LineThickness 2
-    BackGroundColor: transparent
-    LineColor: var(--waveRed)
+    LineThickness 1
+    BackGroundColor transparent
+    LineColor: var(--waveAqua2)
   }
 }
 
@@ -201,8 +201,8 @@ visibilityIcon {
 
     ' TODO: what is it?
     IEMandatory {
-        LineColor: var(--sumiInk3)
-        BackgroundColor: var(--sumiInk3)
+        LineColor: var(--sumiInk5)
+        BackgroundColor: var(--sumiInk5)
     }
 }
 
@@ -210,46 +210,46 @@ spot {
     FontColor: var(--sumiInk0)
     spotAnnotation {
         BackgroundColor: var(--autumnGreen)
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk2)
     }
     spotAbstractClass {
         BackgroundColor: var(--springBlue)
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk2)
     }
     spotClass {
         BackgroundColor: var(--waveAqua2)
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk2)
     }
     spotInterface {
-        BackgroundColor: var(--lightBlue)
-        LineColor: var(--sumiInk4)
+        BackgroundColor: var(--waveAqua1)
+        LineColor: var(--sumiInk2)
     }
     spotEnum {
-        BackgroundColor: var(--carpYellow)
-        LineColor: var(--sumiInk4)
+        BackgroundColor: var(--autumnYellow)
+        LineColor: var(--sumiInk2)
     }
     spotEntity {
         BackgroundColor: var(--surimiOrange)
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk2)
     }
     spotException {
         BackgroundColor: var(--peachRed)
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk2)
     }
     spotMetaClass {
         BackgroundColor: var(--springViolet2)
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk2)
     }
     spotStereotype {
         BackgroundColor: var(--sakuraPink)
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk2)
     }
 }
 
 
 sequenceDiagram {
-    LineColor: var(--sumiInk4)
-    FontColor: var(--sumiInk0)
+    LineColor: var(--sumiInk5)
+    FontColor: var(--fujiWhite)
 
 	group {
         BackGroundColor transparent
@@ -266,7 +266,7 @@ sequenceDiagram {
 	}
 
 	lifeLine {
-        BackGroundColor: var(--lightBlue)
+        BackGroundColor: var(--waveAqua1)
         LineColor: var(--dragonBlue)
         LineStyle 5
 	}
@@ -285,25 +285,26 @@ sequenceDiagram {
 	}
 
     groupHeader, referenceHeader {
-        FontColor: var(--fujiLighter)
+        FontColor: var(--sumiInk0)
         FontSize 13
         FontStyle bold
         LineThickness 2.0
     }
 
 	box {
-        BackGroundColor: var(--lightBlue)
-        LineColor: var(--lightBlue)
+        BackGroundColor: var(--winterBlue)
+        LineColor: var(--sumiInk4)
         RoundCorner 10
 
         FontSize 13
         FontStyle bold
+        FontColor: var(--fujiGray)
 	}
 
 	separator {
-        LineColor: var(--sakuraPink)
+        LineColor: var(--waveRed)
         LineThickness 1.5
-        BackGroundColor: var(--fujiLight)
+        BackGroundColor: var(--sumiInk0)
 
         FontSize 13
         ' FontStyle bold
@@ -313,20 +314,24 @@ sequenceDiagram {
 	}
 
 	participant,actor,boundary,control,entity,queue,database,collections {
-        BackgroundColor: var(--fujiLighter);
+        BackgroundColor: var(--sumiInk0);
         HorizontalAlignment center
-        LineColor: var(--sumiInk4)
+        LineColor: var(--sumiInk5)
         RoundCorner 5
 	}
+
+    participant, database, collections, queue {
+        LineColor: var(--sumiInk4)
+    }
 }
 
 
 stateDiagram {
     ' BackGroundColor transparent
-    LineColor: var(--sumiInk4)
+    LineColor: var(--sumiInk5)
     state {
         RoundCorner 15
-        BackGroundColor: var(--fujiLighter)
+        BackGroundColor: var(--sumiInk0)
         LineColor: var(--sumiInk4)
         LineThickness 1
     }
@@ -347,7 +352,7 @@ stateDiagram {
     }
     circle {
         start, stop, end {
-            LineColor: var(--dragonBlue)
+            LineColor: var(--sumiInk0)
             BackgroundColor: var(--autumnYellow)
         }
     }
@@ -373,14 +378,15 @@ arrow {
   FontSize 13
   LineThickness 1.0
   BackGroundColor: var(--sumiInk4)
-  FontColor: var(--sumiInk4)
+  FontColor: var(--fujiGray)
 }
 
 note {
   FontSize 13
-  BackGroundColor: var(--fujiLight)
-  LineThickness 1
-  LineColor: var(--sakuraPink)
+  FontColor: var(--fujiGray)
+  BackGroundColor: var(--sumiInk0)
+  LineThickness 0.5
+  LineColor: var(--waveRed)
 }
 
 partition {
@@ -394,12 +400,12 @@ mindmapDiagram {
 	    Padding 10
 	    Margin 10
 	    RoundCorner 25
-	    LineThickness 1
-        LineColor: var(--sumiInk4)
-        BackGroundColor: var(--fujiLighter)
+	    LineThickness 2
+        LineColor: var(--sumiInk2)
+        BackGroundColor: var(--sumiInk0)
 	}
 	arrow {
-	    LineThickness 1.5
+	    LineThickness 2
         LineColor: var(--sumiInk4)
 	}
 }
@@ -409,10 +415,14 @@ wbsDiagram {
     Padding 10
     Margin 15
     RoundCorner 0
-    LineThickness 1.5
+    LineThickness 2
     FontSize 12
-    LineColor: var(--sumiInk4)
-    FontColor: var(--sumiInk0)
+    LineColor: var(--sumiInk2)
+    FontColor: var(--fujiWhite)
+
+    arrow {
+        LineColor: var(--sumiInk4)
+    }
 }
 
 activityDiagram {
@@ -422,7 +432,7 @@ activityDiagram {
 	    FontSize 12
 	    RoundCorner 15
         LineColor: var(--dragonBlue)
-        BackGroundColor: var(--fujiLighter)
+        BackGroundColor: var(--sumiInk0)
         LineThickness 1
 	}
 
@@ -441,12 +451,12 @@ activityDiagram {
 	}
 	arrow {
 	    FontSize 11
-	    LineThickness 1.5
+	    LineThickness 1
         LineColor: var(--dragonBlue)
 	}
 	circle {
 	    start, stop, end {
-		    LineColor: var(--dragonBlue)
+		    LineColor: var(--sumiInk0)
             BackgroundColor: var(--autumnYellow)
 	    }
 
@@ -460,7 +470,7 @@ activityDiagram {
         }
 	}
 	activityBar {
-	  BackgroundColor: var(--sakuraPink)
+	  BackgroundColor: var(--waveRed)
 	}
 }
 
@@ -481,7 +491,7 @@ ganttDiagram {
 
     milestone {
         FontSize 11
-        BackGroundColor: var(--sakuraPink)
+        BackGroundColor: var(--autumnRed)
         LineColor: var(--dragonBlue)
     }
 
@@ -491,29 +501,29 @@ ganttDiagram {
 	}
 	note {
         FontSize 9
-        FontColor: var(--sumiInk0)
-        BackGroundColor: var(--fujiLight)
-        LineThickness 1
-        LineColor: var(--sakuraPink)
+        FontColor: var(--fujiGray)
+        BackGroundColor: var(--sumiInk0)
+        LineThickness 0.5
+        LineColor: var(--waveRed)
 	}
 	separator {
 	  FontSize 11
 	  FontStyle plain
 	  BackGroundColor transparent
-      LineColor: var(--waveRed)
-      FontColor: var(--waveRed)
+      LineColor: var(--peachRed)
+      FontColor: var(--peachRed)
 	  Margin 5
 	  Padding 5
 	}
 	verticalSeparator {
 	  LineThickness 2
 	  LineStyle 2-2
-	  LineColor: var(--waveRed)
-      FontColor: var(--waveRed)
+	  LineColor: var(--peachRed)
+      FontColor: var(--peachRed)
 	}
 	timeline {
 	    BackgroundColor transparent
-	    LineColor: var(--sumiInk5)
+	    LineColor: var(--sumiInk4)
 	    FontSize 10
 	    month {
 	      FontSize 12
@@ -523,18 +533,18 @@ ganttDiagram {
 	    }
 	}
 	closed {
-        BackGroundColor: var(--sumiInk6)
-        FontColor: var(--sumiInk5)
+        BackGroundColor: var(--sumiInk0)
+        FontColor: var(--sumiInk4)
     }
 	task {
-        BackGroundColor: var(--fujiLighter)
+        BackGroundColor: var(--sumiInk0)
         LineColor: var(--dragonBlue)
 		RoundCorner 5
         Margin 2 2 2 2
         Padding 2
 	}
 	undone {
-        BackGroundColor: var(--fujiWhite)
+        BackGroundColor: var(--sumiInk2)
 	}
 	milestone {
         Margin 2
@@ -548,7 +558,7 @@ usecase {
 }
 
 yamlDiagram,jsonDiagram {
-    FontColor: var(--sumiInk0)
+    FontColor: var(--fujiWhite)
     LineColor: var(--waveRed)
     arrow {
         LineThickness 2.5
@@ -560,14 +570,14 @@ yamlDiagram,jsonDiagram {
         RoundCorner 10
         BackGroundColor transparent
         separator {
-            LineThickness 0.3
+            LineThickness 0.5
             LineColor: var(--sumiInk4)
         }
         header {
             FontStyle bold
         }
         highlight {
-            BackGroundColor: var(--fujiLight)
+            BackGroundColor: var(--sumiInk3)
         }
     }
 }
@@ -575,23 +585,23 @@ yamlDiagram,jsonDiagram {
 
 timingDiagram {
 	LineColor: var(--sumiInk4)
-	FontColor: var(--sumiInk0)
+	FontColor: var(--fujiWhite)
 	' FontStyle bold
-    LineThickness 0.5
+    LineThickness 1
     timeline {
 	  FontStyle plain
 	  FontSize 11
+      FontColor: var(--fujiGray)
       LineThickness 2
-      FontColor: var(--sumiInk4)
       LineColor: var(--sumiInk4)
     }
     note {
         FontSize 13
         FontStyle plain
-        FontColor: var(--sumiInk0)
-        BackGroundColor: var(--fujiLight)
-        LineThickness 1
-        LineColor: var(--sakuraPink)
+        FontColor: var(--fujiGray)
+        BackGroundColor: var(--sumiInk0)
+        LineThickness 0.5
+        LineColor: var(--waveRed)
     }
 	arrow {
 	    FontName Serif
@@ -614,9 +624,9 @@ timingDiagram {
 	}
 	concise {
 	    FontSize 12
-        FontColor: var(--sumiInk0)
+        FontColor: var(--fujiWhite)
         LineColor: var(--dragonBlue)
-        BackgroundColor: var(--fujiLighter);
+        BackgroundColor: var(--sumiInk0);
         LineThickness 1
 	}
 	robust {
@@ -624,7 +634,7 @@ timingDiagram {
         FontSize 12
         LineColor: var(--springGreen)
         LineThickness 2
-        BackgroundColor: var(--fujiLighter);
+        BackgroundColor: var(--sumiInk0);
 	}
 	binary {
         FontStyle plain
@@ -634,30 +644,30 @@ timingDiagram {
 	}
 	highlight {
         ' TODO: plantuml doesn't have FontColor for text inside highlight?
-        BackgroundColor: var(--sumiInk6)
+        BackgroundColor: var(--sumiInk0)
         LineThickness 2
         LineStyle 4-4
 	}
 }
 
 nwdiagDiagram {
-    FontColor: var(--sumiInk0)
+    FontColor: var(--fujiWhite)
     LineThickness 1
 
 	network {
-	    BackgroundColor: var(--lightBlue);
+	    BackgroundColor: var(--winterBlue);
         LineColor: var(--dragonBlue)
 		FontSize 12
 	}
 	server {
 		FontSize 12
-        LineColor: var(--dragonBlue)
-        BackGroundColor: var(--fujiLighter)
+        LineColor: var(--sumiInk2)
+        BackGroundColor: var(--sumiInk0)
         RoundCorner 10
 	}
 	group {
 		FontSize 12
-		BackGroundColor: var(--sumiInk6)
+		BackGroundColor: var(--sumiInk0)
 	}
 	arrow {
 		FontSize 11
@@ -668,9 +678,9 @@ nwdiagDiagram {
 ' C4
 .person, .system, .container, .component, .external_person, .external_system, .external_container {
     HorizontalAlignment center
-    LineColor: var(--sumiInk4)
+    LineColor: var(--sumiInk2)
     FontColor: var(--fujiWhite)
-    LineThickness 0.5
+    LineThickness 2
     RoundCorner 5
 }
 
@@ -686,7 +696,7 @@ nwdiagDiagram {
 }
 
 .person {
-    BackGroundColor: var(--waveBlue2)
+    BackGroundColor: var(--waveBlue1)
     LineColor: var(--waveBlue2)
 }
 
@@ -698,34 +708,36 @@ nwdiagDiagram {
 
 .container {
     BackGroundColor: var(--waveAqua2)
-    LineColor: var(--sumiInk4)
+    LineColor: var(--sumiInk1)
     FontColor: var(--sumiInk0)
 }
 
 .component {
-    BackGroundColor: var(--springBlue)
-    LineColor: var(--springBlue)
+    BackGroundColor: var(--springViolet2)
+    LineColor: var(--springViolet2)
     FontColor: var(--sumiInk0)
 }
 
 .external_person {
-	BackGroundColor: var(--sumiInk1)
+	BackGroundColor: var(--sumiInk0)
     FontColor: var(--fujiWhite)
 }
 
 .external_system {
-	BackGroundColor: var(--sumiInk2)
+	BackGroundColor: var(--sumiInk1)
+    LineColor: var(--sumiInk3)
     FontColor: var(--fujiWhite)
 }
 
 .external_container {
-    BackGroundColor: var(--sumiInk3)
+    BackGroundColor: var(--winterBlue)
+    LineColor: var(--sumiInk4)
     FontColor: var(--fujiWhite)
 }
 
 .node {
-    BackgroundColor: var(--fujiLighter)
+    BackgroundColor: var(--sumiInk0)
     RoundCorner 5
-    FontColor: var(--sumiInk0)
+    FontColor: var(--fujiWhite)
 }
 </style>
