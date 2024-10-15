@@ -8,8 +8,8 @@ Nord
 
 -----------------
 
-[Nord](https://www.nordtheme.com) is a cold, minimalist color palette that was applied to
-for PlantUML.
+[Nord](https://www.nordtheme.com) is a cold, minimalist color palette that
+has been applied to PlantUML.
 
 ## How to use
 
