@@ -397,15 +397,17 @@ activityDiagram {
         LineThickness 1
 	}
 
+    ' This is group inside activity
 	composite {
-	    LineColor: var(--nord7)
-        FontColor: var(--nord7)
+	    LineColor: var(--nord11)
+        FontColor: var(--nord11)
 	    BackgroundColor transparent
 	    LineThickness 1
         RoundCorner 10
         FontSize 11
         FontStyle bold
 	}
+
 	diamond {
 	    FontSize 11
 	}
