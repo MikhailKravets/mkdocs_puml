@@ -1,0 +1,37 @@
+site_name: MkDocs Puml
+repo_url: https://github.com/MikhailKravets/mkdocs_puml
+repo_name: mkdocs_puml
+theme:
+  name: material
+  logo: assets/logo.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+plugins:
+  - search
+  - plantuml:
+      puml_url: https://www.plantuml.com/plantuml/
+      theme:
+        light: catppuccin/latte
+        dark: catppuccin/mocha
+      interaction:
+        enabled: true

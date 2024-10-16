@@ -1,4 +1,4 @@
-![logo](.docs/logo.svg)
+![logo](docs/docs/assets/logos/logo.svg)
 
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml)
@@ -138,7 +138,7 @@ Additionally, the following mouse events are supported
 <details>
 <summary>💡 <b>View an example</b></summary>
 
-![interaction](.docs/examples/interaction.gif)
+![interaction](docs/docs/assets/img/interaction.gif)
 </details>
 
 ⚠️ This is still an experimental feature that require thorough testing.

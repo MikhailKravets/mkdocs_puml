@@ -1,4 +1,4 @@
-![logo](../.docs/logo_themes.svg)
+![logo](../docs/docs/assets/logos/logo_themes.svg)
 
 ## Themes available
 
