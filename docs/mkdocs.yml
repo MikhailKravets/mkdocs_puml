@@ -4,6 +4,7 @@ repo_name: mkdocs_puml
 theme:
   name: material
   logo: assets/logos/icon-white.svg
+  favicon: assets/logos/icon-square.svg
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
@@ -12,7 +13,7 @@ theme:
 
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
+      primary: teal
       accent: pink
       toggle:
         icon: material/toggle-switch
@@ -21,7 +22,7 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
-      accent: pink
+      accent: deep orange
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode
@@ -40,3 +41,7 @@ plugins:
         dark: catppuccin/mocha
       interaction:
         enabled: true
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
