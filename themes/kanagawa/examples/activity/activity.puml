@@ -1,0 +1,16 @@
+@startuml
+!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
+
+skinparam backgroundcolor white
+start
+fork
+  :action 1;
+fork again
+  :action 2;
+fork again
+  :action 3;
+fork again
+  :action 4;
+end merge
+stop
+@enduml

@@ -56,12 +56,12 @@ Sequence diagram with groups, notes, and dividers looks
 |![macchiato](examples/sequence/sequence-full-macchiato.svg)|![mocha](examples/sequence/sequence-full-mocha.svg)|
 |**catppuccin/macchiato**|**catppuccin/mocha**|
 
-### Entities Diagram
+### Entity Diagram
 
 |**catppuccin/latte**|**catppuccin/frappe**|
 |:-------:|:--------:|
-|![latte](examples/entities/entities-latte.svg)|![frappe](examples/entities/entities-frappe.svg)|
-|![macchiato](examples/entities/entities-macchiato.svg)|![mocha](examples/entities/entities-mocha.svg)|
+|![latte](examples/entity/entity-latte.svg)|![frappe](examples/entity/entity-frappe.svg)|
+|![macchiato](examples/entity/entity-macchiato.svg)|![mocha](examples/entity/entity-mocha.svg)|
 |**catppuccin/macchiato**|**catppuccin/mocha**|
 
 ### Timing

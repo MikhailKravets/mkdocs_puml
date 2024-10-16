@@ -177,7 +177,18 @@ plugins:
 This approach works a bit faster than [plantuml.com](https://www.plantuml.com/plantuml/)
 and you can avoid `509 Bandwidth Limit Exceeded` error.
 
-### Standalone usage
+## HTTP with Self-Signed SSL Certificates
+
+Under the hood, `mkdocs_puml` uses `httpx`. If you're running PlantUML server
+with self-signed certificates you need to set `SSL_CERT_FILE` or
+`SSL_CERT_DIR` before running `mkdocs`.
+
+For additional information refer to `httpx` documentation
+
+- [SSL](https://www.python-httpx.org/advanced/ssl/#making-https-requests-to-a-local-server)
+- [Environment Variables](https://www.python-httpx.org/environment_variables/#ssl_cert_dir)
+
+## Standalone usage
 
 You can use `PlantUML` converter without `mkdocs`. See an example below
 
