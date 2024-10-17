@@ -7,3 +7,5 @@ documentation.*
 [![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml)
 
 ------------------
+
+## Features
