@@ -39,3 +39,32 @@ Then connect the plugin in `mkdocs.yml` file.
 That's it, `mkdocs_puml` is ready to use :tada:
 
 ## Usage
+
+Now, begin writing your documentation. `mkdocs_puml` will search all code fences
+with `puml` keyword and replace them with actual diagrams.
+
+???+ note "Set keyword"
+
+    By default mkdocs_puml uses `puml` keyword. However, it can be changed with `puml_keyword` parameter.
+
+    ```yaml
+    plugins:
+      - plantuml:
+          puml_keyword: plantuml
+    ```
+
+For example, this code
+
+```puml
+@startuml
+Bob -> Alice : hello
+@enduml
+```
+
+will be rendered to
+
+```plantuml
+@startuml
+Bob -> Alice : hello
+@enduml
+```

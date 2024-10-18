@@ -18,7 +18,7 @@ documentation.*
 
 ## Showcase
 
-```puml
+```plantuml
 @startuml
 
 interface Display {

@@ -32,18 +32,23 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.footer
+    - content.tooltips
 plugins:
   - search
   - awesome-pages
   - plantuml:
       puml_url: https://www.plantuml.com/plantuml/
+      puml_keyword: plantuml
       theme:
         light: catppuccin/latte-white
         dark: catppuccin/mocha
 markdown_extensions:
+  - abbr
+  - attr_list
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.emoji:
