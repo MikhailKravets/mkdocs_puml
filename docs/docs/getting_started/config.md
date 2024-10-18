@@ -96,6 +96,82 @@ plugins:
 
 ## Theming
 
-## Cache
+`mkdocs_puml` supports automatic theme switching for light and dark mode. It seamlessly integrates
+with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/).
+
+???+ info "Single-themed mode"
+
+    Automatic theme switching comes with a cost, as `mkdocs_puml` need to generate two versions of every
+    diagram. At the same time, having [caching](#cache) feature enabled, this overhead is almost negligible.
+
+If you want to disable automatic theming set `enabled` parameter to `false`
+
+```yaml
+plugins:
+    - plantuml:
+        theme:
+        enabled: false
+```
+
+### Using the `mkdocs_puml` Theme Repository
+
+By default `mkdocs_puml` attaches to its own **Themes Hub**  **TODO**: insert link!!
+and uses **default** PlantUML theme **TODO**: insert link on theme card!!
+
+To set a theme, you should set a theme for each mode light and dark
+
+```yaml
+plugins:
+  - plantuml:
+      theme:
+        light: catppuccin/frappe
+        dark: catppuccin/mocha
+```
+
+??? info "This web-site uses catppuccin"
+
+    This documentation web-site uses catppuccin theme **TODO**: insert link!!
+    with special `catppuccin/frappe-white` flavor for light mode and
+    `catppuccin/mocha` for dark mode. Use this configuration to apply the same
+    settings for your setup
+
+    ```yaml
+    plugins:
+    - plantuml:
+        theme:
+          light: catppuccin/frappe-white
+          dark: catppuccin/mocha
+    ```
+
+### Using Custom Theme Repository
+
+You can use your custom theme repository. For this you should set `url` parameter to your own server
+and select themes in this server such as
+
+```yaml
+plugins:
+- plantuml:
+    theme:
+        url: https://your.path/to/custom/themes
+        light: custom/light
+        dark: custom/dark
+```
+
+During build `mkdocs_puml` uses your URL to build two `!include` statements for each mode.
+It simply attaches theme name to the end of the URL adding `.puml` extension. For the
+above example, `mkdocs_puml` will generate the next URLs:
+
+- For light mode `https://your.path/to/custom/themes/custom/light.puml`
+- For dark mode `https://your.path/to/custom/themes/custom/dark.puml`
+
+Then the plugin attaches the appropriate `!include` statement at the top of the diagram
+
+```
+@startuml
+
+!include https://your.path/to/custom/themes/custom/light.puml
+```
+
+## Cache <cache>
 
 ## Interaction

@@ -71,7 +71,7 @@ Bob -> Alice : hello
 @enduml
 ```
 
-### Interact with diagram
+### Interacting with Diagram
 
 As you may have already noticed, when you hover the diagram few buttons appear in the top
 left corner:
