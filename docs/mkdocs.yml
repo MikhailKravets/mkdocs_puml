@@ -30,17 +30,16 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.footer
 plugins:
   - search
+  - awesome-pages
   - plantuml:
       puml_url: https://www.plantuml.com/plantuml/
       theme:
-        light: catppuccin/latte
+        light: catppuccin/latte-white
         dark: catppuccin/mocha
-      interaction:
-        enabled: true
 markdown_extensions:
   - admonition
   - pymdownx.details
