@@ -22,7 +22,77 @@ However you may modify the behavior of the plugin as needed.
 
 ## PlantUML
 
-Configure PlantUML
+You can manage PlantUML server behavior with these settings.
+
+### `puml_url`
+
+`puml_url` is the only required parameter that expects a URL to PlantUML server.
+The easiest solution is to set URL to [plantuml.com/plantuml](https://www.plantuml.com/plantuml/) such as
+
+```yaml
+plugins:
+  - plantuml:
+      puml_url: https://www.plantuml.com/plantuml/
+```
+
+However, this approach has its disadvantages. First of all, you may not want to share private information
+with the public server. Also, the public server has a rate limits, which can result in 509 errors.
+
+As mentioned in [Installation](index.md#installation) section, you may setup PlantUML server locally
+using Docker.
+
+### `puml_keyword`
+
+You can change the keyword that you'll use in code fences. For example,
+
+```yaml
+plugins:
+  - plantuml:
+      puml_keyword: uml
+```
+
+Then `mkdocs_puml` will search for the following blocks of code.
+
+~~~
+```uml
+<your PUML code here>
+```
+~~~
+
+### `verify_ssl`
+
+In some cases, when using a custom PlantUML server setup, you may want to disable
+SSL verification. This can be achieved by
+
+```yaml
+plugins:
+  - plantuml:
+      verify_ssl: false
+```
+
+By default `verify_ssl` is set to `true`.
+
+???+ tip "Use self-signed SSL"
+
+    Under the hood, `mkdocs_puml` uses [HTTPX](https://www.python-httpx.org/) to request PlantUML server.
+    If you're running the server with self-signed certificates you need to set `SSL_CERT_FILE` or
+    `SSL_CERT_DIR` environment variables before running `mkdocs`.
+
+    For additional information refer to `HTTPX` documentation
+
+    - [HTTPX - SSL](https://www.python-httpx.org/advanced/ssl/#making-https-requests-to-a-local-server).
+    - [HTTPX - Environment Variables](https://www.python-httpx.org/environment_variables/#ssl_cert_dir).
+
+### `verbose`
+
+This parameter accepts boolean value and determines whether `mkdocs_puml` should display a status
+message in the terminal. By default it is set to `true`. Use this config to disable this behavior
+
+```yaml
+plugins:
+  - plantuml:
+      verbose: false
+```
 
 ## Theming
 

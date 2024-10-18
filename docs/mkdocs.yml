@@ -27,12 +27,15 @@ theme:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode
   features:
+    - content.code.copy
     - navigation.instant
     - navigation.instant.progress
     - navigation.tabs
     - navigation.sections
+    - navigation.indexes
     - navigation.footer
     - content.tooltips
+    - toc.follow
 plugins:
   - search
   - awesome-pages
@@ -55,3 +58,5 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true

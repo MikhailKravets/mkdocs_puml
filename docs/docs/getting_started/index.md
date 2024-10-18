@@ -2,7 +2,7 @@
 
 Usage and connection of `mkdocs_puml` is as seamless as it gets.
 
-## Installation
+## Installation <installation>
 
 Install `mkdocs_puml` from PyPI
 
