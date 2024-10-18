@@ -1,6 +1,6 @@
 ![logo](assets/logos/logo.svg)
 
-*`mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
+*`mkdocs_puml` is a fast and simple package that brings PlantUML diagrams to MkDocs
 documentation.*
 
 [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
