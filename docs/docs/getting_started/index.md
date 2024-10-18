@@ -68,3 +68,20 @@ will be rendered to
 Bob -> Alice : hello
 @enduml
 ```
+
+### Interact with diagram
+
+As you may have already noticed, when you hover the diagram few buttons appear in the top
+left corner:
+
+- :octicons-copy-16: copies SVG content of the diagram.
+- :octicons-plus-16: zooms in the diagram.
+- :octicons-home-16: resets the diagram to its default view.
+- :octicons-dash-16: zooms out the diagram.
+
+Additionally, mouse events control the zooming and panning of the diagram:
+
+- ++lbutton++ + `Mouse Move` will trigger panning of the diagram.
+- ++shift++ + `Scroll` will trigger zooming of the diagram.
+
+:cyclone: Try these actions for yourself!
