@@ -43,7 +43,7 @@ That's it, `mkdocs_puml` is ready to use :tada:
 Now, begin writing your documentation. `mkdocs_puml` will search all code fences
 with `puml` keyword and replace them with actual diagrams.
 
-???+ note "Set keyword"
+???+ note "Change keyword"
 
     By default mkdocs_puml uses `puml` keyword. However, it can be changed with `puml_keyword` parameter.
 
