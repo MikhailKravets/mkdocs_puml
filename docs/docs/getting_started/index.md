@@ -53,13 +53,15 @@ with `puml` keyword and replace them with actual diagrams.
           puml_keyword: plantuml
     ```
 
-For example, this code
+For example, this code fence
 
+~~~
 ```puml
 @startuml
 Bob -> Alice : hello
 @enduml
 ```
+~~~
 
 will be rendered to
 
