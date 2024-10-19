@@ -1,10 +1,10 @@
-# Configuration
+# Setup
 
 Only the `puml_url` parameter is required.
 For the rest of parameters `mkdocs_puml` uses default values.
 However you may modify the behavior of the plugin as needed.
 
-??? info "In a hurry? Take a look at the complete configuration"
+??? note "In a hurry? Take a look at the complete configuration"
 
     ```yaml
     plugins:
@@ -134,7 +134,7 @@ plugins:
         dark: catppuccin/mocha
 ```
 
-??? info "This web-site uses catppuccin"
+??? note "This web-site uses catppuccin"
 
     This documentation web-site uses catppuccin theme **TODO**: insert link!!
     with special `catppuccin/frappe-white` flavor for light mode and
@@ -171,6 +171,7 @@ above example, `mkdocs_puml` will generate the next URLs:
 - For dark mode `https://your.path/to/custom/themes/custom/dark.puml`
 
 Then the plugin attaches the appropriate `!include` statement at the top of the diagram
+as follows
 
 ```
 @startuml
@@ -180,4 +181,52 @@ Then the plugin attaches the appropriate `!include` statement at the top of the 
 
 ## Cache <cache>
 
+The `mkdocs_puml` plugin implements a concept of storage that is used as a cache.
+The plugin doesn't rebuild the diagrams that haven't changed, instead it loads
+them from a storage.
+
+You can manage the behavior of caching using `cache` parameter. By default
+the plugin stores diagrams locally at `~/.cache/mkdocs_puml`. This cache
+backend has a name `local` and it's the only available backend right now.
+You can configure the `path` in which `mkdocs_puml` stores the diagrams
+as follows
+
+```yaml
+plantuml:
+  cache:
+    backend: local
+    local:
+      path: "~/.cache/mkdocs_puml"
+```
+
+???+ note "Multiple Projects"
+
+    The plugin creates its own caching directory for each project.
+    So you can safely work on multiple `mkdocs` projects at the same time.
+
+Under the hood, local storage saves diagrams in [Message Pack](https://msgpack.org/) format.
+
+To disable caching and rebuild all diagrams with every documentation change, use
+the following configuration
+
+```yaml
+plantuml:
+  cache:
+    backend: disabled
+```
+
 ## Interaction
+
+Interaction settings control how users can interact with the rendered diagram.
+Currently, you may either enable or disable the interaction as follows
+
+```yaml
+plantuml:
+  interaction:
+    enabled: true
+```
+
+???+ warning "Experimental Feature"
+
+    At this time, interaction with the diagrams is an experimental feature
+    and may not work as expected.
