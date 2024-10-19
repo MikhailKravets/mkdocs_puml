@@ -2,6 +2,8 @@
 
 Default PlantUML theme that contains `light` and `dark` flavors.
 
+[:material-github: Open Styles on GitHub](https://github.com/MikhailKravets/mkdocs_puml/tree/themes/themes/default){ .md-button }
+
 === "default/light"
 
     ```plantuml

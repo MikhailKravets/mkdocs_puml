@@ -7,6 +7,8 @@
 [Nord](https://www.nordtheme.com) is a cold, minimalist color palette that
 has been applied to PlantUML.
 
+[:material-github: Open Styles on GitHub](https://github.com/MikhailKravets/mkdocs_puml/tree/themes/themes/nord){ .md-button }
+
 ## How to use
 
 In order to use this theme with `mkdocs_puml`, set `theme` config of the plugin as follows:

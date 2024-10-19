@@ -7,6 +7,8 @@
 Kanagawa theme implements a color palette defined in [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim).
 This color scheme is inspired by Katsushika Hokusai’s work, especially, his famous "The Great Wave".
 
+[:material-github: Open Styles on GitHub](https://github.com/MikhailKravets/mkdocs_puml/tree/themes/themes/kanagawa){ .md-button }
+
 ## How to use
 
 In order to use this theme with `mkdocs_puml`, set `theme` config of the plugin as follows:

@@ -6,6 +6,8 @@
 
 [Catppuccin](https://catppuccin.com/) color palette for PlantUML diagrams.
 
+[:material-github: Open Styles on GitHub](https://github.com/MikhailKravets/mkdocs_puml/tree/themes/themes/catppuccin){ .md-button }
+
 ## How to use
 
 In order to use this theme with `mkdocs_puml`, set `theme` config of the plugin as follows:
