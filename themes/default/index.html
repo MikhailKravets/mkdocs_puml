@@ -1,0 +1,974 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../catppuccin/">
+      
+      
+        <link rel="next" href="../kanagawa/">
+      
+      
+      <link rel="icon" href="../../assets/logos/icon-square.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>Default - mkdocs_puml</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/mkdocs_puml/puml.css">
+    
+      <link rel="stylesheet" href="../../assets/mkdocs_puml/interaction.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#default" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="mkdocs_puml" class="md-header__button md-logo" aria-label="mkdocs_puml" data-md-component="logo">
+      
+  <img src="../../assets/logos/icon-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mkdocs_puml
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Default
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MikhailKravets/mkdocs_puml" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mkdocs_puml
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting_started/" class="md-tabs__link">
+          
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Themes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../contributing/" class="md-tabs__link">
+          
+  
+    
+  
+  Contributing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="mkdocs_puml" class="md-nav__button md-logo" aria-label="mkdocs_puml" data-md-component="logo">
+      
+  <img src="../../assets/logos/icon-white.svg" alt="logo">
+
+    </a>
+    mkdocs_puml
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MikhailKravets/mkdocs_puml" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mkdocs_puml
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting_started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Themes
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Themes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../catppuccin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Catppuccin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Default
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Default
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      C4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kanagawa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kanagawa 🌊
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nord/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nord
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../contributing/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/theme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribute Theme
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      C4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="default">Default<a class="headerlink" href="#default" title="Permanent link">&para;</a></h1>
+<p>Default PlantUML theme that contains <code>light</code> and <code>dark</code> flavors.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">default/light</label><label for="__tabbed_1_2">default/dark</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class='puml-container'><div class="puml light" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="548px" preserveAspectRatio="xMidYMid meet" style="width:798px;height:548px;background:#FFFFFF;" version="1.1" viewBox="0 0 798 548" width="798px" zoomAndPan="magnify" class="diagram"><defs/><g><g id="cluster_fs"><path d="M265.84,120.74 L281.2638,120.74 A3.75,3.75 0 0 1 283.7638,123.24 L290.7638,143.0369 L788.84,143.0369 A2.5,2.5 0 0 1 791.34,145.5369 L791.34,266.13 A2.5,2.5 0 0 1 788.84,268.63 L265.84,268.63 A2.5,2.5 0 0 1 263.34,266.13 L263.34,123.24 A2.5,2.5 0 0 1 265.84,120.74 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="263.34" x2="290.7638" y1="143.0369" y2="143.0369"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="14.4238" x="267.34" y="135.7351">fs</text></g><g id="elem_CSVReader"><rect codeLine="32" fill="#F1F1F1" height="96.8906" id="CSVReader" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="230.9004" x="278.89" y="155.74"/><ellipse cx="350.8827" cy="171.74" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M353.8514,177.3806 Q353.2733,177.6775 352.6327,177.8181 Q351.9921,177.9744 351.2889,177.9744 Q348.7889,177.9744 347.4608,176.3338 Q346.1483,174.6775 346.1483,171.5525 Q346.1483,168.4275 347.4608,166.7713 Q348.7889,165.115 351.2889,165.115 Q351.9921,165.115 352.6327,165.2713 Q353.2889,165.4275 353.8514,165.7244 L353.8514,168.4431 Q353.2264,167.865 352.6327,167.5994 Q352.0389,167.3181 351.4139,167.3181 Q350.0702,167.3181 349.3827,168.3963 Q348.6952,169.4588 348.6952,171.5525 Q348.6952,173.6463 349.3827,174.7244 Q350.0702,175.7869 351.4139,175.7869 Q352.0389,175.7869 352.6327,175.5213 Q353.2264,175.24 353.8514,174.6619 L353.8514,177.3806 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.415" x="371.3827" y="176.5867">CSVReader</text><line style="stroke:#181818;stroke-width:0.5;" x1="279.89" x2="508.7904" y1="187.74" y2="187.74"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162.627" x="284.89" y="204.7351">Read data from csv file</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="279.89" x2="508.7904" y1="212.0369" y2="212.0369"/><ellipse cx="289.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="298.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="289.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="298.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_JSONReader"><rect codeLine="39" fill="#F1F1F1" height="96.8906" id="JSONReader" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="230.9004" x="544.89" y="155.74"/><ellipse cx="613.7484" cy="171.74" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M616.7171,177.3806 Q616.139,177.6775 615.4984,177.8181 Q614.8578,177.9744 614.1546,177.9744 Q611.6546,177.9744 610.3265,176.3338 Q609.014,174.6775 609.014,171.5525 Q609.014,168.4275 610.3265,166.7713 Q611.6546,165.115 614.1546,165.115 Q614.8578,165.115 615.4984,165.2713 Q616.1546,165.4275 616.7171,165.7244 L616.7171,168.4431 Q616.0921,167.865 615.4984,167.5994 Q614.9046,167.3181 614.2796,167.3181 Q612.9359,167.3181 612.2484,168.3963 Q611.5609,169.4588 611.5609,171.5525 Q611.5609,173.6463 612.2484,174.7244 Q612.9359,175.7869 614.2796,175.7869 Q614.9046,175.7869 615.4984,175.5213 Q616.0921,175.24 616.7171,174.6619 L616.7171,177.3806 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84.6836" x="634.2484" y="176.5867">JSONReader</text><line style="stroke:#181818;stroke-width:0.5;" x1="545.89" x2="774.7904" y1="187.74" y2="187.74"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167.9727" x="550.89" y="204.7351">Read data from json file</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="545.89" x2="774.7904" y1="212.0369" y2="212.0369"/><ellipse cx="555.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="564.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="555.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="564.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Display"><rect codeLine="4" fill="#F1F1F1" height="64.2969" id="Display" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="216.8047" x="16.94" y="477.67"/><ellipse cx="95.2901" cy="493.67" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M91.212,489.4356 L91.212,487.2794 L98.6026,487.2794 L98.6026,489.4356 L96.1338,489.4356 L96.1338,497.5138 L98.6026,497.5138 L98.6026,499.67 L91.212,499.67 L91.212,497.5138 L93.6807,497.5138 L93.6807,489.4356 L91.212,489.4356 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="51.6045" x="115.7901" y="498.5167">Display</text><line style="stroke:#181818;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="509.67" y2="509.67"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.8047" x="22.94" y="526.6651">Represent an object in String</text><line style="stroke:#181818;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="533.9669" y2="533.9669"/></g><g id="elem_AbstractReader"><rect codeLine="8" fill="#F1F1F1" height="80.5938" id="AbstractReader" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="262.79" x="262.95" y="7"/><ellipse cx="335.6229" cy="23" fill="#A9DCDF" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M335.7322,18.3438 L334.576,23.4219 L336.9041,23.4219 L335.7322,18.3438 Z M334.2479,16.1094 L337.2322,16.1094 L340.5916,28.5 L338.1385,28.5 L337.3729,25.4375 L334.0916,25.4375 L333.3416,28.5 L330.9041,28.5 L334.2479,16.1094 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="108.9443" x="356.1229" y="27.8467">AbstractReader</text><line style="stroke:#181818;stroke-width:0.5;" x1="263.95" x2="524.74" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="250.79" x="268.95" y="55.9951">Read the data from various sources</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="263.95" x2="524.74" y1="63.2969" y2="63.2969"/><ellipse cx="273.95" cy="76.9453" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="282.95" y="80.292">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Category"><rect codeLine="14" fill="#F1F1F1" height="96.8906" id="Category" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="95.9502" x="128.37" y="320.78"/><ellipse cx="143.37" cy="336.78" fill="#EB937F" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M147.4794,342.78 L139.7606,342.78 L139.7606,330.3894 L147.4794,330.3894 L147.4794,332.5456 L142.2138,332.5456 L142.2138,335.2175 L146.9794,335.2175 L146.9794,337.3738 L142.2138,337.3738 L142.2138,340.6238 L147.4794,340.6238 L147.4794,342.78 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.9502" x="157.37" y="341.6267">Category</text><line style="stroke:#181818;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="352.78" y2="352.78"/><ellipse cx="139.37" cy="366.4284" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51.9531" x="148.37" y="369.7751">DEVICE</text><ellipse cx="139.37" cy="382.7253" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.8721" x="148.37" y="386.072">FOOD</text><ellipse cx="139.37" cy="399.0222" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.8701" x="148.37" y="402.3689">MISC</text><line style="stroke:#181818;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="409.6706" y2="409.6706"/></g><g id="elem_Item"><rect codeLine="20" fill="#F1F1F1" height="113.1875" id="Item" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="236.6836" x="7" y="147.59"/><ellipse cx="105.1572" cy="163.59" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M108.126,169.2306 Q107.5479,169.5275 106.9072,169.6681 Q106.2666,169.8244 105.5635,169.8244 Q103.0635,169.8244 101.7354,168.1838 Q100.4229,166.5275 100.4229,163.4025 Q100.4229,160.2775 101.7354,158.6213 Q103.0635,156.965 105.5635,156.965 Q106.2666,156.965 106.9072,157.1213 Q107.5635,157.2775 108.126,157.5744 L108.126,160.2931 Q107.501,159.715 106.9072,159.4494 Q106.3135,159.1681 105.6885,159.1681 Q104.3447,159.1681 103.6572,160.2463 Q102.9697,161.3088 102.9697,163.4025 Q102.9697,165.4963 103.6572,166.5744 Q104.3447,167.6369 105.6885,167.6369 Q106.3135,167.6369 106.9072,167.3713 Q107.501,167.09 108.126,166.5119 L108.126,169.2306 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.8691" x="125.6572" y="168.4367">Item</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="242.6836" y1="179.59" y2="179.59"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="224.6836" x="13" y="196.5851">Object representing a data item</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="8" x2="242.6836" y1="203.8869" y2="203.8869"/><ellipse cx="18" cy="217.5353" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90.6514" x="27" y="220.882">name: String</text><ellipse cx="18" cy="233.8322" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134.9893" x="27" y="237.1789">category: Category</text><ellipse cx="18" cy="250.1291" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.7529" x="27" y="253.4757">price: f64</text></g><g id="link_Item_Category"><path codeLine="28" d="M142.75,260.84 C148.81,280.21 151.9693,290.3067 157.8093,308.9867 " fill="none" id="Item-to-Category" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="161.39,320.44,163.4174,313.5198,157.8093,308.9867,155.7819,315.9069,161.39,320.44" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_AbstractReader_Item"><path codeLine="29" d="M309.68,88.05 C294.09,95.9 278.09,104.33 263.34,112.74 C244.81,123.32 235.4404,128.8741 217.2004,140.6941 " fill="none" id="AbstractReader-to-Item" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="207.13,147.22,214.3405,147.3139,217.2004,140.6941,209.9899,140.6003,207.13,147.22" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_AbstractReader_CSVReader"><path codeLine="47" d="M394.34,93.78 C394.34,114.4 394.34,133.78 394.34,155.49 " fill="none" id="AbstractReader-backto-CSVReader" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="394.34,87.78,390.34,96.78,394.34,92.78,398.34,96.78,394.34,87.78" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_AbstractReader_JSONReader"><path codeLine="48" d="M486.5173,90.7719 C502.1073,98.5619 512.68,104.27 527.34,112.74 C549.7,125.67 573.27,141.07 594.25,155.46 " fill="none" id="AbstractReader-backto-JSONReader" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="481.15,88.09,487.4129,95.691,485.6227,90.3249,490.9888,88.5347,481.15,88.09" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_Category_Display"><path codeLine="50" d="M158.79,417.92 C151.53,437.66 145.3813,454.3488 138.9113,471.9388 " fill="none" id="Category-to-Display" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="136.84,477.57,143.701,470.5041,138.5661,472.8774,136.1928,467.7424,136.84,477.57" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_Item_Display"><path codeLine="51" d="M117.18,261.21 C114.8,280.09 112.52,301.31 111.34,320.78 C108.75,363.77 108.06,374.74 111.34,417.67 C112.87,437.63 115.2092,453.9192 118.2592,471.4092 " fill="none" id="Item-to-Display" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="119.29,477.32,121.6844,467.7666,118.431,472.3943,113.8033,469.141,119.29,477.32" style="stroke:#181818;stroke-width:1.0;"/></g></g></svg></div><div class="puml dark" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="548px" preserveAspectRatio="xMidYMid meet" style="width:798px;height:548px;background:#FFFFFF;" version="1.1" viewBox="0 0 798 548" width="798px" zoomAndPan="magnify" class="diagram"><defs/><g><g id="cluster_fs"><path d="M265.84,120.74 L281.2638,120.74 A3.75,3.75 0 0 1 283.7638,123.24 L290.7638,143.0369 L788.84,143.0369 A2.5,2.5 0 0 1 791.34,145.5369 L791.34,266.13 A2.5,2.5 0 0 1 788.84,268.63 L265.84,268.63 A2.5,2.5 0 0 1 263.34,266.13 L263.34,123.24 A2.5,2.5 0 0 1 265.84,120.74 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="263.34" x2="290.7638" y1="143.0369" y2="143.0369"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="14.4238" x="267.34" y="135.7351">fs</text></g><g id="elem_CSVReader"><rect codeLine="32" fill="#F1F1F1" height="96.8906" id="CSVReader" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="230.9004" x="278.89" y="155.74"/><ellipse cx="350.8827" cy="171.74" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M353.8514,177.3806 Q353.2733,177.6775 352.6327,177.8181 Q351.9921,177.9744 351.2889,177.9744 Q348.7889,177.9744 347.4608,176.3338 Q346.1483,174.6775 346.1483,171.5525 Q346.1483,168.4275 347.4608,166.7713 Q348.7889,165.115 351.2889,165.115 Q351.9921,165.115 352.6327,165.2713 Q353.2889,165.4275 353.8514,165.7244 L353.8514,168.4431 Q353.2264,167.865 352.6327,167.5994 Q352.0389,167.3181 351.4139,167.3181 Q350.0702,167.3181 349.3827,168.3963 Q348.6952,169.4588 348.6952,171.5525 Q348.6952,173.6463 349.3827,174.7244 Q350.0702,175.7869 351.4139,175.7869 Q352.0389,175.7869 352.6327,175.5213 Q353.2264,175.24 353.8514,174.6619 L353.8514,177.3806 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.415" x="371.3827" y="176.5867">CSVReader</text><line style="stroke:#181818;stroke-width:0.5;" x1="279.89" x2="508.7904" y1="187.74" y2="187.74"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162.627" x="284.89" y="204.7351">Read data from csv file</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="279.89" x2="508.7904" y1="212.0369" y2="212.0369"/><ellipse cx="289.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="298.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="289.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="298.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_JSONReader"><rect codeLine="39" fill="#F1F1F1" height="96.8906" id="JSONReader" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="230.9004" x="544.89" y="155.74"/><ellipse cx="613.7484" cy="171.74" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M616.7171,177.3806 Q616.139,177.6775 615.4984,177.8181 Q614.8578,177.9744 614.1546,177.9744 Q611.6546,177.9744 610.3265,176.3338 Q609.014,174.6775 609.014,171.5525 Q609.014,168.4275 610.3265,166.7713 Q611.6546,165.115 614.1546,165.115 Q614.8578,165.115 615.4984,165.2713 Q616.1546,165.4275 616.7171,165.7244 L616.7171,168.4431 Q616.0921,167.865 615.4984,167.5994 Q614.9046,167.3181 614.2796,167.3181 Q612.9359,167.3181 612.2484,168.3963 Q611.5609,169.4588 611.5609,171.5525 Q611.5609,173.6463 612.2484,174.7244 Q612.9359,175.7869 614.2796,175.7869 Q614.9046,175.7869 615.4984,175.5213 Q616.0921,175.24 616.7171,174.6619 L616.7171,177.3806 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84.6836" x="634.2484" y="176.5867">JSONReader</text><line style="stroke:#181818;stroke-width:0.5;" x1="545.89" x2="774.7904" y1="187.74" y2="187.74"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167.9727" x="550.89" y="204.7351">Read data from json file</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="545.89" x2="774.7904" y1="212.0369" y2="212.0369"/><ellipse cx="555.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="564.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="555.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="564.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Display"><rect codeLine="4" fill="#F1F1F1" height="64.2969" id="Display" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="216.8047" x="16.94" y="477.67"/><ellipse cx="95.2901" cy="493.67" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M91.212,489.4356 L91.212,487.2794 L98.6026,487.2794 L98.6026,489.4356 L96.1338,489.4356 L96.1338,497.5138 L98.6026,497.5138 L98.6026,499.67 L91.212,499.67 L91.212,497.5138 L93.6807,497.5138 L93.6807,489.4356 L91.212,489.4356 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="51.6045" x="115.7901" y="498.5167">Display</text><line style="stroke:#181818;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="509.67" y2="509.67"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.8047" x="22.94" y="526.6651">Represent an object in String</text><line style="stroke:#181818;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="533.9669" y2="533.9669"/></g><g id="elem_AbstractReader"><rect codeLine="8" fill="#F1F1F1" height="80.5938" id="AbstractReader" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="262.79" x="262.95" y="7"/><ellipse cx="335.6229" cy="23" fill="#A9DCDF" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M335.7322,18.3438 L334.576,23.4219 L336.9041,23.4219 L335.7322,18.3438 Z M334.2479,16.1094 L337.2322,16.1094 L340.5916,28.5 L338.1385,28.5 L337.3729,25.4375 L334.0916,25.4375 L333.3416,28.5 L330.9041,28.5 L334.2479,16.1094 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="108.9443" x="356.1229" y="27.8467">AbstractReader</text><line style="stroke:#181818;stroke-width:0.5;" x1="263.95" x2="524.74" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="250.79" x="268.95" y="55.9951">Read the data from various sources</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="263.95" x2="524.74" y1="63.2969" y2="63.2969"/><ellipse cx="273.95" cy="76.9453" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="282.95" y="80.292">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Category"><rect codeLine="14" fill="#F1F1F1" height="96.8906" id="Category" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="95.9502" x="128.37" y="320.78"/><ellipse cx="143.37" cy="336.78" fill="#EB937F" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M147.4794,342.78 L139.7606,342.78 L139.7606,330.3894 L147.4794,330.3894 L147.4794,332.5456 L142.2138,332.5456 L142.2138,335.2175 L146.9794,335.2175 L146.9794,337.3738 L142.2138,337.3738 L142.2138,340.6238 L147.4794,340.6238 L147.4794,342.78 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.9502" x="157.37" y="341.6267">Category</text><line style="stroke:#181818;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="352.78" y2="352.78"/><ellipse cx="139.37" cy="366.4284" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51.9531" x="148.37" y="369.7751">DEVICE</text><ellipse cx="139.37" cy="382.7253" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.8721" x="148.37" y="386.072">FOOD</text><ellipse cx="139.37" cy="399.0222" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.8701" x="148.37" y="402.3689">MISC</text><line style="stroke:#181818;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="409.6706" y2="409.6706"/></g><g id="elem_Item"><rect codeLine="20" fill="#F1F1F1" height="113.1875" id="Item" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="236.6836" x="7" y="147.59"/><ellipse cx="105.1572" cy="163.59" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M108.126,169.2306 Q107.5479,169.5275 106.9072,169.6681 Q106.2666,169.8244 105.5635,169.8244 Q103.0635,169.8244 101.7354,168.1838 Q100.4229,166.5275 100.4229,163.4025 Q100.4229,160.2775 101.7354,158.6213 Q103.0635,156.965 105.5635,156.965 Q106.2666,156.965 106.9072,157.1213 Q107.5635,157.2775 108.126,157.5744 L108.126,160.2931 Q107.501,159.715 106.9072,159.4494 Q106.3135,159.1681 105.6885,159.1681 Q104.3447,159.1681 103.6572,160.2463 Q102.9697,161.3088 102.9697,163.4025 Q102.9697,165.4963 103.6572,166.5744 Q104.3447,167.6369 105.6885,167.6369 Q106.3135,167.6369 106.9072,167.3713 Q107.501,167.09 108.126,166.5119 L108.126,169.2306 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.8691" x="125.6572" y="168.4367">Item</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="242.6836" y1="179.59" y2="179.59"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="224.6836" x="13" y="196.5851">Object representing a data item</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="8" x2="242.6836" y1="203.8869" y2="203.8869"/><ellipse cx="18" cy="217.5353" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90.6514" x="27" y="220.882">name: String</text><ellipse cx="18" cy="233.8322" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134.9893" x="27" y="237.1789">category: Category</text><ellipse cx="18" cy="250.1291" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.7529" x="27" y="253.4757">price: f64</text></g><g id="link_Item_Category"><path codeLine="28" d="M142.75,260.84 C148.81,280.21 151.9693,290.3067 157.8093,308.9867 " fill="none" id="Item-to-Category" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="161.39,320.44,163.4174,313.5198,157.8093,308.9867,155.7819,315.9069,161.39,320.44" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_AbstractReader_Item"><path codeLine="29" d="M309.68,88.05 C294.09,95.9 278.09,104.33 263.34,112.74 C244.81,123.32 235.4404,128.8741 217.2004,140.6941 " fill="none" id="AbstractReader-to-Item" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="207.13,147.22,214.3405,147.3139,217.2004,140.6941,209.9899,140.6003,207.13,147.22" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_AbstractReader_CSVReader"><path codeLine="47" d="M394.34,93.78 C394.34,114.4 394.34,133.78 394.34,155.49 " fill="none" id="AbstractReader-backto-CSVReader" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="394.34,87.78,390.34,96.78,394.34,92.78,398.34,96.78,394.34,87.78" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_AbstractReader_JSONReader"><path codeLine="48" d="M486.5173,90.7719 C502.1073,98.5619 512.68,104.27 527.34,112.74 C549.7,125.67 573.27,141.07 594.25,155.46 " fill="none" id="AbstractReader-backto-JSONReader" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="481.15,88.09,487.4129,95.691,485.6227,90.3249,490.9888,88.5347,481.15,88.09" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_Category_Display"><path codeLine="50" d="M158.79,417.92 C151.53,437.66 145.3813,454.3488 138.9113,471.9388 " fill="none" id="Category-to-Display" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="136.84,477.57,143.701,470.5041,138.5661,472.8774,136.1928,467.7424,136.84,477.57" style="stroke:#181818;stroke-width:1.0;"/></g><g id="link_Item_Display"><path codeLine="51" d="M117.18,261.21 C114.8,280.09 112.52,301.31 111.34,320.78 C108.75,363.77 108.06,374.74 111.34,417.67 C112.87,437.63 115.2092,453.9192 118.2592,471.4092 " fill="none" id="Item-to-Display" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="119.29,477.32,121.6844,467.7666,118.431,472.3943,113.8033,469.141,119.29,477.32" style="stroke:#181818;stroke-width:1.0;"/></g></g></svg></div></div></p>
+</div>
+<div class="tabbed-block">
+<p><div class='puml-container'><div class="puml light" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="548px" preserveAspectRatio="xMidYMid meet" style="width:798px;height:548px;background:#1B1B1B;" version="1.1" viewBox="0 0 798 548" width="798px" zoomAndPan="magnify" class="diagram"><defs/><g><rect fill="#1B1B1B" height="548" style="stroke:none;stroke-width:1.0;" width="798" x="0" y="0"/><g id="cluster_fs"><path d="M265.84,120.74 L281.2638,120.74 A3.75,3.75 0 0 1 283.7638,123.24 L290.7638,143.0369 L788.84,143.0369 A2.5,2.5 0 0 1 791.34,145.5369 L791.34,266.13 A2.5,2.5 0 0 1 788.84,268.63 L265.84,268.63 A2.5,2.5 0 0 1 263.34,266.13 L263.34,123.24 A2.5,2.5 0 0 1 265.84,120.74 " fill="none" style="stroke:#FFFFFF;stroke-width:1.5;"/><line style="stroke:#FFFFFF;stroke-width:1.5;" x1="263.34" x2="290.7638" y1="143.0369" y2="143.0369"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="14.4238" x="267.34" y="135.7351">fs</text></g><g id="elem_CSVReader"><rect codeLine="32" fill="#313139" height="96.8906" id="CSVReader" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="230.9004" x="278.89" y="155.74"/><ellipse cx="350.8827" cy="171.74" fill="#2E5233" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M353.8514,177.3806 Q353.2733,177.6775 352.6327,177.8181 Q351.9921,177.9744 351.2889,177.9744 Q348.7889,177.9744 347.4608,176.3338 Q346.1483,174.6775 346.1483,171.5525 Q346.1483,168.4275 347.4608,166.7713 Q348.7889,165.115 351.2889,165.115 Q351.9921,165.115 352.6327,165.2713 Q353.2889,165.4275 353.8514,165.7244 L353.8514,168.4431 Q353.2264,167.865 352.6327,167.5994 Q352.0389,167.3181 351.4139,167.3181 Q350.0702,167.3181 349.3827,168.3963 Q348.6952,169.4588 348.6952,171.5525 Q348.6952,173.6463 349.3827,174.7244 Q350.0702,175.7869 351.4139,175.7869 Q352.0389,175.7869 352.6327,175.5213 Q353.2264,175.24 353.8514,174.6619 L353.8514,177.3806 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.415" x="371.3827" y="176.5867">CSVReader</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="279.89" x2="508.7904" y1="187.74" y2="187.74"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162.627" x="284.89" y="204.7351">Read data from csv file</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="279.89" x2="508.7904" y1="212.0369" y2="212.0369"/><ellipse cx="289.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="298.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="289.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="298.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_JSONReader"><rect codeLine="39" fill="#313139" height="96.8906" id="JSONReader" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="230.9004" x="544.89" y="155.74"/><ellipse cx="613.7484" cy="171.74" fill="#2E5233" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M616.7171,177.3806 Q616.139,177.6775 615.4984,177.8181 Q614.8578,177.9744 614.1546,177.9744 Q611.6546,177.9744 610.3265,176.3338 Q609.014,174.6775 609.014,171.5525 Q609.014,168.4275 610.3265,166.7713 Q611.6546,165.115 614.1546,165.115 Q614.8578,165.115 615.4984,165.2713 Q616.1546,165.4275 616.7171,165.7244 L616.7171,168.4431 Q616.0921,167.865 615.4984,167.5994 Q614.9046,167.3181 614.2796,167.3181 Q612.9359,167.3181 612.2484,168.3963 Q611.5609,169.4588 611.5609,171.5525 Q611.5609,173.6463 612.2484,174.7244 Q612.9359,175.7869 614.2796,175.7869 Q614.9046,175.7869 615.4984,175.5213 Q616.0921,175.24 616.7171,174.6619 L616.7171,177.3806 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84.6836" x="634.2484" y="176.5867">JSONReader</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="545.89" x2="774.7904" y1="187.74" y2="187.74"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167.9727" x="550.89" y="204.7351">Read data from json file</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="545.89" x2="774.7904" y1="212.0369" y2="212.0369"/><ellipse cx="555.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="564.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="555.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="564.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Display"><rect codeLine="4" fill="#313139" height="64.2969" id="Display" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="216.8047" x="16.94" y="477.67"/><ellipse cx="95.2901" cy="493.67" fill="#352866" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M91.212,489.4356 L91.212,487.2794 L98.6026,487.2794 L98.6026,489.4356 L96.1338,489.4356 L96.1338,497.5138 L98.6026,497.5138 L98.6026,499.67 L91.212,499.67 L91.212,497.5138 L93.6807,497.5138 L93.6807,489.4356 L91.212,489.4356 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="51.6045" x="115.7901" y="498.5167">Display</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="509.67" y2="509.67"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.8047" x="22.94" y="526.6651">Represent an object in String</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="533.9669" y2="533.9669"/></g><g id="elem_AbstractReader"><rect codeLine="8" fill="#313139" height="80.5938" id="AbstractReader" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="262.79" x="262.95" y="7"/><ellipse cx="335.6229" cy="23" fill="#2A5D60" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M335.7322,18.3438 L334.576,23.4219 L336.9041,23.4219 L335.7322,18.3438 Z M334.2479,16.1094 L337.2322,16.1094 L340.5916,28.5 L338.1385,28.5 L337.3729,25.4375 L334.0916,25.4375 L333.3416,28.5 L330.9041,28.5 L334.2479,16.1094 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="108.9443" x="356.1229" y="27.8467">AbstractReader</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="263.95" x2="524.74" y1="39" y2="39"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="250.79" x="268.95" y="55.9951">Read the data from various sources</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="263.95" x2="524.74" y1="63.2969" y2="63.2969"/><ellipse cx="273.95" cy="76.9453" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="282.95" y="80.292">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Category"><rect codeLine="14" fill="#313139" height="96.8906" id="Category" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="95.9502" x="128.37" y="320.78"/><ellipse cx="143.37" cy="336.78" fill="#852D19" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M147.4794,342.78 L139.7606,342.78 L139.7606,330.3894 L147.4794,330.3894 L147.4794,332.5456 L142.2138,332.5456 L142.2138,335.2175 L146.9794,335.2175 L146.9794,337.3738 L142.2138,337.3738 L142.2138,340.6238 L147.4794,340.6238 L147.4794,342.78 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.9502" x="157.37" y="341.6267">Category</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="352.78" y2="352.78"/><ellipse cx="139.37" cy="366.4284" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51.9531" x="148.37" y="369.7751">DEVICE</text><ellipse cx="139.37" cy="382.7253" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.8721" x="148.37" y="386.072">FOOD</text><ellipse cx="139.37" cy="399.0222" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.8701" x="148.37" y="402.3689">MISC</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="409.6706" y2="409.6706"/></g><g id="elem_Item"><rect codeLine="20" fill="#313139" height="113.1875" id="Item" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="236.6836" x="7" y="147.59"/><ellipse cx="105.1572" cy="163.59" fill="#2E5233" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M108.126,169.2306 Q107.5479,169.5275 106.9072,169.6681 Q106.2666,169.8244 105.5635,169.8244 Q103.0635,169.8244 101.7354,168.1838 Q100.4229,166.5275 100.4229,163.4025 Q100.4229,160.2775 101.7354,158.6213 Q103.0635,156.965 105.5635,156.965 Q106.2666,156.965 106.9072,157.1213 Q107.5635,157.2775 108.126,157.5744 L108.126,160.2931 Q107.501,159.715 106.9072,159.4494 Q106.3135,159.1681 105.6885,159.1681 Q104.3447,159.1681 103.6572,160.2463 Q102.9697,161.3088 102.9697,163.4025 Q102.9697,165.4963 103.6572,166.5744 Q104.3447,167.6369 105.6885,167.6369 Q106.3135,167.6369 106.9072,167.3713 Q107.501,167.09 108.126,166.5119 L108.126,169.2306 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.8691" x="125.6572" y="168.4367">Item</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="8" x2="242.6836" y1="179.59" y2="179.59"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="224.6836" x="13" y="196.5851">Object representing a data item</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="8" x2="242.6836" y1="203.8869" y2="203.8869"/><ellipse cx="18" cy="217.5353" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90.6514" x="27" y="220.882">name: String</text><ellipse cx="18" cy="233.8322" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134.9893" x="27" y="237.1789">category: Category</text><ellipse cx="18" cy="250.1291" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.7529" x="27" y="253.4757">price: f64</text></g><g id="link_Item_Category"><path codeLine="28" d="M142.75,260.84 C148.81,280.21 151.9693,290.3067 157.8093,308.9867 " fill="none" id="Item-to-Category" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="161.39,320.44,163.4174,313.5198,157.8093,308.9867,155.7819,315.9069,161.39,320.44" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_AbstractReader_Item"><path codeLine="29" d="M309.68,88.05 C294.09,95.9 278.09,104.33 263.34,112.74 C244.81,123.32 235.4404,128.8741 217.2004,140.6941 " fill="none" id="AbstractReader-to-Item" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="none" points="207.13,147.22,214.3405,147.3139,217.2004,140.6941,209.9899,140.6003,207.13,147.22" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_AbstractReader_CSVReader"><path codeLine="47" d="M394.34,93.78 C394.34,114.4 394.34,133.78 394.34,155.49 " fill="none" id="AbstractReader-backto-CSVReader" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="394.34,87.78,390.34,96.78,394.34,92.78,398.34,96.78,394.34,87.78" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_AbstractReader_JSONReader"><path codeLine="48" d="M486.5173,90.7719 C502.1073,98.5619 512.68,104.27 527.34,112.74 C549.7,125.67 573.27,141.07 594.25,155.46 " fill="none" id="AbstractReader-backto-JSONReader" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="481.15,88.09,487.4129,95.691,485.6227,90.3249,490.9888,88.5347,481.15,88.09" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_Category_Display"><path codeLine="50" d="M158.79,417.92 C151.53,437.66 145.3813,454.3488 138.9113,471.9388 " fill="none" id="Category-to-Display" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="136.84,477.57,143.701,470.5041,138.5661,472.8774,136.1928,467.7424,136.84,477.57" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_Item_Display"><path codeLine="51" d="M117.18,261.21 C114.8,280.09 112.52,301.31 111.34,320.78 C108.75,363.77 108.06,374.74 111.34,417.67 C112.87,437.63 115.2092,453.9192 118.2592,471.4092 " fill="none" id="Item-to-Display" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="119.29,477.32,121.6844,467.7666,118.431,472.3943,113.8033,469.141,119.29,477.32" style="stroke:#E7E7E7;stroke-width:1.0;"/></g></g></svg></div><div class="puml dark" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="548px" preserveAspectRatio="xMidYMid meet" style="width:798px;height:548px;background:#1B1B1B;" version="1.1" viewBox="0 0 798 548" width="798px" zoomAndPan="magnify" class="diagram"><defs/><g><rect fill="#1B1B1B" height="548" style="stroke:none;stroke-width:1.0;" width="798" x="0" y="0"/><g id="cluster_fs"><path d="M265.84,120.74 L281.2638,120.74 A3.75,3.75 0 0 1 283.7638,123.24 L290.7638,143.0369 L788.84,143.0369 A2.5,2.5 0 0 1 791.34,145.5369 L791.34,266.13 A2.5,2.5 0 0 1 788.84,268.63 L265.84,268.63 A2.5,2.5 0 0 1 263.34,266.13 L263.34,123.24 A2.5,2.5 0 0 1 265.84,120.74 " fill="none" style="stroke:#FFFFFF;stroke-width:1.5;"/><line style="stroke:#FFFFFF;stroke-width:1.5;" x1="263.34" x2="290.7638" y1="143.0369" y2="143.0369"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="14.4238" x="267.34" y="135.7351">fs</text></g><g id="elem_CSVReader"><rect codeLine="32" fill="#313139" height="96.8906" id="CSVReader" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="230.9004" x="278.89" y="155.74"/><ellipse cx="350.8827" cy="171.74" fill="#2E5233" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M353.8514,177.3806 Q353.2733,177.6775 352.6327,177.8181 Q351.9921,177.9744 351.2889,177.9744 Q348.7889,177.9744 347.4608,176.3338 Q346.1483,174.6775 346.1483,171.5525 Q346.1483,168.4275 347.4608,166.7713 Q348.7889,165.115 351.2889,165.115 Q351.9921,165.115 352.6327,165.2713 Q353.2889,165.4275 353.8514,165.7244 L353.8514,168.4431 Q353.2264,167.865 352.6327,167.5994 Q352.0389,167.3181 351.4139,167.3181 Q350.0702,167.3181 349.3827,168.3963 Q348.6952,169.4588 348.6952,171.5525 Q348.6952,173.6463 349.3827,174.7244 Q350.0702,175.7869 351.4139,175.7869 Q352.0389,175.7869 352.6327,175.5213 Q353.2264,175.24 353.8514,174.6619 L353.8514,177.3806 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78.415" x="371.3827" y="176.5867">CSVReader</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="279.89" x2="508.7904" y1="187.74" y2="187.74"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162.627" x="284.89" y="204.7351">Read data from csv file</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="279.89" x2="508.7904" y1="212.0369" y2="212.0369"/><ellipse cx="289.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="298.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="289.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="298.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_JSONReader"><rect codeLine="39" fill="#313139" height="96.8906" id="JSONReader" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="230.9004" x="544.89" y="155.74"/><ellipse cx="613.7484" cy="171.74" fill="#2E5233" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M616.7171,177.3806 Q616.139,177.6775 615.4984,177.8181 Q614.8578,177.9744 614.1546,177.9744 Q611.6546,177.9744 610.3265,176.3338 Q609.014,174.6775 609.014,171.5525 Q609.014,168.4275 610.3265,166.7713 Q611.6546,165.115 614.1546,165.115 Q614.8578,165.115 615.4984,165.2713 Q616.1546,165.4275 616.7171,165.7244 L616.7171,168.4431 Q616.0921,167.865 615.4984,167.5994 Q614.9046,167.3181 614.2796,167.3181 Q612.9359,167.3181 612.2484,168.3963 Q611.5609,169.4588 611.5609,171.5525 Q611.5609,173.6463 612.2484,174.7244 Q612.9359,175.7869 614.2796,175.7869 Q614.9046,175.7869 615.4984,175.5213 Q616.0921,175.24 616.7171,174.6619 L616.7171,177.3806 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84.6836" x="634.2484" y="176.5867">JSONReader</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="545.89" x2="774.7904" y1="187.74" y2="187.74"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167.9727" x="550.89" y="204.7351">Read data from json file</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="545.89" x2="774.7904" y1="212.0369" y2="212.0369"/><ellipse cx="555.89" cy="225.6853" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.9004" x="564.89" y="229.032">new(p: AsRef&lt;Path&gt;) -&gt; Self</text><ellipse cx="555.89" cy="241.9822" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="564.89" y="245.3289">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Display"><rect codeLine="4" fill="#313139" height="64.2969" id="Display" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="216.8047" x="16.94" y="477.67"/><ellipse cx="95.2901" cy="493.67" fill="#352866" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M91.212,489.4356 L91.212,487.2794 L98.6026,487.2794 L98.6026,489.4356 L96.1338,489.4356 L96.1338,497.5138 L98.6026,497.5138 L98.6026,499.67 L91.212,499.67 L91.212,497.5138 L93.6807,497.5138 L93.6807,489.4356 L91.212,489.4356 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="51.6045" x="115.7901" y="498.5167">Display</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="509.67" y2="509.67"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="204.8047" x="22.94" y="526.6651">Represent an object in String</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="17.94" x2="232.7447" y1="533.9669" y2="533.9669"/></g><g id="elem_AbstractReader"><rect codeLine="8" fill="#313139" height="80.5938" id="AbstractReader" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="262.79" x="262.95" y="7"/><ellipse cx="335.6229" cy="23" fill="#2A5D60" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M335.7322,18.3438 L334.576,23.4219 L336.9041,23.4219 L335.7322,18.3438 Z M334.2479,16.1094 L337.2322,16.1094 L340.5916,28.5 L338.1385,28.5 L337.3729,25.4375 L334.0916,25.4375 L333.3416,28.5 L330.9041,28.5 L334.2479,16.1094 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="108.9443" x="356.1229" y="27.8467">AbstractReader</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="263.95" x2="524.74" y1="39" y2="39"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="250.79" x="268.95" y="55.9951">Read the data from various sources</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="263.95" x2="524.74" y1="63.2969" y2="63.2969"/><ellipse cx="273.95" cy="76.9453" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151.2178" x="282.95" y="80.292">read() -&gt; Vec&lt;Data&gt;</text></g><g id="elem_Category"><rect codeLine="14" fill="#313139" height="96.8906" id="Category" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="95.9502" x="128.37" y="320.78"/><ellipse cx="143.37" cy="336.78" fill="#852D19" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M147.4794,342.78 L139.7606,342.78 L139.7606,330.3894 L147.4794,330.3894 L147.4794,332.5456 L142.2138,332.5456 L142.2138,335.2175 L146.9794,335.2175 L146.9794,337.3738 L142.2138,337.3738 L142.2138,340.6238 L147.4794,340.6238 L147.4794,342.78 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63.9502" x="157.37" y="341.6267">Category</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="352.78" y2="352.78"/><ellipse cx="139.37" cy="366.4284" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51.9531" x="148.37" y="369.7751">DEVICE</text><ellipse cx="139.37" cy="382.7253" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.8721" x="148.37" y="386.072">FOOD</text><ellipse cx="139.37" cy="399.0222" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.8701" x="148.37" y="402.3689">MISC</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="129.37" x2="223.3202" y1="409.6706" y2="409.6706"/></g><g id="elem_Item"><rect codeLine="20" fill="#313139" height="113.1875" id="Item" rx="2.5" ry="2.5" style="stroke:#E7E7E7;stroke-width:0.5;" width="236.6836" x="7" y="147.59"/><ellipse cx="105.1572" cy="163.59" fill="#2E5233" rx="11" ry="11" style="stroke:#E7E7E7;stroke-width:1.0;"/><path d="M108.126,169.2306 Q107.5479,169.5275 106.9072,169.6681 Q106.2666,169.8244 105.5635,169.8244 Q103.0635,169.8244 101.7354,168.1838 Q100.4229,166.5275 100.4229,163.4025 Q100.4229,160.2775 101.7354,158.6213 Q103.0635,156.965 105.5635,156.965 Q106.2666,156.965 106.9072,157.1213 Q107.5635,157.2775 108.126,157.5744 L108.126,160.2931 Q107.501,159.715 106.9072,159.4494 Q106.3135,159.1681 105.6885,159.1681 Q104.3447,159.1681 103.6572,160.2463 Q102.9697,161.3088 102.9697,163.4025 Q102.9697,165.4963 103.6572,166.5744 Q104.3447,167.6369 105.6885,167.6369 Q106.3135,167.6369 106.9072,167.3713 Q107.501,167.09 108.126,166.5119 L108.126,169.2306 Z " fill="#FFFFFF"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.8691" x="125.6572" y="168.4367">Item</text><line style="stroke:#E7E7E7;stroke-width:0.5;" x1="8" x2="242.6836" y1="179.59" y2="179.59"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="224.6836" x="13" y="196.5851">Object representing a data item</text><line style="stroke:#E7E7E7;stroke-width:1.0;stroke-dasharray:1.0,2.0;" x1="8" x2="242.6836" y1="203.8869" y2="203.8869"/><ellipse cx="18" cy="217.5353" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90.6514" x="27" y="220.882">name: String</text><ellipse cx="18" cy="233.8322" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134.9893" x="27" y="237.1789">category: Category</text><ellipse cx="18" cy="250.1291" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.7529" x="27" y="253.4757">price: f64</text></g><g id="link_Item_Category"><path codeLine="28" d="M142.75,260.84 C148.81,280.21 151.9693,290.3067 157.8093,308.9867 " fill="none" id="Item-to-Category" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="161.39,320.44,163.4174,313.5198,157.8093,308.9867,155.7819,315.9069,161.39,320.44" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_AbstractReader_Item"><path codeLine="29" d="M309.68,88.05 C294.09,95.9 278.09,104.33 263.34,112.74 C244.81,123.32 235.4404,128.8741 217.2004,140.6941 " fill="none" id="AbstractReader-to-Item" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="none" points="207.13,147.22,214.3405,147.3139,217.2004,140.6941,209.9899,140.6003,207.13,147.22" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_AbstractReader_CSVReader"><path codeLine="47" d="M394.34,93.78 C394.34,114.4 394.34,133.78 394.34,155.49 " fill="none" id="AbstractReader-backto-CSVReader" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="394.34,87.78,390.34,96.78,394.34,92.78,398.34,96.78,394.34,87.78" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_AbstractReader_JSONReader"><path codeLine="48" d="M486.5173,90.7719 C502.1073,98.5619 512.68,104.27 527.34,112.74 C549.7,125.67 573.27,141.07 594.25,155.46 " fill="none" id="AbstractReader-backto-JSONReader" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="481.15,88.09,487.4129,95.691,485.6227,90.3249,490.9888,88.5347,481.15,88.09" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_Category_Display"><path codeLine="50" d="M158.79,417.92 C151.53,437.66 145.3813,454.3488 138.9113,471.9388 " fill="none" id="Category-to-Display" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="136.84,477.57,143.701,470.5041,138.5661,472.8774,136.1928,467.7424,136.84,477.57" style="stroke:#E7E7E7;stroke-width:1.0;"/></g><g id="link_Item_Display"><path codeLine="51" d="M117.18,261.21 C114.8,280.09 112.52,301.31 111.34,320.78 C108.75,363.77 108.06,374.74 111.34,417.67 C112.87,437.63 115.2092,453.9192 118.2592,471.4092 " fill="none" id="Item-to-Display" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="119.29,477.32,121.6844,467.7666,118.431,472.3943,113.8033,469.141,119.29,477.32" style="stroke:#E7E7E7;stroke-width:1.0;"/></g></g></svg></div></div></p>
+</div>
+</div>
+</div>
+<h2 id="how-to-use">How to use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>In order to use this theme with <code>mkdocs_puml</code>, set <code>theme</code> config of the plugin as follows:</p>
+<div class="highlight"><pre><span></span><code>theme:
+    light: default/light
+    dark: default/dark
+</code></pre></div>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<p>This theme is actually identical to the default PlantUML theme, so there’s no need to replicate all the examples here. The only difference lies in C4.</p>
+<h3 id="c4">C4<a class="headerlink" href="#c4" title="Permanent link">&para;</a></h3>
+<p>The <code>default/dark</code> flavor enhances the visibility of <a href="https://github.com/plantuml-stdlib/C4-PlantUML">C4-PlantUML</a>.</p>
+<p><strong>TODO:</strong> fix dark theme Font Color and Border!!! It's mixed with other styles</p>
+<div class='puml-container'><div class="puml light" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="473px" preserveAspectRatio="xMidYMid meet" style="width:1088px;height:473px;background:#1B1B1B;" version="1.1" viewBox="0 0 1088 473" width="1088px" zoomAndPan="magnify" class="diagram"><defs/><g><rect fill="#1B1B1B" height="473" style="stroke:none;stroke-width:1.0;" width="1088" x="0" y="0"/><g id="cluster_db_boundary"><rect fill="none" height="261.78" style="stroke:#FFFFFF;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="475" x="607.33" y="205.52"/><text fill="#FFFFFF" font-family="sans-serif" font-size="0" font-style="italic" lengthAdjust="spacing" textLength="0" x="844.83" y="207.52">«container_boundary»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="0" font-style="italic" lengthAdjust="spacing" textLength="0" x="844.83" y="217.52">«boundary»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="94.6719" x="797.4941" y="242.3716">Databases</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="77.1094" x="806.2753" y="257.2837">[Container]</text></g><g id="elem_db"><path d="M623.81,286.52 C623.81,276.52 721.3271,276.52 721.3271,276.52 C721.3271,276.52 818.8442,276.52 818.8442,286.52 L818.8442,441.3013 C818.8442,451.3013 721.3271,451.3013 721.3271,451.3013 C721.3271,451.3013 623.81,451.3013 623.81,441.3013 L623.81,286.52 " fill="#1183CB" style="stroke:#0065AD;stroke-width:0.5;"/><path d="M623.81,286.52 C623.81,296.52 721.3271,296.52 721.3271,296.52 C721.3271,296.52 818.8442,296.52 818.8442,286.52 " fill="none" style="stroke:#0065AD;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="679.5937" y="313.5151">«container»</text><image height="48" width="48" x="697.3271" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADTklEQVR4XtWYPaoVQRCF3xbcgUtwCQYuwCW4BJcgmAgGBoYGJoaCiaFgZOQfBg8MlBcILxBUBBHBYPS78EFRNTyn+854bw8cZubMzz1Vfaq6555cuv3yZGQUYjQUYjQUYjQUYjQUYjQUYl9cvvvmWua2RCF6cf3R++nG4w8T+6sPTl/l61uhEC0g27eefZpuPj2bYuY5z/duhUIsBcLfnv+Y2AOyb+bvvTg/7gAevv48AY4Ve+X+uzvYh+w///h9F1R+bgsUYgnItCLJPMdYiCAIyOv5uS1QiKUg2zGAJ6dfpm8/f+9GhlEgkP9hpUK0QMvEooUjGIOiTjgmMIJllPJ79kEhWoFgxGEhRwU+dyLEE8zZ11878Az35/e1ohA9QAxZjqK1D4FpK2rDTuVIYTvu7Z0AC9EDbDH93WJm2TMaiFTcXE1wjeDZ5q7/C4XohTbSKgak5x0Jju1Wjoy15NzSUieF6EWcD8gogGNjFIR8FAnvsc8vDaIQvSB7+FsLWQ8IwecGkp+bK2ZGK1rvIhSiF/ygo4AobUI2CQBrYak4Q8PlbiUQv6QmCtELuwnCEYpwMguHUO8jUDsSwdh+rQn2TpBLbFSIHiDGNRCbWVVYvBfBzgfsDWiJ2DkUogeIRKyiEKOFuE6AHDsrk+FewRmFaIULN4vRbwTtYJY9z8/vi0K0IM6y+pxj6sGFnR3GDpXfsS8K0QILDtGII9v635aJcD92tlhiF2IpEKzn2dtFvJ57PoEeTQAIZWPvWoZ9tJLBWBNY6SgC0CoKRHDMvLZiD+KMfPAA7NdRNPaJUz6ZdiGX+YMWcZxNKUj/kSDLdhg4WyeBOqP6/MHa6NwPu0BTtB8qdiXvc6lAUcckrIVCZCjOIrXbEEC2CYCL54gGLUvkFhQiA6F2F8VqDZcPCuM+lwmxgEEObC0UIgLB2CRmWW97bj04A5PpKNxn8rywFgqR4VrG81wP2oPN0crviMW8NgqRQfYQpyXi+h1wHJcJrvO13VZLCFGIOfiRolVyMc59/nFOALba/M61UIiLgBg/CxVMQLZQs+/SwWdycGuiEEvgrBr/ZYiBRGyZfVCIVri0sCai/+fstjYKMRoKMRoKMRoKMRoKMRoKMRr+AK13EBj7CijcAAAAAElFTkSuQmCC" y="316.8169"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="85.1484" x="678.7529" y="379.6684">Database</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="59.7656" x="675.3222" y="394.5805">[Microsoft</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.8145" x="735.0878" y="394.5805"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="28.4297" x="738.9023" y="394.5805">SQL]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="719.102" y="410.4057"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="39.1631" x="633.81" y="426.7026">Holds</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="672.9731" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58.6045" x="677.4233" y="426.7026">product,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="736.0278" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37.5771" x="740.478" y="426.7026">order</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="778.0551" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.3389" x="782.5053" y="426.7026">and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49.8135" x="653.6718" y="442.9995">invoice</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="703.4853" y="442.9995"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81.0469" x="707.9355" y="442.9995">information</text></g><g id="elem_redis"><path d="M854.15,286.52 C854.15,276.52 960.3282,276.52 960.3282,276.52 C960.3282,276.52 1066.5064,276.52 1066.5064,286.52 L1066.5064,441.3013 C1066.5064,451.3013 960.3282,451.3013 960.3282,451.3013 C960.3282,451.3013 854.15,451.3013 854.15,441.3013 L854.15,286.52 " fill="#1183CB" style="stroke:#0065AD;stroke-width:0.5;"/><path d="M854.15,286.52 C854.15,296.52 960.3282,296.52 960.3282,296.52 C960.3282,296.52 1066.5064,296.52 1066.5064,286.52 " fill="none" style="stroke:#0065AD;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="918.5948" y="313.5151">«container»</text><image height="48" width="48" x="936.3282" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACnklEQVR4XtWWPWpWURCGswV34BJcgoULcAlZgksQbAQLC0sLG0vBJqVgZeUfFoEUSopACsEEIYhgceURRibzzpl7v+/eFDPwwMf7nZ+Zc2bmnoNbj94fdEaEbojQDRG6IUI3ROiGCN0QoRsidEOEbojQDRG24v7Lkwn4fefZl8d3nx9/iGO2QISteHB0OnmzYLZGhC14+OZsevvt53R68ft/APwmqDh2LSIs5faTT/c4VZzFMSBV4rjP51dTTB/mMo//Xnz8ns5bighLOHz11SXHdeOkcdDGeucI+PXxjzjlnxHMPjckgmd0Mk/fncf9r9loHoHjaLTLX38m1vSBAwExJ67jESEuwOJcd1wcJ9FJAYPN4jg/3v/GYW4jK272tfpZHYC3uXz1dcFYTpsDwObSg7kEZePNVgUwynUcGy2cpQkdKY4zKPBRXRBMdWAgQgSHfDv0NkovYGNuIRa1XzcGambrxjkZIowgNTjJkXGKsV1m4FhME7PsZrPgPSJ4cDouaAVYORHz3W5jZFnw7J0FFBHBY0U8+oqijdIA478q/bLWGVMr29cjgid2ISzrRFUhRssOY9SBsFU3gGPZohj1EHt45Ug2vkotu6HoU0SEDAqvSoWsE+EsDvBfvLGqIWQ3VCGCh429Y9XGGKcZi9Hjv7DRsoK9sadEdfWYdSLGEdAorbCsA232lIhf4qyAq1OtLHYgq59oc+kkgoeUySy77iWdiEDjF7aat8lTojrhLL3sJP0c6iYGHPu9txt5SrBhVcBZLscmALs+JeYQYY6lBbzLnCz4pYiwC1V6YdVTAouFvA8i7ENViNGskNc6boiwhuopsU9+L0GErcDZ0VNiS0TohgjdEKEbInRDhG6I0A0RuiFCN0Tohgjd+AscLq5SbkpGwwAAAABJRU5ErkJggg==" y="316.8169"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="54.2656" x="906.5899" y="379.6684">Cache</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="960.8556" y="379.6684"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="13.9531" x="966.4259" y="379.6684">&amp;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="980.379" y="379.6684"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="28.1172" x="985.9493" y="379.6684">MB</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="42.2871" x="939.1847" y="394.5805">[Redis]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="958.1031" y="410.4057"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.5381" x="864.15" y="426.7026">Cache</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="907.6881" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.3389" x="912.1383" y="426.7026">and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="938.4771" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2109" x="942.9273" y="426.7026">simple</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="989.1383" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.918" x="993.5885" y="426.7026">message</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45.6846" x="937.4859" y="442.9995">broker</text></g><g id="elem_user"><rect fill="#003871" height="135.5156" rx="2.5" ry="2.5" style="stroke:#003871;stroke-width:0.5;" width="205.2266" x="10.72" y="7"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="65.1191" x="80.7737" y="29.9951">«person»</text><image height="48" width="48" x="89.3333" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACp0lEQVR4Xu2XvYoVQRCF7yv4Cr6CyX2A9QUEYzMzAyNhUwM3MRPBTMw0MTB0Y0FYMBQDEzEUwcB49Lt7a+2pqv6d3qDAAwfmnunprt/uvrvd/uEuNI0QjUaIRiNEoxGi0QjRaIRoNEI0GmESb955fHby4Ply697Tixu3T0/0+2k0wgZi6Nmr8+Xnr9+LxsXnbwsO6W820wiDJNKe4Rov3n6Y64QRBki5tBgvmOqEEQZIefRiWjkZ4cj7T14vX7//OCxGdKltPQZiyAhwWs8l873/+OUwhnXfnH9ayLAed0Uj/CUp9uAtmhvbAr073T19qYccgCNZJ7RAM+oJUuhMSLRGwFoyD87o9ym84LkO1CJKWaXjR+pfkPZBLvopdMZcB6i5Ekhnz/gS0rKg52pwy0gLj56909+toFPZsrAHHYiWzUDb6jpQq0VS3TM+B91LUHY9D9mzwwj7fDS8RWEtaxpE36tnSsRzgo1Cj72iEY5kAQzDcwxPdwyPPb1Qm4uyZF1YPfCMsIG1TNA/biNuoRH2l9FnISKV0ku7JmOIIBnBYNLfFMkjvXWLTqc/WLx2MFGjtRIYIWVaAn1DYPR3qx9eA2kwUWs0e9jaQ8YJeajVL8DBtIyYjIzJVVoufbrcKAG23zS7zEVp9R5mwHWgdiVIt77cdjeKdHtuCeSqAuShZpDUPcbrdzNACYkttT5cHaYtDqQHSc8/r15IfdduxK4DpRKSlLWkdwvS+1GLPSsHSg3UkqVZkOjmtlV9nf/3sL9MHVFOKWkdvbT1Qi5t9JpnizlMVz8KvK7m1She3DwaIcNaY83CfwdK1ItdB3L/ObI0QoG1P/wzULx5ejRChewGbGXs2TNJ6XQbD40QjUaIRiNEoxGi0QjRaIRoNEI0GiEajRCMfwAQvcLIEntU+QAAAABJRU5ErkJggg==" y="33.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="86.7109" x="69.9778" y="96.1484">Customer</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="111.1082" y="112.917"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47.0107" x="20.72" y="129.2139">People</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="67.7307" y="129.2139"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28.4307" x="72.1809" y="129.2139">that</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="100.6116" y="129.2139"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.9863" x="105.0618" y="129.2139">need</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="140.0481" y="129.2139"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.4482" x="144.4983" y="129.2139">products</text></g><g id="elem_spa"><rect fill="#1183CB" height="165.7813" rx="2.5" ry="2.5" style="stroke:#0065AD;stroke-width:0.5;" width="212.6641" x="7" y="281.02"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="71.5986" y="304.0151">«container»</text><image height="48" width="48" x="89.332" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACyElEQVR4XtWXP4oWQRTE9wp7A4/gETbwAB7BI3gEYZMFAwNDAxNDwcRQ2GgjV8VgwUDZQNhAUBFEBINZKmh5VFV3v56ZL+iCH3zUzPR0z/vT/R0dn749mhkxZkOM2RBjNsSYDTFmQ4y9uPP4/b2Hr6+XBy8/L3xtT8TYyv0Xn5ZXV98X1vmXXwdZjBhrOHl2dfn83Teec1V7LkaMLGXSP//84/n9V+sahOsYA1Hj8bOI0eLu049nTy5ulusff3kuVo/efLXp5ITF4N7RxYjBlGL8cPOb39kVnsWi2e+pRAZR5vkwYkSQq2uFSO0xDqLN80ovIJsqTvjyZRx8Sb6e1aYFrP1yyGUea00KQpgDjxURIzLSGqNc7qI41whz4LEiYkTQRUaFL83jFNakJObA40TEiGCzGVVsg/gdo4FuNqrehidGZLT4uOCQv1wPvc2N5dIxIkYEfZwHbAlfuDwb+3/sSKNpiTnwvCJiMDxgTfiy8TnsA0VciCNR4PkwYjDZl8WNyz0XoxAX1xKnpEMMJtu/Y6hdscYoZFOztwcAMZjMYYxTpNYu4yIzewyP6xCDyYQ7pgdA63PE+zKHPE5LhxiMS4eoTJhr9KIbu1oNMZjeEWD0/B7pRSEzthhM6yXcJZAmCHuP+EzrwMip6RDDwQMX8TbPrbMmPm7UxPNwiOFwE+ONq1crUVw3rlXz+DXEcLgX8CnR3dNSTA93aGydaiNiOFy3iD29VSc1cY/nvYMPgTXEcPBegBRA7hbcAjPCSbPA7+BiryGGYyS/91JmDwBiOPCFXCEfSnhXpoUCMWog5znMh1A2dQpi9MBCMgexUWHM3p8XhxhZkFajrdMJDSGbLg4xRkEX4haYERbf+7+bQYy1YDPKFDru4SPIFsTYSu1POybOu/ceiLEHXOhrCzSDGHuC4txSoBnEmA0xZkOM2RBjNsSYjVscDz8kq4xpIgAAAABJRU5ErkJggg==" y="307.3169"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="35.6328" x="95.5156" y="370.1684">SPA</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="55.166" x="85.749" y="385.0805">[angular]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="111.1069" y="400.9057"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.0381" x="17" y="417.2026">The</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="43.0381" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.9795" x="47.4883" y="417.2026">main</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="82.4678" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.4395" x="86.918" y="417.2026">interface</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="149.3574" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28.4307" x="153.8076" y="417.2026">that</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="182.2383" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="22.9756" x="186.6885" y="417.2026">the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65.9258" x="30.2275" y="433.4995">customer</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="96.1533" y="433.4995"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.6807" x="100.6035" y="433.4995">interacts</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="162.2842" y="433.4995"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29.7021" x="166.7344" y="433.4995">with</text></g><g id="elem_api"><rect fill="#1183CB" height="149.4844" rx="2.5" ry="2.5" style="stroke:#0065AD;stroke-width:0.5;" width="200.3184" x="290.17" y="289.17"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="348.5958" y="312.1651">«container»</text><image height="48" width="48" x="366.3292" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC10lEQVR4XtWXO4pUURCGZwvuwCW4BAMX4BJmCS5BMBEMDAwNTCYUTAwFIyNfGAxMoEwwMMGAMwgigkHrN/BDWf/p2/c8GuYc+OD2f/v2rTr1ONUHtx69P5gZE2bDhNkwYTZMmA0T9sntJ5/u3Xn25XHWezBh3zx9d77JWg8m7BMi8Pbbj3kdOHz5dfPq+Pu8Dnw+/7l5+OZsTgcevD7dsEijfK8HE/YBqcMavftgwmi086OLV5gwkhcfL4rGk0Y4RmTyM7WYMAIMpGBZseugcw5wb9SBZkIvGHZ6+fvaeCIgnd2++vXnP20EJvTADsv4eOJyzbrxRUyu55xXBxp9gAkTWmH3ry39t2J+qxbuPj/+kJ8ZgQmtyAFSKOpy6v7Ryc2OAGA8hRo1PrNyKx2FCT0o32MKqYBZ9P78TC8m9EKx5t6vKOTojMCEEZAuMee51hpdCyaMgijEyVMtdtQJLEwYSdxtHFo6hXG2ZdQ2oQYNZZywS31eM1DWBY7yO5wZRKrGERPWQLfhRbTNJcNFySC0UjrxmziS9W2YsIs479BVSA0iABqRQZFh54H0wWnt8ra5SG235HQJE9bCCxT6aKSQhqE4RKRKO57BuZp2a0ILa3drF2q3NX90TKiFlFgq0AgRwMhSJNDZ+RrjwYRaNG2yVICkgeCzTmKt+I9MHQpaImlCCxijWtAoEUHnfukUXtPFljBhNkxoga6TR4eM8n/pOy2Y0EKsAxY5Tz3o/0FeI8dqE9ZA3tItYjdhd4mEijYajqYDr9SBejBhG4Rep2ltq1uL0izrS5hQgh/WbtJRRu8iEdXYke/twoQS6tWagVhcEw2iojkozkJxJopzkQqetFJqcV/FrQk327ANE9bAS1QH0TAZBzina81GcS6K3UjniL5f06lMqEFOaDwAXp5B57vR6dJ02pKaJrSg4pNxQiNCnEyVZjkKrZgwGybMhgmzYcJs/AV4JpWaW7aRIgAAAABJRU5ErkJggg==" y="315.4669"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="30.0625" x="375.2979" y="378.3184">API</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="34.5059" x="373.0763" y="393.2305">[java]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="388.1041" y="409.0557"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56.6631" x="300.17" y="425.3526">Handles</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="356.8331" y="425.3526"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="16.3584" x="361.2833" y="425.3526">all</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="377.6417" y="425.3526"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.0176" x="382.0919" y="425.3526">business</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="443.1095" y="425.3526"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32.9287" x="447.5596" y="425.3526">logic</text></g><g id="link_user_spa"><path d="M113.33,142.72 C113.33,183.9 113.33,228.98 113.33,272.7 " fill="none" id="user-to-spa" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="113.33,280.7,116.33,272.7,110.33,272.7,113.33,280.7" style="stroke:#E7E7E7;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="34.8486" x="114.33" y="185.5869">Uses</text></g><g id="link_spa_api"><path d="M220.03,363.91 C243.04,363.91 259.3,363.91 282.05,363.91 " fill="none" id="spa-to-api" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="290.05,363.91,282.05,360.91,282.05,366.91,290.05,363.91" style="stroke:#E7E7E7;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="34.8486" x="237.92" y="356.9769">Uses</text></g><g id="link_api_db"><path d="M490.99,363.91 C533.03,363.91 573.69,363.91 615.42,363.91 " fill="none" id="api-to-db" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="623.42,363.91,615.42,360.91,615.42,366.91,623.42,363.91" style="stroke:#E7E7E7;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="97.3667" x="508.65" y="356.9769">Reads/Writes</text></g></g></svg></div><div class="puml dark" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="473px" preserveAspectRatio="xMidYMid meet" style="width:1088px;height:473px;background:#1B1B1B;" version="1.1" viewBox="0 0 1088 473" width="1088px" zoomAndPan="magnify" class="diagram"><defs/><g><rect fill="#1B1B1B" height="473" style="stroke:none;stroke-width:1.0;" width="1088" x="0" y="0"/><g id="cluster_db_boundary"><rect fill="none" height="261.78" style="stroke:#FFFFFF;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="475" x="607.33" y="205.52"/><text fill="#FFFFFF" font-family="sans-serif" font-size="0" font-style="italic" lengthAdjust="spacing" textLength="0" x="844.83" y="207.52">«container_boundary»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="0" font-style="italic" lengthAdjust="spacing" textLength="0" x="844.83" y="217.52">«boundary»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="94.6719" x="797.4941" y="242.3716">Databases</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="77.1094" x="806.2753" y="257.2837">[Container]</text></g><g id="elem_db"><path d="M623.81,286.52 C623.81,276.52 721.3271,276.52 721.3271,276.52 C721.3271,276.52 818.8442,276.52 818.8442,286.52 L818.8442,441.3013 C818.8442,451.3013 721.3271,451.3013 721.3271,451.3013 C721.3271,451.3013 623.81,451.3013 623.81,441.3013 L623.81,286.52 " fill="#1183CB" style="stroke:#0065AD;stroke-width:0.5;"/><path d="M623.81,286.52 C623.81,296.52 721.3271,296.52 721.3271,296.52 C721.3271,296.52 818.8442,296.52 818.8442,286.52 " fill="none" style="stroke:#0065AD;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="679.5937" y="313.5151">«container»</text><image height="48" width="48" x="697.3271" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADTklEQVR4XtWYPaoVQRCF3xbcgUtwCQYuwCW4BJcgmAgGBoYGJoaCiaFgZOQfBg8MlBcILxBUBBHBYPS78EFRNTyn+854bw8cZubMzz1Vfaq6555cuv3yZGQUYjQUYjQUYjQUYjQUYjQUYl9cvvvmWua2RCF6cf3R++nG4w8T+6sPTl/l61uhEC0g27eefZpuPj2bYuY5z/duhUIsBcLfnv+Y2AOyb+bvvTg/7gAevv48AY4Ve+X+uzvYh+w///h9F1R+bgsUYgnItCLJPMdYiCAIyOv5uS1QiKUg2zGAJ6dfpm8/f+9GhlEgkP9hpUK0QMvEooUjGIOiTjgmMIJllPJ79kEhWoFgxGEhRwU+dyLEE8zZ11878Az35/e1ohA9QAxZjqK1D4FpK2rDTuVIYTvu7Z0AC9EDbDH93WJm2TMaiFTcXE1wjeDZ5q7/C4XohTbSKgak5x0Jju1Wjoy15NzSUieF6EWcD8gogGNjFIR8FAnvsc8vDaIQvSB7+FsLWQ8IwecGkp+bK2ZGK1rvIhSiF/ygo4AobUI2CQBrYak4Q8PlbiUQv6QmCtELuwnCEYpwMguHUO8jUDsSwdh+rQn2TpBLbFSIHiDGNRCbWVVYvBfBzgfsDWiJ2DkUogeIRKyiEKOFuE6AHDsrk+FewRmFaIULN4vRbwTtYJY9z8/vi0K0IM6y+pxj6sGFnR3GDpXfsS8K0QILDtGII9v635aJcD92tlhiF2IpEKzn2dtFvJ57PoEeTQAIZWPvWoZ9tJLBWBNY6SgC0CoKRHDMvLZiD+KMfPAA7NdRNPaJUz6ZdiGX+YMWcZxNKUj/kSDLdhg4WyeBOqP6/MHa6NwPu0BTtB8qdiXvc6lAUcckrIVCZCjOIrXbEEC2CYCL54gGLUvkFhQiA6F2F8VqDZcPCuM+lwmxgEEObC0UIgLB2CRmWW97bj04A5PpKNxn8rywFgqR4VrG81wP2oPN0crviMW8NgqRQfYQpyXi+h1wHJcJrvO13VZLCFGIOfiRolVyMc59/nFOALba/M61UIiLgBg/CxVMQLZQs+/SwWdycGuiEEvgrBr/ZYiBRGyZfVCIVri0sCai/+fstjYKMRoKMRoKMRoKMRoKMRoKMRr+AK13EBj7CijcAAAAAElFTkSuQmCC" y="316.8169"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="85.1484" x="678.7529" y="379.6684">Database</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="59.7656" x="675.3222" y="394.5805">[Microsoft</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="3.8145" x="735.0878" y="394.5805"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="28.4297" x="738.9023" y="394.5805">SQL]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="719.102" y="410.4057"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="39.1631" x="633.81" y="426.7026">Holds</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="672.9731" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58.6045" x="677.4233" y="426.7026">product,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="736.0278" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37.5771" x="740.478" y="426.7026">order</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="778.0551" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.3389" x="782.5053" y="426.7026">and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49.8135" x="653.6718" y="442.9995">invoice</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="703.4853" y="442.9995"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81.0469" x="707.9355" y="442.9995">information</text></g><g id="elem_redis"><path d="M854.15,286.52 C854.15,276.52 960.3282,276.52 960.3282,276.52 C960.3282,276.52 1066.5064,276.52 1066.5064,286.52 L1066.5064,441.3013 C1066.5064,451.3013 960.3282,451.3013 960.3282,451.3013 C960.3282,451.3013 854.15,451.3013 854.15,441.3013 L854.15,286.52 " fill="#1183CB" style="stroke:#0065AD;stroke-width:0.5;"/><path d="M854.15,286.52 C854.15,296.52 960.3282,296.52 960.3282,296.52 C960.3282,296.52 1066.5064,296.52 1066.5064,286.52 " fill="none" style="stroke:#0065AD;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="918.5948" y="313.5151">«container»</text><image height="48" width="48" x="936.3282" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACnklEQVR4XtWWPWpWURCGswV34BJcgoULcAlZgksQbAQLC0sLG0vBJqVgZeUfFoEUSopACsEEIYhgceURRibzzpl7v+/eFDPwwMf7nZ+Zc2bmnoNbj94fdEaEbojQDRG6IUI3ROiGCN0QoRsidEOEbojQDRG24v7Lkwn4fefZl8d3nx9/iGO2QISteHB0OnmzYLZGhC14+OZsevvt53R68ft/APwmqDh2LSIs5faTT/c4VZzFMSBV4rjP51dTTB/mMo//Xnz8ns5bighLOHz11SXHdeOkcdDGeucI+PXxjzjlnxHMPjckgmd0Mk/fncf9r9loHoHjaLTLX38m1vSBAwExJ67jESEuwOJcd1wcJ9FJAYPN4jg/3v/GYW4jK272tfpZHYC3uXz1dcFYTpsDwObSg7kEZePNVgUwynUcGy2cpQkdKY4zKPBRXRBMdWAgQgSHfDv0NkovYGNuIRa1XzcGambrxjkZIowgNTjJkXGKsV1m4FhME7PsZrPgPSJ4cDouaAVYORHz3W5jZFnw7J0FFBHBY0U8+oqijdIA478q/bLWGVMr29cjgid2ISzrRFUhRssOY9SBsFU3gGPZohj1EHt45Ug2vkotu6HoU0SEDAqvSoWsE+EsDvBfvLGqIWQ3VCGCh429Y9XGGKcZi9Hjv7DRsoK9sadEdfWYdSLGEdAorbCsA232lIhf4qyAq1OtLHYgq59oc+kkgoeUySy77iWdiEDjF7aat8lTojrhLL3sJP0c6iYGHPu9txt5SrBhVcBZLscmALs+JeYQYY6lBbzLnCz4pYiwC1V6YdVTAouFvA8i7ENViNGskNc6boiwhuopsU9+L0GErcDZ0VNiS0TohgjdEKEbInRDhG6I0A0RuiFCN0Tohgjd+AscLq5SbkpGwwAAAABJRU5ErkJggg==" y="316.8169"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="54.2656" x="906.5899" y="379.6684">Cache</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="960.8556" y="379.6684"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="13.9531" x="966.4259" y="379.6684">&amp;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="980.379" y="379.6684"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="28.1172" x="985.9493" y="379.6684">MB</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="42.2871" x="939.1847" y="394.5805">[Redis]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="958.1031" y="410.4057"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.5381" x="864.15" y="426.7026">Cache</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="907.6881" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.3389" x="912.1383" y="426.7026">and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="938.4771" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.2109" x="942.9273" y="426.7026">simple</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="989.1383" y="426.7026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.918" x="993.5885" y="426.7026">message</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45.6846" x="937.4859" y="442.9995">broker</text></g><g id="elem_user"><rect fill="#003871" height="135.5156" rx="2.5" ry="2.5" style="stroke:#003871;stroke-width:0.5;" width="205.2266" x="10.72" y="7"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="65.1191" x="80.7737" y="29.9951">«person»</text><image height="48" width="48" x="89.3333" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACp0lEQVR4Xu2XvYoVQRCF7yv4Cr6CyX2A9QUEYzMzAyNhUwM3MRPBTMw0MTB0Y0FYMBQDEzEUwcB49Lt7a+2pqv6d3qDAAwfmnunprt/uvrvd/uEuNI0QjUaIRiNEoxGi0QjRaIRoNEI0GmESb955fHby4Ply697Tixu3T0/0+2k0wgZi6Nmr8+Xnr9+LxsXnbwsO6W820wiDJNKe4Rov3n6Y64QRBki5tBgvmOqEEQZIefRiWjkZ4cj7T14vX7//OCxGdKltPQZiyAhwWs8l873/+OUwhnXfnH9ayLAed0Uj/CUp9uAtmhvbAr073T19qYccgCNZJ7RAM+oJUuhMSLRGwFoyD87o9ym84LkO1CJKWaXjR+pfkPZBLvopdMZcB6i5Ekhnz/gS0rKg52pwy0gLj56909+toFPZsrAHHYiWzUDb6jpQq0VS3TM+B91LUHY9D9mzwwj7fDS8RWEtaxpE36tnSsRzgo1Cj72iEY5kAQzDcwxPdwyPPb1Qm4uyZF1YPfCMsIG1TNA/biNuoRH2l9FnISKV0ku7JmOIIBnBYNLfFMkjvXWLTqc/WLx2MFGjtRIYIWVaAn1DYPR3qx9eA2kwUWs0e9jaQ8YJeajVL8DBtIyYjIzJVVoufbrcKAG23zS7zEVp9R5mwHWgdiVIt77cdjeKdHtuCeSqAuShZpDUPcbrdzNACYkttT5cHaYtDqQHSc8/r15IfdduxK4DpRKSlLWkdwvS+1GLPSsHSg3UkqVZkOjmtlV9nf/3sL9MHVFOKWkdvbT1Qi5t9JpnizlMVz8KvK7m1She3DwaIcNaY83CfwdK1ItdB3L/ObI0QoG1P/wzULx5ejRChewGbGXs2TNJ6XQbD40QjUaIRiNEoxGi0QjRaIRoNEI0GiEajRCMfwAQvcLIEntU+QAAAABJRU5ErkJggg==" y="33.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="86.7109" x="69.9778" y="96.1484">Customer</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="111.1082" y="112.917"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47.0107" x="20.72" y="129.2139">People</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="67.7307" y="129.2139"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28.4307" x="72.1809" y="129.2139">that</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="100.6116" y="129.2139"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.9863" x="105.0618" y="129.2139">need</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="140.0481" y="129.2139"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.4482" x="144.4983" y="129.2139">products</text></g><g id="elem_spa"><rect fill="#1183CB" height="165.7813" rx="2.5" ry="2.5" style="stroke:#0065AD;stroke-width:0.5;" width="212.6641" x="7" y="281.02"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="71.5986" y="304.0151">«container»</text><image height="48" width="48" x="89.332" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACyElEQVR4XtWXP4oWQRTE9wp7A4/gETbwAB7BI3gEYZMFAwNDAxNDwcRQ2GgjV8VgwUDZQNhAUBFEBINZKmh5VFV3v56ZL+iCH3zUzPR0z/vT/R0dn749mhkxZkOM2RBjNsSYDTFmQ4y9uPP4/b2Hr6+XBy8/L3xtT8TYyv0Xn5ZXV98X1vmXXwdZjBhrOHl2dfn83Teec1V7LkaMLGXSP//84/n9V+sahOsYA1Hj8bOI0eLu049nTy5ulusff3kuVo/efLXp5ITF4N7RxYjBlGL8cPOb39kVnsWi2e+pRAZR5vkwYkSQq2uFSO0xDqLN80ovIJsqTvjyZRx8Sb6e1aYFrP1yyGUea00KQpgDjxURIzLSGqNc7qI41whz4LEiYkTQRUaFL83jFNakJObA40TEiGCzGVVsg/gdo4FuNqrehidGZLT4uOCQv1wPvc2N5dIxIkYEfZwHbAlfuDwb+3/sSKNpiTnwvCJiMDxgTfiy8TnsA0VciCNR4PkwYjDZl8WNyz0XoxAX1xKnpEMMJtu/Y6hdscYoZFOztwcAMZjMYYxTpNYu4yIzewyP6xCDyYQ7pgdA63PE+zKHPE5LhxiMS4eoTJhr9KIbu1oNMZjeEWD0/B7pRSEzthhM6yXcJZAmCHuP+EzrwMip6RDDwQMX8TbPrbMmPm7UxPNwiOFwE+ONq1crUVw3rlXz+DXEcLgX8CnR3dNSTA93aGydaiNiOFy3iD29VSc1cY/nvYMPgTXEcPBegBRA7hbcAjPCSbPA7+BiryGGYyS/91JmDwBiOPCFXCEfSnhXpoUCMWog5znMh1A2dQpi9MBCMgexUWHM3p8XhxhZkFajrdMJDSGbLg4xRkEX4haYERbf+7+bQYy1YDPKFDru4SPIFsTYSu1POybOu/ceiLEHXOhrCzSDGHuC4txSoBnEmA0xZkOM2RBjNsSYjVscDz8kq4xpIgAAAABJRU5ErkJggg==" y="307.3169"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="35.6328" x="95.5156" y="370.1684">SPA</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="55.166" x="85.749" y="385.0805">[angular]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="111.1069" y="400.9057"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.0381" x="17" y="417.2026">The</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="43.0381" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.9795" x="47.4883" y="417.2026">main</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="82.4678" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.4395" x="86.918" y="417.2026">interface</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="149.3574" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28.4307" x="153.8076" y="417.2026">that</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="182.2383" y="417.2026"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="22.9756" x="186.6885" y="417.2026">the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65.9258" x="30.2275" y="433.4995">customer</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="96.1533" y="433.4995"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.6807" x="100.6035" y="433.4995">interacts</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="162.2842" y="433.4995"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29.7021" x="166.7344" y="433.4995">with</text></g><g id="elem_api"><rect fill="#1183CB" height="149.4844" rx="2.5" ry="2.5" style="stroke:#0065AD;stroke-width:0.5;" width="200.3184" x="290.17" y="289.17"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="83.4668" x="348.5958" y="312.1651">«container»</text><image height="48" width="48" x="366.3292" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC10lEQVR4XtWXO4pUURCGZwvuwCW4BAMX4BJmCS5BMBEMDAwNTCYUTAwFIyNfGAxMoEwwMMGAMwgigkHrN/BDWf/p2/c8GuYc+OD2f/v2rTr1ONUHtx69P5gZE2bDhNkwYTZMmA0T9sntJ5/u3Xn25XHWezBh3zx9d77JWg8m7BMi8Pbbj3kdOHz5dfPq+Pu8Dnw+/7l5+OZsTgcevD7dsEijfK8HE/YBqcMavftgwmi086OLV5gwkhcfL4rGk0Y4RmTyM7WYMAIMpGBZseugcw5wb9SBZkIvGHZ6+fvaeCIgnd2++vXnP20EJvTADsv4eOJyzbrxRUyu55xXBxp9gAkTWmH3ry39t2J+qxbuPj/+kJ8ZgQmtyAFSKOpy6v7Ryc2OAGA8hRo1PrNyKx2FCT0o32MKqYBZ9P78TC8m9EKx5t6vKOTojMCEEZAuMee51hpdCyaMgijEyVMtdtQJLEwYSdxtHFo6hXG2ZdQ2oQYNZZywS31eM1DWBY7yO5wZRKrGERPWQLfhRbTNJcNFySC0UjrxmziS9W2YsIs479BVSA0iABqRQZFh54H0wWnt8ra5SG235HQJE9bCCxT6aKSQhqE4RKRKO57BuZp2a0ILa3drF2q3NX90TKiFlFgq0AgRwMhSJNDZ+RrjwYRaNG2yVICkgeCzTmKt+I9MHQpaImlCCxijWtAoEUHnfukUXtPFljBhNkxoga6TR4eM8n/pOy2Y0EKsAxY5Tz3o/0FeI8dqE9ZA3tItYjdhd4mEijYajqYDr9SBejBhG4Rep2ltq1uL0izrS5hQgh/WbtJRRu8iEdXYke/twoQS6tWagVhcEw2iojkozkJxJopzkQqetFJqcV/FrQk327ANE9bAS1QH0TAZBzina81GcS6K3UjniL5f06lMqEFOaDwAXp5B57vR6dJ02pKaJrSg4pNxQiNCnEyVZjkKrZgwGybMhgmzYcJs/AV4JpWaW7aRIgAAAABJRU5ErkJggg==" y="315.4669"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="30.0625" x="375.2979" y="378.3184">API</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="34.5059" x="373.0763" y="393.2305">[java]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="388.1041" y="409.0557"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56.6631" x="300.17" y="425.3526">Handles</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="356.8331" y="425.3526"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="16.3584" x="361.2833" y="425.3526">all</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="377.6417" y="425.3526"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.0176" x="382.0919" y="425.3526">business</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502" x="443.1095" y="425.3526"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32.9287" x="447.5596" y="425.3526">logic</text></g><g id="link_user_spa"><path d="M113.33,142.72 C113.33,183.9 113.33,228.98 113.33,272.7 " fill="none" id="user-to-spa" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="113.33,280.7,116.33,272.7,110.33,272.7,113.33,280.7" style="stroke:#E7E7E7;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="34.8486" x="114.33" y="185.5869">Uses</text></g><g id="link_spa_api"><path d="M220.03,363.91 C243.04,363.91 259.3,363.91 282.05,363.91 " fill="none" id="spa-to-api" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="290.05,363.91,282.05,360.91,282.05,366.91,290.05,363.91" style="stroke:#E7E7E7;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="34.8486" x="237.92" y="356.9769">Uses</text></g><g id="link_api_db"><path d="M490.99,363.91 C533.03,363.91 573.69,363.91 615.42,363.91 " fill="none" id="api-to-db" style="stroke:#E7E7E7;stroke-width:1.0;"/><polygon fill="#E7E7E7" points="623.42,363.91,615.42,360.91,615.42,366.91,623.42,363.91" style="stroke:#E7E7E7;stroke-width:1.0;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="97.3667" x="508.65" y="356.9769">Reads/Writes</text></g></g></svg></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../catppuccin/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Catppuccin">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Catppuccin
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../kanagawa/" class="md-footer__link md-footer__link--next" aria-label="Next: Kanagawa 🌊">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Kanagawa 🌊
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.footer", "content.tooltips", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="../../assets/mkdocs_puml/puml.js"></script>
+      
+        <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      
+        <script src="../../assets/mkdocs_puml/interaction.js"></script>
+      
+    
+  </body>
+</html>
