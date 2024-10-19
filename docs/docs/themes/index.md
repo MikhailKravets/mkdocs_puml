@@ -10,8 +10,8 @@
 |:----------:|:--------------:|:-----:|:-----:|
 | [Default](default.md) |  :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | [Catppuccin](catppuccin.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| `nord` | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| `kanagawa` | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| [Nord](nord.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| [Kanagawa](kanagawa.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 ???+ note "How to use Themes"
 

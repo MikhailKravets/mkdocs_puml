@@ -1,11 +1,11 @@
-# Nord
+# Kanagawa :ocean:
 
-![logo](../assets/themes/nord/logo.svg){: .center}
+<img src="/assets/themes/kanagawa/kanagawa%402x.png" width=300 />
 
 -----------------
 
-[Nord](https://www.nordtheme.com) is a cold, minimalist color palette that
-has been applied to PlantUML.
+Kanagawa theme implements a color palette defined in [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim).
+This color scheme is inspired by Katsushika Hokusai’s work, especially, his famous "The Great Wave".
 
 ## How to use
 
@@ -13,29 +13,30 @@ In order to use this theme with `mkdocs_puml`, set `theme` config of the plugin 
 
 ```yaml
 plantuml:
-    theme:
-      light: nord/day
-      dark: nord/night
+  theme:
+    light: kanagawa/fuji
+    dark: kanagawa/wave
 ```
 
 ## Flavors
 
-This theme comes in two flavors
+This theme has two flavors
 
-- `day` for light mode
-- `night` for dark mode
+- `fuji` for light mode
+- `wave` for dark mode
 
 ## Examples
 
-Let's look at some examples.
+Below you may find a few examples showing how this theme looks like.
 
 ### Class Diagram
 
-=== "nord/day"
+=== "kanagawa/fuji"
 
     ```plantuml
     @startuml
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/day.puml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
+    ' skinparam backgroundcolor white
 
     interface Display {
         Represent an object in String
@@ -89,11 +90,11 @@ Let's look at some examples.
     @enduml
     ```
 
-=== "nord/night"
+=== "kanagawa/wave"
 
     ```plantuml
     @startuml
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/night.puml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/wave.puml
 
     interface Display {
         Represent an object in String
@@ -149,11 +150,14 @@ Let's look at some examples.
 
 ### Sequence
 
-=== "nord/day"
+=== "kanagawa/fuji"
 
     ```plantuml
     @startuml
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/day.puml
+    ' Substitute the link on desired theme
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
+
+    ' skinparam backgroundcolor white
 
     Alice -> Bob: Authentication Request
 
@@ -179,11 +183,12 @@ Let's look at some examples.
     @enduml
     ```
 
-=== "nord/night"
+=== "kanagawa/wave"
 
     ```plantuml
     @startuml
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/night.puml
+    ' Substitute the link on desired theme
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/wave.puml
 
     Alice -> Bob: Authentication Request
 
@@ -206,16 +211,79 @@ Let's look at some examples.
     Bob -> Alice: Please repeat
 
     end
+    @enduml
+    ```
+
+### State
+
+=== "kanagawa/fuji"
+
+    ```plantuml
+    @startuml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
+    ' skinparam backgroundcolor white
+
+    scale 350 width
+    [*] --> NotShooting
+
+    state NotShooting {
+    [*] --> Idle
+    Idle --> Configuring : EvConfig
+    Configuring --> Idle : EvConfig
+    }
+
+    state Configuring {
+    [*] --> NewValueSelection
+    NewValueSelection --> NewValuePreview : EvNewValue
+    NewValuePreview --> NewValueSelection : EvNewValueRejected
+    NewValuePreview --> NewValueSelection : EvNewValueSaved
+
+    state NewValuePreview {
+        State1 -> State2
+    }
+
+    }
+    @enduml
+    ```
+
+=== "kanagawa/wave"
+
+    ```plantuml
+    @startuml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/wave.puml
+    ' skinparam backgroundcolor white
+
+    scale 350 width
+    [*] --> NotShooting
+
+    state NotShooting {
+    [*] --> Idle
+    Idle --> Configuring : EvConfig
+    Configuring --> Idle : EvConfig
+    }
+
+    state Configuring {
+    [*] --> NewValueSelection
+    NewValueSelection --> NewValuePreview : EvNewValue
+    NewValuePreview --> NewValueSelection : EvNewValueRejected
+    NewValuePreview --> NewValueSelection : EvNewValueSaved
+
+    state NewValuePreview {
+        State1 -> State2
+    }
+
+    }
     @enduml
     ```
 
 ### Entity
 
-=== "nord/day"
+=== "kanagawa/fuji"
 
     ```plantuml
     @startuml
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/day.puml
+    ' Substitute the link on desired theme
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
 
     title "Database"
 
@@ -282,11 +350,12 @@ Let's look at some examples.
     @enduml
     ```
 
-=== "nord/night"
+=== "kanagawa/wave"
 
     ```plantuml
     @startuml
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/night.puml
+    ' Substitute the link on desired theme
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/wave.puml
 
     title "Database"
 
@@ -353,81 +422,60 @@ Let's look at some examples.
     @enduml
     ```
 
-### Timing
+### Activity
 
-=== "nord/day"
+=== "kanagawa/fuji"
 
     ```plantuml
     @startuml
-    ' Substitute the link on desired theme
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/day.puml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
 
-    clock   "Clock_0"   as C0 with period 50
-    clock   "Clock_1"   as C1 with period 50 pulse 15 offset 10
-    binary  "Binary"  as B
-    concise "Concise" as C
-    robust  "Robust"  as R
-    analog  "Analog"  as A
-
-
-    @0
-    C is Idle
-    R is Idle
-    A is 0
-
-    @100
-    B is high
-    C is Waiting
-    R is Processing
-    A is 3
-
-    @300
-    R is Waiting
-    A is 1
+    skinparam backgroundcolor white
+    start
+    fork
+    :action 1;
+    fork again
+    :action 2;
+    fork again
+    :action 3;
+    fork again
+    :action 4;
+    end merge
+    stop
     @enduml
     ```
 
-=== "nord/night"
+=== "kanagawa/wave"
 
     ```plantuml
     @startuml
-    ' Substitute the link on desired theme
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/night.puml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/wave.puml
 
-    clock   "Clock_0"   as C0 with period 50
-    clock   "Clock_1"   as C1 with period 50 pulse 15 offset 10
-    binary  "Binary"  as B
-    concise "Concise" as C
-    robust  "Robust"  as R
-    analog  "Analog"  as A
-
-
-    @0
-    C is Idle
-    R is Idle
-    A is 0
-
-    @100
-    B is high
-    C is Waiting
-    R is Processing
-    A is 3
-
-    @300
-    R is Waiting
-    A is 1
+    start
+    fork
+    :action 1;
+    fork again
+    :action 2;
+    fork again
+    :action 3;
+    fork again
+    :action 4;
+    end merge
+    stop
     @enduml
     ```
 
 ### C4
 
-=== "nord/day"
+=== "kanagawa/fuji"
 
     ```plantuml
     @startuml
     !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/day.puml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/fuji.puml
+
+    ' skinparam backgroundcolor white
 
     !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
     !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
@@ -452,13 +500,15 @@ Let's look at some examples.
     @enduml
     ```
 
-=== "nord/night"
+=== "kanagawa/wave"
 
     ```plantuml
     @startuml
     !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/nord/night.puml
+    !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/kanagawa/wave.puml
+
+    ' skinparam backgroundcolor white
 
     !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
     !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
