@@ -1,7 +1,15 @@
 ![logo](docs/docs/assets/logos/logo.svg)
 
-[![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml)
+<h3 align="center">
+
+<img src="https://img.shields.io/pypi/v/mkdocs-puml?style=for-the-badge&color=teal" /> •
+<img src="https://img.shields.io/pypi/dm/mkdocs_puml?style=for-the-badge&color=teal" /> •
+<img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge">
+
+</h3>
+
+<!-- [![PyPI version](https://badge.fury.io/py/mkdocs_puml.svg)](https://badge.fury.io/py/mkdocs_puml)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/mkdocs_puml)](https://pypistats.org/packages/mkdocs-puml) -->
 
 `mkdocs_puml` is a fast and simple package that brings plantuml diagrams to MkDocs
 documentation.
