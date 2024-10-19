@@ -119,8 +119,8 @@ plugins:
 
 ### Using the `mkdocs_puml` Theme Repository
 
-By default `mkdocs_puml` attaches to its own **Themes Hub**  **TODO**: insert link!!
-and uses **default** PlantUML theme **TODO**: insert link on theme card!!
+By default `mkdocs_puml` attaches to its own [Themes Hub](../themes/index.md)
+and uses [Default](../themes/default.md) PlantUML theme.
 
 To set a theme, you should set a theme for each mode light and dark
 
@@ -134,7 +134,7 @@ plugins:
 
 ??? note "This web-site uses catppuccin"
 
-    This documentation web-site uses catppuccin theme **TODO**: insert link!!
+    This documentation web-site uses [Catppuccin](../themes/catppuccin.md) theme
     with special `catppuccin/frappe-white` flavor for light mode and
     `catppuccin/mocha` for dark mode. Use this configuration to apply the same
     settings for your setup
