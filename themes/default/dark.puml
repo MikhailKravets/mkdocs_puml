@@ -533,10 +533,12 @@ nwdiagDiagram {
 
 .person {
     BackGroundColor #003871
+    LineColor #003871
 }
 
 .system {
     BackGroundColor #075EB3
+    LineColor #075EB3
 }
 
 .container {
@@ -546,18 +548,22 @@ nwdiagDiagram {
 
 .component {
     BackGroundColor #7BB1E6
+    LineColor #7BB1E6
 }
 
 .external_person {
 	BackGroundColor #5E5E5E
+    LineColor #5E5E5E
 }
 
 .external_system {
 	BackGroundColor #8F8F8F
+    LineColor #8F8F8F
 }
 
 .external_container {
     BackGroundColor #8B8B8B
+    LineColor #8B8B8B
 }
 
 .node {
