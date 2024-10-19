@@ -9,7 +9,7 @@
 |    **Name**      | **Light** | **Dark** | **C4** |
 |:----------:|:--------------:|:-----:|:-----:|
 | [Default](default.md) |  :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| `catppuccin` | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| [Catppuccin](catppuccin.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | `nord` | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | `kanagawa` | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
