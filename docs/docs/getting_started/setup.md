@@ -1,8 +1,6 @@
 # Setup
 
-Only the `puml_url` parameter is required.
-For the rest of parameters `mkdocs_puml` uses default values.
-However you may modify the behavior of the plugin as needed.
+`mkdocs_puml` allows you to modify its behavior with a set of parameters.
 
 ??? note "In a hurry? Take a look at the complete configuration"
 
@@ -28,7 +26,7 @@ However you may modify the behavior of the plugin as needed.
 
 ## PlantUML
 
-You can manage PlantUML server behavior with these settings.
+The communication of `mkdocs_puml` with PlantUML server can be configured with these settings.
 
 ### `puml_url`
 
