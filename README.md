@@ -4,7 +4,7 @@
 
 <a href="https://pypi.org/project/mkdocs_puml/" target="_blank"><img src="https://img.shields.io/pypi/v/mkdocs-puml?style=for-the-badge&color=teal" /></a>
 <a href="https://pypistats.org/packages/mkdocs-puml" target="_blank"><img src="https://img.shields.io/pypi/dm/mkdocs_puml?style=for-the-badge&color=teal" /></a>
-<a href="https://mikhailkravets.github.io/mkdocs_puml/" target="_blank"><img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge"></a>
+<a href="https://mikhailkravets.github.io/mkdocs_puml/" target="_blank"><img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&color=9D3058"></a>
 
 </h3>
 
