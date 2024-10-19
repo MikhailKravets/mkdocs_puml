@@ -138,8 +138,6 @@ This theme is actually identical to the default PlantUML theme, so there’s no 
 
 The `default/dark` flavor enhances the visibility of [C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML).
 
-**TODO:** fix dark theme Font Color and Border!!! It's mixed with other styles
-
 ```plantuml
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
