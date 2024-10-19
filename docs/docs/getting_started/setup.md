@@ -98,7 +98,7 @@ plugins:
       verbose: false
 ```
 
-## Theming
+## Theming <theming>
 
 `mkdocs_puml` supports automatic theme switching for light and dark mode. It seamlessly integrates
 with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/).
@@ -114,7 +114,7 @@ If you want to disable automatic theming set `enabled` parameter to `false`
 plugins:
     - plantuml:
         theme:
-        enabled: false
+          enabled: false
 ```
 
 ### Using the `mkdocs_puml` Theme Repository
