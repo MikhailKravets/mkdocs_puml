@@ -1,3 +1,3 @@
-# Themes
+# Themes Hub
 
-Include themes directly from github?
+![logo](../assets/logos/logo-themes.svg)
