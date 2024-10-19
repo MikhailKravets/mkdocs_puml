@@ -1,6 +1,6 @@
 # Nord
 
-![logo](../assets/themes/nord/logo.svg){: .center}
+![logo](../assets/themes/nord/logo.svg)
 
 -----------------
 

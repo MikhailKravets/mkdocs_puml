@@ -3,6 +3,7 @@
 
 .examples/
 .DS_Store
+docs/site
 
 ### VisualStudioCode ###
 .vscode/*
