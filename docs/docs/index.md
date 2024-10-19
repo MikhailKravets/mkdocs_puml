@@ -74,10 +74,6 @@ Item --> Display
 @enduml
 ```
 
-## Contributing
-
-**TODO**. Add contributing guide or move to its own page?
-
 ## Special Thanks
 
 We would like to acknowledge the authors whose work, while not directly related to this project, has been instrumental in shaping it.
