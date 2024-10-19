@@ -1,6 +1,6 @@
 # Kanagawa :ocean:
 
-<img src="/assets/themes/kanagawa/kanagawa%402x.png" width=300 />
+<img src="../assets/themes/kanagawa/kanagawa%402x.png" width=300 />
 
 -----------------
 
