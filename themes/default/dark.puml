@@ -518,6 +518,7 @@ nwdiagDiagram {
 ' C4 styles
 .person, .system, .container, .component, .external_person, .external_system, .external_container {
     HorizontalAlignment center
+	FontColor white
 }
 
 .container_boundary, .system_boundary, .enterprise_boundary, .boundary {
