@@ -731,6 +731,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -751,8 +769,10 @@
 
 <h1 id="themes-hub">Themes Hub<a class="headerlink" href="#themes-hub" title="Permanent link">&para;</a></h1>
 <p><img alt="logo" src="../assets/logos/logo-themes.svg" /></p>
-<p><em><code>mkdocs_puml</code> offers a collection of themes for use.</em></p>
+<p>Themes Hub is a collection of themes specifically designed for PlantUML with
+a seamless integration with <code>mkdocs_puml</code>.</p>
 <h2 id="available-themes">Available Themes<a class="headerlink" href="#available-themes" title="Permanent link">&para;</a></h2>
+<p>Currently the hub consists of the following themes.</p>
 <table>
 <thead>
 <tr>
@@ -789,11 +809,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
 <details class="note" open="open">
-<summary>How to use Themes</summary>
+<summary>Using Themes from Hub with <code>mkdocs_puml</code></summary>
 <p>Refer to the <a href="../getting_started/setup/#theming">Setup Theming Section</a> to learn how
 use themes with <code>mkdocs_puml</code>.</p>
 </details>
+<p>To use a theme from the hub, locate its corresponding <code>.puml</code> file containing the styles.
+Each theme card includes a link to its folder in the GitHub repository.
+Open the folder, select the desired flavor, get raw link to the file,
+and build the <code>!include</code> statements to insert into your PlantUML code.</p>
+<p>For example, for <code>catppuccin/mocha</code> flavor's <code>!include</code> statement is</p>
+<div class="highlight"><pre><span></span><code>!include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/catppuccin/mocha.puml
+</code></pre></div>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>Themes from the hub are licensed under MIT license.</p>
 
 
 
