@@ -12,6 +12,8 @@ documentation.*
 
 </h3>
 
+-----------------
+
 ## Features
 
 - **Interactive PlantUML Diagrams**: `mkdocs_puml` automatically converts PlantUML code
