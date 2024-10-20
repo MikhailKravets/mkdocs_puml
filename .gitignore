@@ -5,6 +5,8 @@
 .DS_Store
 docs/site
 
+poetry.lock
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json

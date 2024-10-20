@@ -1,0 +1,26 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "mkdocs_puml"
+authors = [{name = "Mikhail Kravets", email = "michkravets@gmail.com"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+requires-python = ">=3.9"
+dependencies = [
+    "httpx >= 0.27",
+    "markdown >= 3.2.1, < 4.0",
+    "mkdocs >= 1.4, < 2.0",
+    "msgpack >= 1.1, < 2.0",
+    "rich >= 13.9, < 14"
+]
+
+[project.urls]
+Home = "https://github.com/MikhailKravets/mkdocs_puml"
+Repository = "https://github.com/MikhailKravets/mkdocs_puml"
+
+[project.entry-points."mkdocs.plugins"]
+plantuml = "mkdocs_puml.plugin:PlantUMLPlugin"
