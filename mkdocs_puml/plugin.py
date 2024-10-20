@@ -81,6 +81,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.puml = PlantUML(
             self.config.puml_url,
             verify_ssl=self.config.verify_ssl,
+            timeout=self.config.request_timeout
         )
         self.puml_keyword = self.config.puml_keyword
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)

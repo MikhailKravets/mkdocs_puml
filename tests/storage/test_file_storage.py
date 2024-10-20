@@ -33,6 +33,19 @@ def test_read_nonexistent_file(monkeypatch, patch_path_mkdir):
     assert len(fs.invalid) == 0
 
 
+def test_read_do_not_include_cwd(monkeypatch, patch_path_mkdir):
+    filename = "test.mock"
+    base_path = Path("test")
+    exists = MagicMock()
+    exists.return_value = False
+
+    monkeypatch.setattr("pathlib.Path.exists", exists)
+
+    fs = FileStorage(base_path, filename, join_project_name=False)
+
+    assert fs.path == base_path.joinpath(filename)
+
+
 def test_read_empty_file(monkeypatch, patch_path_mkdir):
     stat = MagicMock()
     stat.return_value = MagicMock()

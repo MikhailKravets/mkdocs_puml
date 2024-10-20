@@ -54,6 +54,7 @@ def plugin_config() -> PlantUMLConfig:
             "extra_javascript": [],
             "theme": t,
             "cache": cache,
+            "request_timeout": 40,
             "interaction": inter
         }
     )

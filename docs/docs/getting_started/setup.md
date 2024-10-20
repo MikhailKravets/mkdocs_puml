@@ -9,6 +9,7 @@
     - plantuml:
         puml_url: https://www.plantuml.com/plantuml/
         puml_keyword: puml
+        request_timeout: 300
         verify_ssl: true
         verbose: true
         theme:
@@ -20,6 +21,7 @@
           backend: local
           local:
             path: "~/.cache/mkdocs_puml"
+            join_project_name: true
         interaction:
           enabled: true
     ```
@@ -62,6 +64,17 @@ Then `mkdocs_puml` will search for the following blocks of code.
 <your PUML code here>
 ```
 ~~~
+
+### `request_timeout`
+
+Designates how much time in seconds `mkdocs_puml` will wait for a response from PlantUML server.
+Defaults to 300 seconds. Set as
+
+```yaml
+plugins:
+  - plantuml:
+      request_timeout: 300
+```
 
 ### `verify_ssl`
 
@@ -112,9 +125,9 @@ If you want to disable automatic theming set `enabled` parameter to `false`
 
 ```yaml
 plugins:
-    - plantuml:
-        theme:
-          enabled: false
+  - plantuml:
+      theme:
+        enabled: false
 ```
 
 ### Using the `mkdocs_puml` Theme Repository
@@ -154,11 +167,11 @@ and select themes in this server such as
 
 ```yaml
 plugins:
-- plantuml:
-    theme:
-        url: https://your.path/to/custom/themes
-        light: custom/light
-        dark: custom/dark
+  - plantuml:
+      theme:
+          url: https://your.path/to/custom/themes
+          light: custom/light
+          dark: custom/dark
 ```
 
 During build `mkdocs_puml` uses your URL to build two `!include` statements for each mode.
@@ -190,11 +203,12 @@ You can configure the `path` in which `mkdocs_puml` stores the diagrams
 as follows
 
 ```yaml
-plantuml:
-  cache:
-    backend: local
-    local:
-      path: "~/.cache/mkdocs_puml"
+plugins:
+  plantuml:
+    cache:
+      backend: local
+      local:
+        path: "~/.cache/mkdocs_puml"
 ```
 
 ???+ note "Multiple Projects"
@@ -202,15 +216,57 @@ plantuml:
     The plugin creates its own caching directory for each project.
     So you can safely work on multiple `mkdocs` projects at the same time.
 
+### `join_project_name`
+
+By default, the local cache expects all cached files to be stored in a single directory.
+To support multiple projects, it appends the project name (the name of the current working directory)
+to the cache file path. This ensures that each project's cache is kept separate.
+
+You can disable joining of project name by passing `false` to `join_project_name` as follows
+
+```yaml
+plugins:
+  plantuml:
+    cache:
+      backend: local
+      local:
+        join_project_name: false
+```
+
+???+ tip "Using `mkdocs_puml` with CI tool"
+
+    Often, PlantUML code includes a lot of URLs pointing to GitHub resources.
+    That may result in rate limit errors, forcing you to build your documentation
+    several times. This is especially problematic when building the documentation
+    using CI tool.
+
+    You can set a cache `path` to the relative directory inside your repository resulting in
+    a config similar to
+
+    ```yaml
+    plugins:
+      plantuml:
+        cache:
+          backend: local
+          local:
+            path: "diagrams"
+            join_project_name: false
+    ```
+
+    `mkdocs_puml` will keep the diagrams in `${cwd}/diagrams/storage.mpack` file.
+
+    You can then commit the diagrams file to the Git and use it in CI process.
+
 Under the hood, local storage saves diagrams in [Message Pack](https://msgpack.org/) format.
 
 To disable caching and rebuild all diagrams with every documentation change, use
 the following configuration
 
 ```yaml
-plantuml:
-  cache:
-    backend: disabled
+plugins:
+  plantuml:
+    cache:
+      backend: disabled
 ```
 
 ## Interaction
@@ -219,9 +275,10 @@ Interaction settings control how users can interact with the rendered diagram.
 Currently, you may either enable or disable the interaction as follows
 
 ```yaml
-plantuml:
-  interaction:
-    enabled: true
+plugins:
+  plantuml:
+    interaction:
+      enabled: true
 ```
 
 ???+ warning "Experimental Feature"
