@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/logos/icon-square.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -508,6 +508,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#request_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      request_timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#verify_ssl" class="md-nav__link">
     <span class="md-ellipsis">
       verify_ssl
@@ -569,6 +578,21 @@
       Cache
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Cache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#join_project_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      join_project_name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -893,6 +917,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#request_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      request_timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#verify_ssl" class="md-nav__link">
     <span class="md-ellipsis">
       verify_ssl
@@ -955,6 +988,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Cache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#join_project_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      join_project_name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -992,6 +1040,7 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plantuml</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">puml_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.plantuml.com/plantuml/</span>
 <span class="w">    </span><span class="nt">puml_keyword</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">puml</span>
+<span class="w">    </span><span class="nt">request_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
 <span class="w">    </span><span class="nt">verify_ssl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">theme</span><span class="p">:</span>
@@ -1003,6 +1052,7 @@
 <span class="w">      </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
 <span class="w">      </span><span class="nt">local</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/.cache/mkdocs_puml&quot;</span>
+<span class="w">        </span><span class="nt">join_project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">interaction</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
@@ -1030,6 +1080,13 @@ using Docker.</p>
 <div class="highlight"><pre><span></span><code>```uml
 &lt;your PUML code here&gt;
 ```
+</code></pre></div>
+<h3 id="request_timeout"><code>request_timeout</code><a class="headerlink" href="#request_timeout" title="Permanent link">&para;</a></h3>
+<p>Designates how much time in seconds <code>mkdocs_puml</code> will wait for a response from PlantUML server.
+Defaults to 300 seconds. Set as</p>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">request_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
 </code></pre></div>
 <h3 id="verify_ssl"><code>verify_ssl</code><a class="headerlink" href="#verify_ssl" title="Permanent link">&para;</a></h3>
 <p>In some cases, when using a custom PlantUML server setup, you may want to disable
@@ -1067,9 +1124,9 @@ diagram. At the same time, having <a href="#cache">caching</a> feature enabled, 
 </details>
 <p>If you want to disable automatic theming set <code>enabled</code> parameter to <code>false</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plantuml</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">theme</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">theme</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 <h3 id="using-the-mkdocs_puml-theme-repository">Using the <code>mkdocs_puml</code> Theme Repository<a class="headerlink" href="#using-the-mkdocs_puml-theme-repository" title="Permanent link">&para;</a></h3>
 <p>By default <code>mkdocs_puml</code> attaches to its own <a href="../../themes/">Themes Hub</a>
@@ -1098,11 +1155,11 @@ settings for your setup</p>
 <p>You can use your custom theme repository. For this you should set <code>url</code> parameter to your own server
 and select themes in this server such as</p>
 <div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plantuml</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">theme</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://your.path/to/custom/themes</span>
-<span class="w">        </span><span class="nt">light</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom/light</span>
-<span class="w">        </span><span class="nt">dark</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom/dark</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">theme</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://your.path/to/custom/themes</span>
+<span class="w">          </span><span class="nt">light</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom/light</span>
+<span class="w">          </span><span class="nt">dark</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom/dark</span>
 </code></pre></div>
 <p>During build <code>mkdocs_puml</code> uses your URL to build two <code>!include</code> statements for each mode.
 It simply attaches theme name to the end of the URL adding <code>.puml</code> extension. For the
@@ -1126,30 +1183,64 @@ the plugin stores diagrams locally at <code>~/.cache/mkdocs_puml</code>. This ca
 backend has a name <code>local</code> and it's the only available backend right now.
 You can configure the <code>path</code> in which <code>mkdocs_puml</code> stores the diagrams
 as follows</p>
-<div class="highlight"><pre><span></span><code><span class="nt">plantuml</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">cache</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
-<span class="w">    </span><span class="nt">local</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/.cache/mkdocs_puml&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cache</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">      </span><span class="nt">local</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/.cache/mkdocs_puml&quot;</span>
 </code></pre></div>
 <details class="note" open="open">
 <summary>Multiple Projects</summary>
 <p>The plugin creates its own caching directory for each project.
 So you can safely work on multiple <code>mkdocs</code> projects at the same time.</p>
 </details>
+<h3 id="join_project_name"><code>join_project_name</code><a class="headerlink" href="#join_project_name" title="Permanent link">&para;</a></h3>
+<p>By default, the local cache expects all cached files to be stored in a single directory.
+To support multiple projects, it appends the project name (the name of the current working directory)
+to the cache file path. This ensures that each project's cache is kept separate.</p>
+<p>You can disable joining of project name by passing <code>false</code> to <code>join_project_name</code> as follows</p>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cache</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">      </span><span class="nt">local</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">join_project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<details class="tip" open="open">
+<summary>Using <code>mkdocs_puml</code> with CI tool</summary>
+<p>Often, PlantUML code includes a lot of URLs pointing to GitHub resources.
+That may result in rate limit errors, forcing you to build your documentation
+several times. This is especially problematic when building the documentation
+using CI tool.</p>
+<p>You can set a cache <code>path</code> to the relative directory inside your repository resulting in
+a config similar to</p>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cache</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">      </span><span class="nt">local</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;diagrams&quot;</span>
+<span class="w">        </span><span class="nt">join_project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<p><code>mkdocs_puml</code> will keep the diagrams in <code>${cwd}/diagrams/storage.mpack</code> file.</p>
+<p>You can then commit the diagrams file to the Git and use it in CI process.</p>
+</details>
 <p>Under the hood, local storage saves diagrams in <a href="https://msgpack.org/">Message Pack</a> format.</p>
 <p>To disable caching and rebuild all diagrams with every documentation change, use
 the following configuration</p>
-<div class="highlight"><pre><span></span><code><span class="nt">plantuml</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">cache</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disabled</span>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cache</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disabled</span>
 </code></pre></div>
 <h2 id="interaction">Interaction<a class="headerlink" href="#interaction" title="Permanent link">&para;</a></h2>
 <p>Interaction settings control how users can interact with the rendered diagram.
 Currently, you may either enable or disable the interaction as follows</p>
-<div class="highlight"><pre><span></span><code><span class="nt">plantuml</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">interaction</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">plantuml</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">interaction</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <details class="warning" open="open">
 <summary>Experimental Feature</summary>
@@ -1247,7 +1338,7 @@ and may not work as expected.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.footer", "content.tooltips", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../assets/mkdocs_puml/puml.js"></script>
       
