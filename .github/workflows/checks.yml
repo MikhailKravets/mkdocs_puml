@@ -23,7 +23,7 @@ jobs:
 
       - name: Install Pipx
         run: |
-          apt install pipx
+          sudo apt install pipx
           pipx ensurepath
 
       - name: Install Poetry
