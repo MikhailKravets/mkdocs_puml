@@ -25,6 +25,7 @@ class ThemeConfig(Config):
 
 class LocalCacheConfig(Config):
     path = Type(str, default="~/.cache/mkdocs_puml/")
+    join_project_name = Type(bool, default=True)
 
 
 class CacheConfig(Config):

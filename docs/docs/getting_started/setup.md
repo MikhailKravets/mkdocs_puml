@@ -21,6 +21,7 @@
           backend: local
           local:
             path: "~/.cache/mkdocs_puml"
+            join_project_name: true
         interaction:
           enabled: true
     ```
@@ -214,6 +215,47 @@ plugins:
 
     The plugin creates its own caching directory for each project.
     So you can safely work on multiple `mkdocs` projects at the same time.
+
+### `join_project_name`
+
+By default, the local cache expects all cached files to be stored in a single directory.
+To support multiple projects, it appends the project name (the name of the current working directory)
+to the cache file path. This ensures that each project's cache is kept separate.
+
+You can disable joining of project name by passing `false` to `join_project_name` as follows
+
+```yaml
+plugins:
+  plantuml:
+    cache:
+      backend: local
+      local:
+        join_project_name: false
+```
+
+???+ tip "Using `mkdocs_puml` with CI tool"
+
+    Often, PlantUML code includes a lot of URLs pointing to GitHub resources.
+    That may result in rate limit errors, forcing you to build your documentation
+    several times. This is especially problematic when building the documentation
+    using CI tool.
+
+    You can set a cache `path` to the relative directory inside your repository resulting in
+    a config similar to
+
+    ```yaml
+    plugins:
+      plantuml:
+        cache:
+          backend: local
+          local:
+            path: "diagrams"
+            join_project_name: false
+    ```
+
+    `mkdocs_puml` will keep the diagrams in `${cwd}/diagrams/storage.mpack` file.
+
+    You can then commit the diagrams file to the Git and use it in CI process.
 
 Under the hood, local storage saves diagrams in [Message Pack](https://msgpack.org/) format.
 

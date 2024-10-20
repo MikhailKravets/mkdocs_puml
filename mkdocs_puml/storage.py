@@ -139,17 +139,27 @@ class FileStorage(AbstractStorage):
 
     Args:
         base_dir (Path): the directory where `FileStorage` stores the file.
-        filename (str, optional): name of the file. Defaults to "storage.mpack".
+        filename (str): name of the file. Defaults to "storage.mpack".
+        join_project_name (bool): if set to true, the storage will join current
+                            working directory name to the storage path making
+                            it possible to keep storage in one place and work
+                            with multiple projects. Otherwise, storage will
+                            keep the file with data in base_dir as passed
     """
 
-    def __init__(self, base_dir: Path, filename: str = "storage.mpack"):
+    def __init__(
+        self, base_dir: Path, filename: str = "storage.mpack", join_project_name: bool = True
+    ):
         super().__init__()
+        dir = base_dir.expanduser()
 
-        work_dir = Path.cwd().name
-        dir = base_dir.expanduser().joinpath(work_dir)
+        if join_project_name:
+            work_dir = Path.cwd().name
+            dir = dir.joinpath(work_dir)
+
         dir.mkdir(parents=True, exist_ok=True)
-
         self.path = dir.joinpath(filename)
+
         self._read_data()
 
         # This attribute helps in finding invalid diagrams
@@ -204,4 +214,6 @@ def build_storage(config: CacheConfig) -> AbstractStorage:
     if config.backend == CacheBackend.DISABLED.value:
         return RAMStorage()
     elif config.backend == CacheBackend.LOCAL.value:
-        return FileStorage(Path(config.local.path))
+        return FileStorage(
+            Path(config.local.path), join_project_name=config.local.join_project_name
+        )
