@@ -9,6 +9,7 @@
     - plantuml:
         puml_url: https://www.plantuml.com/plantuml/
         puml_keyword: puml
+        request_timeout: 300
         verify_ssl: true
         verbose: true
         theme:
@@ -63,6 +64,17 @@ Then `mkdocs_puml` will search for the following blocks of code.
 ```
 ~~~
 
+### `request_timeout`
+
+Designates how much time in seconds `mkdocs_puml` will wait for a response from PlantUML server.
+Defaults to 300 seconds. Set as
+
+```yaml
+plugins:
+  - plantuml:
+      request_timeout: 300
+```
+
 ### `verify_ssl`
 
 In some cases, when using a custom PlantUML server setup, you may want to disable
@@ -112,9 +124,9 @@ If you want to disable automatic theming set `enabled` parameter to `false`
 
 ```yaml
 plugins:
-    - plantuml:
-        theme:
-          enabled: false
+  - plantuml:
+      theme:
+        enabled: false
 ```
 
 ### Using the `mkdocs_puml` Theme Repository
@@ -154,11 +166,11 @@ and select themes in this server such as
 
 ```yaml
 plugins:
-- plantuml:
-    theme:
-        url: https://your.path/to/custom/themes
-        light: custom/light
-        dark: custom/dark
+  - plantuml:
+      theme:
+          url: https://your.path/to/custom/themes
+          light: custom/light
+          dark: custom/dark
 ```
 
 During build `mkdocs_puml` uses your URL to build two `!include` statements for each mode.
@@ -190,11 +202,12 @@ You can configure the `path` in which `mkdocs_puml` stores the diagrams
 as follows
 
 ```yaml
-plantuml:
-  cache:
-    backend: local
-    local:
-      path: "~/.cache/mkdocs_puml"
+plugins:
+  plantuml:
+    cache:
+      backend: local
+      local:
+        path: "~/.cache/mkdocs_puml"
 ```
 
 ???+ note "Multiple Projects"
@@ -208,9 +221,10 @@ To disable caching and rebuild all diagrams with every documentation change, use
 the following configuration
 
 ```yaml
-plantuml:
-  cache:
-    backend: disabled
+plugins:
+  plantuml:
+    cache:
+      backend: disabled
 ```
 
 ## Interaction
@@ -219,9 +233,10 @@ Interaction settings control how users can interact with the rendered diagram.
 Currently, you may either enable or disable the interaction as follows
 
 ```yaml
-plantuml:
-  interaction:
-    enabled: true
+plugins:
+  plantuml:
+    interaction:
+      enabled: true
 ```
 
 ???+ warning "Experimental Feature"
