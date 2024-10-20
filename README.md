@@ -1,4 +1,4 @@
-![logo](docs/docs/assets/logos/logo.svg)
+![logo](https://mikhailkravets.github.io/mkdocs_puml/assets/logos/logo.svg)
 
 <h3 align="center">
 
