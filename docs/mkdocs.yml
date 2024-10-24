@@ -43,8 +43,9 @@ plugins:
       puml_url: https://www.plantuml.com/plantuml/
       puml_keyword: plantuml
       theme:
-        light: catppuccin/latte-white
-        dark: catppuccin/mocha
+        url: https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/
+        light: material/teal-light
+        dark: material/deep-orange-dark
 markdown_extensions:
   - abbr
   - attr_list
