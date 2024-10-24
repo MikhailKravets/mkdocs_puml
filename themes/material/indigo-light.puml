@@ -1,0 +1,949 @@
+<style>
+' Red
+--redBase: #f44336
+--red50:   #ffebee
+--red100:  #ffcdd2
+--red200:  #ef9a9a
+--red300:  #e57373
+--red400:  #ef5350
+--red500:  #f44336
+--red600:  #e53935
+--red700:  #d32f2f
+--red800:  #c62828
+--red900:  #b71c1c
+--redA100: #ff8a80
+--redA200: #ff5252
+--redA400: #ff1744
+--redA700: #d50000
+
+' Pink
+--pinkBase: #e91e63
+--pink50:   #fce4ec
+--pink100:  #f8bbd0
+--pink200:  #f48fb1
+--pink300:  #f06292
+--pink400:  #ec407a
+--pink500:  #e91e63
+--pink600:  #d81b60
+--pink700:  #c2185b
+--pink800:  #ad1457
+--pink900:  #880e4f
+--pinkA100: #ff80ab
+--pinkA200: #ff4081
+--pinkA400: #f50057
+--pinkA700: #c51162
+
+' Purple
+--purpleBase: #9c27b0
+--purble50:   #f3e5f5
+--purple100:  #e1bee7
+--purple200:  #ce93d8
+--purple300:  #ba68c8
+--purple400:  #ab47bc
+--purple500:  #9c27b0
+--purple600:  #8e24aa
+--purple700:  #7b1fa2
+--purple800:  #6a1b9a
+--purple900:  #4a148c
+--purpleA100: #ea80fc
+--purpleA200: #e040fb
+--purpleA400: #d500f9
+--purpleA700: #aa00ff
+
+' Deep Purple
+--deepPurpleBase: #673ab7
+--deepPurple50:   #ede7f6
+--deepPurple100:  #d1c4e9
+--deepPurple200:  #b39ddb
+--deepPurple300:  #9575cd
+--deepPurple400:  #7e57c2
+--deepPurple500:  #673ab7
+--deepPurple600:  #5e35b1
+--deepPurple700:  #512da8
+--deepPurple800:  #4527a0
+--deepPurple900:  #311b92
+--deepPurpleA100: #b388ff
+--deepPurpleA200: #7c4dff
+--deepPurpleA400: #651fff
+--deepPurpleA700: #6200ea
+
+' Indigo
+--indigoBase: #3f51b5
+--indigo50:   #e8eaf6
+--indigo100:  #c5cae9
+--indigo200:  #9fa8da
+--indigo300:  #7986cb
+--indigo400:  #5c6bc0
+--indigo500:  #3f51b5
+--indigo600:  #3949ab
+--indigo700:  #303f9f
+--indigo800:  #283593
+--indigo900:  #1a237e
+--indigoA100: #8c9eff
+--indigoA200: #536dfe
+--indigoA400: #3d5afe
+--indigoA700: #304ffe
+
+' Blue
+--blueBase: #2196f3
+--blue50:   #e3f2fd
+--blue100:  #bbdefb
+--blue200:  #90caf9
+--blue300:  #64b5f6
+--blue400:  #42a5f5
+--blue500:  #2196f3
+--blue600:  #1e88e5
+--blue700:  #1976d2
+--blue800:  #1565c0
+--blue900:  #0d47a1
+--blueA100: #82b1ff
+--blueA200: #448aff
+--blueA400: #2979ff
+--blueA700: #2962ff
+
+' Light Blue
+--lightBlueBase: #03a9f4
+--lightBlue50:   #e1f5fe
+--lightBlue100:  #b3e5fc
+--lightBlue200:  #81d4fa
+--lightBlue300:  #4fc3f7
+--lightBlue400:  #29b6f6
+--lightBlue500:  #03a9f4
+--lightBlue600:  #039be5
+--lightBlue700:  #0288d1
+--lightBlue800:  #0277bd
+--lightBlue900:  #01579b
+--lightBlueA100: #80d8ff
+--lightBlueA200: #40c4ff
+--lightBlueA400: #00b0ff
+--lightBlueA700: #0091ea
+
+' Cyan
+--cyanBase: #00bcd4
+--cyan50:   #e0f7fa
+--cyan100:  #b2ebf2
+--cyan200:  #80deea
+--cyan300:  #4dd0e1
+--cyan400:  #26c6da
+--cyan500:  #00bcd4
+--cyan600:  #00acc1
+--cyan700:  #0097a7
+--cyan800:  #00838f
+--cyan900:  #006064
+--cyanA100: #84ffff
+--cyanA200: #18ffff
+--cyanA400: #00e5ff
+--cyanA700: #00b8d4
+
+' Teal
+--tealBase: #009688
+--teal50:   #e0f2f1
+--teal100:  #b2dfdb
+--teal200:  #80cbc4
+--teal300:  #4db6ac
+--teal400:  #26a69a
+--teal500:  #009688
+--teal600:  #00897b
+--teal700:  #00796b
+--teal800:  #00695c
+--teal900:  #004d40
+--tealA100: #a7ffeb
+--tealA200: #64ffda
+--tealA400: #1de9b6
+--tealA700: #00bfa5
+
+' Green
+--greenBase: #4caf50
+--green50:   #e8f5e9
+--green100:  #c8e6c9
+--green200:  #a5d6a7
+--green300:  #81c784
+--green400:  #66bb6a
+--green500:  #4caf50
+--green600:  #43a047
+--green700:  #388e3c
+--green800:  #2e7d32
+--green900:  #1b5e20
+--greenA100: #b9f6ca
+--greenA200: #69f0ae
+--greenA400: #00e676
+--greenA700: #00c853
+
+' Light green
+--lightGreenBase: #8bc34a
+--lightGreen50:   #f1f8e9
+--lightGreen100:  #dcedc8
+--lightGreen200:  #c5e1a5
+--lightGreen300:  #aed581
+--lightGreen400:  #9ccc65
+--lightGreen500:  #8bc34a
+--lightGreen600:  #7cb342
+--lightGreen700:  #689f38
+--lightGreen800:  #558b2f
+--lightGreen900:  #33691e
+--lightGreenA100: #ccff90
+--lightGreenA200: #b2ff59
+--lightGreenA400: #76ff03
+--lightGreenA700: #64dd17
+
+' Lime
+--limeBase: #cddc39
+--lime50:   #f9fbe7
+--lime100:  #f0f4c3
+--lime200:  #e6ee9c
+--lime300:  #dce775
+--lime400:  #d4e157
+--lime500:  #cddc39
+--lime600:  #c0ca33
+--lime700:  #afb42b
+--lime800:  #9e9d24
+--lime900:  #827717
+--limeA100: #f4ff81
+--limeA200: #eeff41
+--limeA400: #c6ff00
+--limeA700: #aeea00
+
+' Yellow
+--yellowBase: #ffeb3b
+--yellow50:   #fffde7
+--yellow100:  #fff9c4
+--yellow200:  #fff59d
+--yellow300:  #fff176
+--yellow400:  #ffee58
+--yellow500:  #ffeb3b
+--yellow600:  #fdd835
+--yellow700:  #fbc02d
+--yellow800:  #f9a825
+--yellow900:  #f57f17
+--yellowA100: #ffff8d
+--yellowA200: #ffff00
+--yellowA400: #ffea00
+--yellowA700: #ffd600
+
+' Amber
+--amberBase: #ffc107
+--amber50:   #fff8e1
+--amber100:  #ffecb3
+--amber200:  #ffe082
+--amber300:  #ffd54f
+--amber400:  #ffca28
+--amber500:  #ffc107
+--amber600:  #ffb300
+--amber700:  #ffa000
+--amber800:  #ff8f00
+--amber900:  #ff6f00
+--amberA100: #ffe57f
+--amberA200: #ffd740
+--amberA400: #ffc400
+--amberA700: #ffab00
+
+' Orange
+--orangeBase: #ff9800
+--orange50:   #fff3e0
+--orange100:  #ffe0b2
+--orange200:  #ffcc80
+--orange300:  #ffb74d
+--orange400:  #ffa726
+--orange500:  #ff9800
+--orange600:  #fb8c00
+--orange700:  #f57c00
+--orange800:  #ef6c00
+--orange900:  #e65100
+--orangeA100: #ffd180
+--orangeA200: #ffab40
+--orangeA400: #ff9100
+--orangeA700: #ff6d00
+
+' Deep Orange
+--deepOrangeBase: #ff5722
+--deepOrange50:   #fbe9e7
+--deepOrange100:  #ffccbc
+--deepOrange200:  #ffab91
+--deepOrange300:  #ff8a65
+--deepOrange400:  #ff7043
+--deepOrange500:  #ff5722
+--deepOrange600:  #f4511e
+--deepOrange700:  #e64a19
+--deepOrange800:  #d84315
+--deepOrange900:  #bf360c
+--deepOrangeA100: #ff9e80
+--deepOrangeA200: #ff6e40
+--deepOrangeA400: #ff3d00
+--deepOrangeA700: #dd2c00
+
+' Brown
+--brownBase: #795548
+--brown50:   #efebe9
+--brown100:  #d7ccc8
+--brown200:  #bcaaa4
+--brown300:  #a1887f
+--brown400:  #8d6e63
+--brown500:  #795548
+--brown600:  #6d4c41
+--brown700:  #5d4037
+--brown800:  #4e342e
+--brown900:  #3e2723
+
+' Grey
+--greyBase: #9e9e9e
+--grey50:   #fafafa
+--grey100:  #f5f5f5
+--grey200:  #eeeeee
+--grey300:  #e0e0e0
+--grey400:  #bdbdbd
+--grey500:  #9e9e9e
+--grey600:  #757575
+--grey700:  #616161
+--grey800:  #424242
+--grey900:  #212121
+
+' Blue Grey
+--blueGreyBase: #607d8b
+--blueGrey50:   #eceff1
+--blueGrey100:  #cfd8dc
+--blueGrey200:  #b0bec5
+--blueGrey300:  #90a4ae
+--blueGrey400:  #78909c
+--blueGrey500:  #607d8b
+--blueGrey600:  #546e7a
+--blueGrey700:  #455a64
+--blueGrey800:  #37474f
+--blueGrey900:  #263238
+
+root {
+    ' This is --indigoA200
+    --nodePrimary: #536dfe
+    --nodePrimaryBg: #536dfe1a
+
+    --textPrimary: #36464e
+    --textAccent: #fff
+    --textAccentDimmed: #f5f5f5
+
+    ' --indigo400
+    --textNode: #5c6bc0
+
+    ' --green400
+    --nodeAdditional: #66bb6a
+    --nodeAdditionalBg: #66bb6a1a
+
+    FontName SansSerif
+    HyperLinkColor: var(--blue400)
+    HyperLinkUnderlineThickness 1
+    FontColor: var(--textPrimary)
+    FontSize 14
+    FontStyle plain
+    HorizontalAlignment left
+    RoundCorner 0
+    DiagonalCorner 0
+    LineThickness 1.0
+
+    LineColor: var(--textPrimary)
+    BackGroundColor transparent;
+    Shadowing: 0.0;
+}
+
+document {
+  BackGroundColor: transparent
+  header {
+    HorizontalAlignment right
+    FontSize 10
+    FontColor: var(--textPrimary)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  title {
+    HorizontalAlignment center
+    FontSize 14
+    FontStyle bold
+    Padding 5
+    Margin 5
+    LineColor transparent
+    BackGroundColor transparent
+  }
+  footer {
+    HorizontalAlignment center
+    FontSize 10
+    FontColor: var(--textPrimary)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  legend {
+    LineColor: var(--textPrimary)
+    BackGroundColor transparent
+    FontSize 14
+    RoundCorner 15
+    Padding 5
+    Margin 12
+  }
+  caption {
+    HorizontalAlignment center
+    FontSize 14
+    FontColor: var(--textPrimary)
+    Padding 0
+    Margin 1
+    LineColor transparent
+    BackGroundColor transparent
+  }
+}
+
+frame {
+    LineColor: var(--textPrimary)
+    LineThickness 1.5
+}
+
+package {
+    title {
+        FontStyle bold
+        FontColor: var(--textPrimary)
+    }
+}
+
+
+stereotype {
+  FontStyle italic
+}
+
+
+mainframe {
+  Padding 1 5
+  LineThickness 1.5
+  Margin 10 5
+}
+
+element {
+  Shadowing 0.0
+  LineThickness 1
+
+  LineColor: var(--nodePrimary)
+
+  composite {
+    title {
+      FontStyle bold
+    }
+
+  }
+}
+
+classDiagram,componentDiagram,objectDiagram {
+    element {
+        RoundCorner 0
+        LineThickness 1
+        BackGroundColor: var(--nodePrimaryBg)
+        LineColor: var(--nodePrimary)
+
+    }
+    arrow {
+        LineColor: var(--textPrimary)
+    }
+}
+
+group {
+  BackGroundColor transparent
+  LineThickness 1.0
+  package {
+    RoundCorner 10
+    LineThickness 2
+    BackGroundColor: transparent
+    LineColor: var(--nodePrimary)
+  }
+}
+
+folder {
+    LineThickness 0.3
+}
+
+visibilityIcon {
+    public {
+        LineColor: var(--green400)
+        BackgroundColor: var(--green400)
+    }
+    private {
+        LineColor: var(--red400)
+        BackgroundColor: var(--red400)
+    }
+    protected {
+        LineColor: var(--amber400)
+        BackgroundColor: var(--amber400)
+    }
+    package {
+        LineColor: var(--deepOrange400)
+        BackgroundColor: var(--deepOrange400)
+    }
+
+    ' TODO: what is it?
+    IEMandatory {
+        LineColor: var(--textPrimary)
+        BackgroundColor: var(--textPrimary)
+    }
+}
+
+spot {
+    FontColor: var(--textPrimary)
+    spotAnnotation {
+        BackgroundColor: var(--green100)
+        LineColor: var(--green400)
+    }
+    spotAbstractClass {
+        BackgroundColor: var(--teal100)
+        LineColor: var(--teal400)
+    }
+    spotClass {
+        BackgroundColor: var(--indigo100)
+        LineColor: var(--indigo400)
+    }
+    spotInterface {
+        BackgroundColor: var(--lightBlue100)
+        LineColor: var(--lightBlue400)
+    }
+    spotEnum {
+        BackgroundColor: var(--yellow100)
+        LineColor: var(--yellow600)
+    }
+    spotEntity {
+        BackgroundColor: var(--amber100)
+        LineColor: var(--amber400)
+    }
+    spotException {
+        BackgroundColor: var(--red100)
+        LineColor: var(--red400)
+    }
+    spotMetaClass {
+        BackgroundColor: var(--purple100)
+        LineColor: var(--purple400)
+    }
+    spotStereotype {
+        BackgroundColor: var(--pink100)
+        LineColor: var(--pink400)
+    }
+}
+
+
+sequenceDiagram {
+    LineColor: var(--textPrimary)
+    FontColor: var(--textPrimary)
+
+	group {
+        BackGroundColor transparent
+        LineColor: var(--nodePrimary)
+        LineThickness 1
+        FontSize 11
+        FontStyle bold
+        LineStyle 5
+	}
+
+	groupHeader {
+        FontColor: var(--textNode)
+        LineThickness 1
+        BackGroundColor: var(--nodePrimaryBg)
+        LineColor: var(--nodePrimaryBg)
+	}
+
+	lifeLine {
+        BackGroundColor: var(--purple200)
+        LineColor: var(--purple200)
+        LineStyle 5
+	}
+
+	reference {
+        FontSize 12
+        BackGroundColor: transparent
+        LineColor: var(--nodePrimary)
+        LineThickness 1.5
+        HorizontalAlignment center
+	}
+
+	referenceHeader {
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--nodePrimary)
+	}
+
+    groupHeader, referenceHeader {
+        FontColor: var(--textNode)
+        FontSize 13
+        FontStyle bold
+        LineThickness 1
+    }
+
+	box {
+        BackGroundColor: var(--nodePrimary)
+        LineColor: var(--nodePrimary)
+        RoundCorner 10
+
+        FontSize 13
+        FontStyle bold
+	}
+
+	separator {
+        LineColor: var(--nodePrimary)
+        LineThickness 1
+        BackGroundColor white
+
+        FontSize 13
+        ' FontStyle bold
+	}
+	participant {
+	    RoundCorner 5
+	}
+
+	participant,actor,boundary,control,entity,queue,database,collections {
+        BackgroundColor: var(--nodePrimaryBg);
+        HorizontalAlignment center
+        LineColor: var(--nodePrimary)
+        RoundCorner 5
+	}
+}
+
+
+stateDiagram {
+    ' BackGroundColor transparent
+    LineColor: var(--textPrimary)
+    state {
+        RoundCorner 15
+        BackGroundColor: var(--nodePrimaryBg)
+        LineColor: var(--nodePrimary)
+        LineThickness 1
+    }
+    stateBody {
+        BackGroundColor transparent
+    }
+    element {
+        title {
+            FontStyle plain
+        }
+    }
+    group {
+        LineThickness 0.5
+    }
+
+    header {
+        FontSize 12
+    }
+    circle {
+        start {
+            LineColor: var(--textPrimary)
+            BackgroundColor: var(--textPrimary)
+        }
+        stop, end {
+            LineColor: var(--nodePrimary)
+            BackgroundColor: var(--nodePrimary)
+        }
+    }
+}
+
+
+delay {
+  FontSize 11
+  FontStyle plain
+  HorizontalAlignment center
+}
+
+
+' Does it belong to activity?
+swimlane {
+  BackGroundColor transparent
+  LineColor: var(--textPrimary)
+  LineThickness 1.5
+  FontSize 18
+}
+
+arrow {
+  FontSize 13
+  LineThickness 1.0
+  BackGroundColor: var(--textPrimary)
+  FontColor: var(--textPrimary)
+}
+
+note {
+  FontSize 13
+  BackGroundColor: var(--nodeAdditionalBg)
+  LineThickness 1
+  LineColor: var(--nodeAdditional)
+}
+
+partition {
+}
+
+circle {
+}
+
+mindmapDiagram {
+	node {
+	    Padding 10
+	    Margin 10
+	    RoundCorner 5
+	    LineThickness 1
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--textAccent)
+	}
+	arrow {
+	    LineThickness 1
+        LineColor: var(--textPrimary)
+	}
+}
+
+
+wbsDiagram {
+    Padding 10
+    Margin 15
+    RoundCorner 0
+    LineThickness 1
+    FontSize 12
+    LineColor: var(--nodePrimary)
+    FontColor: var(--textPrimary)
+
+    arrow {
+        LineColor: var(--textPrimary)
+    }
+}
+
+activityDiagram {
+
+	activity {
+	    Padding 10
+	    FontSize 12
+	    RoundCorner 15
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--nodePrimaryBg)
+        LineThickness 1
+
+        ' TODO: this doesn't work
+        arrow {
+            LineColor: var(--textPrimary)
+        }
+	}
+
+    ' This is a group inside activity
+	composite {
+	    LineColor: var(--nodePrimary)
+        FontColor: var(--textPrimary)
+	    BackgroundColor transparent
+	    LineThickness 1
+        RoundCorner 5
+        FontSize 11
+        FontStyle bold
+	}
+	diamond {
+	    FontSize 11
+	}
+
+	arrow {
+	    FontSize 11
+	    LineThickness 1
+        LineColor: var(--textPrimary)
+	}
+    circle {
+        start {
+            LineColor: var(--textPrimary)
+            BackgroundColor: var(--textPrimary)
+        }
+        stop, end {
+            LineColor: var(--nodePrimary)
+            BackgroundColor: var(--nodePrimary)
+        }
+    }
+	activityBar {
+	  BackgroundColor: var(--nodePrimary)
+	}
+}
+
+
+task {
+    FontSize 11
+    LineColor: var(--sumiInk4)
+}
+
+' TODO: it was originaly in root. I don't know why it's here. I copied it under ganttDiagram
+' milestone {
+'     FontSize 11
+' 	BackGroundColor: var(--peach)
+' 	LineColor: var(--subtext1)
+' }
+
+ganttDiagram {
+
+    milestone {
+        FontSize 11
+        BackGroundColor: var(--textPrimary)
+        LineColor: var(--textPrimary)
+    }
+
+	arrow {
+        LineThickness 1.5
+        LineColor: var(--textPrimary)
+	}
+	' note {
+    '     FontSize 9
+    '     FontColor: var(--textPrimary)
+    '     BackGroundColor: var(--fujiLight)
+    '     LineThickness 1
+    '     LineColor: var(--sakuraPink)
+	' }
+	separator {
+	  FontSize 11
+	  FontStyle plain
+	  BackGroundColor transparent
+      LineColor: var(--nodePrimary)
+      FontColor: var(--nodePrimary)
+	  Margin 5
+	  Padding 5
+	}
+	verticalSeparator {
+	  LineThickness 2
+	  LineStyle 2-2
+	  LineColor: var(--nodePrimary)
+      FontColor: var(--nodePrimary)
+	}
+	timeline {
+	    BackgroundColor transparent
+	    LineColor: var(--grey300)
+	    FontSize 10
+	    month {
+	      FontSize 12
+	    }
+	    year {
+	      FontSize 14
+	    }
+	}
+	closed {
+        BackGroundColor: var(--grey200)
+        FontColor: var(--grey500)
+    }
+	task {
+        ' TODO: transparency doesn't work in task
+        BackGroundColor: var(--textAccent)
+        LineColor: var(--nodePrimary)
+		RoundCorner 5
+        Margin 2 2 2 2
+        Padding 2
+	}
+	undone {
+        BackGroundColor: var(--indigo50)
+	}
+	milestone {
+        Margin 2
+        Padding 3
+	}
+}
+
+
+usecase {
+  HorizontalAlignment center
+}
+
+yamlDiagram,jsonDiagram {
+    FontColor: var(--textPrimary)
+    LineColor: var(--nodePrimary)
+    arrow {
+        LineThickness 2.5
+        LineStyle 3-3
+        LineColor: var(--textPrimary)
+    }
+    node {
+        LineThickness 1.5
+        RoundCorner 3
+        BackGroundColor transparent
+        separator {
+            LineThickness 0.3
+            LineColor: var(--nodePrimary)
+        }
+        header {
+            FontStyle bold
+        }
+        highlight {
+            BackGroundColor: var(--nodePrimaryBg)
+        }
+    }
+}
+
+
+timingDiagram {
+	LineColor: var(--textPrimary)
+	FontColor: var(--textPrimary)
+	' FontStyle bold
+    LineThickness 0.5
+    timeline {
+	  FontStyle plain
+	  FontSize 11
+      LineThickness 1
+      FontColor: var(--textPrimary)
+      LineColor: var(--textPrimary)
+    }
+    ' note {
+    '     FontSize 13
+    '     FontStyle plain
+    '     FontColor: var(--sumiInk0)
+    '     BackGroundColor: var(--fujiLight)
+    '     LineThickness 1
+    '     LineColor: var(--sakuraPink)
+    ' }
+	arrow {
+	    FontName Serif
+	    FontSize 14
+	    FontStyle plain
+	    FontColor: var(--nodePrimary)
+	    LineColor: var(--nodePrimary)
+	    LineThickness 1
+	}
+	constraintArrow {
+	    FontSize 12
+		FontStyle plain
+        FontColor: var(--red500)
+	    LineColor: var(--red500)
+	    LineThickness 1.5
+	}
+	clock {
+        LineColor: var(--nodePrimary)
+        LineThickness 1.5
+	}
+	concise {
+	    FontSize 12
+        LineColor: var(--nodePrimary)
+        BackgroundColor: var(--textAccent);
+        LineThickness 1
+	}
+	robust {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--nodePrimary)
+        LineThickness 2
+        BackgroundColor: var(--nodePrimary);
+	}
+	binary {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--nodePrimary)
+        LineThickness 2
+	}
+	highlight {
+        ' TODO: plantuml doesn't have FontColor for text inside highlight?
+        BackgroundColor: var(--grey100)
+        LineThickness 2
+        LineStyle 4-4
+	}
+}
+
+nwdiagDiagram {
+    FontColor: var(--textPrimary)
+    LineThickness 1
+
+	network {
+	    BackgroundColor: var(--nodePrimary);
+        LineColor: var(--textPrimary)
+		FontSize 12
+	}
+	server {
+		FontSize 12
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--nodePrimaryBg)
+        RoundCorner 10
+	}
+	group {
+		FontSize 12
+		BackGroundColor: var(--nodePrimaryBg)
+	}
+	arrow {
+		FontSize 11
+        LineColor: var(--textPrimary)
+	}
+}
+</style>
