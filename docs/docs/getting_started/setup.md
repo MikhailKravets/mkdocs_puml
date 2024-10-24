@@ -145,19 +145,17 @@ plugins:
         dark: catppuccin/mocha
 ```
 
-??? note "This web-site uses catppuccin"
+??? note "What theme uses this documentation web-site?"
 
-    This documentation web-site uses [Catppuccin](../themes/catppuccin.md) theme
-    with special `catppuccin/frappe-white` flavor for light mode and
-    `catppuccin/mocha` for dark mode. Use this configuration to apply the same
-    settings for your setup
+    This documentation web-site uses [Material](../themes/material.md) theme
+    with the following setup
 
     ```yaml
     plugins:
     - plantuml:
         theme:
-          light: catppuccin/frappe-white
-          dark: catppuccin/mocha
+          light: material/teal-light
+          dark: material/deep-orange-dark
     ```
 
 ### Using Custom Theme Repository
