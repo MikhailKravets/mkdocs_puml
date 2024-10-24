@@ -189,13 +189,12 @@ group {
   BackGroundColor transparent
   LineThickness 1.0
   package {
-    RoundCorner 10
-    LineThickness 2
+    RoundCorner 3
+    LineThickness 1
     BackGroundColor: transparent
     LineColor: var(--nodePrimary)
   }
 }
-
 folder {
     LineThickness 0.3
 }
