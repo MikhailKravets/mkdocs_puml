@@ -77,6 +77,7 @@ As you may have already noticed, when you hover the diagram few buttons appear i
 left corner:
 
 - :octicons-copy-16: copies SVG content of the diagram.
+- :octicons-download-16: downloads SVG diagram.
 - :octicons-plus-16: zooms in the diagram.
 - :octicons-home-16: resets the diagram to its default view.
 - :octicons-dash-16: zooms out the diagram.
