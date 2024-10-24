@@ -15,6 +15,7 @@ Currently the hub consists of the following themes.
 | [Catppuccin](catppuccin.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | [Nord](nord.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | [Kanagawa](kanagawa.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| [:simple-materialformkdocs: Material](material.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 ## How to Use
 
