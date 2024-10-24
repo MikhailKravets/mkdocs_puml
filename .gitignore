@@ -3,6 +3,9 @@
 
 .examples/
 .DS_Store
+docs/site
+
+poetry.lock
 
 ### VisualStudioCode ###
 .vscode/*

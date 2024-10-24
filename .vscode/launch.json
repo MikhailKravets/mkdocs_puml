@@ -21,7 +21,7 @@
             "request": "launch",
             "module": "mkdocs",
             "args": ["serve"],
-            "cwd": "${workspaceFolder}/.examples"
+            "cwd": "${workspaceFolder}/docs"
         }
     ]
 }

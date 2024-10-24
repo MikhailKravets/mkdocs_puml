@@ -29,6 +29,8 @@ def test_on_config(plugin_config):
     assert "assets/mkdocs_puml/interaction.css" in plugin_config["extra_css"]
     assert "assets/mkdocs_puml/interaction.js" in plugin_config["extra_javascript"]
 
+    assert plugin.puml.timeout == plugin_config.request_timeout
+
 
 def test_on_config_theme_disabled(plugin_config):
     plugin = PlantUMLPlugin()

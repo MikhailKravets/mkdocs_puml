@@ -32,10 +32,13 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
     Attributes:
         pre_class_name (str): the class that will be set to intermediate <pre> tag
                               containing uuid code
-        config_scheme (str): config scheme to set by user in mkdocs.yml file
+        container (str): html element where the diagrams will be inserted.
+                         **DO NOT** insert any `\n` characters, as the Markdown parser will convert them into
+                         `<p>...</p>`, which may result in an unexpected html
     """
 
     pre_class_name = "diagram-key"
+    container = "<div class='puml-container'>{}</div>"
 
     def __init__(self):
         self.regex: typing.Optional[typing.Any] = None
@@ -78,6 +81,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         self.puml = PlantUML(
             self.config.puml_url,
             verify_ssl=self.config.verify_ssl,
+            timeout=self.config.request_timeout
         )
         self.puml_keyword = self.config.puml_keyword
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
@@ -117,11 +121,12 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         ):
             schemes = self.regex.findall(markdown)
 
+            # DO NOT insert `\n` characters in the replacement!
             for v in schemes:
                 if self.themer:
-                    replace_into = self._store_dual(v)
+                    replace_into = self.container.format(self._store_dual(v))
                 else:
-                    replace_into = self._store_single(v)
+                    replace_into = self.container.format(self._store_single(v))
                 markdown = markdown.replace(
                     f"```{self.puml_keyword}{v}```",
                     replace_into,
@@ -146,7 +151,7 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
         key_dark = self.storage.add(d_dark)
 
         return (
-            f'<pre class="{self.pre_class_name}">{key_light}</pre>\n'
+            f'<pre class="{self.pre_class_name}">{key_light}</pre>'
             f'<pre class="{self.pre_class_name}">{key_dark}</pre>'
         )
 
