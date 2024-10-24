@@ -46,6 +46,11 @@ plugins:
         url: https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/
         light: material/teal-light
         dark: material/deep-orange-dark
+      cache:
+        backend: local
+        local:
+          path: "diagrams"
+          join_project_name: false
 markdown_extensions:
   - abbr
   - attr_list
