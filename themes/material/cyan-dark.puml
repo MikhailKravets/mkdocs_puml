@@ -86,7 +86,7 @@ root {
 }
 
 document {
-  BackGroundColor: var(--textAccent)
+  BackGroundColor transparent
   header {
     HorizontalAlignment right
     FontSize 10
