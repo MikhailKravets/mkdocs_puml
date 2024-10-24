@@ -51,9 +51,9 @@
 root {
     ' Web-site background
     --bg: #1e2129
-    ' This is --..A200
-    --nodePrimary: #18ffff
-    --nodePrimaryBg: #18ffff1a
+    ' This is --..A100
+    --nodePrimary: #a7ffeb
+    --nodePrimaryBg: #a7ffeb1a
 
     --textPrimary: #e2e2e2
     --textAccent: #1e2129
