@@ -33,9 +33,11 @@
 --green600:  #43a047
 
 ' Amber
---amber400:  #ffca28
 --amber600:  #ffb300
---amber800:  #ff8f00
+
+' Orange
+--orange400:  #ffa726
+--orange900:  #e65100
 
 ' Deep Orange
 --deepOrange400:  #ff7043
@@ -247,8 +249,8 @@ spot {
         LineColor: var(--deepOrange400)
     }
     spotEntity {
-        BackgroundColor: var(--amber800)
-        LineColor: var(--amber400)
+        BackgroundColor: var(--orange900)
+        LineColor: var(--orange400)
     }
     spotException {
         BackgroundColor: var(--red800)
