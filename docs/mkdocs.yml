@@ -40,7 +40,7 @@ plugins:
   - search
   - awesome-pages
   - plantuml:
-      puml_url: http://127.0.0.1:8080
+      puml_url: https://www.plantuml.com/plantuml
       puml_keyword: plantuml
       theme:
         url: https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/
