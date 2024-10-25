@@ -4,14 +4,14 @@
 
 ----------------
 
-Meterial theme is a set of minimalistic flavors that implements
+Meterial theme is a set of minimalistic flavors which implement
 color palette of [mkdocs-material](https://squidfunk.github.io/mkdocs-material/).
 
 [:material-github: Open Styles on GitHub](https://github.com/MikhailKravets/mkdocs_puml/tree/themes/themes/material){ .md-button }
 
 ## How to use
 
-In order to use this theme with `mkdocs_puml`, select desired flavord and set `theme` config of the plugin as follows:
+In order to use this theme with `mkdocs_puml`, select the desired flavor and set `theme` config of the plugin as follows:
 
 ```yaml
 plantuml:
@@ -22,7 +22,7 @@ plantuml:
 
 ## Flavors
 
-Material theme is flavors of all `mkdocs-material` primary colors listed below.
+Material theme has flavors of all `mkdocs-material` primary colors listed below.
 
 <button data-md-color-primary="red">
     <code style="background-color: var(--md-primary-fg-color); color: var(--md-primary-bg-color); border-radius: .1rem">red</code>
@@ -89,6 +89,7 @@ Flavor name is structured as `{primary-color}-{mode}`. For instance, if we want 
 we'll use `deep-purple-light` for light mode and `deep-purple-dark`.
 
 The following tab-panel contains the `mkdocs_puml` configurations of all material flavors.
+You can use it for easy copy-pasting.
 
 === "red"
 
@@ -263,7 +264,7 @@ The following tab-panel contains the `mkdocs_puml` configurations of all materia
 
 ## Examples
 
-In this theme card, we'll showcase examples using the classic indigo flavor.
+In this theme card, we'll showcase examples using the classic `indigo` flavor.
 Feel free to experiment by trying out other flavors on your own.
 
 ### Class Diagram
@@ -718,8 +719,6 @@ C4 styling is remained mostly intact. The only change is an improved visibility 
 
     !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/material/indigo-light.puml
     skinparam backgroundcolor white
-
-    ' skinparam backgroundcolor white
 
     !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
     !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
