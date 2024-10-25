@@ -113,8 +113,10 @@ plugins:
 
 ## Theming <theming>
 
-`mkdocs_puml` supports automatic theme switching for light and dark mode. It seamlessly integrates
-with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/).
+`mkdocs_puml` supports automatic theme switching for light and dark modes. Currently,
+the plugin integrates with the mode selectors of default `mkdocs` and
+[mkdocs-material](https://squidfunk.github.io/mkdocs-material/) themes. In other
+cases, `mkdocs_puml` will choose diagrams based on the browser's color scheme settings.
 
 ???+ info "Single-themed mode"
 
