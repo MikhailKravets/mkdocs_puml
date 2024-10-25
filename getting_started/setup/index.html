@@ -642,6 +642,8 @@
       
         
       
+        
+      
     
     
       
@@ -739,6 +741,27 @@
   
   <span class="md-ellipsis">
     Kanagawa 🌊
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../themes/material/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Material
   </span>
   
 
@@ -1115,8 +1138,10 @@ message in the terminal. By default it is set to <code>true</code>. Use this con
 <span class="w">      </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 <h2 id="theming">Theming <theming><a class="headerlink" href="#theming" title="Permanent link">&para;</a></h2>
-<p><code>mkdocs_puml</code> supports automatic theme switching for light and dark mode. It seamlessly integrates
-with <a href="https://squidfunk.github.io/mkdocs-material/">mkdocs-material</a>.</p>
+<p><code>mkdocs_puml</code> supports automatic theme switching for light and dark modes. Currently,
+the plugin integrates with the mode selectors of default <code>mkdocs</code> and
+<a href="https://squidfunk.github.io/mkdocs-material/">mkdocs-material</a> themes. In other
+cases, <code>mkdocs_puml</code> will choose diagrams based on the browser's color scheme settings.</p>
 <details class="info" open="open">
 <summary>Single-themed mode</summary>
 <p>Automatic theme switching comes with a cost, as <code>mkdocs_puml</code> need to generate two versions of every
@@ -1139,16 +1164,14 @@ and uses <a href="../../themes/default/">Default</a> PlantUML theme.</p>
 <span class="w">        </span><span class="nt">dark</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catppuccin/mocha</span>
 </code></pre></div>
 <details class="note">
-<summary>This web-site uses catppuccin</summary>
-<p>This documentation web-site uses <a href="../../themes/catppuccin/">Catppuccin</a> theme
-with special <code>catppuccin/frappe-white</code> flavor for light mode and
-<code>catppuccin/mocha</code> for dark mode. Use this configuration to apply the same
-settings for your setup</p>
+<summary>What theme uses this documentation web-site?</summary>
+<p>This documentation web-site uses <a href="../../themes/material/">Material</a> theme
+with the following setup</p>
 <div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">plantuml</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">theme</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">light</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catppuccin/frappe-white</span>
-<span class="w">      </span><span class="nt">dark</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catppuccin/mocha</span>
+<span class="w">      </span><span class="nt">light</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material/teal-light</span>
+<span class="w">      </span><span class="nt">dark</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material/deep-orange-dark</span>
 </code></pre></div>
 </details>
 <h3 id="using-custom-theme-repository">Using Custom Theme Repository<a class="headerlink" href="#using-custom-theme-repository" title="Permanent link">&para;</a></h3>
