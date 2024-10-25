@@ -680,6 +680,8 @@ nwdiagDiagram {
 }
 
 .container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor: var(--textPrimary)
+    LineColor: var(--textPrimary)
     RoundCorner 0
 
     stereotype {
