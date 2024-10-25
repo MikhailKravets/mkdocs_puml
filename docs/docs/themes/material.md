@@ -719,8 +719,6 @@ C4 styling is remained mostly intact. The only change is an improved visibility 
     !include https://raw.githubusercontent.com/MikhailKravets/mkdocs_puml/themes/themes/material/indigo-light.puml
     skinparam backgroundcolor white
 
-    ' skinparam backgroundcolor white
-
     !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
     !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
     !include DEVICONS/angular.puml
