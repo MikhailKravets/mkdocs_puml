@@ -1,6 +1,6 @@
 # Material
 
-<img src="/assets/themes/material/mkdocs-material.svg" width=200 />
+<img src="https://mikhailkravets.github.io/mkdocs_puml/assets/themes/material/mkdocs-material.svg" width=200 />
 
 ----------------
 
