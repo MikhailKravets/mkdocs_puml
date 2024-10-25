@@ -687,4 +687,20 @@ nwdiagDiagram {
         LineColor: var(--textPrimary)
 	}
 }
+
+' C4
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor: var(--textPrimary)
+    LineColor: var(--textPrimary)
+    RoundCorner 0
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
 </style>

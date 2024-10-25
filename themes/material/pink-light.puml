@@ -673,47 +673,20 @@ nwdiagDiagram {
         LineColor: var(--textPrimary)
 	}
 }
+
+' C4
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor: var(--textPrimary)
+    LineColor: var(--textPrimary)
+    RoundCorner 0
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
 </style>
-
-interface Display {
-    Represent an object in String
-}
-
-abstract class AbstractReader {
-    Read the data from various sources
-    ..
-    +read() -> Vec<Data>
-}
-
-enum Category {
-    + DEVICE
-    + FOOD
-    + MISC
-}
-
-class Item {
-    Object representing a data item
-    ..
-    +name: String
-    +category: Category
-    +price: f64
-}
-
-Item --* Category
-AbstractReader --o Item
-
-package fs {
-    class CSVReader {
-        Read data from csv file
-        ..
-        +new(p: AsRef<Path>) -> Self
-        +read() -> Vec<Data>
-    }
-
-    class JSONReader {
-        Read data from json file
-        ..
-        +new(p: AsRef<Path>) -> Self
-        +read() -> Vec<Data>
-    }
-}
