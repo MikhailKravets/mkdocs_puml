@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "mkdocs_puml"
-version = "2.2.0"
+version = "2.3.0"
 description = "Package that brings PlantUML to MkDocs"
 authors = ["Mikhail Kravets <michkravets@gmail.com>"]
 readme = "README.md"

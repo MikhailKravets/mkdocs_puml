@@ -1,0 +1,692 @@
+<style>
+' Red
+--red100:  #ffcdd2
+--red400:  #ef5350
+--red500:  #f44336
+
+' Pink
+--pink100:  #f8bbd0
+--pink400:  #ec407a
+
+' Purple
+--purple100:  #e1bee7
+--purple200:  #ce93d8
+--purple400:  #ab47bc
+
+' Deep Purple
+--deepPurple100:  #d1c4e9
+--deepPurple400:  #7e57c2
+
+' Indigo
+--indigo50:   #e8eaf6
+--indigo100:  #c5cae9
+--indigo400:  #5c6bc0
+
+' Blue
+--blue100:  #bbdefb
+--blue400:  #42a5f5
+
+' Light Blue
+--lightBlue100:  #b3e5fc
+--lightBlue400:  #29b6f6
+
+' Teal
+--teal100:  #b2dfdb
+--teal400:  #26a69a
+
+' Green
+--green100:  #c8e6c9
+--green400:  #66bb6a
+
+' Yellow
+--yellow100:  #fff9c4
+--yellow600:  #fdd835
+
+' Amber
+--amber100:  #ffecb3
+--amber400:  #ffca28
+
+' Deep Orange
+--deepOrange100:  #ffccbc
+--deepOrange400:  #ff7043
+
+' Grey
+--grey100:  #f5f5f5
+--grey200:  #eeeeee
+--grey300:  #e0e0e0
+--grey500:  #9e9e9e
+
+root {
+    ' This is --...200
+    --nodePrimary: #bcaaa4
+    --nodePrimaryBg: #bcaaa41a
+
+    --textPrimary: #36464e
+    --textAccent: #fff
+    --textAccentDimmed: #f5f5f5
+
+    ' --...400
+    --textNode: #8d6e63
+
+    ' --green400
+    --nodeAdditional: #66bb6a
+    --nodeAdditionalBg: #66bb6a1a
+
+    ' --...50
+    --undoneBg: #efebe9
+
+    FontName SansSerif
+    HyperLinkColor: var(--blue400)
+    HyperLinkUnderlineThickness 1
+    FontColor: var(--textPrimary)
+    FontSize 14
+    FontStyle plain
+    HorizontalAlignment left
+    RoundCorner 0
+    DiagonalCorner 0
+    LineThickness 1.0
+
+    LineColor: var(--textPrimary)
+    BackGroundColor transparent;
+    Shadowing: 0.0;
+}
+
+document {
+  BackGroundColor: transparent
+  header {
+    HorizontalAlignment right
+    FontSize 10
+    FontColor: var(--textPrimary)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  title {
+    HorizontalAlignment center
+    FontSize 14
+    FontStyle bold
+    Padding 5
+    Margin 5
+    LineColor transparent
+    BackGroundColor transparent
+  }
+  footer {
+    HorizontalAlignment center
+    FontSize 10
+    FontColor: var(--textPrimary)
+    BackGroundColor transparent
+    LineColor transparent
+  }
+  legend {
+    LineColor: var(--textPrimary)
+    BackGroundColor transparent
+    FontSize 14
+    RoundCorner 15
+    Padding 5
+    Margin 12
+  }
+  caption {
+    HorizontalAlignment center
+    FontSize 14
+    FontColor: var(--textPrimary)
+    Padding 0
+    Margin 1
+    LineColor transparent
+    BackGroundColor transparent
+  }
+}
+
+frame {
+    LineColor: var(--textPrimary)
+    LineThickness 1.5
+}
+
+package {
+    title {
+        FontStyle bold
+        FontColor: var(--textPrimary)
+    }
+}
+
+
+stereotype {
+  FontStyle italic
+}
+
+
+mainframe {
+  Padding 1 5
+  LineThickness 1.5
+  Margin 10 5
+}
+
+element {
+  Shadowing 0.0
+  LineThickness 1
+
+  LineColor: var(--nodePrimary)
+
+  composite {
+    title {
+      FontStyle bold
+    }
+
+  }
+}
+
+classDiagram,componentDiagram,objectDiagram {
+    element {
+        RoundCorner 0
+        LineThickness 1
+        BackGroundColor: var(--nodePrimaryBg)
+        LineColor: var(--nodePrimary)
+
+    }
+    arrow {
+        LineColor: var(--textPrimary)
+    }
+}
+
+group {
+  BackGroundColor transparent
+  LineThickness 1.0
+  package {
+    RoundCorner 3
+    LineThickness 1
+    BackGroundColor: transparent
+    LineColor: var(--nodePrimary)
+  }
+}
+
+folder {
+    LineThickness 0.3
+}
+
+visibilityIcon {
+    public {
+        LineColor: var(--green400)
+        BackgroundColor: var(--green400)
+    }
+    private {
+        LineColor: var(--red400)
+        BackgroundColor: var(--red400)
+    }
+    protected {
+        LineColor: var(--amber400)
+        BackgroundColor: var(--amber400)
+    }
+    package {
+        LineColor: var(--deepOrange400)
+        BackgroundColor: var(--deepOrange400)
+    }
+
+    ' TODO: what is it?
+    IEMandatory {
+        LineColor: var(--textPrimary)
+        BackgroundColor: var(--textPrimary)
+    }
+}
+
+spot {
+    FontColor: var(--textPrimary)
+    spotAnnotation {
+        BackgroundColor: var(--green100)
+        LineColor: var(--green400)
+    }
+    spotAbstractClass {
+        BackgroundColor: var(--teal100)
+        LineColor: var(--teal400)
+    }
+    spotClass {
+        BackgroundColor: var(--indigo100)
+        LineColor: var(--indigo400)
+    }
+    spotInterface {
+        BackgroundColor: var(--lightBlue100)
+        LineColor: var(--lightBlue400)
+    }
+    spotEnum {
+        BackgroundColor: var(--yellow100)
+        LineColor: var(--yellow600)
+    }
+    spotEntity {
+        BackgroundColor: var(--amber100)
+        LineColor: var(--amber400)
+    }
+    spotException {
+        BackgroundColor: var(--red100)
+        LineColor: var(--red400)
+    }
+    spotMetaClass {
+        BackgroundColor: var(--purple100)
+        LineColor: var(--purple400)
+    }
+    spotStereotype {
+        BackgroundColor: var(--pink100)
+        LineColor: var(--pink400)
+    }
+}
+
+
+sequenceDiagram {
+    LineColor: var(--textPrimary)
+    FontColor: var(--textPrimary)
+
+	group {
+        BackGroundColor transparent
+        LineColor: var(--nodePrimary)
+        LineThickness 1
+        FontSize 11
+        FontStyle bold
+        LineStyle 5
+	}
+
+	groupHeader {
+        FontColor: var(--textNode)
+        LineThickness 1
+        BackGroundColor: var(--nodePrimaryBg)
+        LineColor: var(--nodePrimaryBg)
+	}
+
+	lifeLine {
+        BackGroundColor: var(--purple200)
+        LineColor: var(--purple200)
+        LineStyle 5
+	}
+
+	reference {
+        FontSize 12
+        BackGroundColor: transparent
+        LineColor: var(--nodePrimary)
+        LineThickness 1.5
+        HorizontalAlignment center
+	}
+
+	referenceHeader {
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--nodePrimary)
+	}
+
+    groupHeader, referenceHeader {
+        FontColor: var(--textNode)
+        FontSize 13
+        FontStyle bold
+        LineThickness 1
+    }
+
+	box {
+        BackGroundColor: var(--nodePrimary)
+        LineColor: var(--nodePrimary)
+        RoundCorner 10
+
+        FontSize 13
+        FontStyle bold
+	}
+
+	separator {
+        LineColor: var(--nodePrimary)
+        LineThickness 1
+        BackGroundColor white
+
+        FontSize 13
+        ' FontStyle bold
+	}
+	participant {
+	    RoundCorner 5
+	}
+
+	participant,actor,boundary,control,entity,queue,database,collections {
+        BackgroundColor: var(--nodePrimaryBg);
+        HorizontalAlignment center
+        LineColor: var(--nodePrimary)
+        RoundCorner 5
+	}
+}
+
+
+stateDiagram {
+    ' BackGroundColor transparent
+    LineColor: var(--textPrimary)
+    state {
+        RoundCorner 15
+        BackGroundColor: var(--nodePrimaryBg)
+        LineColor: var(--nodePrimary)
+        LineThickness 1
+    }
+    stateBody {
+        BackGroundColor transparent
+    }
+    element {
+        title {
+            FontStyle plain
+        }
+    }
+    group {
+        LineThickness 0.5
+    }
+
+    header {
+        FontSize 12
+    }
+    circle {
+        start {
+            LineColor: var(--textPrimary)
+            BackgroundColor: var(--textPrimary)
+        }
+        stop, end {
+            LineColor: var(--nodePrimary)
+            BackgroundColor: var(--nodePrimary)
+        }
+    }
+}
+
+
+delay {
+  FontSize 11
+  FontStyle plain
+  HorizontalAlignment center
+}
+
+
+' Does it belong to activity?
+swimlane {
+  BackGroundColor transparent
+  LineColor: var(--textPrimary)
+  LineThickness 1.5
+  FontSize 18
+}
+
+arrow {
+  FontSize 13
+  LineThickness 1.0
+  BackGroundColor: var(--textPrimary)
+  FontColor: var(--textPrimary)
+}
+
+note {
+  FontSize 13
+  BackGroundColor: var(--nodeAdditionalBg)
+  LineThickness 1
+  LineColor: var(--nodeAdditional)
+}
+
+partition {
+}
+
+circle {
+}
+
+mindmapDiagram {
+	node {
+	    Padding 10
+	    Margin 10
+	    RoundCorner 5
+	    LineThickness 1
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--textAccent)
+	}
+	arrow {
+	    LineThickness 1
+        LineColor: var(--textPrimary)
+	}
+}
+
+
+wbsDiagram {
+    Padding 10
+    Margin 15
+    RoundCorner 0
+    LineThickness 1
+    FontSize 12
+    LineColor: var(--nodePrimary)
+    FontColor: var(--textPrimary)
+
+    arrow {
+        LineColor: var(--textPrimary)
+    }
+}
+
+activityDiagram {
+
+	activity {
+	    Padding 10
+	    FontSize 12
+	    RoundCorner 15
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--nodePrimaryBg)
+        LineThickness 1
+
+        ' TODO: this doesn't work
+        arrow {
+            LineColor: var(--textPrimary)
+        }
+	}
+
+    ' This is a group inside activity
+	composite {
+	    LineColor: var(--nodePrimary)
+        FontColor: var(--textPrimary)
+	    BackgroundColor transparent
+	    LineThickness 1
+        RoundCorner 5
+        FontSize 11
+        FontStyle bold
+	}
+	diamond {
+	    FontSize 11
+	}
+
+	arrow {
+	    FontSize 11
+	    LineThickness 1
+        LineColor: var(--textPrimary)
+	}
+    circle {
+        start {
+            LineColor: var(--textPrimary)
+            BackgroundColor: var(--textPrimary)
+        }
+        stop, end {
+            LineColor: var(--nodePrimary)
+            BackgroundColor: var(--nodePrimary)
+        }
+    }
+	activityBar {
+	  BackgroundColor: var(--nodePrimary)
+	}
+}
+
+
+task {
+    FontSize 11
+    LineColor: var(--sumiInk4)
+}
+
+ganttDiagram {
+
+    milestone {
+        FontSize 11
+        BackGroundColor: var(--textPrimary)
+        LineColor: var(--textPrimary)
+    }
+
+	arrow {
+        LineThickness 1.5
+        LineColor: var(--textPrimary)
+	}
+	separator {
+	  FontSize 11
+	  FontStyle plain
+	  BackGroundColor transparent
+      LineColor: var(--nodePrimary)
+      FontColor: var(--nodePrimary)
+	  Margin 5
+	  Padding 5
+	}
+	verticalSeparator {
+	  LineThickness 2
+	  LineStyle 2-2
+	  LineColor: var(--nodePrimary)
+      FontColor: var(--nodePrimary)
+	}
+	timeline {
+	    BackgroundColor transparent
+	    LineColor: var(--grey300)
+	    FontSize 10
+	    month {
+	      FontSize 12
+	    }
+	    year {
+	      FontSize 14
+	    }
+	}
+	closed {
+        BackGroundColor: var(--grey200)
+        FontColor: var(--grey500)
+    }
+	task {
+        ' TODO: transparency doesn't work in task
+        BackGroundColor: var(--textAccent)
+        LineColor: var(--nodePrimary)
+		RoundCorner 5
+        Margin 2 2 2 2
+        Padding 2
+	}
+	undone {
+        BackGroundColor: var(--undoneBg)
+	}
+	milestone {
+        Margin 2
+        Padding 3
+	}
+}
+
+
+usecase {
+  HorizontalAlignment center
+}
+
+yamlDiagram,jsonDiagram {
+    FontColor: var(--textPrimary)
+    LineColor: var(--nodePrimary)
+    arrow {
+        LineThickness 2.5
+        LineStyle 3-3
+        LineColor: var(--textPrimary)
+    }
+    node {
+        LineThickness 1.5
+        RoundCorner 3
+        BackGroundColor transparent
+        separator {
+            LineThickness 0.3
+            LineColor: var(--nodePrimary)
+        }
+        header {
+            FontStyle bold
+        }
+        highlight {
+            BackGroundColor: var(--nodePrimaryBg)
+        }
+    }
+}
+
+
+timingDiagram {
+	LineColor: var(--textPrimary)
+	FontColor: var(--textPrimary)
+	' FontStyle bold
+    LineThickness 0.5
+    timeline {
+	  FontStyle plain
+	  FontSize 11
+      LineThickness 1
+      FontColor: var(--textPrimary)
+      LineColor: var(--textPrimary)
+    }
+	arrow {
+	    FontName Serif
+	    FontSize 14
+	    FontStyle plain
+	    FontColor: var(--nodePrimary)
+	    LineColor: var(--nodePrimary)
+	    LineThickness 1
+	}
+	constraintArrow {
+	    FontSize 12
+		FontStyle plain
+        FontColor: var(--red500)
+	    LineColor: var(--red500)
+	    LineThickness 1.5
+	}
+	clock {
+        LineColor: var(--nodePrimary)
+        LineThickness 1.5
+	}
+	concise {
+	    FontSize 12
+        LineColor: var(--nodePrimary)
+        BackgroundColor: var(--textAccent);
+        LineThickness 1
+	}
+	robust {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--nodePrimary)
+        LineThickness 2
+        BackgroundColor: var(--nodePrimary);
+	}
+	binary {
+        FontStyle plain
+        FontSize 12
+        LineColor: var(--nodePrimary)
+        LineThickness 2
+	}
+	highlight {
+        ' TODO: plantuml doesn't have FontColor for text inside highlight?
+        BackgroundColor: var(--grey100)
+        LineThickness 2
+        LineStyle 4-4
+	}
+}
+
+nwdiagDiagram {
+    FontColor: var(--textPrimary)
+    LineThickness 1
+
+	network {
+	    BackgroundColor: var(--nodePrimary);
+        LineColor: var(--textPrimary)
+		FontSize 12
+	}
+	server {
+		FontSize 12
+        LineColor: var(--nodePrimary)
+        BackGroundColor: var(--nodePrimaryBg)
+        RoundCorner 10
+	}
+	group {
+		FontSize 12
+		BackGroundColor: var(--nodePrimaryBg)
+	}
+	arrow {
+		FontSize 11
+        LineColor: var(--textPrimary)
+	}
+}
+
+' C4
+.person, .system, .container, .component, .external_person, .external_system, .external_container {
+    HorizontalAlignment center
+}
+
+.container_boundary, .system_boundary, .enterprise_boundary, .boundary {
+    FontColor: var(--textPrimary)
+    LineColor: var(--textPrimary)
+    RoundCorner 0
+
+    stereotype {
+        ' I don't know how to actually set display none
+        FontSize 0
+    }
+}
+</style>

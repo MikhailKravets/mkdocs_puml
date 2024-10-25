@@ -72,7 +72,7 @@ root {
 }
 
 document {
-  BackGroundColor: transparent
+  BackGroundColor white
   header {
     HorizontalAlignment right
     FontSize 10

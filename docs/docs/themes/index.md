@@ -10,11 +10,12 @@ a seamless integration with `mkdocs_puml`.
 Currently the hub consists of the following themes.
 
 |    **Name**      | **Light** | **Dark** | **C4** |
-|:----------:|:--------------:|:-----:|:-----:|
+|:----------|:--------------:|:-----:|:-----:|
 | [Default](default.md) |  :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | [Catppuccin](catppuccin.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | [Nord](nord.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | [Kanagawa](kanagawa.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| [Material :simple-materialformkdocs:](material.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 ## How to Use
 

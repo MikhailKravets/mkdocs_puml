@@ -1,19 +1,28 @@
-let copy_svg = `
+let copySvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy">
 <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
 </svg>
 `;
 
-let check_svg = `
+let checkSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check green">
 <path d="M20 6 9 17l-5-5"/>
+</svg>
+`;
+
+let downloadSvg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>
 </svg>
 `;
 
 let controls = `
 <div class="control">
     <button class="icon-button puml-copy">
-        ${copy_svg}
+        ${copySvg}
+    </button>
+    <button class="icon-button puml-download">
+        ${downloadSvg}
     </button>
     <hr />
     <button class="icon-button puml-zoom-in">
@@ -69,6 +78,7 @@ function processDiagrams() {
 
         const control = svg.parentElement.querySelector(".control");
         const copyBtn = control.querySelector(".puml-copy");
+        const downloadBtn = control.querySelector(".puml-download");
         const zoomResetBtn = control.querySelector(".puml-zoom-reset");
         const zoomInBtn = control.querySelector(".puml-zoom-in");
         const zoomOutBtn = control.querySelector(".puml-zoom-out");
@@ -88,16 +98,25 @@ function processDiagrams() {
             clearTimeout(timeout);
 
             let btn = event.target.closest('button');
-            btn.innerHTML = check_svg;
+            btn.innerHTML = checkSvg;
 
             timeout = setTimeout(() => {
-                btn.innerHTML = copy_svg;
+                btn.innerHTML = copySvg;
             }, 1500);
         });
         copyBtn.addEventListener("click", e => {
             const svgString = new XMLSerializer().serializeToString(svg);
             // Copy svg as text
             navigator.clipboard.writeText(svgString);
+        });
+        downloadBtn.addEventListener("click", e => {
+            const svgString = new XMLSerializer().serializeToString(svg);
+            let blob = new Blob([svgString], { type: 'image/svg+xml' });
+            let link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'diagram.svg';
+            link.click();
+            URL.revokeObjectURL(link.href);
         });
     });
 }
