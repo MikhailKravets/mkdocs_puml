@@ -37,6 +37,16 @@ class InteractionConfig(Config):
     enabled = Type(bool, default=True)
 
 
+class OutputFormat(Enum):
+    PNG = "png"
+    SVG = "svg"
+    TXT = "txt"
+
+    @classmethod
+    def values(cls):
+        return [v.value for v in cls]
+
+
 class PlantUMLConfig(Config):
     puml_url = Type(str)
     puml_keyword = Type(str, default="puml")
@@ -46,3 +56,4 @@ class PlantUMLConfig(Config):
     theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default
     cache = SubConfig(CacheConfig)
     interaction = SubConfig(InteractionConfig)
+    output_format = Choice(OutputFormat.values(), default=OutputFormat.SVG.value)

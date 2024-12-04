@@ -30,6 +30,7 @@ def test_on_config(plugin_config):
     assert "assets/mkdocs_puml/interaction.js" in plugin_config["extra_javascript"]
 
     assert plugin.puml.timeout == plugin_config.request_timeout
+    assert plugin.config.output_format == 'svg'
 
 
 def test_on_config_theme_disabled(plugin_config):
