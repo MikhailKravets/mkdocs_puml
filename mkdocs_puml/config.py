@@ -40,7 +40,7 @@ class InteractionConfig(Config):
 class PlantUMLConfig(Config):
     puml_url = Type(str)
     puml_keyword = Type(str, default="puml")
-    verify_ssl = Type(bool, default=True)
+    verify_ssl = Choice([True, False, "system"], default=True)
     verbose = Type(bool, default=True)
     request_timeout = Type(int, default=300)
     theme = SubConfig(ThemeConfig)  # SubConfig already has an `{}` as default

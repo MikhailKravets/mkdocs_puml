@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import logging
 import typing
 import re
+import ssl
 
 from urllib.parse import urljoin
 from xml.dom.minidom import Element, parseString  # nosec
@@ -35,7 +36,7 @@ class PlantUML:
     Attributes:
         base_url (str): Base URL to the PUML service
         num_workers (int): The size of pool to run requests in
-        verify_ssl (bool): Designates whether the ``requests`` should verify SSL certiticate
+        verify_ssl (bool|"system"): Designates whether the ``requests`` should verify SSL certiticate or use system certificates
         output_format (str): The output format for the diagrams (e.g., "svg" or "dsvg")
 
     Examples:
@@ -50,7 +51,7 @@ class PlantUML:
     def __init__(
         self,
         base_url: str,
-        verify_ssl: bool = True,
+        verify_ssl: typing.Union[bool, typing.Literal["system"]] = True,
         output_format: str = "svg",
         timeout: int = 40,
     ):
@@ -59,7 +60,11 @@ class PlantUML:
         self.base_url = sanitize_url(base_url)
         self.base_url = f"{self.base_url}{output_format}/"
 
-        self.verify_ssl = verify_ssl
+        if verify_ssl == "system":
+            self.verify = ssl.create_default_context()
+            self.verify.load_default_certs()
+        else:
+            self.verify = verify_ssl
         self.timeout = timeout
 
     def translate(self, schemes: typing.Iterable[str]) -> typing.List[typing.Union[str, Fallback]]:
@@ -141,7 +146,7 @@ class PlantUML:
         return svgs
 
     async def _request_one(self, uri: str) -> Response:
-        """Request request PlantUML server asynchronously
+        """Request PlantUML server asynchronously
 
         Args:
             uri (str): URI with encoded diagram attached to it
@@ -149,7 +154,7 @@ class PlantUML:
         Returns:
             Response: response from PlantUML server
         """
-        async with AsyncClient(verify=self.verify_ssl, timeout=self.timeout) as client:
+        async with AsyncClient(verify=self.verify, timeout=self.timeout) as client:
             return await client.get(uri)
 
     async def _request_all(self, schemes: list[str]):

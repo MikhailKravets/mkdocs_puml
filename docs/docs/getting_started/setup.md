@@ -78,22 +78,35 @@ plugins:
 
 ### `verify_ssl`
 
-In some cases, when using a custom PlantUML server setup, you may want to disable
-SSL verification. This can be achieved by
+By default `verify_ssl` is set to `true`, which enables SSL certificate validation using the [certifi](https://pypi.org/project/certifi/) CA bundle.
 
+In certain scenarios - such as when using a custom PlantUML server with self-signed certificates or operating in a corporate environment with TLS inspection — you may need to either use the system's trusted certificate store or disable SSL certificate verification entirely.
+This behavior can be configured using the `verify_ssl` option in your mkdocs.yml file.
+
+Using the system certificate store:  
+```yaml
+plugins:
+  - plantuml:
+      verify_ssl: system
+```
+
+Disabling SSL verification:  
 ```yaml
 plugins:
   - plantuml:
       verify_ssl: false
 ```
 
-By default `verify_ssl` is set to `true`.
+!!! warning "Security risk"
+    
+    Disabling SSL verification (`verify_ssl: false`) reduces security and should only be used in trusted, controlled environments.
 
 ???+ tip "Use self-signed SSL"
 
     Under the hood, `mkdocs_puml` uses [HTTPX](https://www.python-httpx.org/) to request PlantUML server.
-    If you're running the server with self-signed certificates you need to set `SSL_CERT_FILE` or
-    `SSL_CERT_DIR` environment variables before running `mkdocs`.
+    If you're running the server with self-signed certificates that are not contained in your system's
+    trusted certificate store you need to set `SSL_CERT_FILE` or `SSL_CERT_DIR` environment variables
+    before running `mkdocs`.
 
     For additional information refer to `HTTPX` documentation
 
