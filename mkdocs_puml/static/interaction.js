@@ -16,6 +16,19 @@ let downloadSvg = `
 </svg>
 `;
 
+let fullscreenSvg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize">
+<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+</svg>
+`;
+
+let minimizeSvg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minimize">
+<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+</svg>
+`;
+
+
 let controls = `
 <div class="control">
     <button class="icon-button puml-copy">
@@ -23,6 +36,9 @@ let controls = `
     </button>
     <button class="icon-button puml-download">
         ${downloadSvg}
+    </button>
+    <button class="icon-button puml-fullscreen">
+        ${fullscreenSvg}
     </button>
     <hr />
     <button class="icon-button puml-zoom-in">
@@ -79,6 +95,7 @@ function processDiagrams() {
         const control = svg.parentElement.querySelector(".control");
         const copyBtn = control.querySelector(".puml-copy");
         const downloadBtn = control.querySelector(".puml-download");
+        const fullscreenBtn = control.querySelector(".puml-fullscreen");
         const zoomResetBtn = control.querySelector(".puml-zoom-reset");
         const zoomInBtn = control.querySelector(".puml-zoom-in");
         const zoomOutBtn = control.querySelector(".puml-zoom-out");
@@ -118,6 +135,28 @@ function processDiagrams() {
             link.click();
             URL.revokeObjectURL(link.href);
         });
+        fullscreenBtn.addEventListener("click", e => {
+            const container = svg.closest('.puml-container');
+            if (!document.fullscreenElement) {
+                container.requestFullscreen();
+                fullscreenBtn.innerHTML = minimizeSvg;
+            } else {
+                document.exitFullscreen();
+                fullscreenBtn.innerHTML = fullscreenSvg;
+            }
+        });
+    });
+
+    // Used to update icon even if left with escape key
+    document.addEventListener('fullscreenchange', (event) => {
+        // Event target is the element that is in fullscreen mode
+        if (!document.fullscreenElement) {
+            let container = event.target;
+            if (container && container.classList.contains('puml-container')) {
+                const fullscreenBtn = container.querySelector(".puml-fullscreen");
+                fullscreenBtn.innerHTML = fullscreenSvg;
+            }
+        }
     });
 }
 

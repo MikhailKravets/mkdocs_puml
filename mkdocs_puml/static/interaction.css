@@ -128,3 +128,24 @@ body[data-md-color-scheme="slate"] {
     border-color: var(--btn-active-border-color);
     outline: 0;
 }
+
+.puml-container:fullscreen {
+    background-color: var(--md-default-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.puml-container:fullscreen .puml {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.puml-container:fullscreen .puml .diagram {
+    height: 100%;
+    max-width: 100%;
+}
