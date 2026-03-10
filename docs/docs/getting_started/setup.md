@@ -7,7 +7,11 @@
     ```yaml
     plugins:
     - plantuml:
+        # For online service
         puml_url: https://www.plantuml.com/plantuml/
+        # Alternatively:
+        # puml_bin: /path/to/plantuml
+        # puml_args: [ '-timeout', '10', '-noerror', .... ]
         puml_keyword: puml
         request_timeout: 300
         verify_ssl: true
@@ -32,7 +36,10 @@ The communication of `mkdocs_puml` with PlantUML server can be configured with t
 
 ### `puml_url`
 
-`puml_url` is the only required parameter that expects a URL to PlantUML server.
+One of `puml_url` or `puml_cmdline` must be supplied. `puml_url` is only used if
+`pml_cmdline` is not supplied.
+
+`puml_url` expects a string URL to PlantUML server.
 The easiest solution is to set URL to [plantuml.com/plantuml](https://www.plantuml.com/plantuml/) such as
 
 ```yaml
@@ -45,7 +52,44 @@ However, this approach has its disadvantages. First of all, you may not want to 
 with the public server. Also, the public server has a rate limits, which can result in 509 errors.
 
 As mentioned in [Installation](index.md#installation) section, you may setup PlantUML server locally
-using Docker.
+using Docker, or you can use `puml_bin` to run `plantuml` locally.
+
+### `puml_cmdline`
+
+One of `puml_url` or `puml_cmdline` must be supplied. If `puml_mdline` is supplied,
+it is used in preference to `puml_url`.
+
+`puml_cmdline` expects a list of strings, forming a command to run `plantuml`.
+Typically, where `plantuml` is installed system-wide or the `plantuml` script
+is in your path, this can just be set to `[ 'plantuml' ]`.
+
+```yaml
+plugins:
+  - plantuml:
+      puml_cmdline: ['plantuml']
+```
+
+If no such script exists, you can execute java directly, for example:
+
+```yaml
+plugins:
+  - plantuml:
+      puml_cmdline:
+        - "java"
+        - "-jar"
+        - "/path/to/plantuml.jar"
+```
+
+Additional command line arguments can also be supplied to `plantuml`:
+
+```yaml
+plugins:
+  - plantuml:
+      puml_cmdline: 
+        - 'plantuml'
+        - '-graphvizdot'
+        - /path/to/dot
+```
 
 ### `puml_keyword`
 

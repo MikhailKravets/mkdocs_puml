@@ -12,7 +12,7 @@ from mkdocs.plugins import BasePlugin
 from mkdocs_puml.config import PlantUMLConfig
 from mkdocs_puml.model import Count, Diagram, ThemeMode
 from mkdocs_puml.storage import AbstractStorage, build_storage
-from mkdocs_puml.puml import Fallback, PlantUML
+from mkdocs_puml.puml import Fallback, PlantUML, RemotePlantUML, LocalPlantUML
 from mkdocs_puml.theme import Theme
 
 
@@ -78,11 +78,15 @@ class PlantUMLPlugin(BasePlugin[PlantUMLConfig]):
             )
 
         self.console = Console(quiet=not self.config.verbose)
-        self.puml = PlantUML(
-            self.config.puml_url,
-            verify_ssl=self.config.verify_ssl,
-            timeout=self.config.request_timeout
-        )
+        if self.config.puml_cmdline:
+            self.puml = LocalPlantUML(self.config.puml_cmdline)
+        else:
+            self.puml = RemotePlantUML(
+                self.config.puml_url,
+                verify_ssl=self.config.verify_ssl,
+                timeout=self.config.request_timeout
+            )
+
         self.puml_keyword = self.config.puml_keyword
         self.regex = re.compile(rf"```{self.puml_keyword}(\n.+?)```", flags=re.DOTALL)
 

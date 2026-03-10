@@ -42,6 +42,14 @@ Bob -> Alice : hello
 
 That's it, `mkdocs_puml` will automatically build `SVG` diagrams from the code 🎉
 
+For a local plantuml, just provide the command to run instead. For example:
+
+```yaml
+plugins:
+  - plantuml:
+      puml_bin: plantuml
+```
+
 For more information, please refer to the [**documentation**](https://mikhailkravets.github.io/mkdocs_puml/).
 
 ## License

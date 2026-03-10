@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import logging
 import typing
 import re
+import abc
 
 from urllib.parse import urljoin
 from xml.dom.minidom import Element, parseString  # nosec
@@ -28,6 +29,50 @@ class Fallback:
 
 
 class PlantUML:
+    @abc.abstractmethod
+    def translate(self, schemes: typing.Iterable[str]) -> typing.List[typing.Union[str, Fallback]]:
+        pass
+
+
+class LocalPlantUML(PlantUML):
+    def __init__(self, puml_cmdline: typing.List[str], output_format: str = "svg"):
+        self.puml_cmdline = puml_cmdline
+        self.output_format = output_format
+
+    def translate(self, schemes: typing.Iterable[str]) -> typing.List[typing.Union[str, Fallback]]:
+        return asyncio.run(self._translate(schemes))
+
+    async def _translate(self, schemes: typing.Iterable[str]) -> typing.List[typing.Union[str, Fallback]]:
+        tasks = [
+            self._generate(scheme) for scheme in schemes
+        ]
+        return await asyncio.gather(*tasks)
+
+    async def _generate(self, plantuml_code):
+        plantuml_code = plantuml_code.encode('utf8')
+        cmdline = self.puml_cmdline + [
+            '-p',
+            '-t' + self.output_format,
+            '-charset', 'UTF-8'
+        ]
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                *cmdline,
+                stdin=asyncio.subprocess.PIPE,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE)
+            out, err = await proc.communicate(input=plantuml_code)
+        except Exception as exc:
+            return Fallback(status_code=500, message=str(exc))
+        else:
+            if proc.returncode != 0:
+                # plantuml returns a nice image in case of syntax error so log but still return out
+                logger.error(f'[puml] Error in PlantUML: {err.decode("utf-8")}')
+
+            return out.decode('utf-8')
+
+
+class RemotePlantUML(PlantUML):
     """PlantUML converter class.
     It requests PUML service, updates received `svg`
     and returns it to the user.

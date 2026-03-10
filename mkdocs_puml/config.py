@@ -1,6 +1,6 @@
 from enum import Enum
 from mkdocs.config.base import Config
-from mkdocs.config.config_options import Type, SubConfig, Choice
+from mkdocs.config.config_options import Type, SubConfig, Choice, ListOfItems
 
 
 class CacheBackend(Enum):
@@ -38,7 +38,8 @@ class InteractionConfig(Config):
 
 
 class PlantUMLConfig(Config):
-    puml_url = Type(str)
+    puml_url = Type(str, default="")
+    puml_cmdline = ListOfItems(Type(str), default=[])
     puml_keyword = Type(str, default="puml")
     verify_ssl = Type(bool, default=True)
     verbose = Type(bool, default=True)
